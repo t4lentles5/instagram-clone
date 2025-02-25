@@ -13,10 +13,14 @@ body {
   :root {
     --foreground: #000;
     --background: #fff;
+    --separator: #dbdbdb;
+    --hover: #f2f2f2;
   }
 
   .dark {
     --foreground: #f5f5f5;
     --background: #000;
+    --separator: #131313;
+    --hover: #1a1a1a;
   }
 }
