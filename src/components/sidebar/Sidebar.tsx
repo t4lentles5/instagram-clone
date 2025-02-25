@@ -1,3 +1,4 @@
+import { SidebarMoreOptions } from './SidebarMoreOptions';
 import { SidebarNav } from './SidebarNav';
 
 export const Sidebar = () => {
@@ -24,7 +25,7 @@ export const Sidebar = () => {
       </div>
       <div className='flex flex-col justify-between h-full'>
         <SidebarNav />
-        SidebarOptions
+        <SidebarMoreOptions />
       </div>
     </div>
   );
