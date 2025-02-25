@@ -15,6 +15,7 @@ body {
     --background: #fff;
     --separator: #dbdbdb;
     --hover: #f2f2f2;
+    --popover: #fff;
   }
 
   .dark {
@@ -22,5 +23,6 @@ body {
     --background: #000;
     --separator: #131313;
     --hover: #1a1a1a;
+    --popover: #262626;
   }
 }

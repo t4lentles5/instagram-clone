@@ -13,6 +13,7 @@ export default {
         foreground: 'var(--foreground)',
         separator: 'var(--separator)',
         hover: 'var(--hover)',
+        popover: 'var(--popover)',
       },
     },
   },
