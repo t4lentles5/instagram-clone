@@ -27,58 +27,69 @@ export const SidebarNav = () => {
 
       <Link
         className='flex items-center justify-start gap-4 p-3 transition-all duration-300 rounded-lg hover:bg-hover'
-        href={'/'}
+        href={'/search'}
       >
         <MagnifyingGlass
           size={29}
-          weight={pathname === `/` ? 'fill' : 'regular'}
+          weight={pathname === `/search` ? 'bold' : 'regular'}
         />
-        <span className={` ${pathname === `/` && 'font-bold'}`}>Search</span>
-      </Link>
-
-      <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all duration-300 rounded-lg hover:bg-hover'
-        href={'/'}
-      >
-        <Compass size={29} weight={pathname === `/` ? 'fill' : 'regular'} />
-        <span className={` ${pathname === `/` && 'font-bold'}`}>Explore</span>
-      </Link>
-
-      <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all duration-300 rounded-lg hover:bg-hover'
-        href={'/'}
-      >
-        <MessengerLogo
-          size={29}
-          weight={pathname === `/` ? 'fill' : 'regular'}
-        />
-        <span className={` ${pathname === `/` && 'font-bold'}`}>Messages</span>
-      </Link>
-
-      <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all duration-300 rounded-lg hover:bg-hover'
-        href={'/'}
-      >
-        <Heart size={29} weight={pathname === `/` ? 'fill' : 'regular'} />
-        <span className={` ${pathname === `/` && 'font-bold'}`}>
-          Notifications
+        <span className={` ${pathname === `/search` && 'font-bold'}`}>
+          Search
         </span>
       </Link>
 
       <Link
         className='flex items-center justify-start gap-4 p-3 transition-all duration-300 rounded-lg hover:bg-hover'
-        href={'/'}
+        href={'/explore'}
       >
-        <PlusCircle size={29} weight={pathname === `/` ? 'fill' : 'regular'} />
-        <span className={` ${pathname === `/` && 'font-bold'}`}>Create</span>
+        <Compass
+          size={29}
+          weight={pathname === `/explore` ? 'fill' : 'regular'}
+        />
+        <span className={` ${pathname === `/explore` && 'font-bold'}`}>
+          Explore
+        </span>
       </Link>
 
       <Link
         className='flex items-center justify-start gap-4 p-3 transition-all duration-300 rounded-lg hover:bg-hover'
-        href={'/'}
+        href={'/messages'}
       >
-        <User size={29} weight={pathname === `/` ? 'fill' : 'regular'} />
-        <span className={` ${pathname === `/` && 'font-bold'}`}>Profile</span>
+        <MessengerLogo
+          size={29}
+          weight={pathname === `/messages` ? 'fill' : 'regular'}
+        />
+        <span className={` ${pathname === `/messages` && 'font-bold'}`}>
+          Messages
+        </span>
+      </Link>
+
+      <Link
+        className='flex items-center justify-start gap-4 p-3 transition-all duration-300 rounded-lg hover:bg-hover'
+        href={'/notifications'}
+      >
+        <Heart
+          size={29}
+          weight={pathname === `/notifications` ? 'fill' : 'regular'}
+        />
+        <span className={` ${pathname === `/notifications` && 'font-bold'}`}>
+          Notifications
+        </span>
+      </Link>
+
+      <button className='flex items-center justify-start gap-4 p-3 transition-all duration-300 rounded-lg hover:bg-hover'>
+        <PlusCircle size={29} weight={false ? 'fill' : 'regular'} />
+        <span className={` ${false && 'font-bold'}`}>Create</span>
+      </button>
+
+      <Link
+        className='flex items-center justify-start gap-4 p-3 transition-all duration-300 rounded-lg hover:bg-hover'
+        href={'/omar1'}
+      >
+        <User size={29} weight={pathname === `/omar1` ? 'fill' : 'regular'} />
+        <span className={` ${pathname === `/omar1` && 'font-bold'}`}>
+          Profile
+        </span>
       </Link>
     </nav>
   );
