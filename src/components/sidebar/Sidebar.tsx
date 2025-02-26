@@ -3,7 +3,7 @@ import { SidebarNav } from './SidebarNav';
 
 export const Sidebar = () => {
   return (
-    <div className='flex flex-col w-full h-full gap-4 p-3 border-t sm:border-r'>
+    <div className='flex flex-col w-full h-full gap-4 p-3 border-t sm:border-r border-separator'>
       <div className='w-full p-3 mt-3'>
         <svg
           aria-label='Instagram'
