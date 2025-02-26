@@ -17,27 +17,20 @@ export const useSidebarStore = create<SidebarState>()(
       isSearchActive: false,
       isNotificationsActive: false,
       toggleSearch: () =>
-        set((state) => {
-          const newSearchActive = !state.isSearchActive;
-          return {
-            isSearchActive: newSearchActive,
-            isNotificationsActive: false,
-            isSidebarCollapsed: newSearchActive,
-          };
-        }),
+        set((state) => ({
+          isSidebarCollapsed: !state.isSidebarCollapsed,
+          isSearchActive: !state.isSearchActive,
+          isNotificationsActive: false,
+        })),
       toggleNotifications: () =>
-        set((state) => {
-          const newNotificationsActive = !state.isNotificationsActive;
-          return {
-            isNotificationsActive: newNotificationsActive,
-            isSearchActive: false,
-            isSidebarCollapsed: newNotificationsActive,
-          };
-        }),
-
+        set((state) => ({
+          isSidebarCollapsed: !state.isSidebarCollapsed,
+          isSearchActive: false,
+          isNotificationsActive: !state.isNotificationsActive,
+        })),
       resetSidebar: () =>
         set(() => ({
-          isSidebarCollapsed: false,
+          // isSidebarCollapsed: false,
           isSearchActive: false,
           isNotificationsActive: false,
         })),

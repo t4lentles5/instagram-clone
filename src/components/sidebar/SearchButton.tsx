@@ -31,7 +31,7 @@ export const SearchButton = () => {
   return (
     <>
       <button
-        className='flex items-center w-full justify-start gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-hover'
+        className='flex items-center justify-start w-full gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
         onClick={toggleSearch}
         ref={buttonSearchRef}
       >
