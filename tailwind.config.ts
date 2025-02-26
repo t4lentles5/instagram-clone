@@ -14,6 +14,7 @@ export default {
         separator: 'var(--separator)',
         hover: 'var(--hover)',
         popover: 'var(--popover)',
+        popoverHover: 'var(--popover-hover)',
       },
     },
   },
