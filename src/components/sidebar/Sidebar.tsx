@@ -1,13 +1,26 @@
+'use client';
+
+import { useSidebarStore } from '@/store/ui/sidebarStore';
 import { SidebarMoreOptions } from './SidebarMoreOptions';
 import { SidebarNav } from './SidebarNav';
+import Link from 'next/link';
+import { InstagramLogo } from 'phosphor-react';
 
 export const Sidebar = () => {
+  const { isSidebarCollapsed } = useSidebarStore();
+
   return (
-    <div className='flex flex-col w-full h-full gap-4 p-3 border-t sm:border-r border-separator'>
-      <div className='w-full p-3 mt-3'>
+    <div
+      className={`${
+        isSidebarCollapsed ? 'sm:w-[72px]' : 'w-full'
+      } relative flex flex-col w-full h-full gap-4 p-2 border-t sm:border-r border-separator transform origin-left transition-all duration-400 ease-in-out`}
+    >
+      <Link href={'/'} className='w-full h-10 p-3 mt-3 '>
         <svg
           aria-label='Instagram'
-          className='text-text'
+          className={`${
+            isSidebarCollapsed ? 'hidden ' : 'xl:block '
+          } hidden text-foreground`}
           fill='currentColor'
           height='40'
           role='img'
@@ -22,7 +35,14 @@ export const Sidebar = () => {
             fillRule='evenodd'
           ></path>
         </svg>
-      </div>
+
+        <InstagramLogo
+          size={32}
+          className={`${
+            isSidebarCollapsed ? 'block ' : 'xl:hidden '
+          } text-foreground block`}
+        />
+      </Link>
       <div className='flex flex-col justify-between h-full'>
         <SidebarNav />
         <SidebarMoreOptions />
