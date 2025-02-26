@@ -7,7 +7,6 @@ type SidebarState = {
   isNotificationsActive: boolean;
   toggleSearch: () => void;
   toggleNotifications: () => void;
-  resetSidebar: () => void;
 };
 
 export const useSidebarStore = create<SidebarState>()(
@@ -27,12 +26,6 @@ export const useSidebarStore = create<SidebarState>()(
           isSidebarCollapsed: !state.isSidebarCollapsed,
           isSearchActive: false,
           isNotificationsActive: !state.isNotificationsActive,
-        })),
-      resetSidebar: () =>
-        set(() => ({
-          // isSidebarCollapsed: false,
-          isSearchActive: false,
-          isNotificationsActive: false,
         })),
     }),
     { name: 'SidebarStore' }

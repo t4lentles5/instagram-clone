@@ -5,39 +5,42 @@ import { useEffect, useRef } from 'react';
 
 export const NotificationsButton = () => {
   const pathname = usePathname();
-  const notificationsRef = useRef<HTMLDivElement>(null);
-  const buttonNotificationsRef = useRef<HTMLButtonElement>(null);
-  const {
-    isSidebarCollapsed,
-    isNotificationsActive,
-    toggleNotifications,
-    resetSidebar,
-  } = useSidebarStore();
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      buttonNotificationsRef.current &&
-      !buttonNotificationsRef.current.contains(event.target as Node) &&
-      notificationsRef.current &&
-      !notificationsRef.current.contains(event.target as Node)
-    ) {
-      resetSidebar();
-    }
-  };
+  const { isSidebarCollapsed, isNotificationsActive, toggleNotifications } =
+    useSidebarStore();
+  const notificationRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        buttonRef.current &&
+        buttonRef.current.contains(event.target as Node)
+      ) {
+        return;
+      }
+
+      if (
+        notificationRef.current &&
+        !notificationRef.current.contains(event.target as Node)
+      ) {
+        if (isNotificationsActive) {
+          toggleNotifications();
+        }
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [isNotificationsActive, toggleNotifications]);
 
   return (
     <>
       <button
+        ref={buttonRef}
         className='flex items-center w-full justify-start gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-hover'
         onClick={toggleNotifications}
-        ref={buttonNotificationsRef}
       >
         <Heart
           size={29}
@@ -57,7 +60,7 @@ export const NotificationsButton = () => {
       </button>
 
       <div
-        ref={notificationsRef}
+        ref={notificationRef}
         className={`${
           isSidebarCollapsed && isNotificationsActive
             ? 'opacity-100 translate-y-0'

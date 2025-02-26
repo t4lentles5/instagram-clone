@@ -1,39 +1,46 @@
+import { useEffect, useRef } from 'react';
 import { useSidebarStore } from '@/store/ui/sidebarStore';
 import { usePathname } from 'next/navigation';
 import { MagnifyingGlass } from 'phosphor-react';
-import { useEffect, useRef } from 'react';
 
 export const SearchButton = () => {
   const pathname = usePathname();
-  const searchRef = useRef<HTMLDivElement>(null);
-  const buttonSearchRef = useRef<HTMLButtonElement>(null);
-  const { isSidebarCollapsed, isSearchActive, toggleSearch, resetSidebar } =
+  const { isSidebarCollapsed, isSearchActive, toggleSearch } =
     useSidebarStore();
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      buttonSearchRef.current &&
-      !buttonSearchRef.current.contains(event.target as Node) &&
-      searchRef.current &&
-      !searchRef.current.contains(event.target as Node)
-    ) {
-      resetSidebar();
-    }
-  };
+  const searchRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        buttonRef.current &&
+        buttonRef.current.contains(event.target as Node)
+      ) {
+        return;
+      }
+
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        if (isSearchActive) {
+          toggleSearch();
+        }
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [isSearchActive, toggleSearch]);
 
   return (
     <>
       <button
+        ref={buttonRef}
         className='flex items-center justify-start w-full gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
         onClick={toggleSearch}
-        ref={buttonSearchRef}
       >
         <MagnifyingGlass
           size={29}
