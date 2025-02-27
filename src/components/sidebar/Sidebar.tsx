@@ -13,7 +13,7 @@ export const Sidebar = () => {
     <div
       className={`${
         isSidebarCollapsed ? 'sm:w-[72px]' : 'w-full'
-      } relative flex flex-col w-full h-full gap-4 p-2 border-t sm:border-r border-separator transform origin-left transition-all duration-400 ease-in-out`}
+      } flex flex-col w-full h-full gap-4 p-2 border-t sm:border-r border-separator transform origin-left transition-all duration-400 ease-in-out`}
     >
       <Link href={'/'} className='w-full h-10 p-3 mt-3 '>
         <svg

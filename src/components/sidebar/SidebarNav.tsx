@@ -3,15 +3,10 @@
 import { useSidebarStore } from '@/store/ui/sidebarStore';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import {
-  Compass,
-  House,
-  MessengerLogo,
-  PlusCircle,
-  User,
-} from 'phosphor-react';
+import { Compass, House, MessengerLogo, User } from 'phosphor-react';
 import { SearchButton } from './SearchButton';
 import { NotificationsButton } from './NotificationsButton';
+import { NewPostButton } from './NewPostButton';
 
 export const SidebarNav = () => {
   const pathname = usePathname();
@@ -78,16 +73,7 @@ export const SidebarNav = () => {
 
       <NotificationsButton />
 
-      <button className='flex items-center justify-start gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-hover'>
-        <PlusCircle size={29} weight={false ? 'fill' : 'regular'} />
-        <span
-          className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-            pathname === `/` && !isSidebarCollapsed && 'font-bold'
-          }`}
-        >
-          Create
-        </span>
-      </button>
+      <NewPostButton />
 
       <Link
         className='flex items-center justify-start gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-hover'
