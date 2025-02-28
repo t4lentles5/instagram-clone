@@ -15,6 +15,8 @@ export default {
         hover: 'var(--hover)',
         popover: 'var(--popover)',
         popoverHover: 'var(--popover-hover)',
+        buttonColor: 'var(--button-color)',
+        buttonHover: 'var(--button-hover)',
       },
     },
   },
