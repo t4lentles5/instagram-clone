@@ -22,7 +22,7 @@ export const LoginImages = () => {
 
   return (
     <>
-      <div className='bg-[url("/login/home-phones.png")] bg-no-repeat bg-[-46px_0] mr-8 bg-auto w-[380px] relative'>
+      <div className='bg-[url("/login/home-phones.png")] hidden lg:block bg-no-repeat bg-[-46px_0] mr-8 bg-auto w-[380px] relative'>
         {images.map((image, index) => (
           <img
             key={index}

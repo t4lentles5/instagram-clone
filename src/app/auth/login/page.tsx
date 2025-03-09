@@ -13,10 +13,10 @@ export default function LoginPage() {
               aria-label='Instagram'
               className={`text-foreground`}
               fill='currentColor'
-              height='60'
+              height='50'
               role='img'
               viewBox='32 4 113 32'
-              width='250'
+              width='175'
             >
               <title>Instagram</title>
               <path
