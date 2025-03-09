@@ -1,42 +1,11 @@
-'use client';
-
+import { LoginImages } from '@/components/auth/LoginImages';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-
-const images = [
-  '/login/screenshot1.png',
-  '/login/screenshot2.png',
-  '/login/screenshot3.png',
-  '/login/screenshot4.png',
-];
 
 export default function LoginPage() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <main className='flex justify-center w-full h-full p-8'>
-      <div className='bg-[url("/login/home-phones.png")] bg-no-repeat bg-[-46px_0] mr-8 bg-auto w-[380px] relative'>
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt='img'
-            style={{
-              opacity: index === currentImageIndex ? 1 : 0,
-            }}
-            width={250}
-            className='absolute top-6 left-[110px] transition-opacity duration-300'
-          />
-        ))}
-      </div>
+      <LoginImages />
+
       <div className='flex flex-col w-[350px] gap-3 p-3'>
         <div className='flex flex-col w-full gap-3 p-10 border border-separator'>
           <div className='flex items-center justify-center w-full h-20'>
