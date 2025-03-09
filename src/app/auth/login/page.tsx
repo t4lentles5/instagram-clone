@@ -63,13 +63,15 @@ export default function LoginPage() {
             type='email'
             name='email'
             id='email'
-            className='p-2 border rounded-md border-separator bg-popover focus:border-separator'
+            className='p-2 text-xs border rounded-md border-separator bg-popover focus:border-separator'
+            placeholder='Phone number, username, or email'
           />
           <input
             type='password'
             name='password'
             id='password'
-            className='p-2 border rounded-md border-separator bg-popover focus:border-separator'
+            className='p-2 text-xs border rounded-md border-separator bg-popover focus:border-separator'
+            placeholder='Password'
           />
 
           <button className='p-2 mt-2 mb-4 rounded-lg bg-buttonColor hover:bg-buttonHover'>
@@ -78,6 +80,10 @@ export default function LoginPage() {
           <div className='flex items-center justify-center w-full h-0 border border-separator'>
             <p className='p-4 bg-background'>OR</p>
           </div>
+
+          <button className='mt-2 font-bold text-buttonColor'>
+            Sign in as a guest
+          </button>
 
           <Link href={'/#'} className='text-center'>
             Forgot password?
