@@ -1,4 +1,5 @@
 import { LoginImages } from '@/components/auth/LoginImages';
+import { OrComponent } from '@/components/ui/OrComponent';
 import Link from 'next/link';
 
 export default function LoginPage() {
@@ -46,9 +47,8 @@ export default function LoginPage() {
           <button className='p-2 mt-2 mb-4 rounded-lg bg-buttonColor hover:bg-buttonHover'>
             Log in
           </button>
-          <div className='flex items-center justify-center w-full h-0 border border-separator'>
-            <p className='p-4 bg-background'>OR</p>
-          </div>
+
+          <OrComponent />
 
           <button className='mt-2 font-bold text-buttonColor'>
             Sign in as a guest

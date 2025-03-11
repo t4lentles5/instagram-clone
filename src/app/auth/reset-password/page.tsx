@@ -1,3 +1,4 @@
+import { OrComponent } from '@/components/ui/OrComponent';
 import Link from 'next/link';
 
 export default function ResetPasswordPage() {
@@ -89,9 +90,7 @@ export default function ResetPasswordPage() {
             Send login link
           </button>
 
-          <div className='flex items-center justify-center w-full h-0 border border-separator'>
-            <p className='p-4 bg-background'>OR</p>
-          </div>
+          <OrComponent />
 
           <Link href={'/auth/login'} className='font-bold text-foreground'>
             Create new account

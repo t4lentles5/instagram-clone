@@ -1,3 +1,4 @@
+import { OrComponent } from '@/components/ui/OrComponent';
 import Link from 'next/link';
 
 export default function SignUpPage() {
@@ -30,9 +31,7 @@ export default function SignUpPage() {
           Sign in as a guest
         </button>
 
-        <div className='flex items-center justify-center w-full h-0 border border-separator'>
-          <p className='p-3 bg-background'>OR</p>
-        </div>
+        <OrComponent />
 
         <input
           type='email'
