@@ -23,7 +23,7 @@ export default function SignUpPage() {
             ></path>
           </svg>
         </div>
-        <p className='font-bold text-center'>
+        <p className='font-bold text-center text-foregroundSecondary'>
           Sign up to see photos and videos from your friends.
         </p>
         <button className='mt-2 mb-5 font-bold text-buttonColor'>

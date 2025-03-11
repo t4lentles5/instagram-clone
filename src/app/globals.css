@@ -19,6 +19,7 @@ body {
     --popover-hover: #f2f2f2;
     --button-color: #0095f6;
     --button-hover: #1877f2;
+    --foreground-secondary: #a8a8a8;
   }
 
   .dark {
@@ -30,5 +31,6 @@ body {
     --popover-hover: #3c3c3c;
     --button-color: #0095f6;
     --button-hover: #1877f2;
+    --foreground-secondary: #a8a8a8;
   }
 }
