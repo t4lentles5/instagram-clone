@@ -54,7 +54,7 @@ export default function LoginPage() {
             Sign in as a guest
           </button>
 
-          <Link href={'/#'} className='text-center'>
+          <Link href={'/auth/reset-password'} className='text-center'>
             Forgot password?
           </Link>
         </div>
