@@ -3,7 +3,7 @@ import Link from 'next/link';
 export const Footer = () => {
   return (
     <>
-      <footer className='text-center text-[#a8a8a8] text-sm mt-5'>
+      <footer className='text-center text-[#a8a8a8] text-sm p-5'>
         Cloned with 💙 by{' '}
         <Link
           href='https://github.com/Obrn544'
