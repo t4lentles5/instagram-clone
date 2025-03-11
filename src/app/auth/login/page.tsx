@@ -62,7 +62,7 @@ export default function LoginPage() {
         <div className='w-full border border-separator'>
           <p className='p-5 text-center'>
             Don&apos;t have an account?{' '}
-            <Link href={'/#'} className='font-bold text-buttonColor'>
+            <Link href={'/auth/signup'} className='font-bold text-buttonColor'>
               Sign up
             </Link>
           </p>
