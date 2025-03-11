@@ -13,9 +13,9 @@ export const SidebarNav = () => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
-    <nav className='flex flex-col gap-1'>
+    <nav className='flex justify-around sm:gap-1 sm:flex-col'>
       <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-hover'
+        className='flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
         href={'/'}
       >
         <House
@@ -34,7 +34,7 @@ export const SidebarNav = () => {
       <SearchButton />
 
       <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-hover'
+        className='flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
         href={'/explore'}
       >
         <Compass
@@ -53,7 +53,7 @@ export const SidebarNav = () => {
       </Link>
 
       <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-hover'
+        className='flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
         href={'/messages'}
       >
         <MessengerLogo
@@ -76,7 +76,7 @@ export const SidebarNav = () => {
       <NewPostButton />
 
       <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-hover'
+        className='flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
         href={'/omar1'}
       >
         <User size={29} weight={pathname === `/omar1` ? 'fill' : 'regular'} />

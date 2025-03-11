@@ -39,7 +39,7 @@ export const SearchButton = () => {
     <>
       <button
         ref={buttonRef}
-        className='flex items-center justify-start w-full gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
+        className='items-center justify-start hidden gap-4 p-3 transition-all rounded-lg sm:flex sm:w-full duration-400 hover:bg-hover'
         onClick={toggleSearch}
       >
         <MagnifyingGlass
@@ -55,16 +55,18 @@ export const SearchButton = () => {
         </span>
       </button>
 
-      <div
-        ref={searchRef}
-        className={`${
-          isSearchActive && isSidebarCollapsed
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-0 -translate-x-2 pointer-events-none'
-        } w-[400px] border-separator border-r absolute bottom-0 z-50 flex flex-col justify-start gap-4 h-screen overflow-hidden rounded-lg left-[72px] bg-background transform origin-left transition-all duration-400 ease-in-out`}
-      >
-        Search
-      </div>
+      {isSearchActive && (
+        <div
+          ref={searchRef}
+          className={`${
+            isSearchActive && isSidebarCollapsed
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 -translate-x-2 pointer-events-none'
+          } w-[400px] border-separator border-r absolute bottom-0 z-50 flex flex-col justify-start gap-4 h-screen overflow-hidden rounded-lg left-[72px] bg-background transform origin-left transition-all duration-400 ease-in-out`}
+        >
+          Search
+        </div>
+      )}
     </>
   );
 };

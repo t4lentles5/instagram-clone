@@ -39,7 +39,7 @@ export const NotificationsButton = () => {
     <>
       <button
         ref={buttonRef}
-        className='flex items-center w-full justify-start gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-hover'
+        className='items-center justify-start hidden gap-4 p-3 transition-all rounded-lg sm:flex sm:w-full duration-400 hover:bg-hover'
         onClick={toggleNotifications}
       >
         <Heart
@@ -59,16 +59,18 @@ export const NotificationsButton = () => {
         </span>
       </button>
 
-      <div
-        ref={notificationRef}
-        className={`${
-          isSidebarCollapsed && isNotificationsActive
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-0 -translate-x-2 pointer-events-none'
-        } w-[400px] border-separator border-r absolute bottom-0 z-50 flex flex-col justify-start gap-4 h-screen overflow-hidden rounded-lg left-[72px] bg-background transform origin-left transition-all duration-400 ease-in-out`}
-      >
-        Notifications
-      </div>
+      {isNotificationsActive && (
+        <div
+          ref={notificationRef}
+          className={`${
+            isSidebarCollapsed && isNotificationsActive
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 -translate-x-2 pointer-events-none'
+          } w-[400px] border-separator border-r absolute bottom-0 z-50 flex flex-col justify-start gap-4 h-screen overflow-hidden rounded-lg left-[72px] bg-background transform origin-left transition-all duration-400 ease-in-out`}
+        >
+          Notifications
+        </div>
+      )}
     </>
   );
 };
