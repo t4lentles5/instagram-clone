@@ -44,7 +44,7 @@ export default function LoginPage() {
             placeholder='Password'
           />
 
-          <button className='p-2 mt-2 mb-4 rounded-lg bg-buttonColor hover:bg-buttonHover'>
+          <button className='p-2 mt-2 mb-4 text-white font-bold rounded-lg bg-buttonColor hover:bg-buttonHover'>
             Log in
           </button>
 
