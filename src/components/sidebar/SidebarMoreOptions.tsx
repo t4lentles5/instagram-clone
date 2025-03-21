@@ -1,9 +1,9 @@
 'use client';
 
+import { logout } from '@/actions/auth/logout';
 import { useSidebarStore } from '@/store/ui/sidebarStore';
 import { useThemeStore } from '@/store/ui/themeStore';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import {
   BookmarkSimple,
   CaretLeft,
@@ -18,7 +18,6 @@ import { useState, useRef, useEffect } from 'react';
 
 export const SidebarMoreOptions = () => {
   const { isSidebarCollapsed } = useSidebarStore();
-  const router = useRouter();
   const { isDarkMode, toggleTheme } = useThemeStore();
 
   const [open, setOpen] = useState(false);
@@ -38,8 +37,7 @@ export const SidebarMoreOptions = () => {
   };
 
   const handleLogout = async () => {
-    // await logout();
-    router.push('/auth/login');
+    await logout();
   };
 
   const handleClickOutside = (event: MouseEvent) => {
