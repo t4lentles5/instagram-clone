@@ -2,6 +2,8 @@
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CheckCircle, XCircle } from 'phosphor-react';
+import { registerUser } from '@/actions/auth/register-user';
+import { useState } from 'react';
 
 interface FormInputs {
   email: string;
@@ -16,10 +18,34 @@ export const SignUpForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
+    setError,
   } = useForm<FormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log(data);
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    const { email, password, fullname, username } = data;
+
+    const resp = await registerUser(email, password, fullname, username);
+
+    if (!resp.ok) {
+      if (resp.message === 'Email already exists') {
+        setError('email', {
+          type: 'manual',
+          message: 'Email already exists',
+        });
+      } else if (resp.message === 'Username already exists') {
+        setError('username', {
+          type: 'manual',
+          message: 'Username already exists',
+        });
+      } else {
+        setServerError(resp.message);
+      }
+    } else {
+      // Handle successful registration
+      console.log('User registered successfully');
+    }
   };
 
   const emailValue = watch('email');
@@ -40,13 +66,10 @@ export const SignUpForm = () => {
             }`}
           >
             <label className='input-label'>
-              {emailValue && (
-                <span className='input-label-span'>Mobile Number or Email</span>
-              )}
+              {emailValue && <span className='input-label-span'>Email</span>}
 
               <input
                 type='email'
-                id='email'
                 className={`input ${emailValue && 'text-xs'}`}
                 placeholder={'Email'}
                 {...register('email', {
@@ -87,7 +110,6 @@ export const SignUpForm = () => {
 
               <input
                 type='password'
-                id='password'
                 className={`input ${emailValue && 'text-xs'}`}
                 placeholder={'Password'}
                 {...register('password', {
@@ -96,12 +118,6 @@ export const SignUpForm = () => {
                     value: 6,
                     message: 'Password must have at least 6 characters.',
                   },
-                  // pattern: {
-                  //   value:
-                  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
-                  //   message:
-                  //     'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.',
-                  // },
                 })}
               />
             </label>
@@ -136,7 +152,6 @@ export const SignUpForm = () => {
 
               <input
                 type='text'
-                id='fullname'
                 className={`input ${fullnameValue && 'text-xs'}`}
                 placeholder={'Fullname'}
                 {...register('fullname', {
@@ -182,12 +197,11 @@ export const SignUpForm = () => {
           >
             <label className='input-label'>
               {usernameValue && (
-                <span className='input-label-span'>Fullname</span>
+                <span className='input-label-span'>Username</span>
               )}
 
               <input
                 type='text'
-                id='fullname'
                 className={`input ${usernameValue && 'text-xs'}`}
                 placeholder={'Username'}
                 {...register('username', {
@@ -225,6 +239,10 @@ export const SignUpForm = () => {
             </span>
           )}
         </div>
+
+        {serverError && (
+          <span className='text-xs text-red-500'>{serverError}</span>
+        )}
 
         <button
           type='submit'
