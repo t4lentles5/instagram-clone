@@ -1,3 +1,4 @@
+import { LoginForm } from '@/components/auth/login/LoginForm';
 import { LoginImages } from '@/components/auth/LoginImages';
 import { OrComponent } from '@/components/ui/OrComponent';
 import Link from 'next/link';
@@ -29,24 +30,7 @@ export default function LoginPage() {
             </svg>
           </div>
 
-          <input
-            type='email'
-            name='email'
-            id='email'
-            className='p-2 text-xs border rounded-md border-separator bg-popover focus:border-separator'
-            placeholder='Phone number, username, or email'
-          />
-          <input
-            type='password'
-            name='password'
-            id='password'
-            className='p-2 text-xs border rounded-md border-separator bg-popover focus:border-separator'
-            placeholder='Password'
-          />
-
-          <button className='p-2 mt-2 mb-4 text-white font-bold rounded-lg bg-buttonColor hover:bg-buttonHover'>
-            Log in
-          </button>
+          <LoginForm />
 
           <OrComponent />
 
