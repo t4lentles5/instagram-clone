@@ -2,8 +2,8 @@
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CheckCircle, XCircle } from 'phosphor-react';
-import { registerUser } from '@/actions/auth/register-user';
-import { useState } from 'react';
+import { registerUser } from '@/actions/auth/register';
+import { login } from '@/actions/auth/login';
 
 interface FormInputs {
   email: string;
@@ -21,8 +21,6 @@ export const SignUpForm = () => {
     setError,
   } = useForm<FormInputs>();
 
-  const [serverError, setServerError] = useState<string | null>(null);
-
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     const { email, password, fullname, username } = data;
 
@@ -39,13 +37,13 @@ export const SignUpForm = () => {
           type: 'manual',
           message: 'Username already exists',
         });
-      } else {
-        setServerError(resp.message);
       }
-    } else {
-      // Handle successful registration
-      console.log('User registered successfully');
+
+      return;
     }
+
+    await login(email, password);
+    window.location.replace('/');
   };
 
   const emailValue = watch('email');
@@ -239,10 +237,6 @@ export const SignUpForm = () => {
             </span>
           )}
         </div>
-
-        {serverError && (
-          <span className='text-xs text-red-500'>{serverError}</span>
-        )}
 
         <button
           type='submit'
