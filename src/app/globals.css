@@ -36,3 +36,19 @@ body {
     --foreground-secondary: #a8a8a8;
   }
 }
+
+.input-container {
+  @apply relative h-10 px-2 text-xs flex gap-3 border rounded-md bg-popover;
+}
+
+.input-label {
+  @apply flex flex-col items-center justify-center w-4/5 h-full bg-background;
+}
+
+.input-label-span {
+  @apply left-3 w-full bg-popover h-full text-xs text-foregroundSecondary;
+}
+
+.input {
+  @apply w-full h-full text-foreground bg-popover border-none focus:outline-none;
+}

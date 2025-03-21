@@ -1,3 +1,4 @@
+import { SignUpForm } from '@/components/auth/signup/SignUpForm';
 import { OrComponent } from '@/components/ui/OrComponent';
 import Link from 'next/link';
 
@@ -33,41 +34,7 @@ export default function SignUpPage() {
 
         <OrComponent />
 
-        <input
-          type='email'
-          name='email'
-          id='email'
-          className='p-2 mt-5 text-xs border rounded-md border-separator bg-popover focus:border-separator'
-          placeholder='Phone number or email'
-        />
-
-        <input
-          type='password'
-          name='password'
-          id='password'
-          className='p-2 text-xs border rounded-md border-separator bg-popover focus:border-separator'
-          placeholder='Password'
-        />
-
-        <input
-          type='fullname'
-          name='fullname'
-          id='fullname'
-          className='p-2 text-xs border rounded-md border-separator bg-popover focus:border-separator'
-          placeholder='Full name'
-        />
-
-        <input
-          type='username'
-          name='username'
-          id='username'
-          className='p-2 text-xs border rounded-md border-separator bg-popover focus:border-separator'
-          placeholder='Username'
-        />
-
-        <button className='p-2 mt-2 mb-4 text-white font-bold rounded-lg bg-buttonColor hover:bg-buttonHover'>
-          Sign up
-        </button>
+        <SignUpForm />
       </div>
       <div className='border border-separator p-5 text-center w-[350px]'>
         <p className=''>Have an account?</p>
