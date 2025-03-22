@@ -1,5 +1,5 @@
 import { LoginForm } from '@/components/auth/login/LoginForm';
-import { LoginImages } from '@/components/auth/LoginImages';
+import { LoginImages } from '@/components/auth/login/LoginImages';
 import { OrComponent } from '@/components/ui/OrComponent';
 import Link from 'next/link';
 
