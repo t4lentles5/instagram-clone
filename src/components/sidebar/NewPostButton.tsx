@@ -33,10 +33,7 @@ export const NewPostButton = () => {
 
   return (
     <>
-      <button
-        className='flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
-        onClick={openNewPostDialog}
-      >
+      <button className='nav-item' onClick={openNewPostDialog}>
         <PlusCircle
           size={29}
           weight={isNewPostDialogOpen ? 'fill' : 'regular'}

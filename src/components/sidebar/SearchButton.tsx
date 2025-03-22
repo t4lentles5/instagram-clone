@@ -37,11 +37,7 @@ export const SearchButton = () => {
 
   return (
     <>
-      <button
-        ref={buttonRef}
-        className='items-center justify-start hidden gap-4 p-3 transition-all rounded-lg sm:flex sm:w-full duration-400 hover:bg-hover'
-        onClick={toggleSearch}
-      >
+      <button ref={buttonRef} className='nav-item' onClick={toggleSearch}>
         <MagnifyingGlass
           size={29}
           weight={isSearchActive || pathname === '/search' ? 'bold' : 'regular'}

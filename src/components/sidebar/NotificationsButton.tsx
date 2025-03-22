@@ -39,7 +39,7 @@ export const NotificationsButton = () => {
     <>
       <button
         ref={buttonRef}
-        className='items-center justify-start hidden gap-4 p-3 transition-all rounded-lg sm:flex sm:w-full duration-400 hover:bg-hover'
+        className='nav-item'
         onClick={toggleNotifications}
       >
         <Heart

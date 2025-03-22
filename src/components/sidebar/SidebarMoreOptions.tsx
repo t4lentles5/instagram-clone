@@ -64,9 +64,7 @@ export const SidebarMoreOptions = () => {
         className='relative items-center justify-center hidden w-full h-16 cursor-pointer sm:flex'
         ref={popoverRef}
       >
-        <button
-          className={`flex items-center justify-start w-full gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-popoverHover`}
-        >
+        <button className='nav-item w-full'>
           <List size={29} weight={open ? 'bold' : 'light'} />
           <span
             className={`${

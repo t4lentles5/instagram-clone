@@ -19,10 +19,7 @@ export const SidebarNav = ({ user }: Props) => {
 
   return (
     <nav className='flex justify-around sm:gap-1 sm:flex-col'>
-      <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
-        href={'/'}
-      >
+      <Link className='nav-item' href={'/'}>
         <House
           size={29}
           weight={pathname === `/` && !isSidebarCollapsed ? 'fill' : 'regular'}
@@ -38,10 +35,7 @@ export const SidebarNav = ({ user }: Props) => {
 
       <SearchButton />
 
-      <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
-        href={'/explore'}
-      >
+      <Link className='nav-item' href={'/explore'}>
         <Compass
           size={29}
           weight={
@@ -57,10 +51,7 @@ export const SidebarNav = ({ user }: Props) => {
         </span>
       </Link>
 
-      <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
-        href={'/messages'}
-      >
+      <Link className='nav-item' href={'/messages'}>
         <MessengerLogo
           size={29}
           weight={
@@ -80,10 +71,7 @@ export const SidebarNav = ({ user }: Props) => {
 
       <NewPostButton />
 
-      <Link
-        className='flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
-        href={`/${user.username}`}
-      >
+      <Link className='nav-item' href={`/${user.username}`}>
         <img
           src={
             !user.profile_photo ? '/default_photo.jpg' : `${user.profile_photo}`
