@@ -23,7 +23,7 @@ export default async function Layout({
 
   return (
     <div className='flex flex-col-reverse sm:grid xl:grid-cols-[244px_1fr] sm:grid-cols-[72px_1fr] sm:w-[72px] w-screen h-screen'>
-      <Sidebar />
+      <Sidebar user={user} />
       {children}
     </div>
   );

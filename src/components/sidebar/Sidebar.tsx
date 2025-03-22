@@ -5,8 +5,13 @@ import { SidebarMoreOptions } from './SidebarMoreOptions';
 import { SidebarNav } from './SidebarNav';
 import Link from 'next/link';
 import { InstagramLogo } from 'phosphor-react';
+import { User } from '@/interfaces/user.interface';
 
-export const Sidebar = () => {
+interface Props {
+  user: User;
+}
+
+export const Sidebar = ({ user }: Props) => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
@@ -44,7 +49,7 @@ export const Sidebar = () => {
         />
       </Link>
       <div className='flex flex-col justify-between h-full'>
-        <SidebarNav />
+        <SidebarNav user={user} />
         <SidebarMoreOptions />
       </div>
     </div>

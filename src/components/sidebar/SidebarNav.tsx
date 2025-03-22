@@ -3,12 +3,17 @@
 import { useSidebarStore } from '@/store/ui/sidebarStore';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Compass, House, MessengerLogo, User } from 'phosphor-react';
+import { Compass, House, MessengerLogo } from 'phosphor-react';
 import { SearchButton } from './SearchButton';
 import { NotificationsButton } from './NotificationsButton';
 import { NewPostButton } from './NewPostButton';
+import { User } from '@/interfaces/user.interface';
 
-export const SidebarNav = () => {
+interface Props {
+  user: User;
+}
+
+export const SidebarNav = ({ user }: Props) => {
   const pathname = usePathname();
   const { isSidebarCollapsed } = useSidebarStore();
 
@@ -77,12 +82,20 @@ export const SidebarNav = () => {
 
       <Link
         className='flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-400 hover:bg-hover'
-        href={'/omar1'}
+        href={`/${user.username}`}
       >
-        <User size={29} weight={pathname === `/omar1` ? 'fill' : 'regular'} />
+        <img
+          src={
+            !user.profile_photo ? '/default_photo.jpg' : `${user.profile_photo}`
+          }
+          alt='user profile photo'
+          className='object-contain w-8 h-8 border rounded-full border-separation'
+        />
         <span
           className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-            pathname === `/omar1` && !isSidebarCollapsed && 'font-bold'
+            pathname === `/${user.username}` &&
+            !isSidebarCollapsed &&
+            'font-bold'
           }`}
         >
           Profile
