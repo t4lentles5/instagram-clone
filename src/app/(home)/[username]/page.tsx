@@ -1,4 +1,25 @@
+import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
+import { getUserByUsername } from '@/actions/user/get-user-by-username';
 import { Footer } from '@/components/ui/Footer';
+import { HeaderPageMobile } from '@/components/ui/HeaderPageMobile';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { username } = await params;
+  const authenticatedUser = await getAuthenticatedUser();
+  const userByUsername = await getUserByUsername(username);
+
+  const user =
+    userByUsername.username === authenticatedUser.username
+      ? authenticatedUser
+      : userByUsername;
+
+  return {
+    title: `${user.fullname} (@${user.username}) / Instagram`,
+    description: `${user.fullname} (@${user.username}) / Instagram`,
+  };
+}
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -7,10 +28,130 @@ interface Props {
 export default async function ProfileUserPage({ params }: Props) {
   const { username } = await params;
 
+  const authenticatedUser = await getAuthenticatedUser();
+  const userByUsername = await getUserByUsername(username);
+
+  if (!userByUsername) {
+    notFound();
+  }
+
+  const isOwnProfile = userByUsername.username === authenticatedUser.username;
+
   return (
-    <div>
-      <h1>{username}</h1>
-      <Footer />
-    </div>
+    <>
+      <div className='flex flex-col items-center justify-center w-full h-full'>
+        <main className='flex items-center w-full px-4 py-6 border-b md:p-4 lg:p-8 md:w-10/12 lg:3/4 border-separator'>
+          {/* <ProfilePhotoView
+            user={isOwnProfile ? userSession : userByUsername}
+          /> */}
+
+          <div className='flex flex-col items-center justify-start w-full gap-2 px-8 text-xs sm:gap-4 sm:text-base lg:text-lg'>
+            <div className='flex items-center w-full gap-2 sm:gap-5'>
+              <div>
+                <h1 className='font-bold text-text'>
+                  {isOwnProfile
+                    ? authenticatedUser.fullname
+                    : userByUsername.fullname}
+                </h1>
+                <p className='text-gray-500'>
+                  @
+                  {isOwnProfile
+                    ? authenticatedUser.username
+                    : userByUsername.username}
+                </p>
+              </div>
+              <button className='px-2 py-1 font-bold text-white rounded-lg bg-primary'>
+                {isOwnProfile ? 'Edit Profile' : 'Follow'}
+              </button>
+            </div>
+            <div className='items-center justify-start hidden w-full sm:flex md:gap-10'>
+              <p className='text-center text-text'>0 posts</p>
+              <button className='px-2 py-1 font-bold rounded-lg text-text '>
+                0 Followers
+              </button>
+              <button className='px-2 py-1 font-bold rounded-lg text-text '>
+                0 Following
+              </button>
+            </div>
+            <div className='flex items-start w-full'>
+              <p className='text-text '>
+                {/* {isOwnProfile
+                  ? authenticatedUser.description
+                  : userByUsername.description} */}
+              </p>
+            </div>
+          </div>
+        </main>
+
+        <div className='flex items-center w-full gap-10 p-3 text-xs border-b sm:hidden justify-evenly border-separator'>
+          <p className='text-center text-text'>0 posts</p>
+          <button className='px-2 py-1 font-bold rounded-lg text-text '>
+            0 Followers
+          </button>
+          <button className='px-2 py-1 font-bold rounded-lg text-text '>
+            0 Following
+          </button>
+        </div>
+
+        <div className='flex flex-col items-center justify-center w-full h-full gap-5'>
+          <svg
+            aria-label='Camera'
+            fill='currentColor'
+            height='62'
+            role='img'
+            viewBox='0 0 96 96'
+            width='62'
+            className='text-text'
+          >
+            <title>Camera</title>
+            <circle
+              cx='48'
+              cy='48'
+              fill='none'
+              r='47'
+              stroke='currentColor'
+              strokeMiterlimit='10'
+              strokeWidth='2'
+            ></circle>
+            <ellipse
+              cx='48.002'
+              cy='49.524'
+              fill='none'
+              rx='10.444'
+              ry='10.476'
+              stroke='currentColor'
+              strokeLinejoin='round'
+              strokeWidth='2.095'
+            ></ellipse>
+            <path
+              d='M63.994 69A8.02 8.02 0 0 0 72 60.968V39.456a8.023 8.023 0 0 0-8.01-8.035h-1.749a4.953 4.953 0 0 1-4.591-3.242C56.61 25.696 54.859 25 52.469 25h-8.983c-2.39 0-4.141.695-5.181 3.178a4.954 4.954 0 0 1-4.592 3.242H32.01a8.024 8.024 0 0 0-8.012 8.035v21.512A8.02 8.02 0 0 0 32.007 69Z'
+              fill='none'
+              stroke='currentColor'
+              strokeLinejoin='round'
+              strokeWidth='2'
+            ></path>
+          </svg>
+
+          <p className='mt-4 text-3xl font-bold text-center text-text'>
+            {isOwnProfile ? 'Share Photos' : 'No posts yet!'}
+          </p>
+          {isOwnProfile && (
+            <>
+              <p className='text-sm font-normal text-text'>
+                When you share photos, they will appear on your profile.
+              </p>
+              <button className='text-sm font-normal text-primary'>
+                Share your first photo
+              </button>
+            </>
+          )}
+        </div>
+        <Footer />
+      </div>
+
+      <HeaderPageMobile>
+        {isOwnProfile ? authenticatedUser.fullname : userByUsername.fullname}
+      </HeaderPageMobile>
+    </>
   );
 }
