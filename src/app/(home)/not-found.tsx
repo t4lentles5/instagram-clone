@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import { HeaderPageMobile } from '@/components/ui/HeaderPageMobile';
 import { Footer } from '@/components/ui/Footer';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Page not found / Instagram',
+  description: 'Page not found',
+};
 
 export default function NotFound() {
   return (
