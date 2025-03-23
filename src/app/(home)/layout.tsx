@@ -14,9 +14,9 @@ export default async function Layout({
   }
 
   return (
-    <div className='flex flex-col-reverse sm:grid xl:grid-cols-[244px_1fr] sm:grid-cols-[72px_1fr] w-screen h-screen'>
+    <div className='flex flex-col-reverse sm:grid xl:grid-cols-[244px_1fr] sm:grid-cols-[72px_1fr] max-w-screen h-screen'>
       <Sidebar user={user} />
-      {children}
+      <div className='overflow-y-auto'>{children}</div>
     </div>
   );
 }
