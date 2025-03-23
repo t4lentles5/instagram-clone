@@ -1,21 +1,13 @@
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { Sidebar } from '@/components/sidebar/Sidebar';
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
+import { Sidebar } from '@/components/sidebar/Sidebar';
 
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('INSTAGRAM_TOKEN')?.value;
-
-  if (!token) {
-    redirect('/auth/login');
-  }
-
-  const user = await getAuthenticatedUser(token);
+  const user = await getAuthenticatedUser();
 
   if (!user) {
     redirect('/auth/login');
