@@ -100,10 +100,7 @@ export const LoginForm = () => {
           </span>
         )}
 
-        <button
-          type='submit'
-          className='p-2 mt-2 mb-4 font-bold text-white rounded-lg bg-buttonColor hover:bg-buttonHover'
-        >
+        <button type='submit' className='button-with-bg'>
           Log in
         </button>
       </form>

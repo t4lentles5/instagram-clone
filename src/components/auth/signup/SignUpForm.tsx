@@ -238,10 +238,7 @@ export const SignUpForm = () => {
           )}
         </div>
 
-        <button
-          type='submit'
-          className='p-2 mt-2 font-bold text-white rounded-lg bg-buttonColor hover:bg-buttonHover'
-        >
+        <button type='submit' className='button-with-bg'>
           Sign up
         </button>
       </form>
