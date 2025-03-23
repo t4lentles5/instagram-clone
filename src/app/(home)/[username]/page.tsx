@@ -2,6 +2,7 @@ import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
 import { getUserByUsername } from '@/actions/user/get-user-by-username';
 import { Footer } from '@/components/ui/Footer';
 import { HeaderPageMobile } from '@/components/ui/HeaderPageMobile';
+import { UserInfo } from '@/components/user/UserInfo';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -39,49 +40,8 @@ export default async function ProfileUserPage({ params }: Props) {
 
   return (
     <>
-      <div className='flex flex-col items-center justify-center w-full h-full'>
-        <main className='flex items-center w-full px-4 py-6 border-b md:p-4 lg:p-8 md:w-10/12 lg:3/4 border-separator'>
-          {/* <ProfilePhotoView
-            user={isOwnProfile ? userSession : userByUsername}
-          /> */}
-
-          <div className='flex flex-col items-center justify-start w-full gap-2 px-8 text-xs sm:gap-4 sm:text-base lg:text-lg'>
-            <div className='flex items-center w-full gap-2 sm:gap-5'>
-              <div>
-                <h1 className='font-bold text-text'>
-                  {isOwnProfile
-                    ? authenticatedUser.fullname
-                    : userByUsername.fullname}
-                </h1>
-                <p className='text-gray-500'>
-                  @
-                  {isOwnProfile
-                    ? authenticatedUser.username
-                    : userByUsername.username}
-                </p>
-              </div>
-              <button className='px-2 py-1 font-bold text-white rounded-lg bg-primary'>
-                {isOwnProfile ? 'Edit Profile' : 'Follow'}
-              </button>
-            </div>
-            <div className='items-center justify-start hidden w-full sm:flex md:gap-10'>
-              <p className='text-center text-text'>0 posts</p>
-              <button className='px-2 py-1 font-bold rounded-lg text-text '>
-                0 Followers
-              </button>
-              <button className='px-2 py-1 font-bold rounded-lg text-text '>
-                0 Following
-              </button>
-            </div>
-            <div className='flex items-start w-full'>
-              <p className='text-text '>
-                {/* {isOwnProfile
-                  ? authenticatedUser.description
-                  : userByUsername.description} */}
-              </p>
-            </div>
-          </div>
-        </main>
+      <div className='flex flex-col items-center justify-center w-full h-full sm:pt-8 sm:p-5'>
+        <UserInfo user={isOwnProfile ? authenticatedUser : userByUsername} />
 
         <div className='flex items-center w-full gap-10 p-3 text-xs border-b sm:hidden justify-evenly border-separator'>
           <p className='text-center text-text'>0 posts</p>
