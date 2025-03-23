@@ -58,7 +58,7 @@ export default function ResetPasswordPage() {
               stroke='currentColor'
               strokeLinecap='round'
               strokeLinejoin='round'
-              stroke-width='2'
+              strokeWidth='2'
             ></circle>
             <path
               d='M60.931 70.001H35.065a5.036 5.036 0 0 1-5.068-5.004V46.005A5.036 5.036 0 0 1 35.065 41H60.93a5.035 5.035 0 0 1 5.066 5.004v18.992A5.035 5.035 0 0 1 60.93 70ZM37.999 39.996v-6.998a10 10 0 0 1 20 0v6.998'
