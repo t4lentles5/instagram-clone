@@ -12,7 +12,7 @@ export const HeaderPageMobile = ({
   const router = useRouter();
 
   return (
-    <header className='sticky top-0 flex items-center w-full border-b md:hidden h-14 bg-background border-separator'>
+    <header className='sticky top-0 flex items-center w-full border-b md:hidden py-3 bg-background border-separator'>
       <Link href='#' onClick={() => router.back()} className='fixed'>
         <CaretLeft size={32} strokeWidth={1.5} className='text-text' />
       </Link>
