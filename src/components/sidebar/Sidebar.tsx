@@ -20,7 +20,7 @@ export const Sidebar = ({ user }: Props) => {
         isSidebarCollapsed ? 'md:w-[72px]' : 'md:w-full'
       } flex flex-col w-screen md:h-screen gap-4 md:p-2 border-t md:border-r border-separator transform origin-left transition-all duration-400 ease-in-out`}
     >
-      <Link href={'/'} className='hidden w-full h-10 p-3 mt-3 md:block '>
+      <Link href={'/'} className='hidden w-full h-20 p-3 mt-3 md:block '>
         <svg
           aria-label='Instagram'
           className={`${
