@@ -17,10 +17,10 @@ export const Sidebar = ({ user }: Props) => {
   return (
     <div
       className={`${
-        isSidebarCollapsed ? 'sm:w-[72px]' : 'sm:w-full'
-      } flex flex-col w-screen sm:h-screen gap-4 sm:p-2 border-t sm:border-r border-separator transform origin-left transition-all duration-400 ease-in-out`}
+        isSidebarCollapsed ? 'md:w-[72px]' : 'md:w-full'
+      } flex flex-col w-screen md:h-screen gap-4 md:p-2 border-t md:border-r border-separator transform origin-left transition-all duration-400 ease-in-out`}
     >
-      <Link href={'/'} className='hidden w-full h-10 p-3 mt-3 sm:block '>
+      <Link href={'/'} className='hidden w-full h-10 p-3 mt-3 md:block '>
         <svg
           aria-label='Instagram'
           className={`${

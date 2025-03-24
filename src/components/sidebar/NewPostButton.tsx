@@ -57,7 +57,7 @@ export const NewPostButton = () => {
           </button>
           <div
             ref={dialogRef}
-            className='relative flex flex-col bg-popover w-10/12 h-4/6 sm:w-[500px] sm:h-[500px] rounded-lg'
+            className='relative flex flex-col bg-popover w-10/12 h-4/6 md:w-[500px] md:h-[500px] rounded-lg'
           >
             <header className='w-full p-2 text-center border-b rounded-t-lg bg-background border-separator'>
               Create new post

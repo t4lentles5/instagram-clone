@@ -22,7 +22,7 @@ export const UserInfo = ({ user }: Props) => {
             </button>
             <DotsThree size={32} weight='bold' className='m-2 text-text' />
           </div>
-          <div className='items-center justify-start hidden w-full sm:flex md:gap-10'>
+          <div className='items-center justify-start hidden w-full md:flex md:gap-10'>
             <p className='font-bold text-center'>
               0{' '}
               <span className='font-light text-foregroundSecondary'>posts</span>
@@ -47,7 +47,7 @@ export const UserInfo = ({ user }: Props) => {
         </div>
       </main>
 
-      <div className='flex items-center w-full gap-10 p-3 text-xs border-b sm:hidden justify-evenly border-separator'>
+      <div className='flex items-center w-full gap-10 p-3 text-xs border-b md:hidden justify-evenly border-separator'>
         <p className='text-center text-text'>0 posts</p>
         <button className='px-2 py-1 font-bold rounded-lg text-text '>
           0 Followers

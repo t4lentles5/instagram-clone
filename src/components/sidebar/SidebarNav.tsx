@@ -18,7 +18,7 @@ export const SidebarNav = ({ user }: Props) => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
-    <nav className='flex justify-around sm:gap-1 sm:flex-col'>
+    <nav className='flex justify-around md:gap-1 md:flex-col'>
       <Link className='nav-item' href={'/'}>
         <House
           size={29}
