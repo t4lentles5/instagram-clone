@@ -5,7 +5,7 @@ export const UserNavigation = () => {
     <>
       <div className='grid items-center w-full grid-cols-3 md:flex md:items-center md:justify-center md:gap-16'>
         <Link
-          className='flex items-center justify-center gap-2 py-5 border-t border-foreground'
+          className='flex items-center justify-center gap-2 py-3 border-t md:py-5 border-foreground'
           href={'/'}
         >
           <svg
@@ -78,7 +78,7 @@ export const UserNavigation = () => {
         </Link>
 
         <Link
-          className='flex items-center justify-center gap-2 py-5 border-t border-foreground'
+          className='flex items-center justify-center gap-2 py-3 border-t md:py-5 border-foreground'
           href={'/reels'}
         >
           <svg
@@ -140,7 +140,7 @@ export const UserNavigation = () => {
         </Link>
 
         <Link
-          className='flex items-center justify-center gap-2 py-5 border-t border-foreground'
+          className='flex items-center justify-center gap-2 py-3 border-t md:py-5 border-foreground'
           href={'/tagged'}
         >
           <svg

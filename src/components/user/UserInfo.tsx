@@ -11,7 +11,7 @@ interface Props {
 export const UserInfo = ({ user }: Props) => {
   return (
     <>
-      <main className='flex items-center w-full h-full pb-10 mt-4 md:mt-0 border-b border-separator'>
+      <main className='flex items-center w-full h-full pb-10 mt-4 border-b md:mt-0 border-separator'>
         <ProfilePhoto user={user} />
 
         <div className='flex flex-col w-full h-full gap-5 ml-5'>
@@ -46,16 +46,6 @@ export const UserInfo = ({ user }: Props) => {
           </div>
         </div>
       </main>
-
-      <div className='flex items-center w-full gap-10 p-3 text-xs border-b md:hidden justify-evenly border-separator'>
-        <p className='text-center text-text'>0 posts</p>
-        <button className='px-2 py-1 font-bold rounded-lg text-text '>
-          0 Followers
-        </button>
-        <button className='px-2 py-1 font-bold rounded-lg text-text '>
-          0 Following
-        </button>
-      </div>
     </>
   );
 };

@@ -4,6 +4,7 @@ import { Footer } from '@/components/ui/Footer';
 import { HeaderPageMobile } from '@/components/ui/HeaderPageMobile';
 import { UserInfo } from '@/components/user/UserInfo';
 import { UserNavigation } from '@/components/user/UserNavigation';
+import { UserStats } from '@/components/user/UserStats';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -41,20 +42,23 @@ export default async function ProfileUserPage({ params }: Props) {
 
   return (
     <>
-      <div className='flex flex-col items-center justify-center lg:max-w-[935px] w-full lg:mt-8 lg:mx-10'>
+      <div className='flex flex-col items-center justify-center lg:max-w-[935px]  w-full md:mt-8 lg:mx-10'>
         <HeaderPageMobile>
           {isOwnProfile ? authenticatedUser.fullname : userByUsername.fullname}
         </HeaderPageMobile>
+
         <UserInfo user={isOwnProfile ? authenticatedUser : userByUsername} />
+
+        <UserStats />
 
         <UserNavigation />
 
         <div className='grid w-full grid-cols-3 gap-1'>
-          <div className='bg-purple-500 h-[410px]'>1</div>
-          <div className='bg-purple-500 h-[410px]'>1</div>
-          <div className='bg-purple-500 h-[410px]'>1</div>
-          <div className='bg-purple-500 h-[410px]'>1</div>
-          <div className='bg-purple-500 h-[410px]'>1</div>
+          <div className='bg-purple-500 aspect-[3/4]'>1</div>
+          <div className='bg-purple-500 aspect-[3/4]'>1</div>
+          <div className='bg-purple-500 aspect-[3/4]'>1</div>
+          <div className='bg-purple-500 aspect-[3/4]'>1</div>
+          <div className='bg-purple-500 aspect-[3/4]'>1</div>
         </div>
 
         <div className='flex flex-col items-center justify-center w-full h-full gap-5'>
