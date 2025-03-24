@@ -3,19 +3,17 @@ import Link from 'next/link';
 export const UserNavigation = () => {
   return (
     <>
-      <div className='flex items-center justify-center w-full gap-16'>
+      <div className='grid items-center w-full grid-cols-3 md:flex md:items-center md:justify-center md:gap-16'>
         <Link
-          className='flex items-center gap-2 py-5 border-t border-foreground'
+          className='flex items-center justify-center gap-2 py-5 border-t border-foreground'
           href={'/'}
         >
           <svg
             aria-label=''
-            className='x1lliihq x1n2onr6 x5n08af'
+            className='w-6 h-6 md:w-3 md:h-3'
             fill='currentColor'
-            height='12'
             role='img'
             viewBox='0 0 24 24'
-            width='12'
           >
             <title></title>
             <rect
@@ -74,21 +72,21 @@ export const UserNavigation = () => {
               y2='14.985'
             ></line>
           </svg>
-          <span className='text-xs font-semibold uppercase'>Posts</span>
+          <span className='hidden text-xs font-semibold uppercase md:block'>
+            Posts
+          </span>
         </Link>
 
         <Link
-          className='flex items-center gap-2 py-5 border-t border-foreground'
+          className='flex items-center justify-center gap-2 py-5 border-t border-foreground'
           href={'/reels'}
         >
           <svg
             aria-label=''
-            className='x1lliihq x1n2onr6 x1roi4f4'
+            className='w-6 h-6 md:w-3 md:h-3'
             fill='currentColor'
-            height='12'
             role='img'
             viewBox='0 0 24 24'
-            width='12'
           >
             <title></title>
             <line
@@ -136,21 +134,21 @@ export const UserNavigation = () => {
               fillRule='evenodd'
             ></path>
           </svg>
-          <span className='text-xs font-semibold uppercase'>Reels</span>
+          <span className='hidden text-xs font-semibold uppercase md:block'>
+            Reels
+          </span>
         </Link>
 
         <Link
-          className='flex items-center gap-2 py-5 border-t border-foreground'
+          className='flex items-center justify-center gap-2 py-5 border-t border-foreground'
           href={'/tagged'}
         >
           <svg
             aria-label=''
-            className='x1lliihq x1n2onr6 x1roi4f4'
+            className='w-6 h-6 md:w-3 md:h-3'
             fill='currentColor'
-            height='12'
             role='img'
             viewBox='0 0 24 24'
-            width='12'
           >
             <title></title>
             <path
@@ -180,7 +178,9 @@ export const UserNavigation = () => {
               strokeWidth='2'
             ></circle>
           </svg>
-          <span className='text-xs font-semibold uppercase'>Tagged</span>
+          <span className='hidden text-xs font-semibold uppercase md:block'>
+            Tagged
+          </span>
         </Link>
       </div>
     </>
