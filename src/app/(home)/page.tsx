@@ -1,5 +1,6 @@
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
 import { getRecommendedUsers } from '@/actions/user/get-recommended-users';
+import { SwitchUser } from '@/components/home/SwitchUser';
 import { Footer } from '@/components/ui/Footer';
 import Link from 'next/link';
 
@@ -15,33 +16,8 @@ export default async function HomePage() {
       </div>
 
       <div className='hidden w-[340px] pl-16 pt-5 lg:block'>
-        <div className='flex justify-between mb-5'>
-          <div className='flex gap-3'>
-            <img
-              src={
-                !user.profile_photo
-                  ? '/default_photo.jpg'
-                  : `${user.profile_photo}`
-              }
-              alt='profile photo'
-              className='object-contain border rounded-full w-11 h-11 border-separation'
-            />
+        <SwitchUser user={user} />
 
-            <div className='flex flex-col'>
-              <Link
-                href={`/${user.username}`}
-                className='text-sm font-semibold'
-              >
-                {user.username}
-              </Link>
-              <span className='text-sm text-foregroundSecondary'>
-                {user.fullname}
-              </span>
-            </div>
-          </div>
-
-          <button className='text-xs text-buttonColor'>Switch</button>
-        </div>
         <div className='flex items-center justify-between mb-3'>
           <span className='text-sm font-semibold text-foregroundSecondary'>
             Suggested for you
@@ -56,11 +32,7 @@ export default async function HomePage() {
             <div key={user.id} className='flex justify-between'>
               <div className='flex gap-3'>
                 <img
-                  src={
-                    !user.profile_photo
-                      ? '/default_photo.jpg'
-                      : `${user.profile_photo}`
-                  }
+                  src={user.profile_photo}
                   alt='profile photo'
                   className='object-contain border rounded-full w-11 h-11 border-separation'
                 />
