@@ -23,7 +23,7 @@ export const getAuthenticatedUser = async () => {
           email: true,
           fullname: true,
           username: true,
-          // profile_photo: true,
+          profile_photo: true,
         },
       });
 
