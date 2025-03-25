@@ -16,7 +16,7 @@ export default async function Layout({
   return (
     <div className='flex flex-col-reverse md:grid xl:grid-cols-[244px_1fr] md:grid-cols-[72px_1fr] max-w-screen h-screen'>
       <Sidebar user={user} />
-      <div className='max-w-full flex flex-col items-center overflow-y-auto'>
+      <div className='flex flex-col items-center max-w-full overflow-x-hidden overflow-y-auto'>
         {children}
       </div>
     </div>
