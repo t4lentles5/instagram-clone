@@ -73,9 +73,7 @@ export const SidebarNav = ({ user }: Props) => {
 
       <Link className='nav-item' href={`/${user.username}`}>
         <img
-          src={
-            !user.profile_photo ? '/default_photo.jpg' : `${user.profile_photo}`
-          }
+          src={user.profile_photo}
           alt='user profile photo'
           className='object-contain w-8 h-8 border rounded-full border-separation'
         />
