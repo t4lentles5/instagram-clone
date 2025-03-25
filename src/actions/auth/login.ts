@@ -25,7 +25,7 @@ export const login = async (email: string, password: string) => {
     const token = jwt.sign(
       { id: user.id, email: user.email },
       process.env.JWT_SECRET!,
-      { expiresIn: '1h' }
+      { expiresIn: '720h' }
     );
 
     const cookieStore = await cookies();
