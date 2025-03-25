@@ -9,16 +9,17 @@ export default async function HomePage() {
   const users = await getRecommendedUsers(user.id);
 
   return (
-    <div className='flex w-full h-full pt-6 justify-evenly'>
+    <div className='flex justify-center w-full h-full pt-6'>
       <div className='w-[630px] bg-purple-500'>
         <div className='w-full'>uwu</div>
         <div></div>
       </div>
 
-      <div className='hidden w-[340px] pl-16 pt-5 lg:block'>
+      <div className='hidden w-[350px] pl-16 pt-5 lg:block'>
         <SwitchUser user={user} />
 
         <SuggestedUsers users={users} />
+
         <Footer />
       </div>
     </div>

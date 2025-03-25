@@ -56,8 +56,8 @@ export const SuggestedUser = ({ user }: Props) => {
 
           {isHovered && (
             <div
-              className={`${isUsernameHovered && '-right-36 top-5'} ${
-                isProfilePhotoHovered && '-right-[90px] top-12'
+              className={`${isUsernameHovered && '-right-[130] top-5'} ${
+                isProfilePhotoHovered && '-right-[80px] top-12'
               } absolute shadow-foregroundSecondary z-10 w-[365px] p-4 rounded-lg shadow-sm bg-background`}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
