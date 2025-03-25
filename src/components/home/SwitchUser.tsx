@@ -13,7 +13,7 @@ export const SwitchUser = ({ user }: Props) => {
           <img
             src={user.profile_photo}
             alt='profile photo'
-            className='object-contain border rounded-full w-11 h-11 border-separation'
+            className='object-contain border rounded-full w-11 h-11 border-separator'
           />
 
           <div className='flex flex-col'>
