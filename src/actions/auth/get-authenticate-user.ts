@@ -18,13 +18,7 @@ export const getAuthenticatedUser = async () => {
     if (typeof decoded === 'object' && 'id' in decoded) {
       const user = await prisma.user.findUnique({
         where: { id: decoded.id },
-        select: {
-          id: true,
-          email: true,
-          fullname: true,
-          username: true,
-          profile_photo: true,
-        },
+        omit: { password: true },
       });
 
       if (!user) {
