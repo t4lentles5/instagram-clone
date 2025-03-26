@@ -11,29 +11,33 @@ body {
 
 @layer base {
   :root {
-    --foreground: #000;
     --background: #fff;
-    --separator: #dbdbdb;
-    --hover: #f2f2f2;
-    --popover: #fff;
-    --popover-hover: #f2f2f2;
-    --button-color: #0095f6;
-    --button-hover: #1877f2;
     --button-border: #555555;
-    --foreground-secondary: #a8a8a8;
+    --button-primary-hover: #1877f2;
+    --button-primary: #0095f6;
+    --button-secondary-hover: #dbdbdb;
+    --button-secondary: #efefef;
+    --foreground-secondary: #737373;
+    --foreground: #000;
+    --hover: #f2f2f2;
+    --popover-hover: #f2f2f2;
+    --popover: #fff;
+    --separator: #dbdbdb;
   }
 
   .dark {
-    --foreground: #f5f5f5;
     --background: #000;
-    --separator: #353535;
-    --hover: #1a1a1a;
-    --popover: #262626;
-    --popover-hover: #3c3c3c;
-    --button-color: #0095f6;
-    --button-hover: #1877f2;
     --button-border: #555555;
+    --button-primary-hover: #1877f2;
+    --button-primary: #0095f6;
+    --button-secondary-hover: #262626;
+    --button-secondary: #363636;
     --foreground-secondary: #a8a8a8;
+    --foreground: #f5f5f5;
+    --hover: #1a1a1a;
+    --popover-hover: #3c3c3c;
+    --popover: #262626;
+    --separator: #353535;
   }
 }
 
@@ -58,5 +62,9 @@ body {
 }
 
 .button-primary {
-  @apply py-[6px] px-4 font-bold text-white transition duration-300 rounded-lg bg-buttonColor hover:bg-buttonHover;
+  @apply py-[6px] px-4 font-semibold text-white transition duration-300 rounded-lg bg-buttonPrimary hover:bg-buttonPrimaryHover;
+}
+
+.button-secondary {
+  @apply py-[6px] px-4 font-semibold text-foreground transition duration-300 rounded-lg bg-buttonSecondary hover:bg-buttonSecondaryHover;
 }
