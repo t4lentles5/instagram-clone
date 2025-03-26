@@ -8,12 +8,12 @@ interface Props {
 
 export const ProfilePhoto = ({ user }: Props) => {
   return (
-    <div className='w-[150px] md:w-[284px] '>
-      <div className='md:w-[284px] flex items-center justify-center cursor-pointer'>
+    <div className='w-full max-w-[120px] md:max-w-[284px]'>
+      <div className='flex items-center justify-center w-full cursor-pointer'>
         <img
           src={user.profile_photo}
           alt='profile photo'
-          className='object-contain w-20 h-20 border rounded-full md:w-[150px] md:h-[150px] border-separation'
+          className='object-cover w-20 h-20 md:w-[150px] md:h-[150px] rounded-full border border-separation aspect-square'
         />
       </div>
     </div>
