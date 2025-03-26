@@ -3,6 +3,7 @@ import { getRecommendedUsers } from '@/actions/user/get-recommended-users';
 import { SwitchUser } from '@/components/home/SwitchUser';
 import { Footer } from '@/components/ui/Footer';
 import { SuggestedUsers } from '../../components/home/suggested-users/SuggestedUsers';
+import { UserStories } from '@/components/home/user-stories/UserStories';
 
 export default async function HomePage() {
   const user = await getAuthenticatedUser();
@@ -10,8 +11,8 @@ export default async function HomePage() {
 
   return (
     <div className='flex justify-center w-full h-full pt-6'>
-      <div className='w-[630px] bg-purple-500'>
-        <div className='w-full'>uwu</div>
+      <div className='w-[630px]'>
+        <UserStories users={users} />
         <div></div>
       </div>
 
