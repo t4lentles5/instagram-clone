@@ -17,7 +17,10 @@ export const SwitchUser = ({ user }: Props) => {
           />
 
           <div className='flex flex-col'>
-            <Link href={`/${user.username}`} className='text-sm font-semibold'>
+            <Link
+              href={`/${user.username}`}
+              className='overflow-hidden text-sm font-semibold truncate max-w-36'
+            >
               {user.username}
             </Link>
             <span className='text-sm text-foregroundSecondary'>
@@ -26,7 +29,7 @@ export const SwitchUser = ({ user }: Props) => {
           </div>
         </div>
 
-        <button className='text-xs text-buttonColor'>Switch</button>
+        <button className='text-xs text-buttonPrimary'>Switch</button>
       </div>
     </>
   );

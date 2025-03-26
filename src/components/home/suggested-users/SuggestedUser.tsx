@@ -37,7 +37,7 @@ export const SuggestedUser = ({ user }: Props) => {
           <div className='flex flex-col'>
             <Link
               href={`/${user.username}`}
-              className='text-sm font-semibold'
+              className='overflow-hidden text-sm font-semibold truncate max-w-36'
               onMouseEnter={() => {
                 setIsHovered(true);
                 setIsUsernameHovered(true);
@@ -151,14 +151,14 @@ export const SuggestedUser = ({ user }: Props) => {
                 </p>
               </div>
 
-              <button className='flex justify-center w-full gap-2 mt-4 button-with-bg'>
+              <button className='flex justify-center w-full gap-2 mt-4 button-primary'>
                 <UserPlus size={24} weight='bold' />
                 <span className='text-sm'>Follow</span>
               </button>
             </div>
           )}
         </div>
-        <button className='text-xs text-buttonColor'>Follow</button>
+        <button className='text-xs text-buttonPrimary'>Follow</button>
       </div>
     </>
   );

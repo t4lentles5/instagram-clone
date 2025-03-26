@@ -88,7 +88,7 @@ export const NewPostButton = () => {
                 ></path>
               </svg>
               <p className='text-xl'>Drag photos and videos here</p>
-              <button className='p-2 text-sm font-bold text-white transition-all duration-300 rounded-lg bg-buttonColor hover:to-buttonHover'>
+              <button className='p-2 text-sm font-bold text-white transition-all duration-300 rounded-lg bg-buttonPrimary hover:to-buttonPrimaryHover'>
                 Select from computer
               </button>
             </div>
