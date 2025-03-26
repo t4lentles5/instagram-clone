@@ -32,7 +32,7 @@ export const LoginImages = () => {
               opacity: index === currentImageIndex ? 1 : 0,
             }}
             width={250}
-            className='absolute top-6 left-[110px] transition-opacity duration-300'
+            className='absolute top-6 left-[110px] -opacity '
           />
         ))}
       </div>

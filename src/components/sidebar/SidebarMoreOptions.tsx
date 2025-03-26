@@ -80,10 +80,10 @@ export const SidebarMoreOptions = () => {
             open
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 -translate-x-2 pointer-events-none'
-          } absolute w-[256px] p-2 flex flex-col items-center justify-center shadow-2xl rounded-lg gap-2 xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform transition-all duration-400 ease-in-out`}
+          } absolute w-[256px] p-2 flex flex-col items-center justify-center shadow-2xl rounded-lg gap-2 xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform   ease-in-out`}
         >
           <Link
-            className={`flex items-center justify-start w-full gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-popoverHover`}
+            className={`flex items-center justify-start w-full gap-4 p-3   rounded-lg hover:bg-popoverHover`}
             href={'/settings'}
           >
             <Gear size={20} />
@@ -91,7 +91,7 @@ export const SidebarMoreOptions = () => {
           </Link>
 
           <Link
-            className={`flex items-center justify-start w-full gap-4 p-3 transition-all duration-400 rounded-lg hover:bg-popoverHover`}
+            className={`flex items-center justify-start w-full gap-4 p-3   rounded-lg hover:bg-popoverHover`}
             href={'/saved'}
           >
             <BookmarkSimple size={20} />
@@ -99,7 +99,7 @@ export const SidebarMoreOptions = () => {
           </Link>
 
           <button
-            className={`flex items-center justify-start w-full gap-4 p-3 transition-all duration-400 hover:rounded-lg border-b border-separator hover:bg-popoverHover`}
+            className={`flex items-center justify-start w-full gap-4 p-3   hover:rounded-lg border-b border-separator hover:bg-popoverHover`}
             onClick={handleSwitchAppearanceOpen}
           >
             {isDarkMode ? <Moon size={20} /> : <Sun size={20} />}
@@ -107,14 +107,14 @@ export const SidebarMoreOptions = () => {
           </button>
 
           <button
-            className={`w-full p-3 px-4 py-2 text-left transition-colors duration-400 border-b cursor-pointer hover:rounded-lg text-text hover:bg-popoverHover border-separator`}
+            className={`w-full p-3 px-4 py-2 text-left -colors  border-b cursor-pointer hover:rounded-lg text-text hover:bg-popoverHover border-separator`}
             type='button'
             onClick={() => {}}
           >
             Switch Accounts
           </button>
           <button
-            className={`w-full p-3 px-4 py-2 text-left transition-colors duration-400 rounded-lg cursor-pointer text-text hover:bg-popoverHover`}
+            className={`w-full p-3 px-4 py-2 text-left -colors  rounded-lg cursor-pointer text-text hover:bg-popoverHover`}
             type='button'
             onClick={handleLogout}
           >
@@ -127,7 +127,7 @@ export const SidebarMoreOptions = () => {
             switchAppearanceOpen
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 -translate-x-2 pointer-events-none'
-          } absolute w-[256px] p-2 flex flex-col items-center justify-center shadow-2xl rounded-lg gap-2 xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform transition-all duration-400 ease-in-out`}
+          } absolute w-[256px] p-2 flex flex-col items-center justify-center shadow-2xl rounded-lg gap-2 xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform   ease-in-out`}
         >
           <div className='flex items-center w-full border-b border-separator hover:rounded-lg'>
             <button className='p-3' onClick={handleSwitchAppearanceOpen}>
@@ -141,7 +141,7 @@ export const SidebarMoreOptions = () => {
 
           <div className='flex items-center w-full'>
             <button
-              className='flex justify-between w-full p-3 px-4 py-2 text-left transition-colors duration-400 rounded-lg cursor-pointer text-text hover:bg-popoverHover'
+              className='flex justify-between w-full p-3 px-4 py-2 text-left -colors  rounded-lg cursor-pointer text-text hover:bg-popoverHover'
               onClick={(e) => {
                 e.stopPropagation();
                 toggleTheme();

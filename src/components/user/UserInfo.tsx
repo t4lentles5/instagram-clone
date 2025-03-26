@@ -25,7 +25,7 @@ export const UserInfo = ({ user }: Props) => {
 
                 <button className='text-sm button-secondary'>Message</button>
 
-                <button className='px-2 font-semibold transition duration-300 rounded-lg text-foreground bg-buttonSecondary hover:bg-buttonSecondaryHover'>
+                <button className='px-2 font-semibold   rounded-lg text-foreground bg-buttonSecondary hover:bg-buttonSecondaryHover'>
                   <svg
                     aria-label='Similar accounts'
                     className='x1lliihq x1n2onr6 x5n08af'
@@ -84,7 +84,7 @@ export const UserInfo = ({ user }: Props) => {
 
               <button className='text-sm button-secondary'>Message</button>
 
-              <button className='px-2 font-semibold transition duration-300 rounded-lg text-foreground bg-buttonSecondary hover:bg-buttonSecondaryHover'>
+              <button className='px-2 font-semibold   rounded-lg text-foreground bg-buttonSecondary hover:bg-buttonSecondaryHover'>
                 <svg
                   aria-label='Similar accounts'
                   className='x1lliihq x1n2onr6 x5n08af'

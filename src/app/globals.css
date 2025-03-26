@@ -58,17 +58,17 @@ body {
 }
 
 .nav-item {
-  @apply flex items-center justify-start gap-4 p-3 transition-all rounded-lg duration-300 hover:bg-hover;
+  @apply flex items-center justify-start gap-4 p-3  rounded-lg  hover:bg-hover;
 }
 
 .button-primary {
-  @apply py-[6px] px-4 font-semibold text-white transition duration-300 rounded-lg bg-buttonPrimary hover:bg-buttonPrimaryHover;
+  @apply py-[6px] px-4 font-semibold text-white   rounded-lg bg-buttonPrimary hover:bg-buttonPrimaryHover;
 }
 
 .button-secondary {
-  @apply py-[6px] px-4 font-semibold text-foreground transition duration-300 rounded-lg bg-buttonSecondary hover:bg-buttonSecondaryHover;
+  @apply py-[6px] px-4 font-semibold text-foreground   rounded-lg bg-buttonSecondary hover:bg-buttonSecondaryHover;
 }
 
 .button-disabled {
-  @apply py-[6px] px-4 font-semibold text-white transition duration-300 rounded-lg bg-[#0069ad];
+  @apply py-[6px] px-4 font-semibold text-white   rounded-lg bg-[#0069ad];
 }
