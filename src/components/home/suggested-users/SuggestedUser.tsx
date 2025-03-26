@@ -83,7 +83,10 @@ export const SuggestedUser = ({ user }: Props) => {
                   className='object-contain border rounded-full w-14 h-14 border-separator'
                 />
                 <div className='flex flex-col items-start justify-center w-full h-16'>
-                  <Link href={user.username} className='font-bold '>
+                  <Link
+                    href={user.username}
+                    className='overflow-hidden text-sm truncate max-w-36 font-bold'
+                  >
                     {user.username}
                   </Link>
                   <p className='text-foregroundSecondary'>{user.fullname}</p>
