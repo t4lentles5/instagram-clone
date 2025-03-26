@@ -11,7 +11,7 @@ interface Props {
 export const UserInfo = ({ user }: Props) => {
   return (
     <>
-      <main className='flex flex-col items-center w-full h-full pb-10 mt-4 border-b md:mt-0 border-separator'>
+      <main className='flex flex-col items-center w-full h-full pb-0 mt-4 border-b md:pb-10 md:mt-0 border-separator'>
         <div className='flex w-full'>
           <ProfilePhoto user={user} />
 

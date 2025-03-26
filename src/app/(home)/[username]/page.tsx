@@ -44,7 +44,7 @@ export default async function ProfileUserPage({ params }: Props) {
     <>
       <div className='flex flex-col items-center justify-center lg:max-w-[935px]  w-full md:mt-8 lg:mx-10'>
         <HeaderPageMobile>
-          {isOwnProfile ? authenticatedUser.fullname : userByUsername.fullname}
+          {isOwnProfile ? authenticatedUser.username : userByUsername.username}
         </HeaderPageMobile>
 
         <UserInfo user={isOwnProfile ? authenticatedUser : userByUsername} />
