@@ -13,7 +13,7 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
     setError,
   } = useForm<FormInputs>();
 
@@ -100,7 +100,11 @@ export const LoginForm = () => {
           </span>
         )}
 
-        <button type='submit' className='button-primary'>
+        <button
+          type='submit'
+          disabled={!isValid}
+          className={`${isValid ? 'button-primary' : 'button-disabled'} `}
+        >
           Log in
         </button>
       </form>
