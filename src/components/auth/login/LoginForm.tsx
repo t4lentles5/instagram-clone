@@ -100,7 +100,7 @@ export const LoginForm = () => {
           </span>
         )}
 
-        <button type='submit' className='button-with-bg'>
+        <button type='submit' className='button-primary'>
           Log in
         </button>
       </form>

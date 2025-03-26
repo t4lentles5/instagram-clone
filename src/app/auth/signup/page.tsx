@@ -28,7 +28,7 @@ export default function SignUpPage() {
         <p className='font-bold text-center text-foregroundSecondary'>
           Sign up to see photos and videos from your friends.
         </p>
-        <button className='mt-2 mb-5 font-bold text-buttonColor'>
+        <button className='mt-2 mb-5 font-bold text-buttonPrimary'>
           Sign in as a guest
         </button>
 
@@ -38,7 +38,7 @@ export default function SignUpPage() {
       </div>
       <div className='border border-separator p-5 text-center w-[350px]'>
         <p className=''>Have an account?</p>
-        <Link href={'/auth/login'} className='font-bold text-buttonColor'>
+        <Link href={'/auth/login'} className='font-bold text-buttonPrimary'>
           Log in
         </Link>
       </div>

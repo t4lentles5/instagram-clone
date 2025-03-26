@@ -34,7 +34,7 @@ export default function LoginPage() {
 
           <OrComponent />
 
-          <button className='mt-2 font-bold text-buttonColor'>
+          <button className='mt-2 font-bold text-buttonPrimary'>
             Sign in as a guest
           </button>
 
@@ -46,7 +46,10 @@ export default function LoginPage() {
         <div className='w-full border border-separator'>
           <p className='p-5 text-center'>
             Don&apos;t have an account?{' '}
-            <Link href={'/auth/signup'} className='font-bold text-buttonColor'>
+            <Link
+              href={'/auth/signup'}
+              className='font-bold text-buttonPrimary'
+            >
               Sign up
             </Link>
           </p>

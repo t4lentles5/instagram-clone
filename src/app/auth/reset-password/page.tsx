@@ -27,11 +27,11 @@ export default function ResetPasswordPage() {
           <div className='flex items-center gap-5'>
             <Link
               href={'/auth/login'}
-              className='p-2 rounded-lg bg-buttonColor hover:bg-buttonHover'
+              className='p-2 rounded-lg bg-buttonPrimary hover:bg-buttonPrimaryHover'
             >
               Log In
             </Link>
-            <Link className='text-buttonColor' href={'/auth/signup'}>
+            <Link className='text-buttonPrimary' href={'/auth/signup'}>
               Sign Up
             </Link>
           </div>
@@ -86,7 +86,7 @@ export default function ResetPasswordPage() {
             placeholder='Email, phone or Username'
           />
 
-          <button className='p-2 mt-2 mb-4 rounded-lg bg-buttonColor hover:bg-buttonHover'>
+          <button className='p-2 mt-2 mb-4 rounded-lg bg-buttonPrimary hover:bg-buttonPrimaryHover'>
             Send login link
           </button>
 
