@@ -2,8 +2,13 @@
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CheckCircle, XCircle } from 'phosphor-react';
-import { registerUser } from '@/actions/auth/register';
+import {
+  emailVerify,
+  registerUser,
+  usernameVerify,
+} from '@/actions/auth/register';
 import { login } from '@/actions/auth/login';
+import { useRouter } from 'next/navigation';
 
 interface FormInputs {
   email: string;
@@ -13,6 +18,8 @@ interface FormInputs {
 }
 
 export const SignUpForm = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -24,26 +31,35 @@ export const SignUpForm = () => {
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     const { email, password, fullname, username } = data;
 
-    const resp = await registerUser(email, password, fullname, username);
+    const emailResp = await emailVerify(email);
+    const usernameResp = await usernameVerify(username);
 
-    if (!resp.ok) {
-      if (resp.message === 'Email already exists') {
-        setError('email', {
-          type: 'manual',
-          message: 'Email already exists',
-        });
-      } else if (resp.message === 'Username already exists') {
-        setError('username', {
-          type: 'manual',
-          message: 'Username already exists',
-        });
-      }
+    if (!emailResp.ok) {
+      setError('email', {
+        type: 'manual',
+        message: emailResp.message,
+      });
 
       return;
     }
 
+    if (!usernameResp.ok) {
+      setError('username', {
+        type: 'manual',
+        message: usernameResp.message,
+      });
+
+      return;
+    }
+
+    const { ok } = await registerUser(email, password, fullname, username);
+
+    if (!ok) {
+      return;
+    }
+
     await login(email, password);
-    window.location.replace('/');
+    router.push('/');
   };
 
   const emailValue = watch('email');
