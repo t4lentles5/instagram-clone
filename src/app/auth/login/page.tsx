@@ -48,7 +48,7 @@ export default function LoginPage() {
             Don&apos;t have an account?{' '}
             <Link
               href={'/auth/signup'}
-              className='font-bold text-buttonPrimary'
+              className='font-semibold text-buttonPrimary'
             >
               Sign up
             </Link>

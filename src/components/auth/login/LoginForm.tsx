@@ -1,6 +1,7 @@
 'use client';
 
 import { login } from '@/actions/auth/login';
+import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface FormInputs {
@@ -9,6 +10,8 @@ interface FormInputs {
 }
 
 export const LoginForm = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -38,7 +41,7 @@ export const LoginForm = () => {
       return;
     }
 
-    window.location.replace('/');
+    router.push('/');
   };
 
   const emailValue = watch('email');
