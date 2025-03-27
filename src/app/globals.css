@@ -20,6 +20,7 @@ body {
     --foreground-secondary: #737373;
     --foreground: #000;
     --hover: #f2f2f2;
+    --link-foreground: #0095f6;
     --popover-hover: #f2f2f2;
     --popover: #fff;
     --separator: #dbdbdb;
@@ -35,6 +36,7 @@ body {
     --foreground-secondary: #a8a8a8;
     --foreground: #f5f5f5;
     --hover: #1a1a1a;
+    --link-foreground: #0095f6;
     --popover-hover: #3c3c3c;
     --popover: #262626;
     --separator: #353535;

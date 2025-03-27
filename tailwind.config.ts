@@ -17,6 +17,7 @@ export default {
         buttonSecondaryHover: 'var(--button-secondary-hover)',
         foreground: 'var(--foreground)',
         foregroundSecondary: 'var(--foreground-secondary)',
+        linkForeground: 'var(--link-foreground)',
         hover: 'var(--hover)',
         popover: 'var(--popover)',
         popoverHover: 'var(--popover-hover)',
