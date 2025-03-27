@@ -3,6 +3,39 @@
 import prisma from '@/lib/prisma';
 import bcrypt from 'bcrypt';
 
+export const emailVerify = async (email: string) => {
+  const emailExists = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (emailExists) {
+    return { ok: false, message: 'Email already exists' };
+  }
+
+  return {
+    ok: true,
+    message: 'Email available',
+  };
+};
+
+export const usernameVerify = async (username: string) => {
+  const usernameExists = await prisma.user.findUnique({
+    where: { username },
+  });
+
+  if (usernameExists) {
+    return {
+      ok: false,
+      message: 'Username already exists',
+    };
+  }
+
+  return {
+    ok: true,
+    message: 'Username available',
+  };
+};
+
 export const registerUser = async (
   email: string,
   password: string,
@@ -10,22 +43,13 @@ export const registerUser = async (
   username: string
 ) => {
   try {
-    const emailFound = await prisma.user.findUnique({
-      where: { email },
-    });
+    const emailResponse = await emailVerify(email);
+    const usernameResponse = await usernameVerify(username);
 
-    if (emailFound) {
-      return { ok: false, message: 'Email already exists' };
-    }
-
-    const usernameFound = await prisma.user.findUnique({
-      where: { username },
-    });
-
-    if (usernameFound) {
+    if (!emailResponse.ok && !usernameResponse.ok) {
       return {
         ok: false,
-        message: 'Username already exists',
+        message: 'An error occurred while registering the user',
       };
     }
 
