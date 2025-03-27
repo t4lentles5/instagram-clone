@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function SignUpPage() {
   return (
-    <main className='flex flex-col items-center justify-center w-full gap-3 py-3'>
+    <main className='w-[350px] py-3'>
       <div className='border flex flex-col p-10 gap-3 border-separator w-[350px]'>
         <div className='flex items-center justify-center w-full h-20'>
           <svg
@@ -36,7 +36,7 @@ export default function SignUpPage() {
 
         <SignUpForm />
       </div>
-      <div className='border border-separator p-5 text-center w-[350px]'>
+      <div className='border border-separator p-5 mt-3 text-center w-[350px]'>
         <p className=''>Have an account?</p>
         <Link href={'/auth/login'} className='font-bold text-buttonPrimary'>
           Log in
