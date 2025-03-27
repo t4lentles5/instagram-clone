@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useSidebarStore } from '@/store/ui/sidebarStore';
+import { useSidebarStore } from '@/store/ui/sidebar-store';
 import { usePathname } from 'next/navigation';
 import { MagnifyingGlass } from 'phosphor-react';
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useSidebarStore } from '@/store/ui/sidebarStore';
+import { useSidebarStore } from '@/store/ui/sidebar-store';
 import { PlusCircle, X } from 'phosphor-react';
 
 export const NewPostButton = () => {

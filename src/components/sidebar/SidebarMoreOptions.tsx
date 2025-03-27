@@ -1,8 +1,8 @@
 'use client';
 
 import { logout } from '@/actions/auth/logout';
-import { useSidebarStore } from '@/store/ui/sidebarStore';
-import { useThemeStore } from '@/store/ui/themeStore';
+import { useSidebarStore } from '@/store/ui/sidebar-store';
+import { useThemeStore } from '@/store/ui/theme-store';
 import Link from 'next/link';
 import {
   BookmarkSimple,

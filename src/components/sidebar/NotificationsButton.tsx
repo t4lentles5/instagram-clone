@@ -1,4 +1,4 @@
-import { useSidebarStore } from '@/store/ui/sidebarStore';
+import { useSidebarStore } from '@/store/ui/sidebar-store';
 import { usePathname } from 'next/navigation';
 import { Heart } from 'phosphor-react';
 import { useEffect, useRef } from 'react';

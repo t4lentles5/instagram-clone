@@ -1,6 +1,6 @@
 'use client';
 
-import { useSidebarStore } from '@/store/ui/sidebarStore';
+import { useSidebarStore } from '@/store/ui/sidebar-store';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Compass, House, MessengerLogo } from 'phosphor-react';

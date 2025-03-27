@@ -1,6 +1,6 @@
 'use client';
 
-import { useSidebarStore } from '@/store/ui/sidebarStore';
+import { useSidebarStore } from '@/store/ui/sidebar-store';
 import { SidebarMoreOptions } from './SidebarMoreOptions';
 import { SidebarNav } from './SidebarNav';
 import Link from 'next/link';

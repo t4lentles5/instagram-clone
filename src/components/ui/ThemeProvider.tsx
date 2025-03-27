@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useThemeStore } from '@/store/ui/themeStore';
+import { useThemeStore } from '@/store/ui/theme-store';
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { isDarkMode } = useThemeStore();
