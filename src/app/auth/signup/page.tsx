@@ -38,7 +38,7 @@ export default function SignUpPage() {
       </div>
       <div className='border border-separator p-5 mt-3 text-center w-[350px]'>
         <p className=''>Have an account?</p>
-        <Link href={'/auth/login'} className='font-bold text-buttonPrimary'>
+        <Link href={'/auth/login'} className='font-semibold text-buttonPrimary'>
           Log in
         </Link>
       </div>

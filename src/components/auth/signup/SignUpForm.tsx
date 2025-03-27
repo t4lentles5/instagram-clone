@@ -9,6 +9,7 @@ import {
 } from '@/actions/auth/register';
 import { login } from '@/actions/auth/login';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 interface FormInputs {
   email: string;
@@ -19,12 +20,13 @@ interface FormInputs {
 
 export const SignUpForm = () => {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isValid },
+    formState: { errors },
     setError,
   } = useForm<FormInputs>();
 
@@ -123,7 +125,7 @@ export const SignUpForm = () => {
               )}
 
               <input
-                type='password'
+                type={!showPassword ? 'password' : 'text'}
                 className={`input ${emailValue && 'text-xs'}`}
                 placeholder={'Password'}
                 {...register('password', {
@@ -137,12 +139,21 @@ export const SignUpForm = () => {
             </label>
 
             {passwordValue && (
-              <div className='flex items-center justify-center w-1/5'>
+              <div className='flex items-center justify-center w-1/4'>
                 {errors.password ? (
                   <XCircle size={24} className='text-red-500' />
                 ) : (
                   <CheckCircle size={24} className='text-foregroundSecondary' />
                 )}
+
+                <button
+                  className='pl-2 font-semibold'
+                  onClick={() => {
+                    setShowPassword(!showPassword);
+                  }}
+                >
+                  {showPassword ? 'Hide' : 'Show'}
+                </button>
               </div>
             )}
           </div>
@@ -254,11 +265,7 @@ export const SignUpForm = () => {
           )}
         </div>
 
-        <button
-          type='submit'
-          disabled={!isValid}
-          className={`${isValid ? 'button-primary' : 'button-disabled'} `}
-        >
+        <button type='submit' className='button-primary'>
           Sign up
         </button>
       </form>
