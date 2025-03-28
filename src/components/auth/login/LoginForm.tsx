@@ -2,6 +2,7 @@
 
 import { login } from '@/actions/auth/login';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface FormInputs {
@@ -11,6 +12,7 @@ interface FormInputs {
 
 export const LoginForm = () => {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -85,7 +87,7 @@ export const LoginForm = () => {
               )}
 
               <input
-                type='password'
+                type={!showPassword ? 'password' : 'text'}
                 id='password'
                 className={`input ${emailValue && 'text-xs'}`}
                 placeholder={'Password'}
@@ -94,6 +96,20 @@ export const LoginForm = () => {
                 })}
               />
             </label>
+
+            {passwordValue && (
+              <div className='flex items-center justify-center w-1/4'>
+                <button
+                  className='pl-2 font-semibold'
+                  type='button'
+                  onClick={() => {
+                    setShowPassword(!showPassword);
+                  }}
+                >
+                  {showPassword ? 'Hide' : 'Show'}
+                </button>
+              </div>
+            )}
           </div>
         </div>
 

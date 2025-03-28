@@ -148,6 +148,7 @@ export const SignUpForm = () => {
 
                 <button
                   className='pl-2 font-semibold'
+                  type='button'
                   onClick={() => {
                     setShowPassword(!showPassword);
                   }}
