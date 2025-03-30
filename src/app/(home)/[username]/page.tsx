@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : userByUsername;
 
   return {
-    title: `${user.fullname} (@${user.username}) / Instagram`,
-    description: `${user.fullname} (@${user.username}) / Instagram`,
+    title: `${user.fullname} (@${user.username}) • Instagram`,
+    description: `${user.fullname} (@${user.username}) • Instagram`,
   };
 }
 

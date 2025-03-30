@@ -4,7 +4,7 @@ import { Footer } from '@/components/ui/Footer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Page not found / Instagram',
+  title: 'Page not found • Instagram',
   description: 'Page not found',
 };
 
