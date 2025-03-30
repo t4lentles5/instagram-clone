@@ -1,20 +1,19 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
 import { logout } from '@/actions/auth/logout';
+import { MoonIcon } from '@/assets/icons/Sidebar/MoonIcon';
+import { BackIcon } from '@/assets/icons/Sidebar/more-options/BackIcon';
+import { MoonSmallIcon } from '@/assets/icons/Sidebar/more-options/MoonSmallIcon';
+import { SunSmallIcon } from '@/assets/icons/Sidebar/more-options/SunSmallIcon';
+import { MoreOptionsFillIcon } from '@/assets/icons/Sidebar/MoreOptionsFillIcon';
+import { MoreOptionsIcon } from '@/assets/icons/Sidebar/MoreOptionsIcon';
+import { SavedIcon } from '@/assets/icons/Sidebar/SavedIcon';
+import { SettingsIcon } from '@/assets/icons/Sidebar/SettingsIcon';
+import { SunIcon } from '@/assets/icons/Sidebar/SunIcon';
 import { useSidebarStore } from '@/store/ui/sidebar-store';
 import { useThemeStore } from '@/store/ui/theme-store';
-import Link from 'next/link';
-import {
-  BookmarkSimple,
-  CaretLeft,
-  Gear,
-  List,
-  Moon,
-  Sun,
-  ToggleLeft,
-  ToggleRight,
-} from 'phosphor-react';
-import { useState, useRef, useEffect } from 'react';
 
 export const SidebarMoreOptions = () => {
   const { isSidebarCollapsed } = useSidebarStore();
@@ -64,8 +63,9 @@ export const SidebarMoreOptions = () => {
         className='relative items-center justify-center hidden w-full h-16 cursor-pointer md:flex'
         ref={popoverRef}
       >
-        <button className='nav-item w-full'>
-          <List size={29} weight={open ? 'bold' : 'light'} />
+        <button className='w-full nav-item'>
+          {open ? <MoreOptionsFillIcon /> : <MoreOptionsIcon />}
+
           <span
             className={`${
               isSidebarCollapsed ? 'hidden ' : 'xl:block '
@@ -80,13 +80,13 @@ export const SidebarMoreOptions = () => {
             open
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 -translate-x-2 pointer-events-none'
-          } absolute w-[256px] p-2 flex flex-col items-center justify-center shadow-2xl rounded-lg gap-2 xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform   ease-in-out`}
+          } absolute w-[256px] p-2 flex flex-col items-center justify-center shadow-2xl rounded-lg gap-2 xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform ease-in-out`}
         >
           <Link
             className={`flex items-center justify-start w-full gap-4 p-3   rounded-lg hover:bg-popoverHover`}
             href={'/settings'}
           >
-            <Gear size={20} />
+            <SettingsIcon />
             Setting
           </Link>
 
@@ -94,7 +94,7 @@ export const SidebarMoreOptions = () => {
             className={`flex items-center justify-start w-full gap-4 p-3   rounded-lg hover:bg-popoverHover`}
             href={'/saved'}
           >
-            <BookmarkSimple size={20} />
+            <SavedIcon />
             Saved
           </Link>
 
@@ -102,7 +102,7 @@ export const SidebarMoreOptions = () => {
             className={`flex items-center justify-start w-full gap-4 p-3   hover:rounded-lg border-b border-separator hover:bg-popoverHover`}
             onClick={handleSwitchAppearanceOpen}
           >
-            {isDarkMode ? <Moon size={20} /> : <Sun size={20} />}
+            {isDarkMode ? <MoonIcon /> : <SunIcon />}
             Switch appearance
           </button>
 
@@ -130,37 +130,34 @@ export const SidebarMoreOptions = () => {
           } absolute w-[256px] p-2 flex flex-col items-center justify-center shadow-2xl rounded-lg gap-2 xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform   ease-in-out`}
         >
           <div className='flex items-center w-full border-b border-separator hover:rounded-lg'>
-            <button className='p-3' onClick={handleSwitchAppearanceOpen}>
-              <CaretLeft size={16} />
+            <button className='px-3' onClick={handleSwitchAppearanceOpen}>
+              <BackIcon />
             </button>
-            <div className='flex items-center justify-between w-full'>
+            <div className='flex items-center justify-between w-full p-3'>
               <span className='text-left'>Switch appearance</span>
-              {isDarkMode ? <Moon size={20} /> : <Sun size={20} />}
+              {isDarkMode ? <MoonSmallIcon /> : <SunSmallIcon />}
             </div>
           </div>
 
-          <div className='flex items-center w-full'>
+          <div className='flex justify-center w-full items-'>
             <button
-              className='flex justify-between w-full p-3 px-4 py-2 text-left -colors  rounded-lg cursor-pointer text-text hover:bg-popoverHover'
+              className='flex items-center justify-between w-full p-3 px-4 py-2 text-left rounded-lg cursor-pointer -colors text-text hover:bg-popoverHover'
               onClick={(e) => {
                 e.stopPropagation();
                 toggleTheme();
               }}
             >
               <span className='text-left'>Dark mode</span>
-              {isDarkMode ? (
-                <ToggleRight
-                  size={20}
-                  weight='fill'
-                  className='text-foreground'
+
+              <label className='inline-flex items-center ml-2'>
+                <input
+                  type='checkbox'
+                  checked={isDarkMode}
+                  onChange={toggleTheme}
+                  className='sr-only peer'
                 />
-              ) : (
-                <ToggleLeft
-                  size={20}
-                  weight='fill'
-                  className='text-foreground'
-                />
-              )}
+                <div className='relative w-7 h-4 bg-foreground rounded-full peer-checked:after:translate-x-full after:absolute after:top-[2px] after:start-[2px] after:bg-background after:rounded-full after:h-3 after:w-3 after:transition-all'></div>
+              </label>
             </button>
           </div>
         </div>
