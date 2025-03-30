@@ -39,7 +39,7 @@ export default async function ProfileUserPage({ params }: Props) {
     notFound();
   }
 
-  const isOwnProfile = userByUsername === authenticatedUser;
+  const isOwnProfile = userByUsername.username === authenticatedUser.username;
 
   return (
     <>
