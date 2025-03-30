@@ -3,11 +3,18 @@
 import { useSidebarStore } from '@/store/ui/sidebar-store';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Compass, House, MessengerLogo } from 'phosphor-react';
 import { SearchButton } from './SearchButton';
 import { NotificationsButton } from './NotificationsButton';
 import { NewPostButton } from './NewPostButton';
 import { User } from '@/interfaces/user.interface';
+import { HouseFillIcon } from '@/assets/icons/Sidebar/HouseFillIcon';
+import { HouseIcon } from '@/assets/icons/Sidebar/HouseIcon';
+import { ExploreIcon } from '@/assets/icons/Sidebar/ExploreIcon';
+import { ExploreFillIcon } from '@/assets/icons/Sidebar/ExploreFillIcon';
+import { ReelsIFillIcon } from '@/assets/icons/Sidebar/ReelsIFillIcon';
+import { ReelsIcon } from '@/assets/icons/Sidebar/ReelsIcon';
+import { MessengerFillIcon } from '@/assets/icons/Sidebar/MessengerFillIcon';
+import { MessengerIcon } from '@/assets/icons/Sidebar/MessengerIcon';
 
 interface Props {
   user: User;
@@ -20,10 +27,12 @@ export const SidebarNav = ({ user }: Props) => {
   return (
     <nav className='flex justify-around md:gap-1 md:flex-col'>
       <Link className='nav-item' href={'/'}>
-        <House
-          size={29}
-          weight={pathname === `/` && !isSidebarCollapsed ? 'fill' : 'regular'}
-        />
+        {pathname === `/` && !isSidebarCollapsed ? (
+          <HouseFillIcon />
+        ) : (
+          <HouseIcon />
+        )}
+
         <span
           className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
             pathname === `/` && !isSidebarCollapsed && 'font-bold'
@@ -36,12 +45,11 @@ export const SidebarNav = ({ user }: Props) => {
       <SearchButton />
 
       <Link className='nav-item' href={'/explore'}>
-        <Compass
-          size={29}
-          weight={
-            pathname === `/explore` && !isSidebarCollapsed ? 'fill' : 'regular'
-          }
-        />
+        {pathname === `/explore` && !isSidebarCollapsed ? (
+          <ExploreFillIcon />
+        ) : (
+          <ExploreIcon />
+        )}
         <span
           className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
             pathname === `/explore` && !isSidebarCollapsed && 'font-bold'
@@ -51,13 +59,27 @@ export const SidebarNav = ({ user }: Props) => {
         </span>
       </Link>
 
+      <Link className='nav-item' href={'/reels'}>
+        {pathname === `/reels` && !isSidebarCollapsed ? (
+          <ReelsIFillIcon />
+        ) : (
+          <ReelsIcon />
+        )}
+        <span
+          className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+            pathname === `/reels` && !isSidebarCollapsed && 'font-bold'
+          }`}
+        >
+          Reels
+        </span>
+      </Link>
+
       <Link className='nav-item' href={'/messages'}>
-        <MessengerLogo
-          size={29}
-          weight={
-            pathname === `/messages` && !isSidebarCollapsed ? 'fill' : 'regular'
-          }
-        />
+        {pathname === `/messages` && !isSidebarCollapsed ? (
+          <MessengerFillIcon />
+        ) : (
+          <MessengerIcon />
+        )}
         <span
           className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
             pathname === `/messages` && !isSidebarCollapsed && 'font-bold'
