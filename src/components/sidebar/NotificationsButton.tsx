@@ -1,6 +1,7 @@
+import { NotificationsFIllIcon } from '@/assets/icons/Sidebar/NotificationsFIllIcon';
+import { NotificationsIcon } from '@/assets/icons/Sidebar/NotificationsIcon';
 import { useSidebarStore } from '@/store/ui/sidebar-store';
 import { usePathname } from 'next/navigation';
-import { Heart } from 'phosphor-react';
 import { useEffect, useRef } from 'react';
 
 export const NotificationsButton = () => {
@@ -42,14 +43,11 @@ export const NotificationsButton = () => {
         className='nav-item'
         onClick={toggleNotifications}
       >
-        <Heart
-          size={29}
-          weight={
-            isNotificationsActive || pathname === `/notifications`
-              ? 'fill'
-              : 'regular'
-          }
-        />
+        {isNotificationsActive || pathname === `/notifications` ? (
+          <NotificationsFIllIcon />
+        ) : (
+          <NotificationsIcon />
+        )}
         <span
           className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
             pathname === `/notifications` && 'font-bold'
