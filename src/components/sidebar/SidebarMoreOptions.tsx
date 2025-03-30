@@ -3,15 +3,15 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { logout } from '@/actions/auth/logout';
-import { MoonIcon } from '@/assets/icons/Sidebar/MoonIcon';
+import { MoonIcon } from '@/assets/icons/Sidebar/more-options/MoonIcon';
 import { BackIcon } from '@/assets/icons/Sidebar/more-options/BackIcon';
 import { MoonSmallIcon } from '@/assets/icons/Sidebar/more-options/MoonSmallIcon';
 import { SunSmallIcon } from '@/assets/icons/Sidebar/more-options/SunSmallIcon';
-import { MoreOptionsFillIcon } from '@/assets/icons/Sidebar/MoreOptionsFillIcon';
-import { MoreOptionsIcon } from '@/assets/icons/Sidebar/MoreOptionsIcon';
-import { SavedIcon } from '@/assets/icons/Sidebar/SavedIcon';
-import { SettingsIcon } from '@/assets/icons/Sidebar/SettingsIcon';
-import { SunIcon } from '@/assets/icons/Sidebar/SunIcon';
+import { MoreOptionsFillIcon } from '@/assets/icons/Sidebar/more-options/MoreOptionsFillIcon';
+import { MoreOptionsIcon } from '@/assets/icons/Sidebar/more-options/MoreOptionsIcon';
+import { SavedIcon } from '@/assets/icons/Sidebar/more-options/SavedIcon';
+import { SettingsIcon } from '@/assets/icons/Sidebar/more-options/SettingsIcon';
+import { SunIcon } from '@/assets/icons/Sidebar/more-options/SunIcon';
 import { useSidebarStore } from '@/store/ui/sidebar-store';
 import { useThemeStore } from '@/store/ui/theme-store';
 
