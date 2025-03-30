@@ -1,7 +1,13 @@
 import { LoginForm } from '@/components/auth/login/LoginForm';
 import { LoginImages } from '@/components/auth/login/LoginImages';
 import { OrComponent } from '@/components/ui/OrComponent';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Login • Instagram',
+  description: 'Login to your Instagram account',
+};
 
 export default function LoginPage() {
   return (
