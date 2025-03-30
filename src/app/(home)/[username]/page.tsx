@@ -38,7 +38,7 @@ export default async function ProfileUserPage({ params }: Props) {
     notFound();
   }
 
-  const isOwnProfile = userByUsername.username === authenticatedUser.username;
+  const isOwnProfile = userByUsername === authenticatedUser;
 
   return (
     <>
@@ -47,7 +47,10 @@ export default async function ProfileUserPage({ params }: Props) {
           {isOwnProfile ? authenticatedUser.username : userByUsername.username}
         </HeaderPageMobile>
 
-        <UserInfo user={isOwnProfile ? authenticatedUser : userByUsername} />
+        <UserInfo
+          userByUsername={userByUsername}
+          authenticatedUser={authenticatedUser}
+        />
 
         <UserStats />
 
