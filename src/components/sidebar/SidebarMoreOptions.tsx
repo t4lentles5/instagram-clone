@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { logout } from '@/actions/auth/logout';
 import { MoonIcon } from '@/assets/icons/Sidebar/more-options/MoonIcon';
-import { BackIcon } from '@/assets/icons/Sidebar/more-options/BackIcon';
+import { BackIcon } from '@/assets/icons/Sidebar/more-options/BackSmallIcon';
 import { MoonSmallIcon } from '@/assets/icons/Sidebar/more-options/MoonSmallIcon';
 import { SunSmallIcon } from '@/assets/icons/Sidebar/more-options/SunSmallIcon';
 import { MoreOptionsFillIcon } from '@/assets/icons/Sidebar/more-options/MoreOptionsFillIcon';
