@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useSidebarStore } from '@/store/ui/sidebar-store';
-import { NewPostIcon } from '@/assets/icons/Sidebar/NewPostIcon';
+import { NewPostIcon } from '@/assets/icons/sidebar/sidebar-nav/new-post/NewPostIcon';
 import { XIcon } from '@/assets/icons/XIcon';
 import { NewPostMediaIcons } from '@/assets/icons/NewPostMediaIcons';
 
@@ -66,7 +66,7 @@ export const NewPostButton = () => {
             <div className='flex flex-col items-center justify-center w-full h-full gap-4'>
               <NewPostMediaIcons />
               <p className='text-xl'>Drag photos and videos here</p>
-              <button className='p-2 text-sm font-bold text-white   rounded-lg bg-buttonPrimary hover:to-buttonPrimaryHover'>
+              <button className='p-2 text-sm font-bold text-white rounded-lg bg-buttonPrimary hover:to-buttonPrimaryHover'>
                 Select from computer
               </button>
             </div>

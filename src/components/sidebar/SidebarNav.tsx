@@ -7,14 +7,14 @@ import { SearchButton } from './SearchButton';
 import { NotificationsButton } from './NotificationsButton';
 import { NewPostButton } from './NewPostButton';
 import { User } from '@/interfaces/user.interface';
-import { HouseFillIcon } from '@/assets/icons/Sidebar/HouseFillIcon';
-import { HouseIcon } from '@/assets/icons/Sidebar/HouseIcon';
-import { ExploreIcon } from '@/assets/icons/Sidebar/ExploreIcon';
-import { ExploreFillIcon } from '@/assets/icons/Sidebar/ExploreFillIcon';
-import { ReelsIFillIcon } from '@/assets/icons/Sidebar/ReelsIFillIcon';
-import { ReelsIcon } from '@/assets/icons/Sidebar/ReelsIcon';
-import { MessengerFillIcon } from '@/assets/icons/Sidebar/MessengerFillIcon';
-import { MessengerIcon } from '@/assets/icons/Sidebar/MessengerIcon';
+import { HouseFillIcon } from '@/assets/icons/sidebar/sidebar-nav/HouseFillIcon';
+import { HouseIcon } from '@/assets/icons/sidebar/sidebar-nav/HouseIcon';
+import { ExploreIcon } from '@/assets/icons/sidebar/sidebar-nav/ExploreIcon';
+import { ExploreFillIcon } from '@/assets/icons/sidebar/sidebar-nav/ExploreFillIcon';
+import { ReelsIFillIcon } from '@/assets/icons/sidebar/sidebar-nav/ReelsIFillIcon';
+import { ReelsIcon } from '@/assets/icons/sidebar/sidebar-nav/ReelsIcon';
+import { MessengerFillIcon } from '@/assets/icons/sidebar/sidebar-nav/MessengerFillIcon';
+import { MessengerIcon } from '@/assets/icons/sidebar/sidebar-nav/MessengerIcon';
 
 interface Props {
   user: User;

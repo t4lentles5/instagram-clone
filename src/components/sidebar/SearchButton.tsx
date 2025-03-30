@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useSidebarStore } from '@/store/ui/sidebar-store';
 import { usePathname } from 'next/navigation';
-import { SearchFillIcon } from '@/assets/icons/Sidebar/SearchFillIcon';
-import { SearchIcon } from '@/assets/icons/Sidebar/SearchIcon';
+import { SearchFillIcon } from '@/assets/icons/sidebar/sidebar-nav/search/SearchFillIcon';
+import { SearchIcon } from '@/assets/icons/sidebar/sidebar-nav/search/SearchIcon';
 
 export const SearchButton = () => {
   const pathname = usePathname();
