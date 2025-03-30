@@ -1,8 +1,8 @@
 'use client';
 
-import { CaretLeft } from 'phosphor-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { BackIcon } from '@/assets/icons/BackIcon';
 
 export const HeaderPageMobile = ({
   children,
@@ -12,11 +12,11 @@ export const HeaderPageMobile = ({
   const router = useRouter();
 
   return (
-    <header className='sticky top-0 flex items-center w-full border-b md:hidden py-3 bg-background border-separator'>
+    <header className='sticky top-0 flex items-center w-full border-b md:hidden px-4 py-3 bg-background border-separator'>
       <Link href='#' onClick={() => router.back()} className='fixed'>
-        <CaretLeft size={32} strokeWidth={1.5} className='text-text' />
+        <BackIcon />
       </Link>
-      <p className='w-full text-center text-text'>{children}</p>
+      <p className='w-full text-center font-semibold'>{children}</p>
     </header>
   );
 };
