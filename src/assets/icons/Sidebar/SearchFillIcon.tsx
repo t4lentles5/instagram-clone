@@ -15,14 +15,14 @@ export const SearchFillIcon = () => {
           fill='none'
           stroke='currentColor'
           strokeLinecap='round'
-          stroke-linejoin='round'
+          strokeLinejoin='round'
           strokeWidth='3'
         ></path>
         <line
           fill='none'
           stroke='currentColor'
           strokeLinecap='round'
-          stroke-linejoin='round'
+          strokeLinejoin='round'
           strokeWidth='3'
           x1='16.511'
           x2='21.643'
