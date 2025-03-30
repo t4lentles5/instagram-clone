@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useSidebarStore } from '@/store/ui/sidebar-store';
 import { usePathname } from 'next/navigation';
-import { MagnifyingGlass } from 'phosphor-react';
+import { SearchFillIcon } from '@/assets/icons/Sidebar/SearchFillIcon';
+import { SearchIcon } from '@/assets/icons/Sidebar/SearchIcon';
 
 export const SearchButton = () => {
   const pathname = usePathname();
@@ -38,10 +39,11 @@ export const SearchButton = () => {
   return (
     <>
       <button ref={buttonRef} className='nav-item' onClick={toggleSearch}>
-        <MagnifyingGlass
-          size={29}
-          weight={isSearchActive || pathname === '/search' ? 'bold' : 'regular'}
-        />
+        {pathname === `/search` || isSidebarCollapsed ? (
+          <SearchFillIcon />
+        ) : (
+          <SearchIcon />
+        )}
         <span
           className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
             pathname === `/search` && 'font-bold'
