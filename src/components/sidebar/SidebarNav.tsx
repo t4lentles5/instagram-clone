@@ -97,7 +97,7 @@ export const SidebarNav = ({ user }: Props) => {
         <img
           src={user.profile_photo}
           alt='user profile photo'
-          className='object-contain w-8 h-8 border rounded-full border-separation'
+          className='object-contain w-8 h-8 border rounded-full border-separator'
         />
         <span
           className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${

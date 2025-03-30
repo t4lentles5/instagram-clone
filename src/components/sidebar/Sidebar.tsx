@@ -6,7 +6,7 @@ import { SidebarMoreOptions } from './SidebarMoreOptions';
 import { SidebarNav } from './SidebarNav';
 import { User } from '@/interfaces/user.interface';
 import { InstagramIcon } from '@/assets/icons/InstagramIcon';
-import { InstagramSmallIcon } from '@/assets/icons/InstagramSmallIcon';
+import { InstagramSmallIcon } from '@/assets/icons/Sidebar/InstagramSmallIcon';
 
 interface Props {
   user: User;
