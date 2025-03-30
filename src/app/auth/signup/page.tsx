@@ -1,6 +1,12 @@
 import { SignUpForm } from '@/components/auth/signup/SignUpForm';
 import { OrComponent } from '@/components/ui/OrComponent';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Sign Up • Instagram',
+  description: 'Sign up for an Instagram account',
+};
 
 export default function SignUpPage() {
   return (
