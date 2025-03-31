@@ -16,19 +16,21 @@ export const Sidebar = ({ user }: Props) => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
-    <div
-      className={`${
-        isSidebarCollapsed ? 'md:w-[72px]' : 'md:w-full'
-      } flex flex-col w-screen md:h-screen gap-4 md:p-2 border-t md:border-r border-separator transform origin-left -transform `}
-    >
-      <Link href={'/'} className='hidden w-full h-20 p-3 mt-3 md:block '>
-        <InstagramIcon isSidebarCollapsed={isSidebarCollapsed} />
+    <div className='sticky top-0 md:h-screen h-[48px]'>
+      <div
+        className={`${
+          isSidebarCollapsed ? 'md:w-[72px]' : 'md:w-full'
+        } fixed md:static bottom-0 bg-background md:h-screen md:flex flex-col w-screen gap-4 md:p-2 border-t md:border-r border-separator transform origin-left -transform `}
+      >
+        <Link href={'/'} className='hidden w-full h-20 p-3 md:block '>
+          <InstagramIcon isSidebarCollapsed={isSidebarCollapsed} />
 
-        <InstagramSmallIcon isSidebarCollapsed={isSidebarCollapsed} />
-      </Link>
-      <div className='flex flex-col justify-between h-full'>
-        <SidebarNav user={user} />
-        <SidebarMoreOptions />
+          <InstagramSmallIcon isSidebarCollapsed={isSidebarCollapsed} />
+        </Link>
+        <div className='flex flex-col justify-between h-full'>
+          <SidebarNav user={user} />
+          <SidebarMoreOptions />
+        </div>
       </div>
     </div>
   );
