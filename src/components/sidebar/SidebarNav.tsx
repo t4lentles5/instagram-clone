@@ -25,7 +25,7 @@ export const SidebarNav = ({ user }: Props) => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
-    <nav className='flex justify-around md:gap-1 md:flex-col'>
+    <nav className='flex justify-evenly md:gap-1 md:flex-col'>
       <Link className='nav-item' href={'/'}>
         {pathname === `/` && !isSidebarCollapsed ? (
           <HouseFillIcon />
@@ -97,13 +97,13 @@ export const SidebarNav = ({ user }: Props) => {
         <div
           className={`${
             pathname === `/${user.username}` &&
-            'border-2 border-foregroundSecondary rounded-full'
+            'border-2 w-7 h-7 border-foregroundSecondary rounded-full'
           }`}
         >
           <img
             src={user.profile_photo}
             alt='user profile photo'
-            className='object-contain  w-6 h-6 border rounded-full border-separator'
+            className='object-contain w-6 h-6 border rounded-full border-separator'
           />
         </div>
         <span
