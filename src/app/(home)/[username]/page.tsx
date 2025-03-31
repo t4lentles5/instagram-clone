@@ -1,13 +1,13 @@
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
 import { getUserByUsername } from '@/actions/user/get-user-by-username';
 import { CameraIcon } from '@/assets/icons/CameraIcon';
 import { Footer } from '@/components/ui/Footer';
-import { HeaderPageMobile } from '@/components/ui/HeaderPageMobile';
 import { UserInfo } from '@/components/user/UserInfo';
 import { UserNavigation } from '@/components/user/UserNavigation';
 import { UserStats } from '@/components/user/UserStats';
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { HeaderPageMobile } from '@/components/ui/HeaderPageMobile';
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username } = await params;
@@ -43,7 +43,7 @@ export default async function ProfileUserPage({ params }: Props) {
 
   return (
     <>
-      <div className='flex flex-col items-center justify-center lg:max-w-[935px]  w-full md:mt-8 lg:mx-10'>
+      <div className='flex flex-col items-center justify-center lg:max-w-[935px] pt-16 md:pt-0 w-full md:mt-8 lg:mx-10'>
         <HeaderPageMobile>
           {isOwnProfile ? authenticatedUser.username : userByUsername.username}
         </HeaderPageMobile>
