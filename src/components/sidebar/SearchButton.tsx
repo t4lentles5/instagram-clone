@@ -38,7 +38,11 @@ export const SearchButton = () => {
 
   return (
     <>
-      <button ref={buttonRef} className='nav-item' onClick={toggleSearch}>
+      <button
+        ref={buttonRef}
+        className='items-center justify-start hidden gap-4 p-3 rounded-lg md:flex hover:bg-hover'
+        onClick={toggleSearch}
+      >
         {pathname === `/search` || isSidebarCollapsed ? (
           <SearchFillIcon />
         ) : (

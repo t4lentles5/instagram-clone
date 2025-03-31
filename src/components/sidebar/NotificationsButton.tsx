@@ -40,7 +40,7 @@ export const NotificationsButton = () => {
     <>
       <button
         ref={buttonRef}
-        className='nav-item'
+        className='items-center justify-start hidden gap-4 p-3 rounded-lg md:flex hover:bg-hover'
         onClick={toggleNotifications}
       >
         {isNotificationsActive || pathname === `/notifications` ? (
