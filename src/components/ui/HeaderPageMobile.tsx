@@ -12,11 +12,11 @@ export const HeaderPageMobile = ({
   const router = useRouter();
 
   return (
-    <header className='sticky top-0 flex items-center w-full border-b md:hidden px-4 py-3 bg-background border-separator'>
+    <header className='fixed top-0 z-50 flex items-center w-full px-4 py-3 border-b bg-background md:hidden border-separator'>
       <Link href='#' onClick={() => router.back()} className='fixed'>
         <BackIcon />
       </Link>
-      <p className='w-full text-center font-semibold'>{children}</p>
+      <p className='w-full font-semibold text-center'>{children}</p>
     </header>
   );
 };
