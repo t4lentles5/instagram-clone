@@ -94,11 +94,18 @@ export const SidebarNav = ({ user }: Props) => {
       <NewPostButton />
 
       <Link className='nav-item' href={`/${user.username}`}>
-        <img
-          src={user.profile_photo}
-          alt='user profile photo'
-          className='object-contain w-8 h-8 border rounded-full border-separator'
-        />
+        <div
+          className={`${
+            pathname === `/${user.username}` &&
+            'border-2 border-foregroundSecondary rounded-full'
+          }`}
+        >
+          <img
+            src={user.profile_photo}
+            alt='user profile photo'
+            className='object-contain  w-6 h-6 border rounded-full border-separator'
+          />
+        </div>
         <span
           className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
             pathname === `/${user.username}` &&
