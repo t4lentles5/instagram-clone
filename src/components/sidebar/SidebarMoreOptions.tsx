@@ -64,12 +64,18 @@ export const SidebarMoreOptions = () => {
         ref={popoverRef}
       >
         <button className='w-full nav-item'>
-          {open ? <MoreOptionsFillIcon /> : <MoreOptionsIcon />}
+          {open || switchAppearanceOpen ? (
+            <MoreOptionsFillIcon />
+          ) : (
+            <MoreOptionsIcon />
+          )}
 
           <span
             className={`${
               isSidebarCollapsed ? 'hidden ' : 'xl:block '
-            } hidden leading-5 ${open && 'font-bold'}`}
+            } hidden leading-5 ${
+              open || (switchAppearanceOpen && 'font-bold')
+            }`}
           >
             More
           </span>
@@ -131,29 +137,36 @@ export const SidebarMoreOptions = () => {
         <div
           className={`${
             switchAppearanceOpen
-              ? 'opacity-100 translate-y-0'
+              ? 'opacity-100 translate-y-[4px]'
               : 'opacity-0 -translate-x-2 pointer-events-none'
-          } absolute w-[256px] p-2 flex flex-col items-center justify-center shadow-2xl rounded-lg gap-2 xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform   ease-in-out`}
+          } absolute w-[266px]  shadow-2xl rounded-2xl  xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform ease-in-out`}
         >
-          <div className='flex items-center w-full border-b border-separator hover:rounded-lg'>
-            <button className='px-3' onClick={handleSwitchAppearanceOpen}>
+          <div className='flex items-center w-full p-4 border-b border-[#3d3d3d] hover:rounded-lg'>
+            <button
+              className='w-6 text-[#6a6a6a]'
+              onClick={handleSwitchAppearanceOpen}
+            >
               <BackIcon />
             </button>
-            <div className='flex items-center justify-between w-full p-3'>
-              <span className='text-left'>Switch appearance</span>
+            <span className='text-left text-base font-semibold w-[180px] leading-5'>
+              Switch appearance
+            </span>
+            <div className='w-[30px] flex justify-end'>
               {isDarkMode ? <MoonSmallIcon /> : <SunSmallIcon />}
             </div>
           </div>
 
-          <div className='flex justify-center w-full items-'>
+          <div className='flex justify-center p-2 w-full items-'>
             <button
-              className='flex items-center justify-between w-full p-3 px-4 py-2 text-left rounded-lg cursor-pointer hover:bg-popoverHover'
+              className='flex items-center justify-between w-full p-4 text-left rounded-lg cursor-pointer hover:bg-popoverHover'
               onClick={(e) => {
                 e.stopPropagation();
                 toggleTheme();
               }}
             >
-              <span className='text-left'>Dark mode</span>
+              <span className='text-left text-sm leading-[18px]'>
+                Dark mode
+              </span>
 
               <label className='inline-flex items-center ml-2'>
                 <input
@@ -162,7 +175,7 @@ export const SidebarMoreOptions = () => {
                   onChange={toggleTheme}
                   className='sr-only peer'
                 />
-                <div className='relative w-7 h-4 bg-foreground rounded-full peer-checked:after:translate-x-full after:absolute after:top-[2px] after:start-[2px] after:bg-background after:rounded-full after:h-3 after:w-3 after:transition-all'></div>
+                <div className='relative w-[26px] h-4 bg-foreground rounded-full peer-checked:after:translate-x-[10px] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:rounded-full after:h-3 after:w-3 after:transition-all'></div>
               </label>
             </button>
           </div>
