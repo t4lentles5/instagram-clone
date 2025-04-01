@@ -38,24 +38,26 @@ export const NotificationsButton = () => {
 
   return (
     <>
-      <button
-        ref={buttonRef}
-        className='items-center justify-start hidden gap-4 p-3 rounded-lg md:flex hover:bg-hover'
-        onClick={toggleNotifications}
-      >
-        {isNotificationsActive || pathname === `/notifications` ? (
-          <NotificationsFIllIcon />
-        ) : (
-          <NotificationsIcon />
-        )}
-        <span
-          className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-            pathname === `/notifications` && 'font-bold'
-          }`}
+      <div className='items-center justify-center hidden md:flex md:w-full h-14'>
+        <button
+          ref={buttonRef}
+          className='items-center justify-start hidden w-full gap-4 p-3 rounded-lg md:flex hover:bg-hover'
+          onClick={toggleNotifications}
         >
-          Notifications
-        </span>
-      </button>
+          {isNotificationsActive || pathname === `/notifications` ? (
+            <NotificationsFIllIcon />
+          ) : (
+            <NotificationsIcon />
+          )}
+          <span
+            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+              pathname === `/notifications` && 'font-bold'
+            }`}
+          >
+            Notifications
+          </span>
+        </button>
+      </div>
 
       {isNotificationsActive && (
         <div

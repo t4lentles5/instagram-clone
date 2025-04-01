@@ -11,7 +11,7 @@ export const InstagramIcon = ({ isSidebarCollapsed }: Props) => {
           isSidebarCollapsed ? 'hidden ' : 'xl:block '
         } hidden text-foreground -none`}
         fill='currentColor'
-        height='40'
+        height='29'
         role='img'
         viewBox='32 4 113 32'
         width='103'

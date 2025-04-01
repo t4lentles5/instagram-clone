@@ -60,7 +60,7 @@ export const SidebarMoreOptions = () => {
     <>
       <div
         onClick={handleOpen}
-        className='relative items-center justify-center hidden w-full h-16 cursor-pointer md:flex'
+        className='relative items-center justify-center hidden w-full cursor-pointer h-14 md:flex'
         ref={popoverRef}
       >
         <button className='w-full nav-item'>

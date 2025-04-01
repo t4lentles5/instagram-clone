@@ -19,10 +19,15 @@ export const Sidebar = ({ user }: Props) => {
     <div className='sticky top-0 h-0 md:h-screen'>
       <div
         className={`${
-          isSidebarCollapsed ? 'md:w-[72px]' : 'md:w-full'
-        } fixed md:static bottom-0 bg-background md:h-screen md:flex flex-col w-screen gap-4 md:p-2 border-t md:border-r border-separator transform origin-left -transform `}
+          isSidebarCollapsed
+            ? 'md:w-[72px] md:border-r md:border-separator'
+            : 'md:w-full'
+        } fixed md:static bottom-0 bg-background md:h-screen md:flex flex-col w-full md:pt-2 md:px-3 md:pb-5 transform origin-left`}
       >
-        <Link href={'/'} className='hidden w-full h-20 p-3 md:block '>
+        <Link
+          href={'/'}
+          className='hidden w-full px-3 pt-8 pb-4 mb-[16px] md:block '
+        >
           <InstagramIcon isSidebarCollapsed={isSidebarCollapsed} />
 
           <InstagramSmallIcon isSidebarCollapsed={isSidebarCollapsed} />

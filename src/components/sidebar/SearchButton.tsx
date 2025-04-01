@@ -38,24 +38,26 @@ export const SearchButton = () => {
 
   return (
     <>
-      <button
-        ref={buttonRef}
-        className='items-center justify-start hidden gap-4 p-3 rounded-lg md:flex hover:bg-hover'
-        onClick={toggleSearch}
-      >
-        {pathname === `/search` || isSidebarCollapsed ? (
-          <SearchFillIcon />
-        ) : (
-          <SearchIcon />
-        )}
-        <span
-          className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-            pathname === `/search` && 'font-bold'
-          }`}
+      <div className='items-center justify-center hidden md:flex md:w-full h-14'>
+        <button
+          ref={buttonRef}
+          className='items-center justify-start hidden w-full gap-4 p-3 rounded-lg md:flex hover:bg-hover'
+          onClick={toggleSearch}
         >
-          Search
-        </span>
-      </button>
+          {pathname === `/search` || isSidebarCollapsed ? (
+            <SearchFillIcon />
+          ) : (
+            <SearchIcon />
+          )}
+          <span
+            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+              pathname === `/search` && 'font-bold'
+            }`}
+          >
+            Search
+          </span>
+        </button>
+      </div>
 
       {isSearchActive && (
         <div

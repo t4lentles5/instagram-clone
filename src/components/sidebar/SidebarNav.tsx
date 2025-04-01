@@ -25,97 +25,103 @@ export const SidebarNav = ({ user }: Props) => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
-    <nav className='flex justify-evenly md:gap-1 md:flex-col'>
-      <Link className='nav-item' href={'/'}>
-        {pathname === `/` && !isSidebarCollapsed ? (
-          <HouseFillIcon />
-        ) : (
-          <HouseIcon />
-        )}
+    <nav className='flex border-t justify-evenly md:border-0 md:flex-col border-separator'>
+      <div className='flex items-center justify-center md:w-full h-14'>
+        <Link className='nav-item' href={'/'}>
+          {pathname === `/` && !isSidebarCollapsed ? (
+            <HouseFillIcon />
+          ) : (
+            <HouseIcon />
+          )}
 
-        <span
-          className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-            pathname === `/` && !isSidebarCollapsed && 'font-bold'
-          }`}
-        >
-          Home
-        </span>
-      </Link>
+          <span
+            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+              pathname === `/` && !isSidebarCollapsed && 'font-bold'
+            }`}
+          >
+            Home
+          </span>
+        </Link>
+      </div>
 
       <SearchButton />
 
-      <Link className='nav-item' href={'/explore'}>
-        {pathname === `/explore` && !isSidebarCollapsed ? (
-          <ExploreFillIcon />
-        ) : (
-          <ExploreIcon />
-        )}
-        <span
-          className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-            pathname === `/explore` && !isSidebarCollapsed && 'font-bold'
-          }`}
-        >
-          Explore
-        </span>
-      </Link>
+      <div className='flex items-center justify-center md:w-full h-14'>
+        <Link className='nav-item' href={'/explore'}>
+          {pathname === `/explore` && !isSidebarCollapsed ? (
+            <ExploreFillIcon />
+          ) : (
+            <ExploreIcon />
+          )}
+          <span
+            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+              pathname === `/explore` && !isSidebarCollapsed && 'font-bold'
+            }`}
+          >
+            Explore
+          </span>
+        </Link>
+      </div>
 
-      <Link className='nav-item' href={'/reels'}>
-        {pathname === `/reels` && !isSidebarCollapsed ? (
-          <ReelsIFillIcon />
-        ) : (
-          <ReelsIcon />
-        )}
-        <span
-          className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-            pathname === `/reels` && !isSidebarCollapsed && 'font-bold'
-          }`}
-        >
-          Reels
-        </span>
-      </Link>
+      <div className='flex items-center justify-center md:w-full h-14'>
+        <Link className='nav-item' href={'/reels'}>
+          {pathname === `/reels` && !isSidebarCollapsed ? (
+            <ReelsIFillIcon />
+          ) : (
+            <ReelsIcon />
+          )}
+          <span
+            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+              pathname === `/reels` && !isSidebarCollapsed && 'font-bold'
+            }`}
+          >
+            Reels
+          </span>
+        </Link>
+      </div>
 
-      <Link className='nav-item' href={'/messages'}>
-        {pathname === `/messages` && !isSidebarCollapsed ? (
-          <MessengerFillIcon />
-        ) : (
-          <MessengerIcon />
-        )}
-        <span
-          className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-            pathname === `/messages` && !isSidebarCollapsed && 'font-bold'
-          }`}
-        >
-          Messages
-        </span>
-      </Link>
+      <div className='flex items-center justify-center md:w-full h-14'>
+        <Link className='nav-item' href={'/messages'}>
+          {pathname === `/messages` && !isSidebarCollapsed ? (
+            <MessengerFillIcon />
+          ) : (
+            <MessengerIcon />
+          )}
+          <span
+            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+              pathname === `/messages` && !isSidebarCollapsed && 'font-bold'
+            }`}
+          >
+            Messages
+          </span>
+        </Link>
+      </div>
 
       <NotificationsButton />
 
       <NewPostButton />
 
-      <Link className='nav-item' href={`/${user.username}`}>
-        <div
-          className={`${
-            pathname === `/${user.username}` &&
-            'border-2 w-7 h-7 border-foregroundSecondary rounded-full'
-          }`}
-        >
+      <div className='relative flex items-center justify-center md:w-full h-14'>
+        <Link className='nav-item' href={`/${user.username}`}>
+          {pathname === `/${user.username}` && (
+            <div className='absolute border-2 rounded-full left-[10px] top-[13px] w-7 h-7 border-foreground'></div>
+          )}
           <img
             src={user.profile_photo}
             alt='user profile photo'
-            className='object-contain w-6 h-6 border rounded-full border-separator'
+            className='object-contain w-6 h-6 rounded-full'
           />
-        </div>
-        <span
-          className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-            pathname === `/${user.username}` &&
-            !isSidebarCollapsed &&
-            'font-bold'
-          }`}
-        >
-          Profile
-        </span>
-      </Link>
+          <span
+            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+              pathname === `/${user.username}` &&
+              !isSidebarCollapsed &&
+              'font-bold'
+            }`}
+          >
+            Profile
+          </span>
+        </Link>
+      </div>
     </nav>
   );
 };

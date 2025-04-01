@@ -35,17 +35,19 @@ export const NewPostButton = () => {
 
   return (
     <>
-      <button className='nav-item' onClick={openNewPostDialog}>
-        <NewPostIcon />
+      <div className='flex items-center justify-center md:w-full h-14'>
+        <button className='nav-item' onClick={openNewPostDialog}>
+          <NewPostIcon />
 
-        <span
-          className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-            isNewPostDialogOpen && !isSidebarCollapsed && 'font-bold'
-          }`}
-        >
-          Create
-        </span>
-      </button>
+          <span
+            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+              isNewPostDialogOpen && !isSidebarCollapsed && 'font-bold'
+            }`}
+          >
+            Create
+          </span>
+        </button>
+      </div>
 
       {isNewPostDialogOpen && (
         <div className='fixed inset-0 z-50 flex items-center justify-center w-screen h-full bg-gray-900 bg-opacity-80'>
