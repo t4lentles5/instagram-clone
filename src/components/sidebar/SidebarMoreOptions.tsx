@@ -78,48 +78,54 @@ export const SidebarMoreOptions = () => {
         <div
           className={`${
             open
-              ? 'opacity-100 translate-y-0'
+              ? 'opacity-100 translate-y-[5px]'
               : 'opacity-0 -translate-x-2 pointer-events-none'
-          } absolute w-[256px] p-2 flex flex-col items-center justify-center shadow-2xl rounded-lg gap-2 xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform ease-in-out`}
+          } absolute w-[266px] p-2 shadow-2xl rounded-2xl gap-2 xl:mb-1 left-14 xl:left-0 bg-popover bottom-full transform ease-in-out`}
         >
-          <Link
-            className={`flex items-center justify-start w-full gap-4 p-3   rounded-lg hover:bg-popoverHover`}
-            href={'/settings'}
-          >
-            <SettingsIcon />
-            Setting
-          </Link>
+          <div className='pb-2 border-b border-separator'>
+            <Link
+              className={`flex items-center justify-start w-full gap-3 p-4 rounded-lg hover:bg-popoverHover`}
+              href={'/settings'}
+            >
+              <SettingsIcon />
+              <span className='text-sm leading-[18px]'>Setting</span>
+            </Link>
 
-          <Link
-            className={`flex items-center justify-start w-full gap-4 p-3   rounded-lg hover:bg-popoverHover`}
-            href={'/saved'}
-          >
-            <SavedIcon />
-            Saved
-          </Link>
+            <Link
+              className={`flex items-center justify-start w-full gap-3 p-4 rounded-lg hover:bg-popoverHover`}
+              href={'/saved'}
+            >
+              <SavedIcon />
+              <span className='text-sm leading-[18px]'>Saved</span>
+            </Link>
 
-          <button
-            className={`flex items-center justify-start w-full gap-4 p-3   hover:rounded-lg border-b border-separator hover:bg-popoverHover`}
-            onClick={handleSwitchAppearanceOpen}
-          >
-            {isDarkMode ? <MoonIcon /> : <SunIcon />}
-            Switch appearance
-          </button>
+            <button
+              className={`flex items-center justify-start w-full gap-3 p-4 hover:rounded-lg hover:bg-popoverHover`}
+              onClick={handleSwitchAppearanceOpen}
+            >
+              {isDarkMode ? <MoonIcon /> : <SunIcon />}
+              <span className='text-sm leading-[18px]'>Switch appearance</span>
+            </button>
+          </div>
 
-          <button
-            className={`w-full p-3 px-4 py-2 text-left -colors  border-b cursor-pointer hover:rounded-lg text-text hover:bg-popoverHover border-separator`}
-            type='button'
-            onClick={() => {}}
-          >
-            Switch Accounts
-          </button>
-          <button
-            className={`w-full p-3 px-4 py-2 text-left -colors  rounded-lg cursor-pointer text-text hover:bg-popoverHover`}
-            type='button'
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
+          <div className='py-2 border-b border-separator'>
+            <button
+              className={`w-full text-sm leading-[18px] p-4 text-left cursor-pointer hover:rounded-lg hover:bg-popoverHover`}
+              type='button'
+              onClick={() => {}}
+            >
+              Switch accounts
+            </button>
+          </div>
+          <div className='mt-2'>
+            <button
+              className={`w-full p-4 text-left text-sm leading-[18px] cursor-pointer hover:rounded-lg hover:bg-popoverHover`}
+              type='button'
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          </div>
         </div>
 
         <div
@@ -141,7 +147,7 @@ export const SidebarMoreOptions = () => {
 
           <div className='flex justify-center w-full items-'>
             <button
-              className='flex items-center justify-between w-full p-3 px-4 py-2 text-left rounded-lg cursor-pointer -colors text-text hover:bg-popoverHover'
+              className='flex items-center justify-between w-full p-3 px-4 py-2 text-left rounded-lg cursor-pointer hover:bg-popoverHover'
               onClick={(e) => {
                 e.stopPropagation();
                 toggleTheme();
