@@ -1,15 +1,8 @@
-interface Props {
-  isSidebarCollapsed: boolean;
-}
-
-export const InstagramIcon = ({ isSidebarCollapsed }: Props) => {
+export const InstagramIcon = () => {
   return (
     <>
       <svg
         aria-label='Instagram'
-        className={`${
-          isSidebarCollapsed ? 'hidden ' : 'xl:block '
-        } hidden text-foreground -none`}
         fill='currentColor'
         height='29'
         role='img'

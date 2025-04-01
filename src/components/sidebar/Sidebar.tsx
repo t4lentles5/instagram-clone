@@ -24,14 +24,26 @@ export const Sidebar = ({ user }: Props) => {
             : 'md:w-full'
         } fixed md:static bottom-0 bg-background md:h-screen md:flex flex-col w-full md:pt-2 md:px-3 md:pb-5 transform origin-left`}
       >
-        <Link
-          href={'/'}
-          className='hidden w-full px-3 pt-8 pb-4 mb-[16px] md:block '
+        <div
+          className={`${
+            isSidebarCollapsed ? 'hidden ' : 'xl:block '
+          } hidden px-3 pt-8 pb-4 mb-[16px]`}
         >
-          <InstagramIcon isSidebarCollapsed={isSidebarCollapsed} />
+          <Link href={'/'}>
+            <InstagramIcon />
+          </Link>
+        </div>
 
-          <InstagramSmallIcon isSidebarCollapsed={isSidebarCollapsed} />
-        </Link>
+        <div
+          className={`${
+            isSidebarCollapsed ? 'block ' : 'xl:hidden '
+          } hidden md:block md:w-full rounded-lg hover:bg-hover p-3 mt-4 mb-7`}
+        >
+          <Link href={'/'}>
+            <InstagramSmallIcon />
+          </Link>
+        </div>
+
         <div className='flex flex-col justify-between h-full'>
           <SidebarNav user={user} />
           <SidebarMoreOptions />
