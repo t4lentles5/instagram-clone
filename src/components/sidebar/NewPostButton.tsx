@@ -35,12 +35,14 @@ export const NewPostButton = () => {
 
   return (
     <>
-      <div className='flex items-center justify-center md:w-full h-14'>
+      <div className='flex items-center justify-center md:w-full h-12 md:h-14'>
         <button className='nav-item' onClick={openNewPostDialog}>
           <NewPostIcon />
 
           <span
-            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+            className={`${
+              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+            } hidden leading-5 ${
               isNewPostDialogOpen && !isSidebarCollapsed && 'font-bold'
             }`}
           >

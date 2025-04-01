@@ -26,7 +26,7 @@ export const SidebarNav = ({ user }: Props) => {
 
   return (
     <nav className='flex border-t justify-evenly md:border-0 md:flex-col border-separator'>
-      <div className='flex items-center justify-center md:w-full h-14'>
+      <div className='flex items-center justify-center h-12 md:w-full md:h-14'>
         <Link className='nav-item' href={'/'}>
           {pathname === `/` && !isSidebarCollapsed ? (
             <HouseFillIcon />
@@ -35,7 +35,9 @@ export const SidebarNav = ({ user }: Props) => {
           )}
 
           <span
-            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+            className={`${
+              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+            } hidden leading-5 ${
               pathname === `/` && !isSidebarCollapsed && 'font-bold'
             }`}
           >
@@ -46,7 +48,7 @@ export const SidebarNav = ({ user }: Props) => {
 
       <SearchButton />
 
-      <div className='flex items-center justify-center md:w-full h-14'>
+      <div className='flex items-center justify-center h-12 md:w-full md:h-14'>
         <Link className='nav-item' href={'/explore'}>
           {pathname === `/explore` && !isSidebarCollapsed ? (
             <ExploreFillIcon />
@@ -54,7 +56,9 @@ export const SidebarNav = ({ user }: Props) => {
             <ExploreIcon />
           )}
           <span
-            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+            className={`${
+              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+            } hidden leading-5 ${
               pathname === `/explore` && !isSidebarCollapsed && 'font-bold'
             }`}
           >
@@ -63,7 +67,7 @@ export const SidebarNav = ({ user }: Props) => {
         </Link>
       </div>
 
-      <div className='flex items-center justify-center md:w-full h-14'>
+      <div className='flex items-center justify-center h-12 md:w-full md:h-14'>
         <Link className='nav-item' href={'/reels'}>
           {pathname === `/reels` && !isSidebarCollapsed ? (
             <ReelsIFillIcon />
@@ -71,7 +75,9 @@ export const SidebarNav = ({ user }: Props) => {
             <ReelsIcon />
           )}
           <span
-            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+            className={`${
+              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+            } hidden leading-5 ${
               pathname === `/reels` && !isSidebarCollapsed && 'font-bold'
             }`}
           >
@@ -80,7 +86,7 @@ export const SidebarNav = ({ user }: Props) => {
         </Link>
       </div>
 
-      <div className='flex items-center justify-center md:w-full h-14'>
+      <div className='flex items-center justify-center h-12 md:w-full md:h-14'>
         <Link className='nav-item' href={'/messages'}>
           {pathname === `/messages` && !isSidebarCollapsed ? (
             <MessengerFillIcon />
@@ -88,7 +94,9 @@ export const SidebarNav = ({ user }: Props) => {
             <MessengerIcon />
           )}
           <span
-            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+            className={`${
+              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+            } hidden leading-5 ${
               pathname === `/messages` && !isSidebarCollapsed && 'font-bold'
             }`}
           >
@@ -101,10 +109,10 @@ export const SidebarNav = ({ user }: Props) => {
 
       <NewPostButton />
 
-      <div className='relative flex items-center justify-center md:w-full h-14'>
-        <Link className='nav-item' href={`/${user.username}`}>
+      <div className='relative flex items-center justify-center h-12 md:w-full md:h-14'>
+        <Link className=' nav-item' href={`/${user.username}`}>
           {pathname === `/${user.username}` && (
-            <div className='absolute border-2 rounded-full left-[10px] top-[13px] w-7 h-7 border-foreground'></div>
+            <div className='absolute border-2 rounded-full top-[10px] left-[10px] w-7 h-7 border-foreground'></div>
           )}
           <img
             src={user.profile_photo}
@@ -112,7 +120,9 @@ export const SidebarNav = ({ user }: Props) => {
             className='object-contain w-6 h-6 rounded-full'
           />
           <span
-            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
+            className={`${
+              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+            } hidden leading-5 ${
               pathname === `/${user.username}` &&
               !isSidebarCollapsed &&
               'font-bold'

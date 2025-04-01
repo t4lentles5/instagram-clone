@@ -22,12 +22,12 @@ export const Sidebar = ({ user }: Props) => {
           isSidebarCollapsed
             ? 'md:w-[72px] md:border-r md:border-separator'
             : 'md:w-full'
-        } fixed md:static bottom-0 bg-background md:h-screen md:flex flex-col w-full md:pt-2 md:px-3 md:pb-5 transform origin-left`}
+        } fixed md:static bottom-0 bg-background md:h-screen md:flex flex-col w-full md:pt-2 md:px-3 md:pb-[19px] transform origin-left`}
       >
         <div
           className={`${
             isSidebarCollapsed ? 'hidden ' : 'xl:block '
-          } hidden px-3 pt-8 pb-4 mb-[16px]`}
+          } hidden px-3 pt-[33px] pb-4 mb-[14px]`}
         >
           <Link href={'/'}>
             <InstagramIcon />

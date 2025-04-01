@@ -38,7 +38,7 @@ export const SearchButton = () => {
 
   return (
     <>
-      <div className='items-center justify-center hidden md:flex md:w-full h-14'>
+      <div className='items-center justify-center hidden md:flex md:w-full h-12 md:h-14'>
         <button
           ref={buttonRef}
           className='items-center justify-start hidden w-full gap-4 p-3 rounded-lg md:flex hover:bg-hover'
@@ -50,9 +50,9 @@ export const SearchButton = () => {
             <SearchIcon />
           )}
           <span
-            className={`${isSidebarCollapsed ? 'hidden ' : 'xl:block'} hidden ${
-              pathname === `/search` && 'font-bold'
-            }`}
+            className={`${
+              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+            } hidden leading-5 ${pathname === `/search` && 'font-bold'}`}
           >
             Search
           </span>

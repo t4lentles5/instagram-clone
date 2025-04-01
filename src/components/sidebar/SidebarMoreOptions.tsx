@@ -69,7 +69,7 @@ export const SidebarMoreOptions = () => {
           <span
             className={`${
               isSidebarCollapsed ? 'hidden ' : 'xl:block '
-            } hidden ${open && 'font-bold'}`}
+            } hidden leading-5 ${open && 'font-bold'}`}
           >
             More
           </span>
