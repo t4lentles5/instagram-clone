@@ -17,9 +17,7 @@ export default async function Layout({
     <div className='flex flex-col md:grid xl:grid-cols-[244px_1fr] md:grid-cols-[72px_1fr] min-h-screen'>
       <Sidebar user={user} />
 
-      <div className='flex flex-col items-center overflow-y-auto grow md:pt-0'>
-        {children}
-      </div>
+      <div className='flex flex-col items-center grow'>{children}</div>
     </div>
   );
 }

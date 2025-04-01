@@ -10,13 +10,58 @@ export default async function HomePage() {
   const users = await getRecommendedUsers(user.id);
 
   return (
-    <div className='flex justify-center w-full h-full pt-6'>
-      <div className='w-[630px]'>
+    <div className='flex items-center justify-center w-full h-full'>
+      <div className='w-[630px] pt-4 flex flex-col items-center'>
         <UserStories users={users} />
-        <div></div>
+        {users.map((user) => (
+          <div key={user.id} className='w-[470px]'>
+            <div className='flex items-center w-full pb-[14px] pl-1'>
+              <div className='mr-3'>
+                <div className='w-8 h-8'>
+                  <img
+                    className='w-8 h-8 rounded-full'
+                    src={user.profile_photo}
+                    alt='profile photo'
+                  />
+                </div>
+              </div>
+              <div className='flex items-baseline w-full gap-x-1'>
+                <span className='text-sm leading-[18px]'>{user.username}</span>
+
+                <span className='flex items-center justify-center'>•</span>
+
+                <time
+                  dateTime='2025-03-31T15:30:23.000Z'
+                  className='text-sm leading-[18px] text-[#a8a8a8]'
+                  title='Mar 31, 2025'
+                >
+                  1d
+                </time>
+              </div>
+
+              <div className='flex justify-end w-8'>
+                <svg
+                  aria-label='More options'
+                  fill='currentColor'
+                  height='24'
+                  role='img'
+                  viewBox='0 0 24 24'
+                  width='24'
+                >
+                  <title>More options</title>
+                  <circle cx='12' cy='12' r='1.5'></circle>
+                  <circle cx='6' cy='12' r='1.5'></circle>
+                  <circle cx='18' cy='12' r='1.5'></circle>
+                </svg>
+              </div>
+            </div>
+
+            <div className='w-full border rounded-[4px] border-[#262626] aspect-[468/585]'></div>
+          </div>
+        ))}
       </div>
 
-      <div className='hidden w-[350px] pl-16 pt-5 lg:block'>
+      <div className='hidden w-[320px] ml-16 mt-9 lg:flex h-full flex-col justify-start'>
         <SwitchUser user={user} />
 
         <SuggestedUsers users={users} />
