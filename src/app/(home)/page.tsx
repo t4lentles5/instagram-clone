@@ -2,7 +2,7 @@ import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
 import { getRecommendedUsers } from '@/actions/user/get-recommended-users';
 import { SwitchUser } from '@/components/home/SwitchUser';
 import { Footer } from '@/components/ui/Footer';
-import { SuggestedUsers } from '../../components/home/suggested-users/SuggestedUsers';
+import { SuggestedUsers } from '@/components/home/suggested-users/SuggestedUsers';
 import { UserStories } from '@/components/home/user-stories/UserStories';
 
 export default async function HomePage() {
@@ -14,7 +14,10 @@ export default async function HomePage() {
       <div className='w-[630px] pt-4 flex flex-col items-center'>
         <UserStories users={users} />
         {users.map((user) => (
-          <div key={user.id} className='w-[470px]'>
+          <div
+            key={user.id}
+            className='w-full max-w-[470px] mx-auto px-4 sm:px-0'
+          >
             <div className='flex items-center w-full pb-[14px] pl-1'>
               <div className='mr-3'>
                 <div className='w-8 h-8'>
@@ -56,12 +59,12 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className='w-full border rounded-[4px] border-[#262626] aspect-[468/585]'></div>
+            <div className='min-[485px]:border w-full min-[485px]:rounded-[4px] min-[485px]:border-[#262626] aspect-[468/585]'></div>
           </div>
         ))}
       </div>
 
-      <div className='hidden w-[320px] ml-16 mt-9 lg:flex h-full flex-col justify-start'>
+      <div className='hidden w-[320px] ml-16 pt-9 min-[1160px]:flex h-full flex-col justify-start'>
         <SwitchUser user={user} />
 
         <SuggestedUsers users={users} />
