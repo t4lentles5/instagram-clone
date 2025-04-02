@@ -17,7 +17,7 @@ export const SuggestedUser = ({ user }: Props) => {
 
   return (
     <>
-      <div className='relative flex justify-between'>
+      <div className='relative flex justify-between px-4 py-2'>
         <div className='flex gap-3'>
           <Link href={`/${user.username}`}>
             <img
@@ -35,10 +35,10 @@ export const SuggestedUser = ({ user }: Props) => {
             />
           </Link>
 
-          <div className='flex flex-col'>
+          <div className='flex flex-col justify-center'>
             <Link
               href={`/${user.username}`}
-              className='overflow-hidden text-sm font-semibold truncate max-w-36'
+              className='overflow-hidden text-sm leading-[18px] font-semibold truncate max-w-36'
               onMouseEnter={() => {
                 setIsHovered(true);
                 setIsUsernameHovered(true);
@@ -126,7 +126,9 @@ export const SuggestedUser = ({ user }: Props) => {
             </div>
           )}
         </div>
-        <button className='text-xs text-buttonPrimary'>Follow</button>
+        <button className='text-xs text-[#0095f6] hover:text-[#dbebf9] hover:font-semibold'>
+          Follow
+        </button>
       </div>
     </>
   );
