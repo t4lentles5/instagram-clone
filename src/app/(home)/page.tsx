@@ -10,61 +10,61 @@ export default async function HomePage() {
   const users = await getRecommendedUsers(user.id);
 
   return (
-    <div className='flex items-center justify-center w-full h-full'>
-      <div className='w-[630px] pt-4 flex flex-col items-center'>
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="flex w-[630px] flex-col items-center pt-4">
         <UserStories users={users} />
         {users.map((user) => (
           <div
             key={user.id}
-            className='w-full max-w-[470px] mx-auto px-4 sm:px-0'
+            className="mx-auto w-full max-w-[470px] px-4 sm:px-0"
           >
-            <div className='flex items-center w-full pb-[14px] pl-1'>
-              <div className='mr-3'>
-                <div className='w-8 h-8'>
+            <div className="flex w-full items-center pb-[14px] pl-1">
+              <div className="mr-3">
+                <div className="h-8 w-8">
                   <img
-                    className='w-8 h-8 rounded-full'
+                    className="h-8 w-8 rounded-full"
                     src={user.profile_photo}
-                    alt='profile photo'
+                    alt="profile photo"
                   />
                 </div>
               </div>
-              <div className='flex items-baseline w-full gap-x-1'>
-                <span className='text-sm leading-[18px]'>{user.username}</span>
+              <div className="flex w-full items-baseline gap-x-1">
+                <span className="text-sm leading-[18px]">{user.username}</span>
 
-                <span className='flex items-center justify-center'>•</span>
+                <span className="flex items-center justify-center">•</span>
 
                 <time
-                  dateTime='2025-03-31T15:30:23.000Z'
-                  className='text-sm leading-[18px] text-[#a8a8a8]'
-                  title='Mar 31, 2025'
+                  dateTime="2025-03-31T15:30:23.000Z"
+                  className="text-foreground-secondary text-sm leading-[18px]"
+                  title="Mar 31, 2025"
                 >
                   1d
                 </time>
               </div>
 
-              <div className='flex justify-end w-8'>
+              <div className="flex w-8 justify-end">
                 <svg
-                  aria-label='More options'
-                  fill='currentColor'
-                  height='24'
-                  role='img'
-                  viewBox='0 0 24 24'
-                  width='24'
+                  aria-label="More options"
+                  fill="currentColor"
+                  height="24"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="24"
                 >
                   <title>More options</title>
-                  <circle cx='12' cy='12' r='1.5'></circle>
-                  <circle cx='6' cy='12' r='1.5'></circle>
-                  <circle cx='18' cy='12' r='1.5'></circle>
+                  <circle cx="12" cy="12" r="1.5"></circle>
+                  <circle cx="6" cy="12" r="1.5"></circle>
+                  <circle cx="18" cy="12" r="1.5"></circle>
                 </svg>
               </div>
             </div>
 
-            <div className='min-[485px]:border w-full min-[485px]:rounded-[4px] min-[485px]:border-[#262626] aspect-[468/585]'></div>
+            <div className="min-[485px]:border-border aspect-468/585 w-full min-[485px]:rounded-[4px] min-[485px]:border"></div>
           </div>
         ))}
       </div>
 
-      <div className='hidden w-[320px] ml-16 pt-9 min-[1160px]:flex h-full flex-col justify-start'>
+      <div className="ml-16 hidden h-full w-[320px] flex-col justify-start pt-9 min-[1160px]:flex">
         <SwitchUser user={user} />
 
         <SuggestedUsers users={users} />
