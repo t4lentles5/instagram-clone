@@ -1,41 +1,25 @@
-import Link from 'next/link';
-import { PostsIcon } from '@/assets/icons/PostsIcon';
+import { UserNavigationLink } from '@/components/user/UserNavigationLink';
 import { ReelsIcon } from '@/assets/icons/ReelsIcon';
 import { TaggedIcon } from '@/assets/icons/TaggedIcon';
+import { PostsIcon } from '@/assets/icons/PostsIcon';
 
-export const UserNavigation = () => {
+interface Props {
+  username: string;
+}
+
+export const UserNavigation = ({ username }: Props) => {
+  const Items = [
+    { icon: <PostsIcon />, label: 'Posts', href: `/${username}` },
+    { icon: <ReelsIcon />, label: 'Reels', href: `/${username}/reels` },
+    { icon: <TaggedIcon />, label: 'Tagged', href: `/${username}/tagged` },
+  ];
+
   return (
     <>
       <div className="grid w-full grid-cols-3 items-center md:flex md:items-center md:justify-center md:gap-16">
-        <Link
-          className="border-foreground flex items-center justify-center gap-2 border-t py-3 md:py-5"
-          href={'/'}
-        >
-          <PostsIcon />
-          <span className="hidden text-xs font-semibold uppercase md:block">
-            Posts
-          </span>
-        </Link>
-
-        <Link
-          className="border-foreground flex items-center justify-center gap-2 border-t py-3 md:py-5"
-          href={'/reels'}
-        >
-          <ReelsIcon />
-          <span className="hidden text-xs font-semibold uppercase md:block">
-            Reels
-          </span>
-        </Link>
-
-        <Link
-          className="border-foreground flex items-center justify-center gap-2 border-t py-3 md:py-5"
-          href={'/tagged'}
-        >
-          <TaggedIcon />
-          <span className="hidden text-xs font-semibold uppercase md:block">
-            Tagged
-          </span>
-        </Link>
+        {Items.map((item) => (
+          <UserNavigationLink key={item.label} {...item} />
+        ))}
       </div>
     </>
   );
