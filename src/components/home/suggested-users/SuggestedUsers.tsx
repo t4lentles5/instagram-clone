@@ -9,19 +9,19 @@ interface Props {
 export const SuggestedUsers = ({ users }: Props) => {
   return (
     <>
-      <div className='flex items-center justify-between mx-4 my-1'>
-        <span className='text-sm leading-[11px] font-semibold text-foregroundSecondary'>
+      <div className="mx-4 my-1 flex items-center justify-between">
+        <span className="text-foreground-secondary text-sm leading-[11px] font-semibold">
           Suggested for you
         </span>
         <Link
           href={'/explore/people'}
-          className='text-xs leading-[16px] font-semibold'
+          className="text-foreground hover:text-foreground-secondary text-xs leading-[16px] font-semibold"
         >
           See All
         </Link>
       </div>
 
-      <div className='ml-1 mb-1 py-2'>
+      <div className="mb-1 ml-1 py-2">
         {users.map((user) => (
           <SuggestedUser user={user} key={user.id} />
         ))}
