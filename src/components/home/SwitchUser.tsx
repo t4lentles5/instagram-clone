@@ -8,28 +8,28 @@ interface Props {
 export const SwitchUser = ({ user }: Props) => {
   return (
     <>
-      <div className='flex justify-between mb-5 px-4'>
-        <div className='flex gap-3'>
+      <div className="mb-5 flex justify-between px-4">
+        <div className="flex gap-3">
           <img
             src={user.profile_photo}
-            alt='profile photo'
-            className='object-contain border rounded-full w-11 h-11 border-separator'
+            alt="profile photo"
+            className="border-border h-11 w-11 rounded-full border object-contain"
           />
 
-          <div className='flex flex-col justify-center'>
+          <div className="flex flex-col justify-center">
             <Link
               href={`/${user.username}`}
-              className='overflow-hidden text-sm leading-[18px] font-semibold truncate max-w-36'
+              className="max-w-36 truncate overflow-hidden text-sm leading-[18px] font-semibold"
             >
               {user.username}
             </Link>
-            <span className='text-sm leading-[18px] text-foregroundSecondary'>
+            <span className="text-foreground-secondary text-sm leading-[18px]">
               {user.fullname}
             </span>
           </div>
         </div>
 
-        <button className='text-xs text-[#0095f6] hover:text-[#dbebf9] hover:font-semibold'>
+        <button className="text-ig-blue hover:text-ig-blue-hover text-xs font-semibold">
           Switch
         </button>
       </div>
