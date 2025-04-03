@@ -1,24 +1,15 @@
 export const UserStats = () => {
   return (
     <>
-      <div className='flex items-center w-full gap-10 p-3 border-b md:hidden justify-evenly border-separator'>
-        <p className='font-bold text-center text-text'>
-          0
-          <span className='block font-normal text-foregroundSecondary'>
-            posts
-          </span>
+      <div className="border-border flex w-full items-center justify-evenly gap-10 border-b p-3 md:hidden">
+        <p className="text-center font-bold">
+          0<span className="block font-normal">posts</span>
         </p>
-        <button className='font-bold text-text '>
-          0{' '}
-          <span className='block font-normal text-foregroundSecondary'>
-            Followers
-          </span>
+        <button className="font-bold">
+          0 <span className="block font-normal">Followers</span>
         </button>
-        <button className='font-bold text-text '>
-          0{' '}
-          <span className='block font-normal text-foregroundSecondary'>
-            Following
-          </span>
+        <button className="font-bold">
+          0 <span className="block font-normal">Following</span>
         </button>
       </div>
     </>
