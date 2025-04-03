@@ -38,10 +38,10 @@ export const NotificationsButton = () => {
 
   return (
     <>
-      <div className='items-center justify-center hidden md:flex md:w-full h-12 md:h-14'>
+      <div className="hidden h-12 items-center justify-center md:flex md:h-14 md:w-full">
         <button
           ref={buttonRef}
-          className='items-center justify-start hidden w-full gap-4 p-3 rounded-lg md:flex hover:bg-hover'
+          className="hover:bg-hover hidden w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:flex"
           onClick={toggleNotifications}
         >
           {isNotificationsActive || pathname === `/notifications` ? (
@@ -51,7 +51,7 @@ export const NotificationsButton = () => {
           )}
           <span
             className={`${
-              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+              isSidebarCollapsed ? 'hidden' : 'xl:block'
             } hidden leading-5 ${pathname === `/notifications` && 'font-bold'}`}
           >
             Notifications
@@ -64,9 +64,9 @@ export const NotificationsButton = () => {
           ref={notificationRef}
           className={`${
             isSidebarCollapsed && isNotificationsActive
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 -translate-x-2 pointer-events-none'
-          } w-[400px] border-separator border-r absolute bottom-0 z-50 flex flex-col justify-start gap-4 h-screen overflow-hidden rounded-lg left-[72px] bg-background transform origin-left   ease-in-out`}
+              ? 'translate-y-0 opacity-100'
+              : 'pointer-events-none -translate-x-2 opacity-0'
+          } border-border bg-background absolute bottom-0 left-[72px] z-50 flex h-screen w-[400px] origin-left transform flex-col justify-start gap-4 overflow-hidden rounded-lg border-r ease-in-out`}
         >
           Notifications
         </div>

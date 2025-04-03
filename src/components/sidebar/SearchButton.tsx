@@ -44,7 +44,7 @@ export const SearchButton = () => {
           className="hover:bg-hover hidden w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:flex"
           onClick={toggleSearch}
         >
-          {pathname === `/search` || isSidebarCollapsed ? (
+          {pathname === `/search` || isSearchActive ? (
             <SearchFillIcon />
           ) : (
             <SearchIcon />
