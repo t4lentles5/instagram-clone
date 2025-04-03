@@ -8,26 +8,26 @@ interface Props {
 export const UserStories = ({ users }: Props) => {
   return (
     <>
-      <div className='flex w-full gap-[10px] py-2 mb-6'>
+      <div className="mb-6 flex w-full gap-[10px] py-2">
         {users.map((user) => (
           <Link
             href={`/stories/${user.username}`}
             key={user.id}
-            className='flex flex-col items-center justify-center'
+            className="flex flex-col items-center justify-center"
           >
-            <div className='px-1 pb-1'>
-              <div className='p-0.5 rounded-full bg-gradient-to-tr from-amber-400 via-rose-500 to-fuchsia-600'>
-                <div className='p-0.5 bg-background rounded-full'>
+            <div className="px-1 pb-1">
+              <div className="rounded-full bg-linear-to-tr from-amber-400 via-rose-500 to-fuchsia-600 p-0.5">
+                <div className="bg-background rounded-full p-0.5">
                   <img
                     src={user.profile_photo}
-                    alt='Foto de perfil'
-                    className='object-cover rounded-full w-14 h-14'
+                    alt="Foto de perfil"
+                    className="h-14 w-14 rounded-full object-cover"
                   />
                 </div>
               </div>
             </div>
 
-            <span className='overflow-hidden text-[#a8a8a8] text-xs truncate max-w-14'>
+            <span className="text-foreground max-w-14 truncate overflow-hidden text-xs">
               {user.username}
             </span>
           </Link>
