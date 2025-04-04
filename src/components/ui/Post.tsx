@@ -99,7 +99,7 @@ export const Post = ({ user }: Props) => {
           <div className="flex w-full items-center justify-between">
             <button
               type="button"
-              className="text-foreground-secondary mr-2 p-1 md:order-2"
+              className="text-foreground-secondary p-1 md:order-2"
               aria-label="Add emoji"
             >
               <EmojiIcon />
