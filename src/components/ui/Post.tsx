@@ -51,7 +51,7 @@ export const Post = ({ user }: Props) => {
         <div className="flex w-full flex-col">
           <div className="flex justify-between py-1">
             <div className="flex">
-              <div className="p-2">
+              <div className="py-2 pr-2">
                 <HeartIcon />
               </div>
               <div className="p-2">
@@ -61,7 +61,7 @@ export const Post = ({ user }: Props) => {
                 <ShareIcon />
               </div>
             </div>
-            <div className="p-2">
+            <div className="py-2 pl-2">
               <SaveIcon />
             </div>
           </div>
