@@ -51,22 +51,21 @@ export const LoginForm = () => {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className='flex flex-col gap-3 mt-3 w-ful'
-      >
-        <div className='flex flex-col gap-3'>
-          <div className='input-container border-separator'>
-            <label className='input-label'>
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-3 w-full">
+        <div className="border-input-border bg-input-bg mx-10 mb-[6px] flex h-[36px] flex-col gap-3 rounded-[3px] border">
+          <div className="bg-input-bg flex h-10 w-full gap-3 text-xs">
+            <label className="flex h-full w-4/5 flex-col items-center px-2">
               {emailValue && (
-                <span className='input-label-span'>Mobile Number or Email</span>
+                <span className="bg-input-bg text-foreground-secondary flex w-full items-center text-[9px]">
+                  Email
+                </span>
               )}
 
               <input
-                type='email'
-                id='email'
-                className={`input ${emailValue && 'text-xs'}`}
-                placeholder={'Email'}
+                type="email"
+                id="email"
+                className={`text-foreground bg-input-bg h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs leading-3'}`}
+                placeholder="Email"
                 {...register('email', {
                   required: { value: true, message: 'Email is required.' },
                 })}
@@ -76,20 +75,22 @@ export const LoginForm = () => {
         </div>
 
         {errors.email && (
-          <span className='text-xs text-red-500'>{errors.email.message}</span>
+          <span className="text-xs text-red-500">{errors.email.message}</span>
         )}
 
-        <div className='flex flex-col gap-3'>
-          <div className='input-container border-separator'>
-            <label className='input-label'>
+        <div className="border-input-border bg-input-bg mx-10 mb-[6px] flex h-[36px] flex-col gap-3 rounded-[3px] border">
+          <div className="bg-input-bg flex h-10 w-full gap-3 text-xs">
+            <label className="flex h-full w-4/5 flex-col items-center px-2">
               {passwordValue && (
-                <span className='input-label-span'>Password</span>
+                <span className="bg-input-bg text-foreground-secondary flex w-full items-center text-[9px]">
+                  Password
+                </span>
               )}
 
               <input
                 type={!showPassword ? 'password' : 'text'}
-                id='password'
-                className={`input ${emailValue && 'text-xs'}`}
+                id="password"
+                className={`text-foreground bg-input-bg h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs leading-3'}`}
                 placeholder={'Password'}
                 {...register('password', {
                   required: { value: true, message: 'Password is required.' },
@@ -98,10 +99,10 @@ export const LoginForm = () => {
             </label>
 
             {passwordValue && (
-              <div className='flex items-center justify-center w-1/4'>
+              <div className="flex w-1/4 items-center justify-center">
                 <button
-                  className='pl-2 font-semibold'
-                  type='button'
+                  className="pl-2 font-semibold"
+                  type="button"
                   onClick={() => {
                     setShowPassword(!showPassword);
                   }}
@@ -114,18 +115,20 @@ export const LoginForm = () => {
         </div>
 
         {errors.password && (
-          <span className='text-xs text-red-500'>
+          <span className="text-xs text-red-500">
             {errors.password.message}
           </span>
         )}
 
-        <button
-          type='submit'
-          disabled={!isValid}
-          className={`${isValid ? 'button-primary' : 'button-disabled'} `}
-        >
-          Log in
-        </button>
+        <div className="w-full px-10 py-2">
+          <button
+            type="submit"
+            disabled={!isValid}
+            className={`${isValid ? 'bg-ig-blue hover:bg-ig-blue-input-disabled cursor-pointer' : 'bg-ig-blue-disabled'} w-full rounded-lg px-4 py-[7px] font-semibold text-white`}
+          >
+            Log in
+          </button>
+        </div>
       </form>
     </>
   );
