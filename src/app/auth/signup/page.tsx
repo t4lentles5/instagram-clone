@@ -29,7 +29,7 @@ export default function SignUpPage() {
             }}
           ></i>
         </div>
-        <p className='font-bold text-center text-foregroundSecondary'>
+        <p className='font-bold text-center '>
           Sign up to see photos and videos from your friends.
         </p>
         <button className='mt-2 mb-5 font-bold text-buttonPrimary'>
