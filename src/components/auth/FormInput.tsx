@@ -1,6 +1,6 @@
-import { FieldError, UseFormRegister, UseFormWatch } from 'react-hook-form';
-import { FormInputs } from './login/LoginForm';
 import { Dispatch, SetStateAction } from 'react';
+import { FieldError, UseFormRegister, UseFormWatch } from 'react-hook-form';
+import { FormInputs } from '@/components/auth/login/LoginForm';
 
 interface Props {
   value: 'email' | 'password';
@@ -32,14 +32,14 @@ export const FormInput = ({
           <div className="bg-input-bg flex h-10 w-full gap-3 text-xs">
             <label className="flex h-full w-4/5 flex-col items-center px-2">
               {inputValue && (
-                <span className="bg-input-bg text-secondary flex w-full items-center text-[9px]">
+                <span className="bg-input-bg text-secondary flex w-full grow items-center text-[9px]">
                   {placeholder}
                 </span>
               )}
 
               <input
                 type={type}
-                className={`text-primary bg-input-bg h-full w-full border-none focus:outline-hidden ${inputValue && 'text-xs leading-3'}`}
+                className={`text-primary bg-input-bg h-4 w-full grow border-none focus:outline-hidden ${inputValue && 'text-xs leading-3'}`}
                 placeholder={placeholder}
                 {...register(value, {
                   required: {
