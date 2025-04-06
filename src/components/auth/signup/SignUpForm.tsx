@@ -72,21 +72,25 @@ export const SignUpForm = () => {
   return (
     <>
       <form
-        className='flex flex-col gap-3 mt-3 w-ful'
+        className="w-ful mt-3 flex flex-col gap-3"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className='flex flex-col gap-3'>
+        <div className="flex flex-col gap-3">
           <div
-            className={`input-container ${
-              errors.email ? ' border-red-500' : 'border-separator'
+            className={`bg-popover relative flex h-10 gap-3 rounded-md border px-2 text-xs ${
+              errors.email ? 'border-red-500' : 'border-separator'
             }`}
           >
-            <label className='input-label'>
-              {emailValue && <span className='input-label-span'>Email</span>}
+            <label className="bg-background flex h-full w-4/5 flex-col items-center justify-center">
+              {emailValue && (
+                <span className="bg-background -span flex h-full w-4/5 flex-col items-center justify-center">
+                  Email
+                </span>
+              )}
 
               <input
-                type='email'
-                className={`input ${emailValue && 'text-xs'}`}
+                type="email"
+                className={`text-foreground bg-popover h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs'}`}
                 placeholder={'Email'}
                 {...register('email', {
                   required: { value: true, message: 'Email is required.' },
@@ -99,34 +103,36 @@ export const SignUpForm = () => {
             </label>
 
             {emailValue && (
-              <div className='flex items-center justify-center w-1/5'>
+              <div className="flex w-1/5 items-center justify-center">
                 {errors.email ? (
-                  <XCircle size={24} className='text-red-500' />
+                  <XCircle size={24} className="text-red-500" />
                 ) : (
-                  <CheckCircle size={24} className='text-foregroundSecondary' />
+                  <CheckCircle size={24} className="" />
                 )}
               </div>
             )}
           </div>
           {errors.email && (
-            <span className='text-xs text-red-500'>{errors.email.message}</span>
+            <span className="text-xs text-red-500">{errors.email.message}</span>
           )}
         </div>
 
-        <div className='flex flex-col gap-3'>
+        <div className="flex flex-col gap-3">
           <div
-            className={`input-container ${
-              errors.password ? ' border-red-500' : 'border-separator'
+            className={`bg-popover relative flex h-10 gap-3 rounded-md border px-2 text-xs ${
+              errors.password ? 'border-red-500' : 'border-separator'
             }`}
           >
-            <label className='input-label'>
+            <label className="bg-background flex h-full w-4/5 flex-col items-center justify-center">
               {passwordValue && (
-                <span className='input-label-span'>Password</span>
+                <span className="bg-background -span flex h-full w-4/5 flex-col items-center justify-center">
+                  Password
+                </span>
               )}
 
               <input
                 type={!showPassword ? 'password' : 'text'}
-                className={`input ${emailValue && 'text-xs'}`}
+                className={`text-foreground bg-popover h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs'}`}
                 placeholder={'Password'}
                 {...register('password', {
                   required: { value: true, message: 'Password is required.' },
@@ -139,16 +145,16 @@ export const SignUpForm = () => {
             </label>
 
             {passwordValue && (
-              <div className='flex items-center justify-center w-1/4'>
+              <div className="flex w-1/4 items-center justify-center">
                 {errors.password ? (
-                  <XCircle size={24} className='text-red-500' />
+                  <XCircle size={24} className="text-red-500" />
                 ) : (
-                  <CheckCircle size={24} className='text-foregroundSecondary' />
+                  <CheckCircle size={24} className="" />
                 )}
 
                 <button
-                  className='pl-2 font-semibold'
-                  type='button'
+                  className="pl-2 font-semibold"
+                  type="button"
                   onClick={() => {
                     setShowPassword(!showPassword);
                   }}
@@ -159,26 +165,28 @@ export const SignUpForm = () => {
             )}
           </div>
           {errors.password && (
-            <span className='text-xs text-red-500'>
+            <span className="text-xs text-red-500">
               {errors.password.message}
             </span>
           )}
         </div>
 
-        <div className='flex flex-col gap-3'>
+        <div className="flex flex-col gap-3">
           <div
-            className={`input-container ${
-              errors.fullname ? ' border-red-500' : 'border-separator'
+            className={`bg-popover relative flex h-10 gap-3 rounded-md border px-2 text-xs ${
+              errors.fullname ? 'border-red-500' : 'border-separator'
             }`}
           >
-            <label className='input-label'>
+            <label className="bg-background flex h-full w-4/5 flex-col items-center justify-center">
               {fullnameValue && (
-                <span className='input-label-span'>Fullname</span>
+                <span className="bg-background -span flex h-full w-4/5 flex-col items-center justify-center">
+                  Fullname
+                </span>
               )}
 
               <input
-                type='text'
-                className={`input ${fullnameValue && 'text-xs'}`}
+                type="text"
+                className={`text-foreground bg-popover h-full w-full border-none focus:outline-hidden ${fullnameValue && 'text-xs'}`}
                 placeholder={'Fullname'}
                 {...register('fullname', {
                   required: { value: true, message: 'Fullname is required.' },
@@ -199,36 +207,38 @@ export const SignUpForm = () => {
             </label>
 
             {fullnameValue && (
-              <div className='flex items-center justify-center w-1/5'>
+              <div className="flex w-1/5 items-center justify-center">
                 {errors.fullname ? (
-                  <XCircle size={24} className='text-red-500' />
+                  <XCircle size={24} className="text-red-500" />
                 ) : (
-                  <CheckCircle size={24} className='text-foregroundSecondary' />
+                  <CheckCircle size={24} className="" />
                 )}
               </div>
             )}
           </div>
           {errors.fullname && (
-            <span className='text-xs text-red-500'>
+            <span className="text-xs text-red-500">
               {errors.fullname.message}
             </span>
           )}
         </div>
 
-        <div className='flex flex-col gap-3'>
+        <div className="flex flex-col gap-3">
           <div
-            className={`input-container ${
-              errors.username ? ' border-red-500' : 'border-separator'
+            className={`bg-popover relative flex h-10 gap-3 rounded-md border px-2 text-xs ${
+              errors.username ? 'border-red-500' : 'border-separator'
             }`}
           >
-            <label className='input-label'>
+            <label className="bg-background flex h-full w-4/5 flex-col items-center justify-center">
               {usernameValue && (
-                <span className='input-label-span'>Username</span>
+                <span className="bg-background -span flex h-full w-4/5 flex-col items-center justify-center">
+                  Username
+                </span>
               )}
 
               <input
-                type='text'
-                className={`input ${usernameValue && 'text-xs'}`}
+                type="text"
+                className={`text-foreground bg-popover h-full w-full border-none focus:outline-hidden ${usernameValue && 'text-xs'}`}
                 placeholder={'Username'}
                 {...register('username', {
                   required: { value: true, message: 'Username is required.' },
@@ -250,23 +260,26 @@ export const SignUpForm = () => {
             </label>
 
             {usernameValue && (
-              <div className='flex items-center justify-center w-1/5'>
+              <div className="flex w-1/5 items-center justify-center">
                 {errors.username ? (
-                  <XCircle size={24} className='text-red-500' />
+                  <XCircle size={24} className="text-red-500" />
                 ) : (
-                  <CheckCircle size={24} className='text-foregroundSecondary' />
+                  <CheckCircle size={24} className="" />
                 )}
               </div>
             )}
           </div>
           {errors.username && (
-            <span className='text-xs text-red-500'>
+            <span className="text-xs text-red-500">
               {errors.username.message}
             </span>
           )}
         </div>
 
-        <button type='submit' className='button-primary'>
+        <button
+          type="submit"
+          className="rounded-lg px-4 py-[6px] font-semibold text-white"
+        >
           Sign up
         </button>
       </form>
