@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { FieldError, UseFormRegister, UseFormWatch } from 'react-hook-form';
-import { CheckCircle, XCircle } from 'phosphor-react';
+import { XCircle } from 'phosphor-react';
 import { SignUpFormInputs } from '@/components/auth/signup/SignUpForm';
 
 interface Props {
@@ -82,13 +82,9 @@ export const SignUpFormInput = ({
               </div>
             )}
 
-            {inputValue && (
+            {errors && (
               <div className="flex w-1/5 items-center justify-center">
-                {errors ? (
-                  <XCircle size={24} className="text-red-500" />
-                ) : (
-                  <CheckCircle size={24} className="" />
-                )}
+                <XCircle size={24} className="text-red-500" />
               </div>
             )}
           </div>

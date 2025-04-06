@@ -54,9 +54,14 @@ export const SignUpForm = () => {
       return;
     }
 
-    const { ok } = await registerUser(email, password, fullname, username);
+    const registerResponse = await registerUser(
+      email,
+      password,
+      fullname,
+      username,
+    );
 
-    if (!ok) {
+    if (!registerResponse.ok) {
       return;
     }
 
@@ -66,7 +71,7 @@ export const SignUpForm = () => {
 
   return (
     <>
-      <form className="w-ful mt-3 mb-5" onSubmit={handleSubmit(onSubmit)}>
+      <form className="w-ful my-5" onSubmit={handleSubmit(onSubmit)}>
         <SignUpFormInput
           value={'email'}
           register={register}
