@@ -1,11 +1,12 @@
 'use client';
 
-import { login } from '@/actions/auth/login';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { login } from '@/actions/auth/login';
+import { FormInput } from '@/components/auth/FormInput';
 
-interface FormInputs {
+export interface FormInputs {
   email: string;
   password: string;
 }
@@ -46,79 +47,28 @@ export const LoginForm = () => {
     router.push('/');
   };
 
-  const emailValue = watch('email');
-  const passwordValue = watch('password');
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-3 w-full">
-        <div className="border-input-border bg-input-bg mx-10 mb-[6px] flex h-[36px] flex-col gap-3 rounded-[3px] border">
-          <div className="bg-input-bg flex h-10 w-full gap-3 text-xs">
-            <label className="flex h-full w-4/5 flex-col items-center px-2">
-              {emailValue && (
-                <span className="bg-input-bg text-secondary flex w-full items-center text-[9px]">
-                  Email
-                </span>
-              )}
+        <FormInput
+          value="email"
+          register={register}
+          errors={errors.email}
+          placeholder="Email"
+          type="email"
+          watch={watch}
+        />
 
-              <input
-                type="email"
-                id="email"
-                className={`text-primary bg-input-bg h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs leading-3'}`}
-                placeholder="Email"
-                {...register('email', {
-                  required: { value: true, message: 'Email is required.' },
-                })}
-              />
-            </label>
-          </div>
-        </div>
-
-        {errors.email && (
-          <span className="text-xs text-red-500">{errors.email.message}</span>
-        )}
-
-        <div className="border-input-border bg-input-bg mx-10 mb-[6px] flex h-[36px] flex-col gap-3 rounded-[3px] border">
-          <div className="bg-input-bg flex h-10 w-full gap-3 text-xs">
-            <label className="flex h-full w-4/5 flex-col items-center px-2">
-              {passwordValue && (
-                <span className="bg-input-bg text-secondary flex w-full items-center text-[9px]">
-                  Password
-                </span>
-              )}
-
-              <input
-                type={!showPassword ? 'password' : 'text'}
-                id="password"
-                className={`text-primary bg-input-bg h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs leading-3'}`}
-                placeholder={'Password'}
-                {...register('password', {
-                  required: { value: true, message: 'Password is required.' },
-                })}
-              />
-            </label>
-
-            {passwordValue && (
-              <div className="flex w-1/4 items-center justify-center">
-                <button
-                  className="pl-2 font-semibold"
-                  type="button"
-                  onClick={() => {
-                    setShowPassword(!showPassword);
-                  }}
-                >
-                  {showPassword ? 'Hide' : 'Show'}
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {errors.password && (
-          <span className="text-xs text-red-500">
-            {errors.password.message}
-          </span>
-        )}
+        <FormInput
+          value="password"
+          register={register}
+          errors={errors.password}
+          placeholder="Password"
+          type={!showPassword ? 'password' : 'text'}
+          watch={watch}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+        />
 
         <div className="w-full px-10 py-2">
           <button
