@@ -25,9 +25,12 @@ export const SidebarNav = ({ user }: Props) => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
-    <nav className='flex border-t justify-evenly md:border-0 md:flex-col border-separator'>
-      <div className='flex items-center justify-center h-12 md:w-full md:h-14'>
-        <Link className='nav-item' href={'/'}>
+    <nav className="border-separator flex justify-evenly border-t md:flex-col md:border-0">
+      <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
+        <Link
+          className="hover:bg-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
+          href={'/'}
+        >
           {pathname === `/` && !isSidebarCollapsed ? (
             <HouseFillIcon />
           ) : (
@@ -36,7 +39,7 @@ export const SidebarNav = ({ user }: Props) => {
 
           <span
             className={`${
-              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+              isSidebarCollapsed ? 'hidden' : 'xl:block'
             } hidden leading-5 ${
               pathname === `/` && !isSidebarCollapsed && 'font-bold'
             }`}
@@ -48,8 +51,11 @@ export const SidebarNav = ({ user }: Props) => {
 
       <SearchButton />
 
-      <div className='flex items-center justify-center h-12 md:w-full md:h-14'>
-        <Link className='nav-item' href={'/explore'}>
+      <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
+        <Link
+          className="hover:bg-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
+          href={'/explore'}
+        >
           {pathname === `/explore` && !isSidebarCollapsed ? (
             <ExploreFillIcon />
           ) : (
@@ -57,7 +63,7 @@ export const SidebarNav = ({ user }: Props) => {
           )}
           <span
             className={`${
-              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+              isSidebarCollapsed ? 'hidden' : 'xl:block'
             } hidden leading-5 ${
               pathname === `/explore` && !isSidebarCollapsed && 'font-bold'
             }`}
@@ -67,8 +73,11 @@ export const SidebarNav = ({ user }: Props) => {
         </Link>
       </div>
 
-      <div className='flex items-center justify-center h-12 md:w-full md:h-14'>
-        <Link className='nav-item' href={'/reels'}>
+      <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
+        <Link
+          className="hover:bg-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
+          href={'/reels'}
+        >
           {pathname === `/reels` && !isSidebarCollapsed ? (
             <ReelsIFillIcon />
           ) : (
@@ -76,7 +85,7 @@ export const SidebarNav = ({ user }: Props) => {
           )}
           <span
             className={`${
-              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+              isSidebarCollapsed ? 'hidden' : 'xl:block'
             } hidden leading-5 ${
               pathname === `/reels` && !isSidebarCollapsed && 'font-bold'
             }`}
@@ -86,8 +95,11 @@ export const SidebarNav = ({ user }: Props) => {
         </Link>
       </div>
 
-      <div className='flex items-center justify-center h-12 md:w-full md:h-14'>
-        <Link className='nav-item' href={'/messages'}>
+      <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
+        <Link
+          className="hover:bg-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
+          href={'/messages'}
+        >
           {pathname === `/messages` && !isSidebarCollapsed ? (
             <MessengerFillIcon />
           ) : (
@@ -95,7 +107,7 @@ export const SidebarNav = ({ user }: Props) => {
           )}
           <span
             className={`${
-              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+              isSidebarCollapsed ? 'hidden' : 'xl:block'
             } hidden leading-5 ${
               pathname === `/messages` && !isSidebarCollapsed && 'font-bold'
             }`}
@@ -109,24 +121,24 @@ export const SidebarNav = ({ user }: Props) => {
 
       <NewPostButton />
 
-      <div className='flex items-center justify-center h-12 md:w-full md:h-14'>
+      <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
         <Link
-          className='relative flex items-center nav-item'
+          className="hover:bg-hover relative flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
           href={`/${user.username}`}
         >
-          <div className='relative'>
+          <div className="relative">
             {pathname === `/${user.username}` && (
-              <div className='absolute top-0 left-0 w-7 h-7 border-2 border-foreground rounded-full translate-x-[-2px] translate-y-[-2px]'></div>
+              <div className="border-foreground absolute top-0 left-0 h-7 w-7 translate-x-[-2px] translate-y-[-2px] rounded-full border-2"></div>
             )}
             <img
               src={user.profile_photo}
-              alt='user profile photo'
-              className='object-contain w-6 h-6 rounded-full'
+              alt="user profile photo"
+              className="h-6 w-6 rounded-full object-contain"
             />
           </div>
           <span
             className={`${
-              isSidebarCollapsed ? 'hidden ' : 'xl:block'
+              isSidebarCollapsed ? 'hidden' : 'xl:block'
             } hidden leading-5 ${
               pathname === `/${user.username}` &&
               !isSidebarCollapsed &&
