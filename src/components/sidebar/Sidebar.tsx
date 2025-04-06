@@ -16,16 +16,16 @@ export const Sidebar = ({ user }: Props) => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
-    <div className='sticky top-0 h-0 md:h-screen'>
+    <div className="sticky top-0 h-0 md:h-screen">
       <div
         className={`${
-          isSidebarCollapsed ? 'md:w-[72px] ' : 'md:w-full'
-        } fixed md:static bottom-0 md:border-r md:border-[#262626] bg-background md:h-screen md:flex flex-col w-full md:pt-2 md:px-3 md:pb-[19px] transform origin-left`}
+          isSidebarCollapsed ? 'md:w-[72px]' : 'md:w-full'
+        } md:border-r-border bg-background fixed bottom-0 w-full origin-left transform flex-col md:static md:flex md:h-screen md:border-r md:px-3 md:pt-2 md:pb-[19px]`}
       >
         <div
           className={`${
-            isSidebarCollapsed ? 'hidden ' : 'xl:block '
-          } hidden px-3 pt-[33px] pb-4 mb-[14px]`}
+            isSidebarCollapsed ? 'hidden' : 'xl:block'
+          } mb-[14px] hidden px-3 pt-[33px] pb-4`}
         >
           <Link href={'/'}>
             <InstagramIcon />
@@ -34,15 +34,15 @@ export const Sidebar = ({ user }: Props) => {
 
         <div
           className={`${
-            isSidebarCollapsed ? 'block ' : 'xl:hidden '
-          } hidden md:block md:w-full rounded-lg hover:bg-hover p-3 mt-4 mb-7`}
+            isSidebarCollapsed ? 'block' : 'xl:hidden'
+          } hover:bg-hover mt-4 mb-7 hidden rounded-lg p-3 md:block md:w-full`}
         >
           <Link href={'/'}>
             <InstagramSmallIcon />
           </Link>
         </div>
 
-        <div className='flex flex-col justify-between h-full'>
+        <div className="flex h-full flex-col justify-between">
           <SidebarNav user={user} />
           <SidebarMoreOptions />
         </div>
