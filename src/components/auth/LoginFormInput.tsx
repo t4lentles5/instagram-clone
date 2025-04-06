@@ -1,19 +1,19 @@
 import { Dispatch, SetStateAction } from 'react';
 import { FieldError, UseFormRegister, UseFormWatch } from 'react-hook-form';
-import { FormInputs } from '@/components/auth/login/LoginForm';
+import { LoginFormInputs } from '@/components/auth/login/LoginForm';
 
 interface Props {
   value: 'email' | 'password';
-  register: UseFormRegister<FormInputs>;
+  register: UseFormRegister<LoginFormInputs>;
   errors: FieldError | undefined;
   placeholder: string;
   type: string;
-  watch: UseFormWatch<FormInputs>;
+  watch: UseFormWatch<LoginFormInputs>;
   showPassword?: boolean;
   setShowPassword?: Dispatch<SetStateAction<boolean>>;
 }
 
-export const FormInput = ({
+export const LoginFormInput = ({
   value,
   register,
   errors,

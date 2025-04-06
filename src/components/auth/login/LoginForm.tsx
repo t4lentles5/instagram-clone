@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { login } from '@/actions/auth/login';
-import { FormInput } from '@/components/auth/FormInput';
+import { LoginFormInput } from '@/components/auth/LoginFormInput';
 
-export interface FormInputs {
+export interface LoginFormInputs {
   email: string;
   password: string;
 }
@@ -21,9 +21,9 @@ export const LoginForm = () => {
     watch,
     formState: { errors, isValid },
     setError,
-  } = useForm<FormInputs>();
+  } = useForm<LoginFormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     const { email, password } = data;
 
     const resp = await login(email, password);
@@ -50,7 +50,7 @@ export const LoginForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-3 w-full">
-        <FormInput
+        <LoginFormInput
           value="email"
           register={register}
           errors={errors.email}
@@ -59,7 +59,7 @@ export const LoginForm = () => {
           watch={watch}
         />
 
-        <FormInput
+        <LoginFormInput
           value="password"
           register={register}
           errors={errors.password}
