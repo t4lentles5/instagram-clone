@@ -17,13 +17,13 @@ export const SuggestedUser = ({ user }: Props) => {
 
   return (
     <>
-      <div className='relative flex justify-between px-4 py-2'>
-        <div className='flex gap-3'>
+      <div className="relative flex justify-between px-4 py-2">
+        <div className="flex gap-3">
           <Link href={`/${user.username}`}>
             <img
               src={user.profile_photo}
-              alt='profile photo'
-              className='object-contain border rounded-full w-11 h-11 border-separator'
+              alt="profile photo"
+              className="border-separator h-11 w-11 rounded-full border object-contain"
               onMouseEnter={() => {
                 setIsHovered(true);
                 setIsProfilePhotoHovered(true);
@@ -35,10 +35,10 @@ export const SuggestedUser = ({ user }: Props) => {
             />
           </Link>
 
-          <div className='flex flex-col justify-center'>
+          <div className="flex flex-col justify-center">
             <Link
               href={`/${user.username}`}
-              className='overflow-hidden text-sm leading-[18px] font-semibold truncate max-w-36'
+              className="max-w-36 truncate overflow-hidden text-sm leading-[18px] font-semibold"
               onMouseEnter={() => {
                 setIsHovered(true);
                 setIsUsernameHovered(true);
@@ -50,16 +50,16 @@ export const SuggestedUser = ({ user }: Props) => {
             >
               {user.username}
             </Link>
-            <span className='text-xs text-foregroundSecondary'>
+            <span className="text-foreground-secondary text-xs">
               Suggested for you
             </span>
           </div>
 
           {isHovered && (
             <div
-              className={`${isUsernameHovered && '-right-[130] top-4'} ${
-                isProfilePhotoHovered && '-right-[80px] top-10'
-              } absolute shadow-foregroundSecondary z-10 w-[365px] p-4 rounded-lg shadow-sm bg-background`}
+              className={`${isUsernameHovered && 'top-4 -right-130'} ${
+                isProfilePhotoHovered && 'top-10 -right-[80px]'
+              } shadow-foregroundSecondary bg-background absolute z-10 w-[365px] rounded-lg p-4 shadow-sm`}
               onMouseEnter={() => {
                 setIsHovered(true);
                 if (isUsernameHovered) {
@@ -77,56 +77,56 @@ export const SuggestedUser = ({ user }: Props) => {
                 }
               }}
             >
-              <div className='flex items-center justify-center h-full gap-3'>
+              <div className="flex h-full items-center justify-center gap-3">
                 <img
                   src={user.profile_photo}
-                  alt='profile photo'
-                  className='object-contain border rounded-full w-14 h-14 border-separator'
+                  alt="profile photo"
+                  className="border-separator h-14 w-14 rounded-full border object-contain"
                 />
-                <div className='flex flex-col items-start justify-center w-full h-16'>
+                <div className="flex h-16 w-full flex-col items-start justify-center">
                   <Link
                     href={user.username}
-                    className='overflow-hidden text-sm font-bold truncate max-w-36'
+                    className="max-w-36 truncate overflow-hidden text-sm font-bold"
                   >
                     {user.username}
                   </Link>
-                  <p className='text-foregroundSecondary'>{user.fullname}</p>
+                  <p className="">{user.fullname}</p>
                 </div>
               </div>
 
-              <div className='grid grid-cols-3 py-4 border-b border-separator'>
-                <p className='font-bold text-center text-text'>
-                  0 <span className='block text-sm font-normal'>posts</span>
+              <div className="border-separator grid grid-cols-3 border-b py-4">
+                <p className="text-center font-bold">
+                  0 <span className="block text-sm font-normal">posts</span>
                 </p>
-                <p className='font-bold text-center text-text'>
-                  0 <span className='block text-sm font-normal'>followers</span>
+                <p className="text-center font-bold">
+                  0 <span className="block text-sm font-normal">followers</span>
                 </p>
-                <p className='font-bold text-center text-text'>
-                  0 <span className='block text-sm font-normal'>following</span>
+                <p className="text-center font-bold">
+                  0 <span className="block text-sm font-normal">following</span>
                 </p>
               </div>
 
-              <div className='flex flex-col items-center justify-center w-full h-full gap-3 p-4 border-b border-separator'>
+              <div className="border-separator flex h-full w-full flex-col items-center justify-center gap-3 border-b p-4">
                 <CameraIcon />
 
-                <p className='text-sm font-bold text-center text-text'>
+                <p className="text-center text-sm font-bold">
                   No posts yet!
                   <br />
-                  <span className='text-sm font-normal text-foregroundSecondary'>
+                  <span className="text-sm font-normal">
                     When {user.username} shares something, you&apos;ll see it
                     here.
                   </span>
                 </p>
               </div>
 
-              <button className='flex items-center justify-center w-full gap-2 mt-4 button-primary'>
+              <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg px-4 py-[6px] font-semibold text-white">
                 <SimilarAccountsIcon />
-                <span className='text-sm'>Follow</span>
+                <span className="text-sm">Follow</span>
               </button>
             </div>
           )}
         </div>
-        <button className='text-xs text-[#0095f6] hover:text-[#dbebf9] hover:font-semibold'>
+        <button className="text-ig-blue hover:text-ig-blue-hover text-xs font-semibold">
           Follow
         </button>
       </div>
