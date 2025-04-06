@@ -2,41 +2,23 @@
 
 @theme {
   --color-background: var(--background);
-  --color-button-border: var(--button-border);
-  --color-button-primary: var(--button-primary);
-  --color-button-primary-hover: var(--button-primary-hover);
-  --color-button-secondary: var(--button-secondary);
-  --color-button-secondary-hover: var(--button-secondary-hover);
-  --color-foreground: var(--foreground);
-  --color-foreground-secondary: var(--foreground-secondary);
-  --color-link-foreground: var(--link-foreground);
-  --color-hover: var(--hover);
+  --color-blue-hover: var(--text-blue-hover);
+  --color-blue: var(--text-blue);
+  --color-border: var(--border);
+  --color-button-disabled: var(--button-disabled);
+  --color-button-hover: var(--button-hover);
+  --color-button: var(--button);
+  --color-image-overlay: var(--image-overlay);
+  --color-input-bg: var(--input-bg);
+  --color-input-border: var(--input-border);
   --color-popover: var(--popover);
-  --color-popover-hover: var(--popover-hover);
-  --color-separator: var(--separator);
-}
-
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
 }
 
 @layer utilities {
   body {
-    color: var(--foreground);
+    color: var(--text-primary);
     background: var(--background);
     font-family:
       -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
@@ -46,66 +28,41 @@
 
 @layer base {
   :root {
-    --background: #fff;
-    --button-border: #555555;
-    --button-primary-hover: #1877f2;
-    --button-primary: #0095f6;
-    --button-secondary-hover: #dbdbdb;
-    --button-secondary: #efefef;
-    --foreground-secondary: #737373;
-    --foreground: #000;
-    --hover: #f2f2f2;
-    --link-foreground: #0095f6;
-    --popover-hover: #f2f2f2;
-    --popover: #fff;
-    --separator: #dbdbdb;
+    --background: rgb(255, 255, 255);
+    --border: rgb(219, 219, 219);
+    --button-disabled: rgb(0, 105, 173);
+    --button-hover: rgb(24, 119, 242);
+    --button: rgb(0, 149, 246);
+    --image-overlay: rgba(85, 85, 85, 0.7);
+    --input-bg: rgb(18, 18, 18);
+    --input-border: rgb(85, 85, 85);
+    --popover: rgb(255, 255, 255);
+    --text-blue-hover: rgb(22, 72, 120);
+    --text-blue: rgb(0, 149, 246);
+    --text-primary: rgb(0, 0, 0);
+    --text-secondary: rgb(115, 115, 115);
   }
 
   .dark {
-    --background: #000;
-    --button-border: #555555;
-    --button-primary-hover: #1877f2;
-    --button-primary: #0095f6;
-    --button-secondary-hover: #262626;
-    --button-secondary: #363636;
-    --foreground-secondary: #a8a8a8;
-    --foreground: #f5f5f5;
-    --hover: #1a1a1a;
-    --link-foreground: #0095f6;
-    --popover-hover: #3c3c3c;
-    --popover: #262626;
-    --separator: #353535;
+    --background: rgb(0, 0, 0);
+    --border: rgb(38, 38, 38);
+    --button-disabled: rgb(0, 105, 173);
+    --button-hover: rgb(24, 119, 242);
+    --button: rgb(0, 149, 246);
+    --image-overlay: rgba(85, 85, 85, 0.7);
+    --input-bg: rgb(18, 18, 18);
+    --input-border: rgb(85, 85, 85);
+    --popover: rgb(38, 38, 38);
+    --text-blue-hover: rgb(224, 241, 255);
+    --text-blue: rgb(0, 149, 246);
+    --text-primary: rgb(245, 245, 245);
+    --text-secondary: rgb(168, 168, 168);
   }
-}
 
-.input-container {
-  @apply relative h-10 px-2 text-xs flex gap-3 border rounded-md bg-popover;
-}
-
-.input-label {
-  @apply flex flex-col items-center justify-center w-4/5 h-full bg-background;
-}
-
-.input-label-span {
-  @apply left-3 w-full bg-popover h-full text-xs text-foregroundSecondary;
-}
-
-.input {
-  @apply w-full h-full text-foreground bg-popover border-none focus:outline-hidden;
-}
-
-.nav-item {
-  @apply flex items-center md:w-full justify-start gap-4 p-3 rounded-lg hover:bg-hover;
-}
-
-.button-primary {
-  @apply py-[6px] px-4 font-semibold text-white   rounded-lg bg-buttonPrimary hover:bg-buttonPrimaryHover;
-}
-
-.button-secondary {
-  @apply py-[6px] px-4 font-semibold text-foreground   rounded-lg bg-buttonSecondary hover:bg-buttonSecondaryHover;
-}
-
-.button-disabled {
-  @apply py-[6px] px-4 font-semibold text-white   rounded-lg bg-[#0069ad];
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+    -webkit-text-fill-color: var(--text-primary) !important;
+    caret-color: var(--text-primary);
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }

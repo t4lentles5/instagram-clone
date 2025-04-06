@@ -27,7 +27,7 @@ export const UserStories = ({ users }: Props) => {
               </div>
             </div>
 
-            <span className="text-foreground max-w-14 truncate overflow-hidden text-xs">
+            <span className="text-primary max-w-14 truncate overflow-hidden text-xs">
               {user.username}
             </span>
           </Link>

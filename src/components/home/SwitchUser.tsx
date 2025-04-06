@@ -23,13 +23,13 @@ export const SwitchUser = ({ user }: Props) => {
             >
               {user.username}
             </Link>
-            <span className="text-foreground-secondary text-sm leading-[18px]">
+            <span className="text-secondary text-sm leading-[18px]">
               {user.fullname}
             </span>
           </div>
         </div>
 
-        <button className="text-ig-blue hover:text-ig-blue-hover text-xs font-semibold">
+        <button className="text-blue hover:text-blue-hover text-xs font-semibold">
           Switch
         </button>
       </div>

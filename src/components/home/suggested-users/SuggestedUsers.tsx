@@ -10,12 +10,12 @@ export const SuggestedUsers = ({ users }: Props) => {
   return (
     <>
       <div className="mx-4 my-1 flex items-center justify-between">
-        <span className="text-foreground-secondary text-sm leading-[11px] font-semibold">
+        <span className="text-secondary text-sm leading-[11px] font-semibold">
           Suggested for you
         </span>
         <Link
           href={'/explore/people'}
-          className="text-foreground hover:text-foreground-secondary text-xs leading-[16px] font-semibold"
+          className="text-primary hover:text-secondary text-xs leading-[16px] font-semibold"
         >
           See All
         </Link>

@@ -26,7 +26,7 @@ export const SignUpForm = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
     setError,
   } = useForm<FormInputs>();
 
@@ -71,26 +71,23 @@ export const SignUpForm = () => {
 
   return (
     <>
-      <form
-        className="w-ful mt-3 flex flex-col gap-3"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="flex flex-col gap-3">
+      <form className="w-ful mt-3 mb-5" onSubmit={handleSubmit(onSubmit)}>
+        <div className="border-input-border bg-input-bg mx-10 mb-[6px] flex h-[36px] flex-col gap-3 rounded-[3px] border">
           <div
-            className={`bg-popover relative flex h-10 gap-3 rounded-md border px-2 text-xs ${
-              errors.email ? 'border-red-500' : 'border-separator'
+            className={`bg-input-bg flex h-10 w-full gap-3 text-xs ${
+              errors.email ? 'border-red-500' : 'border-border'
             }`}
           >
-            <label className="bg-background flex h-full w-4/5 flex-col items-center justify-center">
+            <label className="flex h-full w-4/5 flex-col items-center px-2">
               {emailValue && (
-                <span className="bg-background -span flex h-full w-4/5 flex-col items-center justify-center">
+                <span className="bg-input-bg text-secondary flex w-full items-center text-[9px]">
                   Email
                 </span>
               )}
 
               <input
                 type="email"
-                className={`text-foreground bg-popover h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs'}`}
+                className={`text-primary bg-input-bg h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs leading-3'}`}
                 placeholder={'Email'}
                 {...register('email', {
                   required: { value: true, message: 'Email is required.' },
@@ -117,22 +114,22 @@ export const SignUpForm = () => {
           )}
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="border-input-border bg-input-bg mx-10 mb-[6px] flex h-[36px] flex-col gap-3 rounded-[3px] border">
           <div
-            className={`bg-popover relative flex h-10 gap-3 rounded-md border px-2 text-xs ${
-              errors.password ? 'border-red-500' : 'border-separator'
+            className={`bg-input-bg flex h-10 w-full gap-3 text-xs ${
+              errors.password ? 'border-red-500' : 'border-border'
             }`}
           >
-            <label className="bg-background flex h-full w-4/5 flex-col items-center justify-center">
+            <label className="flex h-full w-4/5 flex-col items-center px-2">
               {passwordValue && (
-                <span className="bg-background -span flex h-full w-4/5 flex-col items-center justify-center">
+                <span className="bg-input-bg text-secondary flex w-full items-center text-[9px]">
                   Password
                 </span>
               )}
 
               <input
                 type={!showPassword ? 'password' : 'text'}
-                className={`text-foreground bg-popover h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs'}`}
+                className={`text-primary bg-input-bg h-full w-full border-none focus:outline-hidden ${passwordValue && 'text-xs leading-3'}`}
                 placeholder={'Password'}
                 {...register('password', {
                   required: { value: true, message: 'Password is required.' },
@@ -171,22 +168,22 @@ export const SignUpForm = () => {
           )}
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="border-input-border bg-input-bg mx-10 mb-[6px] flex h-[36px] flex-col gap-3 rounded-[3px] border">
           <div
-            className={`bg-popover relative flex h-10 gap-3 rounded-md border px-2 text-xs ${
-              errors.fullname ? 'border-red-500' : 'border-separator'
+            className={`bg-input-bg flex h-10 w-full gap-3 text-xs ${
+              errors.fullname ? 'border-red-500' : 'border-border'
             }`}
           >
-            <label className="bg-background flex h-full w-4/5 flex-col items-center justify-center">
+            <label className="flex h-full w-4/5 flex-col items-center px-2">
               {fullnameValue && (
-                <span className="bg-background -span flex h-full w-4/5 flex-col items-center justify-center">
+                <span className="bg-input-bg text-secondary flex w-full items-center text-[9px]">
                   Fullname
                 </span>
               )}
 
               <input
                 type="text"
-                className={`text-foreground bg-popover h-full w-full border-none focus:outline-hidden ${fullnameValue && 'text-xs'}`}
+                className={`text-primary bg-input-bg h-full w-full border-none focus:outline-hidden ${fullnameValue && 'text-xs leading-3'}`}
                 placeholder={'Fullname'}
                 {...register('fullname', {
                   required: { value: true, message: 'Fullname is required.' },
@@ -223,22 +220,22 @@ export const SignUpForm = () => {
           )}
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="border-input-border bg-input-bg mx-10 mb-[6px] flex h-[36px] flex-col gap-3 rounded-[3px] border">
           <div
-            className={`bg-popover relative flex h-10 gap-3 rounded-md border px-2 text-xs ${
-              errors.username ? 'border-red-500' : 'border-separator'
+            className={`bg-input-bg flex h-10 w-full gap-3 text-xs ${
+              errors.username ? 'border-red-500' : 'border-border'
             }`}
           >
-            <label className="bg-background flex h-full w-4/5 flex-col items-center justify-center">
+            <label className="flex h-full w-4/5 flex-col items-center px-2">
               {usernameValue && (
-                <span className="bg-background -span flex h-full w-4/5 flex-col items-center justify-center">
+                <span className="bg-input-bg text-secondary flex w-full items-center text-[9px]">
                   Username
                 </span>
               )}
 
               <input
                 type="text"
-                className={`text-foreground bg-popover h-full w-full border-none focus:outline-hidden ${usernameValue && 'text-xs'}`}
+                className={`text-primary bg-input-bg h-full w-full border-none focus:outline-hidden ${usernameValue && 'text-xs leading-3'}`}
                 placeholder={'Username'}
                 {...register('username', {
                   required: { value: true, message: 'Username is required.' },
@@ -276,12 +273,15 @@ export const SignUpForm = () => {
           )}
         </div>
 
-        <button
-          type="submit"
-          className="rounded-lg px-4 py-[6px] font-semibold text-white"
-        >
-          Sign up
-        </button>
+        <div className="w-full px-10 py-2">
+          <button
+            type="submit"
+            disabled={!isValid}
+            className={`${isValid ? 'bg-button hover:bg-button-hover cursor-pointer' : 'bg-button-disabled'} w-full rounded-lg px-4 py-[7px] text-sm font-semibold text-white`}
+          >
+            Sign up
+          </button>
+        </div>
       </form>
     </>
   );

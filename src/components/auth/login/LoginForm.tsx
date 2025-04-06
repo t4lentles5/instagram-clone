@@ -56,7 +56,7 @@ export const LoginForm = () => {
           <div className="bg-input-bg flex h-10 w-full gap-3 text-xs">
             <label className="flex h-full w-4/5 flex-col items-center px-2">
               {emailValue && (
-                <span className="bg-input-bg text-foreground-secondary flex w-full items-center text-[9px]">
+                <span className="bg-input-bg text-secondary flex w-full items-center text-[9px]">
                   Email
                 </span>
               )}
@@ -64,7 +64,7 @@ export const LoginForm = () => {
               <input
                 type="email"
                 id="email"
-                className={`text-foreground bg-input-bg h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs leading-3'}`}
+                className={`text-primary bg-input-bg h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs leading-3'}`}
                 placeholder="Email"
                 {...register('email', {
                   required: { value: true, message: 'Email is required.' },
@@ -82,7 +82,7 @@ export const LoginForm = () => {
           <div className="bg-input-bg flex h-10 w-full gap-3 text-xs">
             <label className="flex h-full w-4/5 flex-col items-center px-2">
               {passwordValue && (
-                <span className="bg-input-bg text-foreground-secondary flex w-full items-center text-[9px]">
+                <span className="bg-input-bg text-secondary flex w-full items-center text-[9px]">
                   Password
                 </span>
               )}
@@ -90,7 +90,7 @@ export const LoginForm = () => {
               <input
                 type={!showPassword ? 'password' : 'text'}
                 id="password"
-                className={`text-foreground bg-input-bg h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs leading-3'}`}
+                className={`text-primary bg-input-bg h-full w-full border-none focus:outline-hidden ${emailValue && 'text-xs leading-3'}`}
                 placeholder={'Password'}
                 {...register('password', {
                   required: { value: true, message: 'Password is required.' },
@@ -124,7 +124,7 @@ export const LoginForm = () => {
           <button
             type="submit"
             disabled={!isValid}
-            className={`${isValid ? 'bg-ig-blue hover:bg-ig-blue-input-disabled cursor-pointer' : 'bg-ig-blue-disabled'} w-full rounded-lg px-4 py-[7px] text-sm font-semibold text-white`}
+            className={`${isValid ? 'bg-button hover:bg-button-hover cursor-pointer' : 'bg-button-disabled'} w-full rounded-lg px-4 py-[7px] text-sm font-semibold text-white`}
           >
             Log in
           </button>

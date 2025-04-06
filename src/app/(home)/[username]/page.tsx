@@ -27,7 +27,7 @@ export default async function ProfileUserPage({ params }: Props) {
               <p className="text-sm font-normal">
                 When you share photos, they will appear on your profile.
               </p>
-              <button className="text-ig-blue text-sm font-normal">
+              <button className="text-blue text-sm font-normal">
                 Share your first photo
               </button>
             </>

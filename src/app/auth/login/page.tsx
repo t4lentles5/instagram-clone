@@ -38,7 +38,7 @@ export default function LoginPage() {
 
           <OrComponent />
 
-          <button className="text-ig-blue hover:text-ig-blue-hover mt-2 text-sm font-bold">
+          <button className="text-blue hover:text-blue-hover mt-2 text-sm font-bold">
             Sign in as a guest
           </button>
 
@@ -52,7 +52,7 @@ export default function LoginPage() {
             Don&apos;t have an account?{' '}
             <Link
               href={'/auth/signup'}
-              className="text-ig-blue text-sm font-semibold"
+              className="text-blue text-sm font-semibold"
             >
               Sign up
             </Link>

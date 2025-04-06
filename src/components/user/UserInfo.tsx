@@ -31,7 +31,7 @@ export const UserInfo = ({ userByUsername, authenticatedUser }: Props) => {
                 <div className="flex items-center justify-center gap-2">
                   <Link
                     href={''}
-                    className="text-foreground rounded-lg px-4 py-[6px] font-semibold"
+                    className="text-primary rounded-lg px-4 py-[6px] font-semibold"
                   >
                     Edit Profile
                   </Link>
@@ -47,11 +47,11 @@ export const UserInfo = ({ userByUsername, authenticatedUser }: Props) => {
                       Follow
                     </button>
 
-                    <button className="text-foreground rounded-lg px-4 py-[6px] text-sm font-semibold">
+                    <button className="text-primary rounded-lg px-4 py-[6px] text-sm font-semibold">
                       Message
                     </button>
 
-                    <button className="text-foreground rounded-lg px-2 font-semibold">
+                    <button className="text-primary rounded-lg px-2 font-semibold">
                       <SimilarAccountsIcon />
                     </button>
                   </div>
@@ -65,11 +65,11 @@ export const UserInfo = ({ userByUsername, authenticatedUser }: Props) => {
                 Follow
               </button>
 
-              <button className="text-foreground rounded-lg px-4 py-[6px] text-sm font-semibold">
+              <button className="text-primary rounded-lg px-4 py-[6px] text-sm font-semibold">
                 Message
               </button>
 
-              <button className="text-foreground rounded-lg px-2 font-semibold">
+              <button className="text-primary rounded-lg px-2 font-semibold">
                 <SimilarAccountsIcon />
               </button>
             </div>

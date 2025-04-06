@@ -34,7 +34,7 @@ export const Post = ({ user }: Props) => {
 
             <time
               dateTime="2025-03-31T15:30:23.000Z"
-              className="text-foreground-secondary text-sm leading-[18px]"
+              className="text-secondary text-sm leading-[18px]"
               title="Mar 31, 2025"
             >
               1d
@@ -81,17 +81,14 @@ export const Post = ({ user }: Props) => {
             </div>
             <Link
               href={'/explore/tags/some'}
-              className="text-ig-blue-hover text-sm leading-[18px]"
+              className="text-blue-hover text-sm leading-[18px]"
             >
               #some
             </Link>
           </div>
 
           <div>
-            <Link
-              href={''}
-              className="text-foreground-secondary text-sm leading-[18px]"
-            >
+            <Link href={''} className="text-secondary text-sm leading-[18px]">
               View all 50 comments
             </Link>
           </div>
@@ -99,7 +96,7 @@ export const Post = ({ user }: Props) => {
           <div className="flex w-full items-center justify-between">
             <button
               type="button"
-              className="text-foreground-secondary p-1 md:order-2"
+              className="text-secondary p-1 md:order-2"
               aria-label="Add emoji"
             >
               <EmojiIcon />

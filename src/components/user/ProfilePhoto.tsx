@@ -16,7 +16,7 @@ export const ProfilePhoto = ({ user }: Props) => {
           className="aspect-square h-20 w-20 rounded-full object-cover md:h-[150px] md:w-[150px]"
         />
 
-        <div className="bg-image-background absolute flex h-20 w-20 items-center justify-center rounded-full md:h-[150px] md:w-[150px]">
+        <div className="bg-image-overlay absolute flex h-20 w-20 items-center justify-center rounded-full md:h-[150px] md:w-[150px]">
           <svg
             viewBox="0 0 24 24"
             width="44"

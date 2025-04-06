@@ -50,9 +50,7 @@ export const SuggestedUser = ({ user }: Props) => {
             >
               {user.username}
             </Link>
-            <span className="text-foreground-secondary text-xs">
-              Suggested for you
-            </span>
+            <span className="text-secondary text-xs">Suggested for you</span>
           </div>
 
           {isHovered && (
@@ -126,7 +124,7 @@ export const SuggestedUser = ({ user }: Props) => {
             </div>
           )}
         </div>
-        <button className="text-ig-blue hover:text-ig-blue-hover text-xs font-semibold">
+        <button className="text-blue hover:text-blue-hover text-xs font-semibold">
           Follow
         </button>
       </div>
