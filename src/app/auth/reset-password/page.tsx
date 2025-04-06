@@ -24,10 +24,7 @@ export default function ResetPasswordPage() {
           </svg>
 
           <div className='flex items-center gap-5'>
-            <Link
-              href={'/auth/login'}
-              className='p-2 rounded-lg bg-buttonPrimary hover:bg-buttonPrimaryHover'
-            >
+            <Link href={'/auth/login'} className='p-2 rounded-lg '>
               Log In
             </Link>
             <Link className='text-buttonPrimary' href={'/auth/signup'}>
@@ -68,9 +65,7 @@ export default function ResetPasswordPage() {
             ></path>
           </svg>
 
-          <p className='font-bold text-center text-foregroundSecondary'>
-            Trouble logging in?
-          </p>
+          <p className='font-bold text-center '>Trouble logging in?</p>
           <p>
             Enter your email, phone, or username and we&apos;ll send you a link
             to get back into your account.
@@ -84,9 +79,7 @@ export default function ResetPasswordPage() {
             placeholder='Email, phone or Username'
           />
 
-          <button className='p-2 mt-2 mb-4 rounded-lg bg-buttonPrimary hover:bg-buttonPrimaryHover'>
-            Send login link
-          </button>
+          <button className='p-2 mt-2 mb-4 rounded-lg '>Send login link</button>
 
           <OrComponent />
 
