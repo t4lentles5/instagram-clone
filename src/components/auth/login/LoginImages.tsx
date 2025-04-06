@@ -22,17 +22,17 @@ export const LoginImages = () => {
 
   return (
     <>
-      <div className='bg-[url("/login/home-phones.png")] hidden lg:block bg-no-repeat bg-[-46px_0] mr-8 bg-auto w-[380px] relative'>
+      <div className='relative mr-9 hidden w-[380px] bg-[url("/login/home-phones.png")] bg-auto bg-position-[center_top] bg-no-repeat lg:block'>
         {images.map((image, index) => (
           <img
             key={index}
             src={image}
-            alt='img'
+            alt="img"
             style={{
               opacity: index === currentImageIndex ? 1 : 0,
             }}
-            width={250}
-            className='absolute top-6 left-[110px] -opacity '
+            width={255}
+            className="absolute top-[22px] left-[110px]"
           />
         ))}
       </div>
