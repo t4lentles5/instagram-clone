@@ -124,7 +124,7 @@ export const LoginForm = () => {
           <button
             type="submit"
             disabled={!isValid}
-            className={`${isValid ? 'bg-ig-blue hover:bg-ig-blue-input-disabled cursor-pointer' : 'bg-ig-blue-disabled'} w-full rounded-lg px-4 py-[7px] font-semibold text-white`}
+            className={`${isValid ? 'bg-ig-blue hover:bg-ig-blue-input-disabled cursor-pointer' : 'bg-ig-blue-disabled'} w-full rounded-lg px-4 py-[7px] text-sm font-semibold text-white`}
           >
             Log in
           </button>

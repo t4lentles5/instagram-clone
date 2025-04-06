@@ -11,16 +11,16 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <main className='flex justify-center w-full h-[650px] p-8'>
+    <main className="flex h-[650px] w-full justify-center p-8">
       <LoginImages />
 
-      <div className='flex flex-col w-[350px] gap-3 p-3'>
-        <div className='flex flex-col w-full gap-3 p-10 border border-separator'>
-          <div className='flex items-center justify-center w-full h-20'>
+      <div className="flex w-[350px] flex-col gap-3 pt-3">
+        <div className="border-border flex w-full flex-col gap-3 border py-[10px]">
+          <div className="mt-9 mb-3 flex w-full items-center justify-center">
             <i
-              data-visualcompletion='css-img'
-              aria-label='Instagram'
-              role='img'
+              data-visualcompletion="css-img"
+              aria-label="Instagram"
+              role="img"
               style={{
                 backgroundImage:
                   'url("https://static.cdninstagram.com/rsrc.php/v4/yB/r/E7m8ZCMOFDS.png")',
@@ -38,21 +38,21 @@ export default function LoginPage() {
 
           <OrComponent />
 
-          <button className='mt-2 font-bold text-buttonPrimary'>
+          <button className="text-ig-blue hover:text-ig-blue-hover mt-2 text-sm font-bold">
             Sign in as a guest
           </button>
 
-          <Link href={'/auth/reset-password'} className='text-center'>
+          <Link href={'/auth/reset-password'} className="text-center text-sm">
             Forgot password?
           </Link>
         </div>
 
-        <div className='w-full border border-separator'>
-          <p className='p-5 text-center'>
+        <div className="border-border w-full border">
+          <p className="p-5 text-center text-sm">
             Don&apos;t have an account?{' '}
             <Link
               href={'/auth/signup'}
-              className='font-semibold text-buttonPrimary'
+              className="text-ig-blue text-sm font-semibold"
             >
               Sign up
             </Link>
