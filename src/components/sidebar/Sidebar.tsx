@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { useSidebarStore } from '@/store/ui/sidebar-store';
-import { SidebarMoreOptions } from './SidebarMoreOptions';
-import { SidebarNav } from './SidebarNav';
+import { SidebarMoreOptions } from '@/components/sidebar/SidebarMoreOptions';
+import { SidebarNav } from '@/components/sidebar/SidebarNav';
 import { User } from '@/interfaces/user.interface';
 import { InstagramIcon } from '@/assets/icons/InstagramIcon';
 import { InstagramSmallIcon } from '@/assets/icons/sidebar/InstagramSmallIcon';
@@ -16,11 +16,11 @@ export const Sidebar = ({ user }: Props) => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
-    <div className="sticky top-0 h-0 md:h-screen">
+    <div className="md:border-border sticky top-0 h-0 md:h-screen md:border-r">
       <div
         className={`${
-          isSidebarCollapsed ? 'md:w-[72px]' : 'md:w-full'
-        } md:border-r-border bg-background fixed bottom-0 w-full origin-left transform flex-col md:static md:flex md:h-screen md:border-r md:px-3 md:pt-2 md:pb-[19px]`}
+          isSidebarCollapsed ? 'md:w-[73px]' : 'md:w-full'
+        } bg-background fixed bottom-0 w-full origin-left transform flex-col md:static md:flex md:h-screen md:px-3 md:pt-2 md:pb-[19px]`}
       >
         <div
           className={`${

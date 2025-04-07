@@ -175,7 +175,7 @@ export const SidebarMoreOptions = () => {
                   onChange={toggleTheme}
                   className="peer sr-only"
                 />
-                <div className="bg-foreground after:bg-background relative h-4 w-[26px] rounded-full after:absolute after:start-[2px] after:top-[2px] after:h-3 after:w-3 after:rounded-full after:transition-all peer-checked:after:translate-x-[10px]"></div>
+                <div className="bg-primary after:bg-background relative h-4 w-[26px] rounded-full after:absolute after:start-[2px] after:top-[2px] after:h-3 after:w-3 after:rounded-full after:transition-all peer-checked:after:translate-x-[10px]"></div>
               </label>
             </button>
           </div>

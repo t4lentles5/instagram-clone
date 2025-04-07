@@ -14,10 +14,10 @@ export default async function Layout({
   }
 
   return (
-    <div className='flex flex-col md:grid xl:grid-cols-[244px_1fr] md:grid-cols-[72px_1fr] min-h-screen'>
+    <div className="flex min-h-screen flex-col md:grid md:grid-cols-[73px_1fr] xl:grid-cols-[244px_1fr]">
       <Sidebar user={user} />
 
-      <div className='flex flex-col items-center grow'>{children}</div>
+      <div className="flex grow flex-col items-center">{children}</div>
     </div>
   );
 }
