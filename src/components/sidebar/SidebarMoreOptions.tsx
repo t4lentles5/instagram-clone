@@ -63,7 +63,7 @@ export const SidebarMoreOptions = () => {
         className="relative hidden h-14 w-full cursor-pointer items-center justify-center md:flex"
         ref={popoverRef}
       >
-        <button className="hover:bg-hover flex w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:w-full">
+        <button className="hover:bg-background-hover flex w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:w-full">
           {open || switchAppearanceOpen ? (
             <MoreOptionsFillIcon />
           ) : (

@@ -2,6 +2,7 @@
 
 @theme {
   --color-background: var(--background);
+  --color-background-hover: var(--background-hover);
   --color-blue-hover: var(--text-blue-hover);
   --color-blue: var(--text-blue);
   --color-border: var(--border);
@@ -29,6 +30,7 @@
 @layer base {
   :root {
     --background: rgb(255, 255, 255);
+    --background: rgb(242, 242, 242);
     --border: rgb(219, 219, 219);
     --button-disabled: rgb(0, 105, 173);
     --button-hover: rgb(24, 119, 242);
@@ -45,6 +47,7 @@
 
   .dark {
     --background: rgb(0, 0, 0);
+    --background-hover: rgb(26, 26, 26);
     --border: rgb(38, 38, 38);
     --button-disabled: rgb(0, 105, 173);
     --button-hover: rgb(24, 119, 242);

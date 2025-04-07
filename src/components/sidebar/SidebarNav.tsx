@@ -28,7 +28,7 @@ export const SidebarNav = ({ user }: Props) => {
     <nav className="border-separator flex justify-evenly border-t md:flex-col md:border-0">
       <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
         <Link
-          className="hover:bg-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
+          className="hover:bg-background-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
           href={'/'}
         >
           {pathname === `/` && !isSidebarCollapsed ? (
@@ -53,7 +53,7 @@ export const SidebarNav = ({ user }: Props) => {
 
       <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
         <Link
-          className="hover:bg-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
+          className="hover:bg-background-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
           href={'/explore'}
         >
           {pathname === `/explore` && !isSidebarCollapsed ? (
@@ -75,7 +75,7 @@ export const SidebarNav = ({ user }: Props) => {
 
       <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
         <Link
-          className="hover:bg-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
+          className="hover:bg-background-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
           href={'/reels'}
         >
           {pathname === `/reels` && !isSidebarCollapsed ? (
@@ -97,7 +97,7 @@ export const SidebarNav = ({ user }: Props) => {
 
       <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
         <Link
-          className="hover:bg-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
+          className="hover:bg-background-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
           href={'/messages'}
         >
           {pathname === `/messages` && !isSidebarCollapsed ? (
@@ -123,7 +123,7 @@ export const SidebarNav = ({ user }: Props) => {
 
       <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
         <Link
-          className="hover:bg-hover relative flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
+          className="hover:bg-background-hover relative flex items-center justify-start gap-4 rounded-lg p-3 md:w-full"
           href={`/${user.username}`}
         >
           <div className="relative">

@@ -37,7 +37,7 @@ export const NewPostButton = () => {
     <>
       <div className="flex h-12 items-center justify-center md:h-14 md:w-full">
         <button
-          className="hover:bg-hover flex cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:w-full"
+          className="hover:bg-background-hover flex cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:w-full"
           onClick={openNewPostDialog}
         >
           <NewPostIcon />

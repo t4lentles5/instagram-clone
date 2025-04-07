@@ -35,7 +35,7 @@ export const Sidebar = ({ user }: Props) => {
         <div
           className={`${
             isSidebarCollapsed ? 'block' : 'xl:hidden'
-          } hover:bg-hover mt-4 mb-7 hidden rounded-lg p-3 md:block md:w-full`}
+          } hover:bg-background-hover mt-4 mb-7 hidden rounded-lg p-3 md:block md:w-full`}
         >
           <Link href={'/'}>
             <InstagramSmallIcon />

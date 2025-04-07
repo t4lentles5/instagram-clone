@@ -41,7 +41,7 @@ export const SearchButton = () => {
       <div className="hidden h-12 items-center justify-center md:flex md:h-14 md:w-full">
         <button
           ref={buttonRef}
-          className="hover:bg-hover hidden w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:flex"
+          className="hover:bg-background-hover hidden w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:flex"
           onClick={toggleSearch}
         >
           {pathname === `/search` || isSearchActive ? (
