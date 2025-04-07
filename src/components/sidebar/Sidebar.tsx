@@ -16,11 +16,11 @@ export const Sidebar = ({ user }: Props) => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
-    <div className="md:border-border sticky top-0 h-0 md:h-screen md:border-r">
+    <div className={`sticky top-0 h-0 md:h-screen`}>
       <div
         className={`${
           isSidebarCollapsed ? 'md:w-[73px]' : 'md:w-full'
-        } bg-background fixed bottom-0 w-full origin-left transform flex-col md:static md:flex md:h-screen md:px-3 md:pt-2 md:pb-[19px]`}
+        } bg-background md:border-border fixed bottom-0 w-full origin-left transform flex-col md:static md:flex md:h-screen md:border-r md:px-3 md:pt-2 md:pb-[19px]`}
       >
         <div
           className={`${

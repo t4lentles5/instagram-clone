@@ -62,11 +62,7 @@ export const SearchButton = () => {
       {isSearchActive && (
         <div
           ref={searchRef}
-          className={`${
-            isSearchActive && isSidebarCollapsed
-              ? 'translate-y-0 opacity-100'
-              : 'pointer-events-none -translate-x-2 opacity-0'
-          } border-border bg-background absolute bottom-0 left-[72px] z-50 flex h-screen w-[400px] origin-left transform flex-col justify-start gap-4 overflow-hidden rounded-lg border-r ease-in-out`}
+          className={`border-border bg-background absolute bottom-0 left-[73px] flex h-screen w-[400px] flex-col justify-start gap-4 overflow-hidden rounded-lg border-r`}
         >
           Search
         </div>
