@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef } from 'react';
 import { User } from '@/interfaces/user.interface';
 
 interface Props {
@@ -7,9 +8,31 @@ interface Props {
 }
 
 export const ProfilePhoto = ({ user }: Props) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const username = user.username;
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('image', file);
+    formData.append('username', username);
+
+    const res = await fetch('/api/upload-profile-photo', {
+      method: 'POST',
+      body: formData,
+    });
+
+    await res.json();
+  };
+
   return (
     <div className="w-full max-w-[120px] md:max-w-[284px]">
-      <div className="relative flex w-full cursor-pointer items-center justify-center">
+      <div
+        className="relative flex w-full cursor-pointer items-center justify-center"
+        onClick={() => fileInputRef.current?.click()}
+      >
         <img
           src={user.profile_photo}
           alt="profile photo"
@@ -28,6 +51,14 @@ export const ProfilePhoto = ({ user }: Props) => {
           </svg>
         </div>
       </div>
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleUpload}
+      />
     </div>
   );
 };
