@@ -14,10 +14,11 @@ datasource db {
 }
 
 model User {
-  id            String  @id @default(uuid())
-  email         String  @unique
-  password      String
-  fullname      String
-  username      String  @unique
-  profile_photo String?
+  id               String  @id @default(uuid())
+  email            String  @unique
+  password         String
+  fullname         String
+  username         String  @unique
+  profile_photo    String?
+  profile_photo_id String?
 }

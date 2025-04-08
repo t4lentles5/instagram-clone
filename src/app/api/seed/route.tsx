@@ -5,10 +5,12 @@ import bcrypt from 'bcrypt';
 import prisma from '@/lib/prisma';
 import { users } from '@/seed/seed-users';
 import { changeProfilePhoto } from '@/actions/user/change-profile-photo';
+import { deleteAllProfilePhotos } from '@/actions/seed/delete-all-profile-photos';
 
 export async function POST() {
   try {
     await prisma.user.deleteMany();
+    await deleteAllProfilePhotos();
 
     for (const user of users) {
       const hashedPassword = await bcrypt.hash(user.password, 10);

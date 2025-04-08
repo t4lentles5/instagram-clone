@@ -3,10 +3,12 @@
 import { revalidatePath } from 'next/cache';
 import { cloudinary } from '@/lib/cloudinary';
 import prisma from '@/lib/prisma';
+import { deleteProfilePhoto } from '@/actions/user/delete-profile-photo';
 
 export const changeProfilePhoto = async (
   base64Image: string,
   username: string,
+  profile_photo_id?: string,
 ) => {
   try {
     const result = await cloudinary.uploader.upload(
@@ -25,9 +27,20 @@ export const changeProfilePhoto = async (
       },
     );
 
+    if (!result) {
+      throw new Error('Failed to upload image to Cloudinary');
+    }
+
+    if (profile_photo_id) {
+      await deleteProfilePhoto(profile_photo_id);
+    }
+
     await prisma.user.update({
       where: { username: username },
-      data: { profile_photo: result.secure_url },
+      data: {
+        profile_photo: result.secure_url,
+        profile_photo_id: result.public_id,
+      },
     });
 
     revalidatePath(`/${username}`);

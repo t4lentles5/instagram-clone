@@ -13,12 +13,14 @@ export const OwnProfilePhoto = ({ user }: Props) => {
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const username = user.username;
+    const profile_photo_id = user.profile_photo_id;
     const file = e.target.files?.[0];
     if (!file) return;
 
     const formData = new FormData();
     formData.append('image', file);
     formData.append('username', username);
+    formData.append('profile_photo_id', profile_photo_id);
 
     const res = await fetch('/api/users/upload-profile-photo', {
       method: 'POST',
