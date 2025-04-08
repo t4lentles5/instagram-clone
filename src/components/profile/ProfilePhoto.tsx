@@ -1,5 +1,5 @@
 interface Props {
-  profile_photo: string;
+  profile_photo: string | null;
   imageSize: {
     size: string;
     mdSize?: string;

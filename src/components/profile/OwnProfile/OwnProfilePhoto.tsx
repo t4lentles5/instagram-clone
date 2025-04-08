@@ -20,7 +20,7 @@ export const OwnProfilePhoto = ({ user }: Props) => {
     const formData = new FormData();
     formData.append('image', file);
     formData.append('username', username);
-    formData.append('profile_photo_id', profile_photo_id);
+    formData.append('profile_photo_id', profile_photo_id || '');
 
     const res = await fetch('/api/users/upload-profile-photo', {
       method: 'POST',

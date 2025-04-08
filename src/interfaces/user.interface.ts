@@ -3,6 +3,6 @@ export interface User {
   email: string;
   fullname: string;
   username: string;
-  profile_photo: string;
-  profile_photo_id: string;
+  profile_photo: string | null;
+  profile_photo_id: string | null;
 }
