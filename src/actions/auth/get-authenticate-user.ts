@@ -22,7 +22,7 @@ export const getAuthenticatedUser = async () => {
       });
 
       if (!user) {
-        throw new Error('User not found');
+        redirect('/auth/login');
       }
 
       return user;
