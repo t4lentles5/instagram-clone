@@ -23,7 +23,7 @@ export const SidebarNavItemProfile = ({ user }: Props) => {
               <div className="border-foreground absolute top-0 left-0 h-7 w-7 translate-x-[-2px] translate-y-[-2px] rounded-full border-2"></div>
             )}
             <img
-              src={user.profile_photo}
+              src={user.profile_photo || '/default_photo.jpg'}
               alt="user profile photo"
               className="h-6 w-6 rounded-full object-contain"
             />

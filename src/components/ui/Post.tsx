@@ -8,6 +8,7 @@ import { MoreOptionsIcon } from '@/assets/icons/post/MoreOptionsIcon';
 import { SaveIcon } from '@/assets/icons/post/SaveIcon';
 import { ShareIcon } from '@/assets/icons/post/ShareIcon';
 import { User } from '@/interfaces/user.interface';
+import { ProfilePhoto } from '@/components/profile/ProfilePhoto';
 
 interface Props {
   user: User;
@@ -20,10 +21,17 @@ export const Post = ({ user }: Props) => {
         <div className="flex w-full items-center pb-[14px] pl-1">
           <div className="mr-3">
             <div className="h-8 w-8">
-              <img
-                className="h-8 w-8 rounded-full"
-                src={user.profile_photo}
-                alt="profile photo"
+              <ProfilePhoto
+                profile_photo={user.profile_photo}
+                imageSize={{
+                  size: 'w-8',
+                }}
+                backgroundDivSize={{
+                  size: 'w-9',
+                }}
+                borderDivSize={{
+                  size: 'w-10',
+                }}
               />
             </div>
           </div>

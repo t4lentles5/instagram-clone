@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CameraIcon } from '@/assets/icons/CameraIcon';
 import { SimilarAccountsIcon } from '@/assets/profile/SimilarAccountsIcon';
 import { User } from '@/interfaces/user.interface';
+import { ProfilePhoto } from '@/components/profile/ProfilePhoto';
 
 interface Props {
   user: User;
@@ -19,18 +20,27 @@ export const SuggestedUser = ({ user }: Props) => {
     <>
       <div className="relative flex justify-between px-4 py-2">
         <div className="flex gap-3">
-          <Link href={`/${user.username}`}>
-            <img
-              src={user.profile_photo}
-              alt="profile photo"
-              className="border-separator h-11 w-11 rounded-full border object-contain"
-              onMouseEnter={() => {
-                setIsHovered(true);
-                setIsProfilePhotoHovered(true);
+          <Link
+            href={`/${user.username}`}
+            onMouseEnter={() => {
+              setIsHovered(true);
+              setIsProfilePhotoHovered(true);
+            }}
+            onMouseLeave={() => {
+              setIsHovered(false);
+              setIsProfilePhotoHovered(false);
+            }}
+          >
+            <ProfilePhoto
+              profile_photo={user.profile_photo}
+              imageSize={{
+                size: 'w-11',
               }}
-              onMouseLeave={() => {
-                setIsHovered(false);
-                setIsProfilePhotoHovered(false);
+              backgroundDivSize={{
+                size: 'w-[48px]',
+              }}
+              borderDivSize={{
+                size: 'w-[52px]',
               }}
             />
           </Link>
@@ -75,20 +85,29 @@ export const SuggestedUser = ({ user }: Props) => {
                 }
               }}
             >
-              <div className="flex h-full items-center justify-center gap-3">
-                <img
-                  src={user.profile_photo}
-                  alt="profile photo"
-                  className="border-separator h-14 w-14 rounded-full border object-contain"
-                />
-                <div className="flex h-16 w-full flex-col items-start justify-center">
+              <div className="flex items-center justify-center gap-3">
+                <div className="w-[70px]">
+                  <ProfilePhoto
+                    profile_photo={user.profile_photo}
+                    imageSize={{
+                      size: 'w-14',
+                    }}
+                    backgroundDivSize={{
+                      size: 'w-[60px]',
+                    }}
+                    borderDivSize={{
+                      size: 'w-[64px]',
+                    }}
+                  />
+                </div>
+                <div className="flex w-full flex-col items-start justify-center">
                   <Link
                     href={user.username}
                     className="max-w-36 truncate overflow-hidden text-sm font-bold"
                   >
                     {user.username}
                   </Link>
-                  <p className="">{user.fullname}</p>
+                  <p className="text-secondary text-sm">{user.fullname}</p>
                 </div>
               </div>
 

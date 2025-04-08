@@ -1,5 +1,6 @@
-import { User } from '@/interfaces/user.interface';
 import Link from 'next/link';
+import { User } from '@/interfaces/user.interface';
+import { ProfilePhoto } from '@/components/profile/ProfilePhoto';
 
 interface Props {
   user: User;
@@ -10,10 +11,17 @@ export const SwitchUser = ({ user }: Props) => {
     <>
       <div className="mb-5 flex justify-between px-4">
         <div className="flex gap-3">
-          <img
-            src={user.profile_photo}
-            alt="profile photo"
-            className="border-border h-11 w-11 rounded-full border object-contain"
+          <ProfilePhoto
+            profile_photo={user.profile_photo}
+            imageSize={{
+              size: 'w-[44px]',
+            }}
+            backgroundDivSize={{
+              size: 'w-[48px]',
+            }}
+            borderDivSize={{
+              size: 'w-[52px]',
+            }}
           />
 
           <div className="flex flex-col justify-center">
