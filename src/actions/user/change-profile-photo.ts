@@ -12,6 +12,7 @@ export const changeProfilePhoto = async (
     const result = await cloudinary.uploader.upload(
       `data:image/png;base64,${base64Image}`,
       {
+        format: 'webp',
         folder: process.env.CLOUDINARY_FOLDER,
         transformation: [
           {
