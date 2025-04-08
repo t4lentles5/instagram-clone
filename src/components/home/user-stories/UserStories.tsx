@@ -1,30 +1,63 @@
-import { User } from '@/interfaces/user.interface';
 import Link from 'next/link';
+import { ProfilePhoto } from '@/components/profile/ProfilePhoto';
+import { User } from '@/interfaces/user.interface';
 
 interface Props {
-  users: User[];
+  usersStories: User[];
+  user: User;
 }
 
-export const UserStories = ({ users }: Props) => {
+export const UserStories = ({ usersStories, user }: Props) => {
   return (
     <>
       <div className="mb-6 flex w-full gap-[10px] py-2">
-        {users.map((user) => (
+        <Link
+          href={`/stories/${user.username}`}
+          key={user.id}
+          className="flex flex-col items-center justify-center"
+        >
+          <div className="px-1 pb-1">
+            {/* <div> */}
+
+            <ProfilePhoto
+              profile_photo={user.profile_photo}
+              imageSize={{
+                size: 'w-14',
+              }}
+              backgroundDivSize={{
+                size: 'w-[60px]',
+              }}
+              borderDivSize={{
+                size: 'w-[64px]',
+              }}
+            />
+            {/* </div> */}
+          </div>
+
+          <span className="text-primary max-w-14 truncate overflow-hidden text-xs">
+            {user.username}
+          </span>
+        </Link>
+
+        {usersStories.map((user) => (
           <Link
             href={`/stories/${user.username}`}
             key={user.id}
             className="flex flex-col items-center justify-center"
           >
-            <div className="px-1 pb-1">
-              <div className="rounded-full bg-linear-to-tr from-amber-400 via-rose-500 to-fuchsia-600 p-0.5">
-                <div className="bg-background rounded-full p-0.5">
-                  <img
-                    src={user.profile_photo}
-                    alt="Foto de perfil"
-                    className="h-14 w-14 rounded-full object-cover"
-                  />
-                </div>
-              </div>
+            <div className="relative px-1 pb-1">
+              <ProfilePhoto
+                profile_photo={user.profile_photo}
+                imageSize={{
+                  size: 'w-14',
+                }}
+                backgroundDivSize={{
+                  size: 'w-[60px]',
+                }}
+                borderDivSize={{
+                  size: 'w-[64px]',
+                }}
+              />
             </div>
 
             <span className="text-primary max-w-14 truncate overflow-hidden text-xs">

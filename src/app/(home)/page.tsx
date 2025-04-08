@@ -13,7 +13,7 @@ export default async function HomePage() {
   return (
     <div className="flex h-full w-full items-center justify-center">
       <div className="flex w-[630px] flex-col items-center pt-4">
-        <UserStories users={users} />
+        <UserStories usersStories={users} user={user} />
         {users.map((user) => (
           <Post user={user} key={user.id} />
         ))}
