@@ -10,7 +10,7 @@ interface Props {
   href: string;
 }
 
-export const UserNavigationLink = ({ icon, label, href }: Props) => {
+export const OwnProfileNavigationLink = ({ icon, label, href }: Props) => {
   const pathname = usePathname();
 
   return (

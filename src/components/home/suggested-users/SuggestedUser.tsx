@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { CameraIcon } from '@/assets/icons/CameraIcon';
-import { SimilarAccountsIcon } from '@/assets/icons/SimilarAccountsIcon';
+import { SimilarAccountsIcon } from '@/assets/profile/SimilarAccountsIcon';
 import { User } from '@/interfaces/user.interface';
 
 interface Props {

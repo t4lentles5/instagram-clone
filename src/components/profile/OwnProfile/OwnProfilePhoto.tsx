@@ -7,7 +7,7 @@ interface Props {
   user: User;
 }
 
-export const ProfilePhoto = ({ user }: Props) => {
+export const OwnProfilePhoto = ({ user }: Props) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {

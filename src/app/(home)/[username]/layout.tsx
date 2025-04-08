@@ -3,10 +3,8 @@ import { notFound } from 'next/navigation';
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
 import { getUserByUsername } from '@/actions/user/get-user-by-username';
 import { Footer } from '@/components/ui/Footer';
-import { HeaderPageMobile } from '@/components/ui/HeaderPageMobile';
-import { UserInfo } from '@/components/user/UserInfo';
-import { UserNavigation } from '@/components/user/UserNavigation';
-import { UserStats } from '@/components/user/UserStats';
+import { OwnProfile } from '@/components/profile/OwnProfile/OwnProfile';
+import { UserProfile } from '@/components/profile/UserProfile/UserProfile';
 
 export const revalidate = 3600;
 
@@ -50,26 +48,16 @@ export default async function UserLayout({
     notFound();
   }
 
+  const user =
+    userByUsername.username === authenticatedUser.username
+      ? authenticatedUser
+      : userByUsername;
+
   const isOwnProfile = userByUsername.username === authenticatedUser.username;
 
   return (
     <div className="flex w-full flex-col items-center justify-center pt-16 md:mt-8 md:pt-0 lg:mx-10 lg:max-w-[935px]">
-      <HeaderPageMobile>
-        {isOwnProfile ? authenticatedUser.username : userByUsername.username}
-      </HeaderPageMobile>
-
-      <UserInfo
-        userByUsername={userByUsername}
-        authenticatedUser={authenticatedUser}
-      />
-
-      <UserStats />
-
-      <UserNavigation
-        username={
-          isOwnProfile ? authenticatedUser.username : userByUsername.username
-        }
-      />
+      {isOwnProfile ? <OwnProfile user={user} /> : <UserProfile user={user} />}
       {children}
       <Footer />
     </div>
