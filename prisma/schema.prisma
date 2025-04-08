@@ -19,5 +19,5 @@ model User {
   password      String
   fullname      String
   username      String @unique
-  profile_photo String @default("/default_photo.jpg")
+  profile_photo String
 }
