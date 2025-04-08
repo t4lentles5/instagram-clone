@@ -13,6 +13,14 @@ export const changeProfilePhoto = async (
       `data:image/png;base64,${base64Image}`,
       {
         folder: process.env.CLOUDINARY_FOLDER,
+        transformation: [
+          {
+            width: 320,
+            height: 320,
+            crop: 'fill',
+            gravity: 'auto',
+          },
+        ],
       },
     );
 
