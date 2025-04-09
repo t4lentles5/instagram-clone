@@ -43,7 +43,7 @@ export const changeProfilePhoto = async (
       },
     });
 
-    revalidatePath(`/${username}`);
+    revalidatePath(`/`);
     return { success: true, url: result.secure_url };
   } catch (error) {
     console.error(error);
