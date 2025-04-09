@@ -12,6 +12,8 @@
   --color-button-disabled: var(--button-disabled);
   --color-button-hover: var(--button-hover);
   --color-button: var(--button);
+  --color-button-secondary: var(--button-secondary);
+  --color-button-secondary-hover: var(--button-secondary-hover);
   --color-image-overlay: var(--image-overlay);
   --color-input-bg: var(--input-bg);
   --color-input-border: var(--input-border);
@@ -36,6 +38,8 @@
     --background-overlay: rgba(0, 0, 0, 0.65);
     --background-hover: rgb(242, 242, 242);
     --border: rgb(219, 219, 219);
+    --button-secondary: rgb(239, 239, 239);
+    --button-secondary-hover: rgb(219, 219, 219);
     --border-popover: rgb(219, 219, 219);
     --button-disabled: rgb(0, 105, 173);
     --button-hover: rgb(24, 119, 242);
@@ -60,6 +64,8 @@
     --button-disabled: rgb(0, 105, 173);
     --button-hover: rgb(24, 119, 242);
     --button: rgb(0, 149, 246);
+    --button-secondary: rgb(54, 54, 54);
+    --button-secondary-hover: rgb(38, 38, 38);
     --image-overlay: rgba(85, 85, 85, 0.7);
     --input-bg: rgb(18, 18, 18);
     --input-border: rgb(85, 85, 85);
