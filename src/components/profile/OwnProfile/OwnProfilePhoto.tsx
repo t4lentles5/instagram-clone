@@ -88,7 +88,7 @@ export const OwnProfilePhoto = ({ user }: Props) => {
         {user.profile_photo && (
           <>
             <button
-              className="absolute h-20 w-20 rounded-full md:h-[150px] md:w-[150px]"
+              className="absolute h-20 w-20 cursor-pointer rounded-full md:h-[150px] md:w-[150px]"
               onClick={(e) => {
                 e.stopPropagation();
                 setOpen(true);
@@ -101,7 +101,7 @@ export const OwnProfilePhoto = ({ user }: Props) => {
                 onClick={() => setOpen(false)}
               >
                 <div
-                  className="bg-popover w-[400px] rounded-lg"
+                  className="bg-popover w-[400px] rounded-xl"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="m-8">
