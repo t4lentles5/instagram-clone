@@ -1,22 +1,27 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { User } from '@/interfaces/user.interface';
 import { ProfilePhoto } from '@/components/profile/ProfilePhoto';
 import { deleteProfilePhoto } from '@/actions/user/delete-profile-photo';
-import { useRouter } from 'next/navigation';
 import { CameraIcon } from '@/assets/icons/profile/CameraIcon';
+import styles from '@/components/profile/OwnProfile/image-loader.module.css';
+import { PhotoOptionsModal } from '@/components/profile/OwnProfile/PhotoOptionsModal';
 
 interface Props {
   user: User;
 }
 
 export const OwnProfilePhoto = ({ user }: Props) => {
+  const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
-  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsLoading(true);
+
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -24,6 +29,7 @@ export const OwnProfilePhoto = ({ user }: Props) => {
       const formData = new FormData();
       formData.append('image', file);
       formData.append('username', user.username);
+
       if (user.profile_photo_id) {
         formData.append('profile_photo_id', user.profile_photo_id);
       }
@@ -33,30 +39,37 @@ export const OwnProfilePhoto = ({ user }: Props) => {
         body: formData,
       });
 
+      console.log(res);
+
       if (!res.ok) {
         throw new Error('Failed to upload photo');
       }
 
+      setIsLoading(false);
       router.refresh();
-    } catch (error) {
-      console.error('Error uploading profile photo:', error);
-    } finally {
+
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
+    } catch (error) {
+      console.error('Error uploading profile photo:', error);
     }
   };
 
   const handleRemovePhoto = async () => {
+    setIsLoading(true);
+
     try {
       if (user.profile_photo_id) {
+        setIsLoading(true);
         await deleteProfilePhoto(user.profile_photo_id, user.id);
-        router.refresh();
       }
+
+      setIsLoading(false);
+      setOpen(false);
+      router.refresh();
     } catch (error) {
       console.error('Error removing profile photo:', error);
-    } finally {
-      setOpen(false);
     }
   };
 
@@ -97,51 +110,22 @@ export const OwnProfilePhoto = ({ user }: Props) => {
             ></button>
 
             {open && (
-              <div
-                className="bg-background-overlay fixed inset-0 z-50 flex cursor-default items-center justify-center"
-                onClick={() => setOpen(false)}
-              >
-                <div
-                  className="bg-popover w-[400px] rounded-xl"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div className="m-8">
-                    <h3 className="text-center text-xl leading-3.5">
-                      Change Profile Photo
-                    </h3>
-                  </div>
-
-                  <div className="mt-4 w-full">
-                    <button
-                      className="border-border-popover text-blue h-12 w-full cursor-pointer border-t px-2 py-1 text-[14px] font-bold"
-                      onClick={() => {
-                        setOpen(false);
-                        fileInputRef.current?.click();
-                      }}
-                    >
-                      Upload Photo
-                    </button>
-
-                    <button
-                      className="border-border-popover text-red h-12 w-full cursor-pointer border-t px-2 py-1 text-[14px] font-bold"
-                      onClick={handleRemovePhoto}
-                    >
-                      Remove Current Photo
-                    </button>
-                    <button
-                      className="border-border-popover h-12 w-full cursor-pointer border-t px-2 py-1 text-[14px]"
-                      onClick={() => setOpen(false)}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <PhotoOptionsModal
+                setOpen={setOpen}
+                handleRemovePhoto={handleRemovePhoto}
+                fileInputRef={fileInputRef}
+              />
             )}
           </>
         )}
 
-        {!user.profile_photo && (
+        {isLoading && (
+          <div className="bg-image-overlay absolute z-50 grid h-20 w-20 place-items-center rounded-full md:h-[150px] md:w-[150px]">
+            <div className={styles.loader}></div>
+          </div>
+        )}
+
+        {!user.profile_photo && !isLoading && (
           <div className="bg-image-overlay absolute flex h-20 w-20 items-center justify-center rounded-full md:h-[150px] md:w-[150px]">
             <CameraIcon />
           </div>
