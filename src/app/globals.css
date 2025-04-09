@@ -1,24 +1,24 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-background: var(--background);
-  --color-background-overlay: var(--background-overlay);
   --color-background-hover: var(--background-hover);
+  --color-background-overlay: var(--background-overlay);
+  --color-background: var(--background);
   --color-blue-hover: var(--text-blue-hover);
   --color-blue: var(--text-blue);
-  --color-red: var(--text-red);
-  --color-border: var(--border);
   --color-border-popover: var(--border-popover);
+  --color-border: var(--border);
   --color-button-disabled: var(--button-disabled);
   --color-button-hover: var(--button-hover);
-  --color-button: var(--button);
-  --color-button-secondary: var(--button-secondary);
   --color-button-secondary-hover: var(--button-secondary-hover);
+  --color-button-secondary: var(--button-secondary);
+  --color-button: var(--button);
   --color-image-overlay: var(--image-overlay);
   --color-input-bg: var(--input-bg);
   --color-input-border: var(--input-border);
   --color-popover: var(--popover);
   --color-primary: var(--text-primary);
+  --color-red: var(--text-red);
   --color-secondary: var(--text-secondary);
 }
 
@@ -34,15 +34,15 @@
 
 @layer base {
   :root {
-    --background: rgb(255, 255, 255);
-    --background-overlay: rgba(0, 0, 0, 0.65);
     --background-hover: rgb(242, 242, 242);
-    --border: rgb(219, 219, 219);
-    --button-secondary: rgb(239, 239, 239);
-    --button-secondary-hover: rgb(219, 219, 219);
+    --background-overlay: rgba(0, 0, 0, 0.65);
+    --background: rgb(255, 255, 255);
     --border-popover: rgb(219, 219, 219);
+    --border: rgb(219, 219, 219);
     --button-disabled: rgb(0, 105, 173);
     --button-hover: rgb(24, 119, 242);
+    --button-secondary-hover: rgb(219, 219, 219);
+    --button-secondary: rgb(239, 239, 239);
     --button: rgb(0, 149, 246);
     --image-overlay: rgba(85, 85, 85, 0.7);
     --input-bg: rgb(18, 18, 18);
@@ -50,37 +50,37 @@
     --popover: rgb(255, 255, 255);
     --text-blue-hover: rgb(22, 72, 120);
     --text-blue: rgb(0, 149, 246);
-    --text-red: rgb(237, 73, 86);
     --text-primary: rgb(0, 0, 0);
+    --text-red: rgb(237, 73, 86);
     --text-secondary: rgb(115, 115, 115);
   }
 
   .dark {
-    --background: rgb(0, 0, 0);
-    --background-overlay: rgba(0, 0, 0, 0.65);
     --background-hover: rgb(26, 26, 26);
-    --border: rgb(38, 38, 38);
+    --background-overlay: rgba(0, 0, 0, 0.65);
+    --background: rgb(0, 0, 0);
     --border-popover: rgb(54, 54, 54);
+    --border: rgb(38, 38, 38);
     --button-disabled: rgb(0, 105, 173);
     --button-hover: rgb(24, 119, 242);
-    --button: rgb(0, 149, 246);
-    --button-secondary: rgb(54, 54, 54);
     --button-secondary-hover: rgb(38, 38, 38);
+    --button-secondary: rgb(54, 54, 54);
+    --button: rgb(0, 149, 246);
     --image-overlay: rgba(85, 85, 85, 0.7);
     --input-bg: rgb(18, 18, 18);
     --input-border: rgb(85, 85, 85);
     --popover: rgb(38, 38, 38);
     --text-blue-hover: rgb(224, 241, 255);
     --text-blue: rgb(0, 149, 246);
-    --text-red: rgb(237, 73, 86);
     --text-primary: rgb(245, 245, 245);
+    --text-red: rgb(237, 73, 86);
     --text-secondary: rgb(168, 168, 168);
   }
 
   input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
-    -webkit-text-fill-color: var(--text-primary) !important;
-    caret-color: var(--text-primary);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-input-bg) inset !important;
+    -webkit-text-fill-color: var(--color-primary) !important;
+    caret-color: var(--color-primary);
     transition: background-color 5000s ease-in-out 0s;
   }
 }
