@@ -1,34 +1,28 @@
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 
 type ThemeState = {
   isDarkMode: boolean;
   toggleTheme: () => void;
+  initialize: () => void;
 };
 
 export const useThemeStore = create<ThemeState>()(
-  devtools(
-    persist(
-      (set) => ({
-        isDarkMode: true,
-        toggleTheme: () => set((state) => ({ isDarkMode: !state.isDarkMode })),
-      }),
-      {
-        name: 'theme-storage',
-        storage: {
-          getItem: (name) => {
-            const item = localStorage.getItem(name);
-            return item ? JSON.parse(item) : null;
-          },
-          setItem: (name, value) => {
-            localStorage.setItem(name, JSON.stringify(value));
-          },
-          removeItem: (name) => {
-            localStorage.removeItem(name);
-          },
-        },
-      }
-    ),
-    { name: 'ThemeStore' }
-  )
+  persist(
+    (set) => ({
+      isDarkMode: true,
+      toggleTheme: () => set((state) => ({ isDarkMode: !state.isDarkMode })),
+      initialize: () => {
+        if (typeof window !== 'undefined') {
+          const prefersDark = window.matchMedia(
+            '(prefers-color-scheme: dark)',
+          ).matches;
+          set({ isDarkMode: prefersDark });
+        }
+      },
+    }),
+    {
+      name: 'theme-storage',
+    },
+  ),
 );
