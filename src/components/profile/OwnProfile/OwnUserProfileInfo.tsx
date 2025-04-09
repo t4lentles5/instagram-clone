@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { User } from '@/interfaces/user.interface';
 import { OwnProfilePhoto } from '@/components/profile/OwnProfile/OwnProfilePhoto';
-import { SimilarAccountsIcon } from '@/assets/profile/SimilarAccountsIcon';
+import { SimilarAccountsIcon } from '@/assets/icons/profile/SimilarAccountsIcon';
 
 interface Props {
   user: User;
