@@ -3,11 +3,11 @@
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { User } from '@/interfaces/user.interface';
-import { ProfilePhoto } from '@/components/profile/ProfilePhoto';
+import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { deleteProfilePhoto } from '@/actions/user/delete-profile-photo';
 import { CameraIcon } from '@/assets/icons/profile/CameraIcon';
-import styles from '@/components/profile/OwnProfile/image-loader.module.css';
-import { PhotoOptionsModal } from '@/components/profile/OwnProfile/PhotoOptionsModal';
+import styles from '@/profile/OwnProfile/components/image-loader.module.css';
+import { PhotoOptionsModal } from '@/profile/OwnProfile/components/PhotoOptionsModal';
 
 interface Props {
   user: User;

@@ -8,7 +8,7 @@ import { MoreOptionsIcon } from '@/assets/icons/post/MoreOptionsIcon';
 import { SaveIcon } from '@/assets/icons/post/SaveIcon';
 import { ShareIcon } from '@/assets/icons/post/ShareIcon';
 import { User } from '@/interfaces/user.interface';
-import { ProfilePhoto } from '@/components/profile/ProfilePhoto';
+import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 
 interface Props {
   user: User;

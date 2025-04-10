@@ -1,7 +1,7 @@
 import { HeaderPageMobile } from '@/components/ui/HeaderPageMobile';
 import { User } from '@/interfaces/user.interface';
-import { OwnUserProfileInfo } from './OwnUserProfileInfo';
-import { UserStats } from '../UserStats';
+import { OwnUserProfileInfo } from '@/profile/OwnProfile/components/OwnUserProfileInfo';
+import { UserStats } from '@/profile/components/UserStats';
 import { OwnProfileNavigation } from './OwnProfileNavigation';
 
 interface Props {

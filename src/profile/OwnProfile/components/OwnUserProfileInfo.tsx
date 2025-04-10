@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { User } from '@/interfaces/user.interface';
-import { OwnProfilePhoto } from '@/components/profile/OwnProfile/OwnProfilePhoto';
+import { OwnProfilePhoto } from '@/profile/OwnProfile/components/OwnProfilePhoto';
 import { SimilarAccountsIcon } from '@/assets/icons/profile/SimilarAccountsIcon';
 import { OptionsIcon } from '@/assets/icons/profile/OptionsIcon';
 

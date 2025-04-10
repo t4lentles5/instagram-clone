@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation';
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
 import { getUserByUsername } from '@/actions/user/get-user-by-username';
 import { Footer } from '@/components/ui/Footer';
-import { OwnProfile } from '@/components/profile/OwnProfile/OwnProfile';
-import { UserProfile } from '@/components/profile/UserProfile/UserProfile';
+import { UserProfile } from '@/profile/UserProfile/components/UserProfile';
+import { OwnProfile } from '@/profile/OwnProfile/components/OwnProfile';
 
 export const revalidate = 3600;
 

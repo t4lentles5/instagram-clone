@@ -1,0 +1,47 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { PostsIcon } from '@/profile/icons/PostsIcon';
+import { ReelsIcon } from '@/profile/icons/ReelsIcon';
+import { TaggedIcon } from '@/profile/icons/TaggedIcon';
+
+interface Props {
+  label: string;
+  href: string;
+}
+
+export const OwnProfileNavigationLink = ({ label, href }: Props) => {
+  const pathname = usePathname();
+
+  const icons = [
+    {
+      icon: <PostsIcon isActive={pathname === href} />,
+      label: 'Posts',
+    },
+    {
+      icon: <ReelsIcon isActive={pathname === href} />,
+      label: 'Reels',
+    },
+    {
+      icon: <TaggedIcon isActive={pathname === href} />,
+      label: 'Tagged',
+    },
+  ];
+
+  return (
+    <>
+      <Link
+        className={`${pathname === `${href}` && `border-foreground border-t`} flex items-center justify-center gap-2 py-3 md:py-5`}
+        href={href}
+      >
+        {icons.map((item) => item.label === label && item.icon)}
+        <span
+          className={`${pathname === `${href}` ? 'text-primary' : 'text-secondary'} hidden text-xs font-semibold uppercase md:block`}
+        >
+          {label}
+        </span>
+      </Link>
+    </>
+  );
+};

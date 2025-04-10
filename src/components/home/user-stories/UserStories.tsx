@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ProfilePhoto } from '@/components/profile/ProfilePhoto';
+import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { User } from '@/interfaces/user.interface';
 
 interface Props {
