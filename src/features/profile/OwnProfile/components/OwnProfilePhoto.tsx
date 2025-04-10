@@ -6,8 +6,8 @@ import { User } from '@/interfaces/user.interface';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { deleteProfilePhoto } from '@/actions/user/delete-profile-photo';
 import { CameraIcon } from '@/assets/icons/profile/CameraIcon';
-import styles from '@/profile/OwnProfile/components/image-loader.module.css';
-import { PhotoOptionsModal } from '@/profile/OwnProfile/components/PhotoOptionsModal';
+import styles from '@/features/profile/OwnProfile/components/image-loader.module.css';
+import { PhotoOptionsModal } from '@/features/profile/OwnProfile/components/PhotoOptionsModal';
 
 interface Props {
   user: User;

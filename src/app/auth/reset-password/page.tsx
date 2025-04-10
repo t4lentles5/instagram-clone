@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { OrComponent } from '@/auth/components/OrComponent';
+import { OrComponent } from '@/features/auth/components/OrComponent';
 
 export default function ResetPasswordPage() {
   return (

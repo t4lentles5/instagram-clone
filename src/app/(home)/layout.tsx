@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
-import { Sidebar } from '@/home/sidebar/components/Sidebar';
+import { Sidebar } from '@/features/home/sidebar/components/Sidebar';
 
 export default async function Layout({
   children,

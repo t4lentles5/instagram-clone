@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { PostsIcon } from '@/profile/icons/PostsIcon';
-import { ReelsIcon } from '@/profile/icons/ReelsIcon';
-import { TaggedIcon } from '@/profile/icons/TaggedIcon';
+import { PostsIcon } from '@/features/profile/icons/PostsIcon';
+import { ReelsIcon } from '@/features/profile/icons/ReelsIcon';
+import { TaggedIcon } from '@/features/profile/icons/TaggedIcon';
 
 interface Props {
   label: string;

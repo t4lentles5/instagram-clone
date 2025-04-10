@@ -4,14 +4,14 @@ import { HouseFillIcon } from '@/assets/icons/sidebar/sidebar-nav/HouseFillIcon'
 import { HouseIcon } from '@/assets/icons/sidebar/sidebar-nav/HouseIcon';
 import { MessengerFillIcon } from '@/assets/icons/sidebar/sidebar-nav/MessengerFillIcon';
 import { MessengerIcon } from '@/assets/icons/sidebar/sidebar-nav/MessengerIcon';
-import { NewPostButton } from '@/home/sidebar/components/NewPostButton';
-import { NotificationsButton } from '@/home/sidebar/components/NotificationsButton';
+import { NotificationsButton } from '@/features/home/sidebar/components/NotificationsButton';
 import { ReelsIcon } from '@/assets/icons/sidebar/sidebar-nav/ReelsIcon';
 import { ReelsIFillIcon } from '@/assets/icons/sidebar/sidebar-nav/ReelsIFillIcon';
-import { SearchButton } from '@/home/sidebar/components/SearchButton';
-import { SidebarNavItem } from '@/home/sidebar/components/SidebarNavItem';
-import { SidebarNavItemProfile } from '@/home/sidebar/components/SidebarNavItemProfile';
+import { SearchButton } from '@/features/home/sidebar/components/SearchButton';
+import { SidebarNavItem } from '@/features/home/sidebar/components/SidebarNavItem';
 import { User } from '@/interfaces/user.interface';
+import { NewPostButton } from '@/features/home/sidebar/components/NewPostButton';
+import { SidebarNavItemProfile } from '@/features/home/sidebar/components/SidebarNavItemProfile';
 
 interface Props {
   user: User;

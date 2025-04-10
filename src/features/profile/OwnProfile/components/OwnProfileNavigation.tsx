@@ -1,4 +1,4 @@
-import { OwnProfileNavigationLink } from '@/profile/OwnProfile/components/OwnProfileNavigationLink';
+import { OwnProfileNavigationLink } from '@/features/profile/OwnProfile/components/OwnProfileNavigationLink';
 
 interface Props {
   username: string;

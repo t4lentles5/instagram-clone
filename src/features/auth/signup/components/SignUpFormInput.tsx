@@ -1,34 +1,51 @@
 import { Dispatch, SetStateAction } from 'react';
 import { FieldError, UseFormRegister, UseFormWatch } from 'react-hook-form';
-import { LoginFormInputs } from '@/auth/login/components/LoginForm';
+import { XCircle } from 'phosphor-react';
+import { SignUpFormInputs } from '@/features/auth/signup/components/SignUpForm';
 
 interface Props {
-  value: 'email' | 'password';
-  register: UseFormRegister<LoginFormInputs>;
+  value: 'email' | 'password' | 'fullname' | 'username';
+  register: UseFormRegister<SignUpFormInputs>;
   errors: FieldError | undefined;
   placeholder: string;
   type: string;
-  watch: UseFormWatch<LoginFormInputs>;
+  watch: UseFormWatch<SignUpFormInputs>;
   showPassword?: boolean;
   setShowPassword?: Dispatch<SetStateAction<boolean>>;
+  pattern?: {
+    value: RegExp;
+    message: string;
+  };
+  minLength?: {
+    value: number;
+    message: string;
+  };
+  maxLength?: { value: number; message: string };
 }
 
-export const LoginFormInput = ({
+export const SignUpFormInput = ({
   value,
   register,
   errors,
-  type,
   placeholder,
+  type,
   watch,
   showPassword,
   setShowPassword,
+  pattern,
+  minLength,
+  maxLength,
 }: Props) => {
   const inputValue = watch(value);
 
   return (
     <>
       <div className="mx-10 mb-[6px]">
-        <div className="border-input-border bg-input-bg flex h-[36px] flex-col gap-3 rounded-[3px] border">
+        <div
+          className={`bg-input-bg flex h-[36px] flex-col gap-3 rounded-[3px] border ${
+            errors ? 'border-red-500' : 'border-input-border'
+          }`}
+        >
           <div className="bg-input-bg flex h-10 w-full gap-3 text-xs">
             <label className="flex h-full w-4/5 flex-col items-center px-2">
               {inputValue && (
@@ -46,6 +63,9 @@ export const LoginFormInput = ({
                     value: true,
                     message: `${placeholder} is required.`,
                   },
+                  pattern: pattern,
+                  minLength: minLength,
+                  maxLength: maxLength,
                 })}
               />
             </label>
@@ -59,6 +79,12 @@ export const LoginFormInput = ({
                 >
                   {showPassword ? 'Hide' : 'Show'}
                 </button>
+              </div>
+            )}
+
+            {errors && (
+              <div className="flex w-1/5 items-center justify-center">
+                <XCircle size={24} className="text-red-500" />
               </div>
             )}
           </div>
