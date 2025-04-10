@@ -16,16 +16,15 @@ model User {
   profile_photo    String?
   profile_photo_id String?
 
-  posts    Post[]    @relation("AuthorPosts") // Posts creados por el usuario
-  taggedIn Post[]    @relation("TaggedPosts") // Posts donde fue etiquetado
+  posts    Post[]    @relation("AuthorPosts")
+  taggedIn Post[]    @relation("TaggedPosts")
   Like     Like[]
   Comment  Comment[]
 }
 
 model Post {
   id        String   @id @default(cuid())
-  caption   String? // Descripción opcional del post
-  imageUrl  String // URL de la imagen en Cloudinary u otro
+  caption   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -33,20 +32,23 @@ model Post {
   author   User   @relation("AuthorPosts", fields: [authorId], references: [id])
   authorId String
 
-  likes    Like[] // "Me gusta"
-  comments Comment[] // Comentarios
+  likes    Like[]
+  comments Comment[]
 
-  location    String? // Geolocalización opcional
-  taggedUsers User[]  @relation("TaggedPosts") // Usuarios etiquetados
-
-  type PostType @default(IMAGE)
+  location    String?
+  taggedUsers User[]       @relation("TaggedPosts")
+  PostImages  PostImages[]
 
   @@index([authorId])
 }
 
-enum PostType {
-  IMAGE
-  VIDEO
+model PostImages {
+  id         String @id @default(cuid())
+  imageUrl   String
+  imageUrlId String
+
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
 }
 
 model Like {
@@ -57,7 +59,7 @@ model Like {
   postId    String
   createdAt DateTime @default(now())
 
-  @@unique([userId, postId]) // Un usuario solo puede dar like una vez
+  @@unique([userId, postId])
 }
 
 model Comment {
