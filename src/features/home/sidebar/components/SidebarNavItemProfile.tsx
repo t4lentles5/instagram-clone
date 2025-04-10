@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { User } from '@/interfaces/user.interface';
-import { useSidebarStore } from '@/store/ui/sidebar-store';
+import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 
 interface Props {
   user: User;

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useSidebarStore } from '@/store/ui/sidebar-store';
+import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { SidebarMoreOptions } from '@/features/home/sidebar/components/SidebarMoreOptions';
 import { SidebarNav } from '@/features/home/sidebar/components/SidebarNav';
 import { User } from '@/interfaces/user.interface';

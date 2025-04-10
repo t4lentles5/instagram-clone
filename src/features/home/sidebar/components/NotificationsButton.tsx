@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { NotificationsFIllIcon } from '@/assets/icons/sidebar/sidebar-nav/notifications/NotificationsFIllIcon';
 import { NotificationsIcon } from '@/assets/icons/sidebar/sidebar-nav/notifications/NotificationsIcon';
-import { useSidebarStore } from '@/store/ui/sidebar-store';
+import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 
 export const NotificationsButton = () => {
   const pathname = usePathname();

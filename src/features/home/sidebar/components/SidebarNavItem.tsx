@@ -3,7 +3,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useSidebarStore } from '@/store/ui/sidebar-store';
+import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 
 interface Props {
   icon: ReactNode;

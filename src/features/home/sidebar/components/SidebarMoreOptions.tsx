@@ -12,8 +12,8 @@ import { MoreOptionsIcon } from '@/assets/icons/sidebar/more-options/MoreOptions
 import { SavedIcon } from '@/assets/icons/sidebar/more-options/SavedIcon';
 import { SettingsIcon } from '@/assets/icons/sidebar/more-options/SettingsIcon';
 import { SunIcon } from '@/assets/icons/sidebar/more-options/SunIcon';
-import { useSidebarStore } from '@/store/ui/sidebar-store';
-import { useThemeStore } from '@/store/ui/theme-store';
+import { useSidebarStore } from '@/store/sidebar/sidebar-store';
+import { useThemeStore } from '@/store/theme/theme-store';
 
 export const SidebarMoreOptions = () => {
   const { isSidebarCollapsed } = useSidebarStore();

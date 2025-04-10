@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useSidebarStore } from '@/store/ui/sidebar-store';
+import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { NewPostIcon } from '@/assets/icons/sidebar/sidebar-nav/new-post/NewPostIcon';
 import { XIcon } from '@/assets/icons/XIcon';
 import { NewPostMediaIcons } from '@/assets/icons/NewPostMediaIcons';
