@@ -35,7 +35,7 @@ export const OwnProfileNavigationLink = ({ label, href }: Props) => {
         className={`${pathname === `${href}` && `border-foreground border-t`} flex items-center justify-center gap-2 py-3 md:py-5`}
         href={href}
       >
-        {icons.map((item) => item.label === label && item.icon)}
+        {icons.find((item) => item.label === label)?.icon}
         <span
           className={`${pathname === `${href}` ? 'text-primary' : 'text-secondary'} hidden text-xs font-semibold uppercase md:block`}
         >
