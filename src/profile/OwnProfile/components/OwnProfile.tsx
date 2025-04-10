@@ -1,4 +1,4 @@
-import { HeaderPageMobile } from '@/components/ui/HeaderPageMobile';
+import { HeaderPageMobile } from '@/components/layout/HeaderPageMobile';
 import { User } from '@/interfaces/user.interface';
 import { OwnUserProfileInfo } from '@/profile/OwnProfile/components/OwnUserProfileInfo';
 import { UserStats } from '@/profile/components/UserStats';

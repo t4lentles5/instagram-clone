@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Footer } from '@/components/ui/Footer';
+import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: 'Page not found • Instagram',
@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <>
-      <div className='flex flex-col items-center justify-center h-full p-10 grow'>
-        <h2 className='mb-10 text-2xl text-center'>
+      <div className="flex h-full grow flex-col items-center justify-center p-10">
+        <h2 className="mb-10 text-center text-2xl">
           Sorry, this page isn&apos;t available.
         </h2>
         <p>

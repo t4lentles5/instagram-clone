@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
 import { getUserByUsername } from '@/actions/user/get-user-by-username';
-import { Footer } from '@/components/ui/Footer';
+import { Footer } from '@/components/layout/Footer';
 import { UserProfile } from '@/profile/UserProfile/components/UserProfile';
 import { OwnProfile } from '@/profile/OwnProfile/components/OwnProfile';
 

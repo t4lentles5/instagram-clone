@@ -1,5 +1,5 @@
 import { AuthThemeProvider } from '@/components/theme/AuthThemeProvider';
-import { Footer } from '@/components/ui/Footer';
+import { Footer } from '@/components/layout/Footer';
 
 export default function AuthLayout({
   children,

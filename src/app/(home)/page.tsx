@@ -1,10 +1,10 @@
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
 import { getRecommendedUsers } from '@/actions/user/get-recommended-users';
 import { SwitchUser } from '@/home/suggested-users/components/SwitchUser';
-import { Footer } from '@/components/ui/Footer';
+import { Footer } from '@/components/layout/Footer';
 import { SuggestedUsers } from '@/home/suggested-users/components/SuggestedUsers';
 import { UserStories } from '@/home/user-stories/components/UserStories';
-import { Post } from '@/components/ui/Post';
+import { Post } from '@/home/post/components/Post';
 
 export default async function HomePage() {
   const user = await getAuthenticatedUser();
