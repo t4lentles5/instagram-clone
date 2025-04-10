@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { FieldError, UseFormRegister, UseFormWatch } from 'react-hook-form';
 import { XCircle } from 'phosphor-react';
-import { SignUpFormInputs } from '@/components/auth/signup/SignUpForm';
+import { SignUpFormInputs } from '@/auth/signup/components/SignUpForm';
 
 interface Props {
   value: 'email' | 'password' | 'fullname' | 'username';

@@ -9,7 +9,7 @@ import {
   usernameVerify,
 } from '@/actions/auth/register';
 import { login } from '@/actions/auth/login';
-import { SignUpFormInput } from '@/components/auth/signup/SignUpFormInput';
+import { SignUpFormInput } from '@/auth/signup/components/SignUpFormInput';
 
 export interface SignUpFormInputs {
   email: string;

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { FieldError, UseFormRegister, UseFormWatch } from 'react-hook-form';
-import { LoginFormInputs } from '@/components/auth/login/LoginForm';
+import { LoginFormInputs } from '@/auth/login/components/LoginForm';
 
 interface Props {
   value: 'email' | 'password';
