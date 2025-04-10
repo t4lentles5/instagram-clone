@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { useSidebarStore } from '@/store/ui/sidebar-store';
-import { SidebarMoreOptions } from '@/components/sidebar/SidebarMoreOptions';
-import { SidebarNav } from '@/components/sidebar/SidebarNav';
+import { SidebarMoreOptions } from '@/home/sidebar/components/SidebarMoreOptions';
+import { SidebarNav } from '@/home/sidebar/components/SidebarNav';
 import { User } from '@/interfaces/user.interface';
 import { InstagramIcon } from '@/assets/icons/InstagramIcon';
 import { InstagramSmallIcon } from '@/assets/icons/sidebar/InstagramSmallIcon';

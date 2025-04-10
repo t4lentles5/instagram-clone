@@ -4,13 +4,13 @@ import { HouseFillIcon } from '@/assets/icons/sidebar/sidebar-nav/HouseFillIcon'
 import { HouseIcon } from '@/assets/icons/sidebar/sidebar-nav/HouseIcon';
 import { MessengerFillIcon } from '@/assets/icons/sidebar/sidebar-nav/MessengerFillIcon';
 import { MessengerIcon } from '@/assets/icons/sidebar/sidebar-nav/MessengerIcon';
-import { NewPostButton } from '@/components/sidebar/NewPostButton';
-import { NotificationsButton } from '@/components/sidebar/NotificationsButton';
+import { NewPostButton } from '@/home/sidebar/components/NewPostButton';
+import { NotificationsButton } from '@/home/sidebar/components/NotificationsButton';
 import { ReelsIcon } from '@/assets/icons/sidebar/sidebar-nav/ReelsIcon';
 import { ReelsIFillIcon } from '@/assets/icons/sidebar/sidebar-nav/ReelsIFillIcon';
-import { SearchButton } from '@/components/sidebar/SearchButton';
-import { SidebarNavItem } from '@/components/sidebar/SidebarNavItem';
-import { SidebarNavItemProfile } from '@/components/sidebar/SidebarNavItemProfile';
+import { SearchButton } from '@/home/sidebar/components/SearchButton';
+import { SidebarNavItem } from '@/home/sidebar/components/SidebarNavItem';
+import { SidebarNavItemProfile } from '@/home/sidebar/components/SidebarNavItemProfile';
 import { User } from '@/interfaces/user.interface';
 
 interface Props {
