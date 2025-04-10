@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getAuthenticatedUser } from '@/actions/auth/get-authenticate-user';
+import { getAuthenticatedUser } from '@/actions/auth/get-authenticated-user';
 import { getUserByUsername } from '@/actions/user/get-user-by-username';
 import { Footer } from '@/components/layout/Footer';
 import { UserProfile } from '@/features/profile/UserProfile/components/UserProfile';
