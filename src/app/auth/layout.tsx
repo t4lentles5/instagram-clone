@@ -1,4 +1,4 @@
-import { AuthThemeProvider } from '@/components/ui/AuthThemeProvider';
+import { AuthThemeProvider } from '@/components/theme/AuthThemeProvider';
 import { Footer } from '@/components/ui/Footer';
 
 export default function AuthLayout({

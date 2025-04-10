@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-
 import './globals.css';
-import { ThemeProvider } from '../components/ui/ThemeProvider';
+import { ThemeProvider } from '@/components/theme/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'Instagram',
