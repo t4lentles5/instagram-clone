@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 import bcrypt from 'bcrypt';
-import prisma from '@/lib/prisma';
+import prisma from '@/config/prisma';
 import { users } from '@/seed/seed-users';
 import { changeProfilePhoto } from '@/actions/user/change-profile-photo';
 import { deleteAllProfilePhotos } from '@/actions/seed/delete-all-profile-photos';

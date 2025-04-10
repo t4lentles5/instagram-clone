@@ -1,6 +1,6 @@
 'use server';
 
-import prisma from '@/lib/prisma';
+import prisma from '@/config/prisma';
 import bcrypt from 'bcrypt';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
@@ -25,7 +25,7 @@ export const login = async (email: string, password: string) => {
     const token = jwt.sign(
       { id: user.id, email: user.email },
       process.env.JWT_SECRET!,
-      { expiresIn: '720h' }
+      { expiresIn: '720h' },
     );
 
     const cookieStore = await cookies();

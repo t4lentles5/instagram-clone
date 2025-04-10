@@ -1,6 +1,6 @@
 'use server';
 
-import prisma from '@/lib/prisma';
+import prisma from '@/config/prisma';
 
 export const getRecommendedUsers = async (id: string) => {
   const users = await prisma.user.findMany({

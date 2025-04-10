@@ -1,7 +1,7 @@
 'use server';
 
 import jwt from 'jsonwebtoken';
-import prisma from '@/lib/prisma';
+import prisma from '@/config/prisma';
 import getToken from '@/utils/cookies';
 import { redirect } from 'next/navigation';
 

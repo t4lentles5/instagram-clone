@@ -1,7 +1,7 @@
 'use server';
 
-import { cloudinary } from '@/lib/cloudinary';
-import prisma from '@/lib/prisma';
+import { cloudinary } from '@/config/cloudinary';
+import prisma from '@/config/prisma';
 
 export const deleteProfilePhoto = async (
   profile_photo_id: string,

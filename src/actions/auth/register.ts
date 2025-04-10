@@ -1,6 +1,6 @@
 'use server';
 
-import prisma from '@/lib/prisma';
+import prisma from '@/config/prisma';
 import bcrypt from 'bcrypt';
 
 export const emailVerify = async (email: string) => {
@@ -40,7 +40,7 @@ export const registerUser = async (
   email: string,
   password: string,
   fullname: string,
-  username: string
+  username: string,
 ) => {
   try {
     const emailResponse = await emailVerify(email);

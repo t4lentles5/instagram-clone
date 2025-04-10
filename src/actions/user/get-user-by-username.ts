@@ -1,6 +1,6 @@
 'use server';
 
-import prisma from '@/lib/prisma';
+import prisma from '@/config/prisma';
 import { notFound } from 'next/navigation';
 
 export const getUserByUsername = async (username: string) => {

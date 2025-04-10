@@ -1,8 +1,8 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { cloudinary } from '@/lib/cloudinary';
-import prisma from '@/lib/prisma';
+import { cloudinary } from '@/config/cloudinary';
+import prisma from '@/config/prisma';
 import { deleteProfilePhoto } from '@/actions/user/delete-profile-photo';
 
 export const changeProfilePhoto = async (

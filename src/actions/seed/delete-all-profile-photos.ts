@@ -1,6 +1,6 @@
 'use server';
 
-import { cloudinary } from '@/lib/cloudinary';
+import { cloudinary } from '@/config/cloudinary';
 
 export const deleteAllProfilePhotos = async () => {
   try {
