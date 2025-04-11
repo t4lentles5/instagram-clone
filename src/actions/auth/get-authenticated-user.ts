@@ -33,6 +33,7 @@ export const getAuthenticatedUser = async () => {
           fullname: true,
           username: true,
           profile_photo: true,
+          profile_photo_id: true,
         },
       });
 
