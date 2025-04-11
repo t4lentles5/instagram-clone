@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { CommentIcon } from '@/assets/icons/post/CommentIcon';
-import { EmojiIcon } from '@/assets/icons/post/EmojiIcon';
-import { HeartIcon } from '@/assets/icons/post/HeartIcon';
-import { MoreOptionsIcon } from '@/assets/icons/post/MoreOptionsIcon';
-import { SaveIcon } from '@/assets/icons/post/SaveIcon';
-import { ShareIcon } from '@/assets/icons/post/ShareIcon';
+import { CommentIcon } from '@/features/home/post/icons/CommentIcon';
+import { EmojiIcon } from '@/features/home/post/icons/EmojiIcon';
+import { HeartIcon } from '@/features/home/post/icons/HeartIcon';
+import { MoreOptionsIcon } from '@/features/home/post/icons/MoreOptionsIcon';
+import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
+import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { Post } from '@/interfaces/post.interface';
 
