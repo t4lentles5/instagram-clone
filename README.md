@@ -7,6 +7,5 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 3. Install dependencies `npm install`
 4. Start the database `docker-compose up --build`
 5. Run Prisma migrations `npx prisma migrate dev`
-6. Before running seed for the first time, create the typesetting compilation files `cd src/seed` `npx tsc --init`
-7. Run seed `npm run seed`
-8. Run the project `npm run dev`
+6. Run the project `npm run dev`
+7. Send a POST request to `http://localhost:3000/api/seed` to seed the database with initial data.
