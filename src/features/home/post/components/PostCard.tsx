@@ -7,14 +7,14 @@ import { HeartIcon } from '@/assets/icons/post/HeartIcon';
 import { MoreOptionsIcon } from '@/assets/icons/post/MoreOptionsIcon';
 import { SaveIcon } from '@/assets/icons/post/SaveIcon';
 import { ShareIcon } from '@/assets/icons/post/ShareIcon';
-import { User } from '@/interfaces/user.interface';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
+import { Post } from '@/interfaces/post.interface';
 
 interface Props {
-  user: User;
+  post: Post;
 }
 
-export const Post = ({ user }: Props) => {
+export const PostCard = ({ post }: Props) => {
   return (
     <>
       <div className="border-border mx-auto mb-5 w-full max-w-[470px] border-b px-4 pb-4 sm:px-0">
@@ -22,7 +22,7 @@ export const Post = ({ user }: Props) => {
           <div className="mr-3">
             <div className="h-8 w-8">
               <ProfilePhoto
-                profile_photo={user.profile_photo}
+                profile_photo={post.author.profile_photo}
                 imageSize={{
                   size: 'w-8',
                 }}
@@ -36,7 +36,9 @@ export const Post = ({ user }: Props) => {
             </div>
           </div>
           <div className="flex w-full items-baseline gap-x-1">
-            <span className="text-sm leading-[18px]">{user.username}</span>
+            <span className="text-sm leading-[18px]">
+              {post.author.username}
+            </span>
 
             <span className="flex items-center justify-center">•</span>
 
@@ -54,7 +56,9 @@ export const Post = ({ user }: Props) => {
           </div>
         </div>
 
-        <div className="min-[485px]:border-border aspect-468/585 w-full min-[485px]:rounded-[4px] min-[485px]:border"></div>
+        <div className="border-border overflow-hidden rounded-[4px] border">
+          <img src={post.PostImages[0].imageUrl} alt="" />
+        </div>
 
         <div className="flex w-full flex-col">
           <div className="flex justify-between py-1">
@@ -83,9 +87,9 @@ export const Post = ({ user }: Props) => {
           <div className="">
             <div>
               <span className="text-sm leading-[18px] font-semibold">
-                {user.username}
+                {post.author.username}
               </span>{' '}
-              <span className="text-sm">description 👍</span>
+              <span className="text-sm">{post.caption}</span>
             </div>
             <Link
               href={'/explore/tags/some'}

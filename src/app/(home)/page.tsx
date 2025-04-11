@@ -4,18 +4,22 @@ import { SwitchUser } from '@/features/home/suggested-users/components/SwitchUse
 import { Footer } from '@/components/layout/Footer';
 import { SuggestedUsers } from '@/features/home/suggested-users/components/SuggestedUsers';
 import { UserStories } from '@/features/home/user-stories/components/UserStories';
-import { Post } from '@/features/home/post/components/Post';
+import { PostCard } from '@/features/home/post/components/PostCard';
+import { getPosts } from '@/actions/post/get-posts';
 
 export default async function HomePage() {
   const user = await getAuthenticatedUser();
   const users = await getRecommendedUsers(user.id);
+  const posts = await getPosts();
+
+  console.log(posts);
 
   return (
     <div className="flex h-full w-full items-center justify-center">
       <div className="flex w-[630px] flex-col items-center pt-4">
         <UserStories usersStories={users} user={user} />
-        {users.map((user) => (
-          <Post user={user} key={user.id} />
+        {posts.map((post) => (
+          <PostCard post={post} key={post.id} />
         ))}
       </div>
 
