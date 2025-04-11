@@ -20,8 +20,8 @@ export const SavedIcon = ({ isActive }: Props) => {
           points="20 21 12 13.44 4 21 4 3 20 3 20 21"
           stroke="currentColor"
           strokeLinecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinejoin="round"
+          strokeWidth="2"
         ></polygon>
       </svg>
     </>
