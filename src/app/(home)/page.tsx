@@ -12,8 +12,6 @@ export default async function HomePage() {
   const users = await getRecommendedUsers(user.id);
   const posts = await getPosts();
 
-  console.log(posts);
-
   return (
     <div className="flex h-full w-full items-center justify-center">
       <div className="flex w-[630px] flex-col items-center pt-4">

@@ -7,7 +7,7 @@ interface Props {
 export const OwnProfileNavigation = ({ username }: Props) => {
   const Items = [
     { label: 'Posts', href: `/${username}` },
-    { label: 'Reels', href: `/${username}/reels` },
+    { label: 'Saved', href: `/${username}/saved` },
     { label: 'Tagged', href: `/${username}/tagged` },
   ];
 

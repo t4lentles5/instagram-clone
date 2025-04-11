@@ -48,6 +48,8 @@ export default async function UserLayout({
     notFound();
   }
 
+  console.log(authenticatedUser);
+
   const user =
     userByUsername.username === authenticatedUser.username
       ? authenticatedUser

@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { PostsIcon } from '@/features/profile/icons/PostsIcon';
-import { ReelsIcon } from '@/features/profile/icons/ReelsIcon';
 import { TaggedIcon } from '@/features/profile/icons/TaggedIcon';
+import { SavedIcon } from '../../icons/SavedIcon';
 
 interface Props {
   label: string;
@@ -20,8 +20,8 @@ export const OwnProfileNavigationLink = ({ label, href }: Props) => {
       label: 'Posts',
     },
     {
-      icon: <ReelsIcon isActive={pathname === href} />,
-      label: 'Reels',
+      icon: <SavedIcon isActive={pathname === href} />,
+      label: 'Saved',
     },
     {
       icon: <TaggedIcon isActive={pathname === href} />,

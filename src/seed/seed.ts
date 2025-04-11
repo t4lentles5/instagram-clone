@@ -93,7 +93,27 @@ export const initialData: SeedData = {
   posts: [
     {
       caption: 'Post 1 👍',
-      imagesUrl: ['/post_images/post_1.jpg', '/post_images/post_1.jpg'],
+      imagesUrl: ['/post_images/post_1.jpg'],
+      userUsername: 'omar_1',
+    },
+    {
+      caption: 'Post 2 👍',
+      imagesUrl: ['/post_images/post_2.jpg'],
+      userUsername: 'omar_1',
+    },
+    {
+      caption: 'Post 3 👍',
+      imagesUrl: ['/post_images/post_3.jpg'],
+      userUsername: 'omar_1',
+    },
+    {
+      caption: 'Post 4 👍',
+      imagesUrl: ['/post_images/post_4.jpg'],
+      userUsername: 'omar_1',
+    },
+    {
+      caption: 'Post 5 👍',
+      imagesUrl: ['/post_images/post_5.jpg'],
       userUsername: 'omar_1',
     },
     {
