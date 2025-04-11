@@ -5,8 +5,8 @@ import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { SidebarMoreOptions } from '@/features/home/sidebar/components/SidebarMoreOptions';
 import { SidebarNav } from '@/features/home/sidebar/components/SidebarNav';
 import { User } from '@/interfaces/user.interface';
-import { InstagramIcon } from '@/assets/icons/InstagramIcon';
-import { InstagramSmallIcon } from '@/assets/icons/sidebar/InstagramSmallIcon';
+import { InstagramIcon } from '@/features/home/sidebar/icons/InstagramIcon';
+import { InstagramSmallIcon } from '@/features/home/sidebar/icons/InstagramSmallIcon';
 
 interface Props {
   user: User;

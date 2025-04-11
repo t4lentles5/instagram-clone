@@ -3,15 +3,15 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { logout } from '@/actions/auth/logout';
-import { MoonIcon } from '@/assets/icons/sidebar/more-options/MoonIcon';
-import { BackIcon } from '@/assets/icons/sidebar/more-options/BackSmallIcon';
-import { MoonSmallIcon } from '@/assets/icons/sidebar/more-options/MoonSmallIcon';
-import { SunSmallIcon } from '@/assets/icons/sidebar/more-options/SunSmallIcon';
-import { MoreOptionsFillIcon } from '@/assets/icons/sidebar/more-options/MoreOptionsFillIcon';
-import { MoreOptionsIcon } from '@/assets/icons/sidebar/more-options/MoreOptionsIcon';
-import { SavedIcon } from '@/assets/icons/sidebar/more-options/SavedIcon';
-import { SettingsIcon } from '@/assets/icons/sidebar/more-options/SettingsIcon';
-import { SunIcon } from '@/assets/icons/sidebar/more-options/SunIcon';
+import { MoonIcon } from '@/features/home/sidebar/icons/more-options/MoonIcon';
+import { BackIcon } from '@/features/home/sidebar/icons/more-options/BackSmallIcon';
+import { MoonSmallIcon } from '@/features/home/sidebar/icons/more-options/MoonSmallIcon';
+import { SunSmallIcon } from '@/features/home/sidebar/icons/more-options/SunSmallIcon';
+import { MoreOptionsFillIcon } from '@/features/home/sidebar/icons/more-options/MoreOptionsFillIcon';
+import { MoreOptionsIcon } from '@/features/home/sidebar/icons/more-options/MoreOptionsIcon';
+import { SavedIcon } from '@/features/home/sidebar/icons/more-options/SavedIcon';
+import { SettingsIcon } from '@/features/home/sidebar/icons/more-options/SettingsIcon';
+import { SunIcon } from '@/features/home/sidebar/icons/more-options/SunIcon';
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { useThemeStore } from '@/store/theme/theme-store';
 

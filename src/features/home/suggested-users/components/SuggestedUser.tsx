@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { CameraIcon } from '@/assets/icons/CameraIcon';
+import { CameraIcon } from '@/features/home/sidebar/icons/CameraIcon';
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
 import { User } from '@/interfaces/user.interface';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';

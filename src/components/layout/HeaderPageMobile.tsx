@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { BackIcon } from '@/assets/icons/BackIcon';
+import { BackIcon } from '@/features/home/sidebar/icons/BackIcon';
 
 export const HeaderPageMobile = ({
   children,
@@ -12,11 +12,11 @@ export const HeaderPageMobile = ({
   const router = useRouter();
 
   return (
-    <header className='fixed top-0 z-50 flex items-center w-full px-4 py-3 border-b bg-background md:hidden border-separator'>
-      <Link href='#' onClick={() => router.back()} className='fixed'>
+    <header className="bg-background border-separator fixed top-0 z-50 flex w-full items-center border-b px-4 py-3 md:hidden">
+      <Link href="#" onClick={() => router.back()} className="fixed">
         <BackIcon />
       </Link>
-      <p className='w-full font-semibold text-center'>{children}</p>
+      <p className="w-full text-center font-semibold">{children}</p>
     </header>
   );
 };

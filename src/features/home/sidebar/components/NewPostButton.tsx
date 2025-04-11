@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
-import { NewPostIcon } from '@/assets/icons/sidebar/sidebar-nav/new-post/NewPostIcon';
-import { XIcon } from '@/assets/icons/XIcon';
-import { NewPostMediaIcons } from '@/assets/icons/NewPostMediaIcons';
+import { NewPostIcon } from '@/features/home/sidebar/icons/sidebar-nav/new-post/NewPostIcon';
+import { XIcon } from '@/features/home/sidebar/icons/XIcon';
+import { NewPostMediaIcons } from '@/features/home/sidebar/icons/NewPostMediaIcons';
 
 export const NewPostButton = () => {
   const {
