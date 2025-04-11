@@ -1,5 +1,5 @@
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticated-user';
-import { CameraIcon } from '@/assets/icons/profile/CameraIcon';
+import { CameraIcon } from '@/features/profile/icons/CameraIcon';
 
 interface Props {
   params: Promise<{ username: string }>;

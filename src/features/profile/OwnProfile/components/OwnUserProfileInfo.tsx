@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { User } from '@/interfaces/user.interface';
 import { OwnProfilePhoto } from '@/features/profile/OwnProfile/components/OwnProfilePhoto';
-import { SimilarAccountsIcon } from '@/assets/icons/profile/SimilarAccountsIcon';
-import { OptionsIcon } from '@/assets/icons/profile/OptionsIcon';
+import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
+import { OptionsIcon } from '@/features/profile/icons/OptionsIcon';
 
 interface Props {
   user: User;

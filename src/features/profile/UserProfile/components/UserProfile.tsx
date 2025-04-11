@@ -1,4 +1,4 @@
-import { SimilarAccountsIcon } from '@/assets/icons/profile/SimilarAccountsIcon';
+import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
 import { User } from '@/interfaces/user.interface';
 
 interface Props {
