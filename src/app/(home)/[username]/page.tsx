@@ -3,6 +3,7 @@ import { CameraIcon } from '@/features/profile/icons/CameraIcon';
 import { CarouselIcon } from '@/features/profile/icons/CarouselIcon';
 import { CommentsIcon } from '@/features/profile/icons/CommentsIcon';
 import { LikesIcon } from '@/features/profile/icons/LikesIcon';
+import Link from 'next/link';
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -18,7 +19,11 @@ export default async function ProfileUserPage({ params }: Props) {
       {posts.length ? (
         <div className="grid w-full grid-cols-3 gap-1">
           {posts.map((post) => (
-            <div key={post.id} className="group relative">
+            <Link
+              href={`/p/${post.id}`}
+              key={post.id}
+              className="group relative"
+            >
               <img
                 src={post.PostImages[0].imageUrl}
                 alt=""
@@ -48,7 +53,7 @@ export default async function ProfileUserPage({ params }: Props) {
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       ) : (
