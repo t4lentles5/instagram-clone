@@ -3,6 +3,9 @@ import prisma from '@/config/prisma';
 
 export const getPosts = async () => {
   const posts = prisma.post.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
     select: {
       author: {
         select: {

@@ -9,6 +9,8 @@ import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
 import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { Post } from '@/interfaces/post.interface';
+import { formatDate } from '@/utils/format-date';
+import { getExactDate } from '@/utils/get-exact-date';
 
 interface Props {
   post: Post;
@@ -45,9 +47,9 @@ export const PostCard = ({ post }: Props) => {
             <time
               dateTime="2025-03-31T15:30:23.000Z"
               className="text-secondary text-sm leading-[18px]"
-              title="Mar 31, 2025"
+              title={getExactDate(post.createdAt.toString())}
             >
-              1d
+              {formatDate(post.createdAt.toString())}
             </time>
           </div>
 
