@@ -20,6 +20,7 @@
   --color-primary: var(--text-primary);
   --color-red: var(--text-red);
   --color-secondary: var(--text-secondary);
+  --color-post-image-overlay: var(--post-image-overlay);
 }
 
 @layer utilities {
@@ -53,6 +54,7 @@
     --text-primary: rgb(0, 0, 0);
     --text-red: rgb(237, 73, 86);
     --text-secondary: rgb(115, 115, 115);
+    --post-image-overlay: rgba(0, 0, 0, 0.7);
   }
 
   .dark {
@@ -75,6 +77,7 @@
     --text-primary: rgb(245, 245, 245);
     --text-red: rgb(237, 73, 86);
     --text-secondary: rgb(168, 168, 168);
+    --post-image-overlay: rgba(0, 0, 0, 0.7);
   }
 
   input:-webkit-autofill {
