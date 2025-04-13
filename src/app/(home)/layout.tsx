@@ -3,9 +3,11 @@ import { getAuthenticatedUser } from '@/actions/auth/get-authenticated-user';
 import { Sidebar } from '@/features/home/sidebar/components/Sidebar';
 
 export default async function Layout({
+  modal,
   children,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   const user = await getAuthenticatedUser();
 
@@ -18,6 +20,7 @@ export default async function Layout({
       <Sidebar user={user} />
 
       <div className="flex grow flex-col items-center">{children}</div>
+      {modal}
     </div>
   );
 }

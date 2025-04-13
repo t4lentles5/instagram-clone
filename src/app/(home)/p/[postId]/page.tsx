@@ -4,7 +4,7 @@ type Props = {
   }>;
 };
 
-export default async function Photo({ params }: Props) {
+export default async function PostPage({ params }: Props) {
   const { postId } = await params;
 
   return <div className="mt-2 grid place-content-center">{postId}</div>;

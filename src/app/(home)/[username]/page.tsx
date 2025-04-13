@@ -20,7 +20,7 @@ export default async function ProfileUserPage({ params }: Props) {
         <div className="grid w-full grid-cols-3 gap-1">
           {posts.map((post) => (
             <Link
-              href={`/${username}/p/${post.id}`}
+              href={`/p/${post.id}`}
               key={post.id}
               className="group relative"
             >

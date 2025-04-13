@@ -4,7 +4,7 @@ type Props = {
   }>;
 };
 
-export default async function Photo({ params }: Props) {
+export default async function PostModal({ params }: Props) {
   const { postId } = await params;
 
   return (
