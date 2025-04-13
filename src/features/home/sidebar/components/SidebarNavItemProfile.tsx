@@ -10,6 +10,7 @@ interface Props {
 export const SidebarNavItemProfile = ({ user }: Props) => {
   const pathname = usePathname();
   const { isSidebarCollapsed } = useSidebarStore();
+  console.log(pathname);
 
   return (
     <>
@@ -19,7 +20,7 @@ export const SidebarNavItemProfile = ({ user }: Props) => {
           href={`/${user.username}`}
         >
           <div className="relative">
-            {pathname === `/${user.username}` && (
+            {pathname.startsWith(`/${user.username}`) && (
               <div className="border-foreground absolute top-0 left-0 h-7 w-7 translate-x-[-2px] translate-y-[-2px] rounded-full border-2"></div>
             )}
             <img
@@ -32,7 +33,7 @@ export const SidebarNavItemProfile = ({ user }: Props) => {
             className={`${
               isSidebarCollapsed ? 'hidden' : 'xl:block'
             } hidden leading-5 ${
-              pathname === `/${user.username}` &&
+              pathname.startsWith(`/${user.username}`) &&
               !isSidebarCollapsed &&
               'font-bold'
             }`}
