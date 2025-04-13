@@ -32,9 +32,11 @@ type Params = Promise<{ username: string }>;
 
 export default async function UserLayout({
   children,
+  modal,
   params,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
   params: Params;
 }) {
   const { username } = await params;
@@ -60,6 +62,7 @@ export default async function UserLayout({
   return (
     <div className="flex w-full flex-col items-center justify-center pt-16 md:mt-8 md:pt-0 lg:mx-10 lg:max-w-[935px]">
       {isOwnProfile ? <OwnProfile user={user} /> : <UserProfile user={user} />}
+      {modal}
       {children}
       <Footer />
     </div>
