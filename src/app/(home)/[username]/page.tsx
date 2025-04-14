@@ -22,6 +22,7 @@ export default async function ProfileUserPage({ params }: Props) {
             <Link
               href={`/p/${post.id}`}
               key={post.id}
+              scroll={false}
               className="group relative"
             >
               <img

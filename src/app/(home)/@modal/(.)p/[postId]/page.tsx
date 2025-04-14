@@ -1,17 +1,20 @@
+import { getPostById } from '@/actions/post/get-post-by-id';
+import { PostModal } from '@/features/profile/post/components/PostModal';
+import { notFound } from 'next/navigation';
+
 type Props = {
   params: Promise<{
     postId: string;
   }>;
 };
 
-export default async function PostModal({ params }: Props) {
+export default async function PostModalPage({ params }: Props) {
   const { postId } = await params;
+  const post = await getPostById(postId);
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="rounded-xl bg-white p-4">
-        <h2>Post ID: {postId}</h2>
-      </div>
-    </div>
-  );
+  if (!post) {
+    notFound();
+  }
+
+  return <PostModal post={post} />;
 }
