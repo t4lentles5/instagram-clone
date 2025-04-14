@@ -9,9 +9,8 @@ interface Props {
   params: Promise<{ username: string }>;
 }
 
-export default async function ProfileUserPage({ params }: Props) {
+export default async function PostsPage({ params }: Props) {
   const { username } = await params;
-
   const posts = await getPostsByUsername(username);
 
   return (

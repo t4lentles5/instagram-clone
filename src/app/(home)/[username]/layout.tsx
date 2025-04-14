@@ -44,18 +44,12 @@ export default async function UserLayout({
     getUserByUsername(username),
   ]);
 
-  if (!userByUsername) {
+  if (!userByUsername || !authenticatedUser) {
     notFound();
   }
 
-  console.log(authenticatedUser);
-
-  const user =
-    userByUsername.username === authenticatedUser.username
-      ? authenticatedUser
-      : userByUsername;
-
   const isOwnProfile = userByUsername.username === authenticatedUser.username;
+  const user = isOwnProfile ? authenticatedUser : userByUsername;
 
   return (
     <div className="flex w-full flex-col items-center justify-center pt-16 md:mt-8 md:pt-0 lg:mx-10 lg:max-w-[935px]">
