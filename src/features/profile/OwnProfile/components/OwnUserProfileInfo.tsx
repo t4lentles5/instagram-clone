@@ -64,7 +64,7 @@ export const OwnUserProfileInfo = async ({ user }: Props) => {
             </div>
             <div className="hidden md:block">
               <h3 className="text-sm font-semibold">{user.fullname}</h3>
-              <span className="text-sm">💜</span>
+              <span className="text-sm">{user.bio}</span>
             </div>
           </div>
         </div>
