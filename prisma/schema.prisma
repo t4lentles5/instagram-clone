@@ -15,6 +15,7 @@ model User {
   username         String  @unique
   profile_photo    String?
   profile_photo_id String?
+  bio              String?
 
   posts    Post[]    @relation("AuthorPosts")
   taggedIn Post[]    @relation("TaggedPosts")
