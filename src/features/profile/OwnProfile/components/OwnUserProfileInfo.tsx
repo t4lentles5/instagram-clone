@@ -1,16 +1,17 @@
-'use client';
-
 import Link from 'next/link';
 import { User } from '@/interfaces/user.interface';
 import { OwnProfilePhoto } from '@/features/profile/OwnProfile/components/OwnProfilePhoto';
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
 import { OptionsIcon } from '@/features/profile/icons/OptionsIcon';
+import { getPostsCountByUsername } from '@/actions/post/get-posts-count-by-username';
 
 interface Props {
   user: User;
 }
 
-export const OwnUserProfileInfo = ({ user }: Props) => {
+export const OwnUserProfileInfo = async ({ user }: Props) => {
+  const postsCount = await getPostsCountByUsername(user.username);
+
   return (
     <>
       <main className="border-border mt-4 flex h-full w-full flex-col items-center border-b pb-0 md:mt-0 md:pb-10">
@@ -52,7 +53,7 @@ export const OwnUserProfileInfo = ({ user }: Props) => {
 
             <div className="hidden w-full items-center justify-start md:flex md:gap-10">
               <p className="text-center font-bold">
-                0 <span className="font-normal">posts</span>
+                {postsCount} <span className="font-normal">posts</span>
               </p>
               <button className="px-2 font-bold">
                 0 <span className="font-normal">followers</span>

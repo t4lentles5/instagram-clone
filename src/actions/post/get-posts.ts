@@ -2,7 +2,7 @@
 import prisma from '@/config/prisma';
 
 export const getPosts = async () => {
-  const posts = prisma.post.findMany({
+  const posts = await prisma.post.findMany({
     orderBy: {
       createdAt: 'desc',
     },
