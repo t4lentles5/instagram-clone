@@ -4,6 +4,7 @@ interface User {
   username: string;
   password: string;
   profile_photo: string;
+  bio: string;
 }
 
 interface Post {
@@ -25,6 +26,7 @@ export const initialData: SeedData = {
       username: 'omar_1',
       password: '123456',
       profile_photo: '/profile_photos/photo_1.jpg',
+      bio: 'Bio 👍',
     },
     {
       email: 'correo2@correo.com',
@@ -32,6 +34,7 @@ export const initialData: SeedData = {
       username: 'omar_2',
       password: '123456',
       profile_photo: '/profile_photos/photo_2.webp',
+      bio: 'Bio 👍',
     },
     {
       email: 'correo3@correo.com',
@@ -39,6 +42,7 @@ export const initialData: SeedData = {
       username: 'omar_3',
       password: '123456',
       profile_photo: '/profile_photos/photo_3.webp',
+      bio: 'Bio 👍',
     },
     {
       email: 'correo4@correo.com',
@@ -46,6 +50,7 @@ export const initialData: SeedData = {
       username: 'omar_4',
       password: '123456',
       profile_photo: '/profile_photos/photo_4.png',
+      bio: 'Bio 👍',
     },
     {
       email: 'correo5@correo.com',
@@ -53,6 +58,7 @@ export const initialData: SeedData = {
       username: 'omar_5',
       password: '123456',
       profile_photo: '/profile_photos/photo_5.jpg',
+      bio: 'Bio 👍',
     },
     {
       email: 'correo6@correo.com',
@@ -60,6 +66,7 @@ export const initialData: SeedData = {
       username: 'omar_6',
       password: '123456',
       profile_photo: '/profile_photos/photo_6.webp',
+      bio: 'Bio 👍',
     },
     {
       email: 'correo7@correo.com',
@@ -67,6 +74,7 @@ export const initialData: SeedData = {
       username: 'omar_7',
       password: '123456',
       profile_photo: '/profile_photos/photo_7.jpg',
+      bio: 'Bio 👍',
     },
     {
       email: 'correo8@correo.com',
@@ -74,6 +82,7 @@ export const initialData: SeedData = {
       username: 'omar_8',
       password: '123456',
       profile_photo: '/profile_photos/photo_8.webp',
+      bio: 'Bio 👍',
     },
     {
       email: 'correo9@correo.com',
@@ -81,6 +90,7 @@ export const initialData: SeedData = {
       username: 'omar_9',
       password: '123456',
       profile_photo: '/profile_photos/photo_9.jpg',
+      bio: 'Bio 👍',
     },
     {
       email: 'correo10@correo.com',
@@ -88,6 +98,7 @@ export const initialData: SeedData = {
       username: 'omar_10',
       password: '123456',
       profile_photo: '/profile_photos/photo_10.jpg',
+      bio: 'Bio 👍',
     },
   ],
   posts: [

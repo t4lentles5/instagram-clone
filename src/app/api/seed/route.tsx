@@ -24,6 +24,7 @@ export async function POST() {
           fullname: user.fullname,
           username: user.username,
           password: hashedPassword,
+          bio: user.bio,
         },
       });
 
