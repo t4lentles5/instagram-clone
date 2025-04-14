@@ -11,6 +11,7 @@ import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { Post } from '@/interfaces/post.interface';
 import { formatDate } from '@/utils/format-date';
 import { getExactDate } from '@/utils/get-exact-date';
+import { PostCarousel } from './PostCarousel';
 
 interface Props {
   post: Post;
@@ -58,9 +59,7 @@ export const PostCard = ({ post }: Props) => {
           </div>
         </div>
 
-        <div className="border-border overflow-hidden rounded-[4px] border">
-          <img src={post.PostImages[0].imageUrl} alt="" />
-        </div>
+        <PostCarousel images={post.PostImages.map((img) => img.imageUrl)} />
 
         <div className="flex w-full flex-col">
           <div className="flex justify-between py-1">
