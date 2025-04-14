@@ -10,7 +10,6 @@ interface Props {
 export const SidebarNavItemProfile = ({ user }: Props) => {
   const pathname = usePathname();
   const { isSidebarCollapsed } = useSidebarStore();
-  console.log(pathname);
 
   return (
     <>
