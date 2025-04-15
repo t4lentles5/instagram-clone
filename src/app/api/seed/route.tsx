@@ -63,6 +63,7 @@ export async function POST() {
         data: {
           caption: post.caption,
           authorId: user!.id,
+          aspect_ratio: post.aspect_ratio,
         },
       });
 

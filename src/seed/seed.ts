@@ -11,6 +11,7 @@ interface Post {
   caption: string;
   imagesUrl: string[];
   userUsername: string;
+  aspect_ratio: 'original' | 'square' | 'portrait' | 'video';
 }
 
 interface SeedData {
@@ -110,31 +111,37 @@ export const initialData: SeedData = {
         '/post_images/image_12.png',
       ],
       userUsername: 'omar_1',
+      aspect_ratio: 'square',
     },
     {
       caption: 'Post 2 👍',
       imagesUrl: ['/post_images/image_2.jpg', '/post_images/image_1.jpg'],
       userUsername: 'omar_1',
+      aspect_ratio: 'portrait',
     },
     {
       caption: 'Post 3 👍',
       imagesUrl: ['/post_images/image_3.jpg', '/post_images/image_4.jpg'],
       userUsername: 'omar_1',
+      aspect_ratio: 'video',
     },
     {
       caption: 'Post 4 👍',
       imagesUrl: ['/post_images/image_4.jpg', '/post_images/image_7.jpg'],
       userUsername: 'omar_1',
+      aspect_ratio: 'original',
     },
     {
       caption: 'Post 5 👍',
       imagesUrl: ['/post_images/image_5.jpg'],
       userUsername: 'omar_1',
+      aspect_ratio: 'original',
     },
     {
       caption: 'Post 2 👍',
       imagesUrl: ['/post_images/image_2.jpg', '/post_images/image_2.jpg'],
       userUsername: 'omar_2',
+      aspect_ratio: 'video',
     },
     {
       caption: 'Post 3 👍',
@@ -144,41 +151,49 @@ export const initialData: SeedData = {
         '/post_images/image_2.jpg',
       ],
       userUsername: 'omar_3',
+      aspect_ratio: 'original',
     },
     {
       caption: 'Post 4 👍',
       imagesUrl: ['/post_images/image_4.jpg'],
       userUsername: 'omar_4',
+      aspect_ratio: 'portrait',
     },
     {
       caption: 'Post 5 👍',
       imagesUrl: ['/post_images/image_5.jpg'],
       userUsername: 'omar_5',
+      aspect_ratio: 'original',
     },
     {
       caption: 'Post 6 👍',
       imagesUrl: ['/post_images/image_6.jpg'],
       userUsername: 'omar_6',
+      aspect_ratio: 'portrait',
     },
     {
       caption: 'Post 7 👍',
       imagesUrl: ['/post_images/image_7.jpg'],
       userUsername: 'omar_7',
+      aspect_ratio: 'video',
     },
     {
       caption: 'Post 8 👍',
       imagesUrl: ['/post_images/image_8.jpg'],
       userUsername: 'omar_8',
+      aspect_ratio: 'original',
     },
     {
       caption: 'Post 9 👍',
       imagesUrl: ['/post_images/image_9.jpg'],
       userUsername: 'omar_9',
+      aspect_ratio: 'portrait',
     },
     {
       caption: 'Post 10 👍',
       imagesUrl: ['/post_images/image_10.jpg'],
       userUsername: 'omar_10',
+      aspect_ratio: 'video',
     },
   ],
 };
