@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 import bcrypt from 'bcrypt';
+import sharp from 'sharp';
 import prisma from '@/config/prisma';
 import { initialData } from '@/seed/seed';
 import { changeProfilePhoto } from '@/actions/user/change-profile-photo';
@@ -59,11 +60,30 @@ export async function POST() {
         where: { username: post.userUsername },
       });
 
+      const firstImage = post.imagesUrl[0];
+      const filePath = path.join(
+        process.cwd(),
+        'src',
+        'seed',
+        'posts_images',
+        path.basename(firstImage),
+      );
+
+      const fileBuffer = await fs.readFile(filePath);
+      const metadata = await sharp(fileBuffer).metadata();
+
+      if (!metadata.width || !metadata.height) {
+        throw new Error('No se pudo obtener tamaño de la imagen');
+      }
+
+      const imageDimensions = `${metadata.width}/${metadata.height}`;
+
       const databasePost = await prisma.post.create({
         data: {
           caption: post.caption,
           authorId: user!.id,
           aspect_ratio: post.aspect_ratio,
+          first_image_dimensions: imageDimensions,
         },
       });
 
