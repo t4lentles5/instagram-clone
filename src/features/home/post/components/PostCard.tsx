@@ -18,6 +18,16 @@ interface Props {
 }
 
 export const PostCard = ({ post }: Props) => {
+  const getAspectClass = () => {
+    if (post.aspect_ratio === 'square') return 'aspect-square';
+    if (post.aspect_ratio === 'portrait') return 'aspect-[4/5]';
+    if (post.aspect_ratio === 'video') return 'aspect-video';
+    if (post.aspect_ratio === 'original')
+      return `aspect-[${post.first_image_dimensions}]`;
+  };
+
+  const aspect_ratio_image = getAspectClass();
+
   return (
     <>
       <div className="border-border mx-auto mb-5 w-full max-w-[470px] border-b px-4 pb-4 sm:px-0">
@@ -61,7 +71,7 @@ export const PostCard = ({ post }: Props) => {
 
         <PostCarousel
           images={post.PostImages.map((img) => img.imageUrl)}
-          aspect_ratio={post.aspect_ratio}
+          aspect_ratio_image={aspect_ratio_image}
         />
 
         <div className="flex w-full flex-col">
