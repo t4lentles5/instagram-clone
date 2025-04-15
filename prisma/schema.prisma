@@ -31,11 +31,12 @@ enum Aspect_ratio {
 }
 
 model Post {
-  id           String       @id @default(cuid())
-  caption      String?
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  aspect_ratio Aspect_ratio @default(square)
+  id                     String       @id @default(cuid())
+  caption                String?
+  createdAt              DateTime     @default(now())
+  updatedAt              DateTime     @updatedAt
+  aspect_ratio           Aspect_ratio @default(square)
+  first_image_dimensions String?
 
   author   User   @relation("AuthorPosts", fields: [authorId], references: [id])
   authorId String
