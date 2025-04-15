@@ -59,7 +59,10 @@ export const PostCard = ({ post }: Props) => {
           </div>
         </div>
 
-        <PostCarousel images={post.PostImages.map((img) => img.imageUrl)} />
+        <PostCarousel
+          images={post.PostImages.map((img) => img.imageUrl)}
+          aspect_ratio={post.aspect_ratio}
+        />
 
         <div className="flex w-full flex-col">
           <div className="flex justify-between py-1">

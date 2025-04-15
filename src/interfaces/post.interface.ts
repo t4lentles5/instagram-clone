@@ -6,6 +6,7 @@ export interface Post {
   createdAt: Date;
   location?: string | null;
   authorId: string;
+  aspect_ratio: 'original' | 'square' | 'portrait' | 'video';
   author: {
     profile_photo: User['profile_photo'];
     username: User['username'];

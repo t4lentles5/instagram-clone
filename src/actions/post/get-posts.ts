@@ -18,6 +18,7 @@ export const getPosts = async () => {
       createdAt: true,
       location: true,
       authorId: true,
+      aspect_ratio: true,
       PostImages: {
         select: {
           id: true,
