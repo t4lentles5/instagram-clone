@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { NextIcon } from '../icons/NextIcon';
-import { BackIcon } from '../icons/BackIcon';
+import { NextIcon } from '@/features/home/post/icons/NextIcon';
+import { BackIcon } from '@/features/home/post/icons/BackIcon';
 
 interface Props {
   images: string[];
@@ -20,26 +20,24 @@ export function PostCarousel({ images, aspect_ratio_image }: Props) {
 
   return (
     <div
-      className={`border-border relative overflow-hidden rounded-[4px] border bg-black`}
+      className='border-border relative overflow-hidden rounded-[4px] border bg-black'
       style={{ aspectRatio: aspect_ratio_image }}
     >
-      {images.map((img, index) => (
+      {images.length > 0 && (
         <img
-          key={index}
-          src={img}
-          alt=""
-          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover transition-opacity duration-300 ${
-            index === current ? 'opacity-100' : 'opacity-0'
-          }`}
+          key={current}
+          src={images[current]}
+          alt=''
+          className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover'
         />
-      ))}
+      )}
 
       {images.length > 1 && (
         <>
           {current !== 0 && (
             <button
               onClick={prev}
-              className="absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black"
+              className='absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black'
             >
               <BackIcon />
             </button>
@@ -47,7 +45,7 @@ export function PostCarousel({ images, aspect_ratio_image }: Props) {
           {current !== images.length - 1 && (
             <button
               onClick={next}
-              className="absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black"
+              className='absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black'
             >
               <NextIcon />
             </button>
@@ -55,12 +53,13 @@ export function PostCarousel({ images, aspect_ratio_image }: Props) {
         </>
       )}
 
-      <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 justify-center gap-1">
+      <div className='absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 justify-center gap-1'>
         {images.length > 1 &&
           images.map((_, index) => (
             <div
               key={index}
-              className={`h-1.5 w-1.5 rounded-full ${
+              onClick={() => setCurrent(index)}
+              className={`h-1.5 w-1.5 cursor-pointer rounded-full ${
                 index === current ? 'bg-white' : 'bg-white/50'
               }`}
             />
