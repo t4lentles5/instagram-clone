@@ -20,7 +20,8 @@ export function PostCarousel({ images, aspect_ratio_image }: Props) {
 
   return (
     <div
-      className={`${aspect_ratio_image} border-border relative overflow-hidden rounded-[4px] border bg-black`}
+      className={`border-border relative overflow-hidden rounded-[4px] border bg-black`}
+      style={{ aspectRatio: aspect_ratio_image }}
     >
       {images.map((img, index) => (
         <img

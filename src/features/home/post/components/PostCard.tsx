@@ -19,11 +19,10 @@ interface Props {
 
 export const PostCard = ({ post }: Props) => {
   const getAspectClass = () => {
-    if (post.aspect_ratio === 'square') return 'aspect-square';
-    if (post.aspect_ratio === 'portrait') return 'aspect-[4/5]';
-    if (post.aspect_ratio === 'video') return 'aspect-video';
-    if (post.aspect_ratio === 'original')
-      return `aspect-[${post.first_image_dimensions}]`;
+    if (post.aspect_ratio === 'square') return '1';
+    if (post.aspect_ratio === 'portrait') return '4/5';
+    if (post.aspect_ratio === 'video') return '16/9';
+    if (post.aspect_ratio === 'original') return post.first_image_dimensions!;
   };
 
   const aspect_ratio_image = getAspectClass();
