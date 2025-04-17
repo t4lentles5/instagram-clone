@@ -34,7 +34,7 @@ export const PhotoOptionsModal = ({
     <>
       <dialog
         ref={dialogRef}
-        className='bg-popover top-1/2 left-1/2 w-[400px] -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl backdrop:bg-black/50'
+        className='bg-popover backdrop:bg-background-overlay top-1/2 left-1/2 w-[400px] -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl'
         onCancel={onClose}
         onClick={(e) => {
           const dialog = dialogRef.current;
