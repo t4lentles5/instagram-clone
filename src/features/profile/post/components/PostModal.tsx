@@ -1,10 +1,11 @@
 'use client';
 
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
-import { XIcon } from '../icons/XIcon';
-import { MoreOptionsIcon } from '../icons/MoreOptionsIcon';
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
+
+import { XIcon } from '@/components/icons/XIcon';
+import { MoreOptionsIcon } from '@/components/icons/MoreOptionsIcon';
 
 interface Props {
   post: {
@@ -35,25 +36,25 @@ export const PostModal = ({ post }: Props) => {
 
   return (
     <>
-      <div className="bg-background-overlay fixed inset-0 z-50 flex items-center justify-center">
+      <div className='bg-background-overlay fixed inset-0 z-50 flex items-center justify-center'>
         <button
           onClick={() => router.back()}
-          className="absolute top-[10px] right-[10px] cursor-pointer p-2"
+          className='absolute top-[10px] right-[10px] cursor-pointer p-2'
         >
           <XIcon />
         </button>
-        <div className="bg-background flex h-11/12 w-7/9 xl:w-9/10">
-          <div className="border-popover flex aspect-square max-h-full max-w-full items-center border-r">
+        <div className='bg-background flex h-11/12 w-7/9 xl:w-9/10'>
+          <div className='border-popover flex aspect-square max-h-full max-w-full items-center border-r'>
             <img
               src={post.PostImages[0].imageUrl}
-              alt=""
-              className="object-contain"
+              alt=''
+              className='object-contain'
             />
           </div>
 
-          <div className="h-full grow">
-            <div className="border-popover flex items-center justify-between rounded-sm border-b">
-              <div className="flex grow items-center py-[14px] pr-1 pl-4">
+          <div className='h-full grow'>
+            <div className='border-popover flex items-center justify-between rounded-sm border-b'>
+              <div className='flex grow items-center py-[14px] pr-1 pl-4'>
                 <ProfilePhoto
                   profile_photo={post.author.profile_photo}
                   imageSize={{
@@ -66,12 +67,12 @@ export const PostModal = ({ post }: Props) => {
                     size: 'w-10',
                   }}
                 />
-                <span className="ml-[14px] text-sm font-semibold">
+                <span className='ml-[14px] text-sm font-semibold'>
                   {post.author.username}
                 </span>
               </div>
-              <div className="pr-2">
-                <div className="p-2">
+              <div className='pr-2'>
+                <div className='p-2'>
                   <MoreOptionsIcon />
                 </div>
               </div>
