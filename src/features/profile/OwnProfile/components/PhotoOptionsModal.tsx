@@ -34,7 +34,7 @@ export const PhotoOptionsModal = ({
     <>
       <dialog
         ref={dialogRef}
-        className='bg-popover top-1/2 left-1/2 w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-xl backdrop:bg-black/50'
+        className='bg-popover top-1/2 left-1/2 w-[400px] -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl backdrop:bg-black/50'
         onCancel={onClose}
         onClick={(e) => {
           const dialog = dialogRef.current;
@@ -43,7 +43,7 @@ export const PhotoOptionsModal = ({
         }}
       >
         <div className='m-8'>
-          <h3 className='text-center text-xl leading-3.5'>
+          <h3 className='text-primary text-center text-xl leading-3.5'>
             Change Profile Photo
           </h3>
         </div>
@@ -66,7 +66,7 @@ export const PhotoOptionsModal = ({
             Remove Current Photo
           </button>
           <button
-            className='border-border-popover h-12 w-full cursor-pointer border-t px-2 py-1 text-[14px]'
+            className='border-border-popover text-primary h-12 w-full cursor-pointer border-t px-2 py-1 text-[14px]'
             onClick={() => onClose()}
           >
             Cancel
