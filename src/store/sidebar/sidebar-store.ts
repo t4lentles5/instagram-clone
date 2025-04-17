@@ -8,8 +8,6 @@ type SidebarState = {
   isNewPostDialogOpen: boolean;
   toggleSearch: () => void;
   toggleNotifications: () => void;
-  openNewPostDialog: () => void;
-  closeNewPostDialog: () => void;
 };
 
 export const useSidebarStore = create<SidebarState>()(
@@ -31,15 +29,7 @@ export const useSidebarStore = create<SidebarState>()(
           isSearchActive: false,
           isNotificationsActive: !state.isNotificationsActive,
         })),
-      openNewPostDialog: () =>
-        set(() => ({
-          isNewPostDialogOpen: true,
-        })),
-      closeNewPostDialog: () =>
-        set(() => ({
-          isNewPostDialogOpen: false,
-        })),
     }),
-    { name: 'SidebarStore' }
-  )
+    { name: 'SidebarStore' },
+  ),
 );
