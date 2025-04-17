@@ -1,12 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+
+import { User } from '@/interfaces/user.interface';
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { SidebarMoreOptions } from '@/features/home/sidebar/components/SidebarMoreOptions';
 import { SidebarNav } from '@/features/home/sidebar/components/SidebarNav';
-import { User } from '@/interfaces/user.interface';
-import { InstagramIcon } from '@/features/home/sidebar/icons/InstagramIcon';
-import { InstagramSmallIcon } from '@/features/home/sidebar/icons/InstagramSmallIcon';
+
+import { InstagramIcon } from '@/components/icons/InstagramIcon';
+import { InstagramSmallIcon } from '@/components/icons/InstagramSmallIcon';
 
 interface Props {
   user: User;
@@ -42,7 +44,7 @@ export const Sidebar = ({ user }: Props) => {
           </Link>
         </div>
 
-        <div className="flex h-full flex-col justify-between">
+        <div className='flex h-full flex-col justify-between'>
           <SidebarNav user={user} />
           <SidebarMoreOptions />
         </div>
