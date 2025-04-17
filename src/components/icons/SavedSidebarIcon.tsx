@@ -1,4 +1,4 @@
-export const SavedIcon = () => {
+export const SavedSidebarIcon = () => {
   return (
     <>
       <svg

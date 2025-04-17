@@ -2,18 +2,19 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+
 import { logout } from '@/actions/auth/logout';
-import { MoonIcon } from '@/features/home/sidebar/icons/more-options/MoonIcon';
-import { BackIcon } from '@/features/home/sidebar/icons/more-options/BackSmallIcon';
-import { MoonSmallIcon } from '@/features/home/sidebar/icons/more-options/MoonSmallIcon';
-import { SunSmallIcon } from '@/features/home/sidebar/icons/more-options/SunSmallIcon';
-import { MoreOptionsFillIcon } from '@/features/home/sidebar/icons/more-options/MoreOptionsFillIcon';
-import { MoreOptionsIcon } from '@/features/home/sidebar/icons/more-options/MoreOptionsIcon';
-import { SavedIcon } from '@/features/home/sidebar/icons/more-options/SavedIcon';
-import { SettingsIcon } from '@/features/home/sidebar/icons/more-options/SettingsIcon';
-import { SunIcon } from '@/features/home/sidebar/icons/more-options/SunIcon';
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { useThemeStore } from '@/store/theme/theme-store';
+
+import { MoonIcon } from '@/components/icons/MoonIcon';
+import { BackIcon } from '@/components/icons/BackSmallIcon';
+import { MoonSmallIcon } from '@/components/icons/MoonSmallIcon';
+import { SunSmallIcon } from '@/components/icons/SunSmallIcon';
+import { SavedSidebarIcon } from '@/components/icons/SavedSidebarIcon';
+import { SettingsIcon } from '@/components/icons/SettingsIcon';
+import { SunIcon } from '@/components/icons/SunIcon';
+import { SettingsSidebarIcon } from '@/components/icons/SettingsSidebarIcon';
 
 export const SidebarMoreOptions = () => {
   const { isSidebarCollapsed } = useSidebarStore();
@@ -56,19 +57,17 @@ export const SidebarMoreOptions = () => {
     };
   }, []);
 
+  const isActive = open || switchAppearanceOpen;
+
   return (
     <>
       <div
         onClick={handleOpen}
-        className="relative hidden h-14 w-full cursor-pointer items-center justify-center md:flex"
+        className='relative hidden h-14 w-full cursor-pointer items-center justify-center md:flex'
         ref={popoverRef}
       >
-        <button className="hover:bg-background-hover flex w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:w-full">
-          {open || switchAppearanceOpen ? (
-            <MoreOptionsFillIcon />
-          ) : (
-            <MoreOptionsIcon />
-          )}
+        <button className='hover:bg-background-hover flex w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:w-full'>
+          <SettingsSidebarIcon isActive={isActive} />
 
           <span
             className={`${
@@ -88,21 +87,21 @@ export const SidebarMoreOptions = () => {
               : 'pointer-events-none -translate-x-2 opacity-0'
           } bg-popover absolute bottom-full left-14 w-[266px] transform gap-2 rounded-2xl p-2 shadow-2xl ease-in-out xl:left-0 xl:mb-1`}
         >
-          <div className="border-border border-b pb-2">
+          <div className='border-border border-b pb-2'>
             <Link
               className={`hover:bg-popoverHover flex w-full items-center justify-start gap-3 rounded-lg p-4`}
               href={'/settings'}
             >
               <SettingsIcon />
-              <span className="text-sm leading-[18px]">Setting</span>
+              <span className='text-sm leading-[18px]'>Setting</span>
             </Link>
 
             <Link
               className={`hover:bg-popoverHover flex w-full items-center justify-start gap-3 rounded-lg p-4`}
               href={'/saved'}
             >
-              <SavedIcon />
-              <span className="text-sm leading-[18px]">Saved</span>
+              <SavedSidebarIcon />
+              <span className='text-sm leading-[18px]'>Saved</span>
             </Link>
 
             <button
@@ -110,23 +109,23 @@ export const SidebarMoreOptions = () => {
               onClick={handleSwitchAppearanceOpen}
             >
               {isDarkMode ? <MoonIcon /> : <SunIcon />}
-              <span className="text-sm leading-[18px]">Switch appearance</span>
+              <span className='text-sm leading-[18px]'>Switch appearance</span>
             </button>
           </div>
 
-          <div className="border-border border-b py-2">
+          <div className='border-border border-b py-2'>
             <button
               className={`hover:bg-popoverHover w-full cursor-pointer p-4 text-left text-sm leading-[18px] hover:rounded-lg`}
-              type="button"
+              type='button'
               onClick={() => {}}
             >
               Switch accounts
             </button>
           </div>
-          <div className="mt-2">
+          <div className='mt-2'>
             <button
               className={`hover:bg-popoverHover w-full cursor-pointer p-4 text-left text-sm leading-[18px] hover:rounded-lg`}
-              type="button"
+              type='button'
               onClick={handleLogout}
             >
               Log out
@@ -141,41 +140,41 @@ export const SidebarMoreOptions = () => {
               : 'pointer-events-none -translate-x-2 opacity-0'
           } bg-popover absolute bottom-full left-14 w-[266px] transform rounded-2xl shadow-2xl ease-in-out xl:left-0 xl:mb-1`}
         >
-          <div className="border-border flex w-full items-center border-b p-4 hover:rounded-lg">
+          <div className='border-border flex w-full items-center border-b p-4 hover:rounded-lg'>
             <button
-              className="w-6 text-[#6a6a6a]"
+              className='w-6 text-[#6a6a6a]'
               onClick={handleSwitchAppearanceOpen}
             >
               <BackIcon />
             </button>
-            <span className="w-[180px] text-left text-base leading-5 font-semibold">
+            <span className='w-[180px] text-left text-base leading-5 font-semibold'>
               Switch appearance
             </span>
-            <div className="flex w-[30px] justify-end">
+            <div className='flex w-[30px] justify-end'>
               {isDarkMode ? <MoonSmallIcon /> : <SunSmallIcon />}
             </div>
           </div>
 
-          <div className="items- flex w-full justify-center p-2">
+          <div className='items- flex w-full justify-center p-2'>
             <button
-              className="hover:bg-popoverHover flex w-full cursor-pointer items-center justify-between rounded-lg p-4 text-left"
+              className='hover:bg-popoverHover flex w-full cursor-pointer items-center justify-between rounded-lg p-4 text-left'
               onClick={(e) => {
                 e.stopPropagation();
                 toggleTheme();
               }}
             >
-              <span className="text-left text-sm leading-[18px]">
+              <span className='text-left text-sm leading-[18px]'>
                 Dark mode
               </span>
 
-              <label className="ml-2 inline-flex items-center">
+              <label className='ml-2 inline-flex items-center'>
                 <input
-                  type="checkbox"
+                  type='checkbox'
                   checked={isDarkMode}
                   onChange={toggleTheme}
-                  className="peer sr-only"
+                  className='peer sr-only'
                 />
-                <div className="bg-primary after:bg-background relative h-4 w-[26px] rounded-full after:absolute after:start-[2px] after:top-[2px] after:h-3 after:w-3 after:rounded-full after:transition-all peer-checked:after:translate-x-[10px]"></div>
+                <div className='bg-primary after:bg-background relative h-4 w-[26px] rounded-full after:absolute after:start-[2px] after:top-[2px] after:h-3 after:w-3 after:rounded-full after:transition-all peer-checked:after:translate-x-[10px]'></div>
               </label>
             </button>
           </div>
