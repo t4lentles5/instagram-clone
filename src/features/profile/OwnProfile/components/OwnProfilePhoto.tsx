@@ -16,7 +16,7 @@ interface Props {
 export const OwnProfilePhoto = ({ user }: Props) => {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +66,7 @@ export const OwnProfilePhoto = ({ user }: Props) => {
       }
 
       setIsLoading(false);
-      setOpen(false);
+      setIsOpen(false);
       router.refresh();
     } catch (error) {
       console.error('Error removing profile photo:', error);
@@ -74,9 +74,9 @@ export const OwnProfilePhoto = ({ user }: Props) => {
   };
 
   return (
-    <div className="w-full max-w-[120px] md:max-w-[284px]">
+    <div className='w-full max-w-[120px] md:max-w-[284px]'>
       <div
-        className="relative flex w-full cursor-pointer items-center justify-center rounded-full"
+        className='relative flex w-full cursor-pointer items-center justify-center rounded-full'
         onClick={() => {
           if (!user.profile_photo) {
             fileInputRef.current?.click();
@@ -102,16 +102,17 @@ export const OwnProfilePhoto = ({ user }: Props) => {
         {user.profile_photo && (
           <>
             <button
-              className="absolute h-20 w-20 cursor-pointer rounded-full md:h-[150px] md:w-[150px]"
+              className='absolute h-20 w-20 cursor-pointer rounded-full md:h-[150px] md:w-[150px]'
               onClick={(e) => {
                 e.stopPropagation();
-                setOpen(true);
+                setIsOpen(true);
               }}
             ></button>
 
-            {open && (
+            {isOpen && (
               <PhotoOptionsModal
-                setOpen={setOpen}
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
                 handleRemovePhoto={handleRemovePhoto}
                 fileInputRef={fileInputRef}
               />
@@ -120,13 +121,13 @@ export const OwnProfilePhoto = ({ user }: Props) => {
         )}
 
         {isLoading && (
-          <div className="bg-image-overlay absolute z-50 grid h-20 w-20 place-items-center rounded-full md:h-[150px] md:w-[150px]">
+          <div className='bg-image-overlay absolute z-50 grid h-20 w-20 place-items-center rounded-full md:h-[150px] md:w-[150px]'>
             <div className={styles.loader}></div>
           </div>
         )}
 
         {!user.profile_photo && !isLoading && (
-          <div className="bg-image-overlay absolute flex h-20 w-20 items-center justify-center rounded-full md:h-[150px] md:w-[150px]">
+          <div className='bg-image-overlay absolute flex h-20 w-20 items-center justify-center rounded-full md:h-[150px] md:w-[150px]'>
             <CameraIcon />
           </div>
         )}
@@ -134,9 +135,9 @@ export const OwnProfilePhoto = ({ user }: Props) => {
 
       <input
         ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        className="hidden"
+        type='file'
+        accept='image/*'
+        className='hidden'
         onChange={handleUpload}
       />
     </div>
