@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { CameraIcon } from '@/features/home/sidebar/icons/CameraIcon';
-import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
+
 import { User } from '@/interfaces/user.interface';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
+
+import { SimilarAccountsIcon } from '@/components/icons/SimilarAccountsIcon';
+import { CameraCircleIcon } from '@/components/icons/CameraCircleIcon';
 
 interface Props {
   user: User;
@@ -18,8 +20,8 @@ export const SuggestedUser = ({ user }: Props) => {
 
   return (
     <>
-      <div className="relative flex justify-between px-4 py-2">
-        <div className="flex gap-3">
+      <div className='relative flex justify-between px-4 py-2'>
+        <div className='flex gap-3'>
           <Link
             href={`/${user.username}`}
             onMouseEnter={() => {
@@ -45,10 +47,10 @@ export const SuggestedUser = ({ user }: Props) => {
             />
           </Link>
 
-          <div className="flex flex-col justify-center">
+          <div className='flex flex-col justify-center'>
             <Link
               href={`/${user.username}`}
-              className="max-w-36 truncate overflow-hidden text-sm leading-[18px] font-semibold"
+              className='max-w-36 truncate overflow-hidden text-sm leading-[18px] font-semibold'
               onMouseEnter={() => {
                 setIsHovered(true);
                 setIsUsernameHovered(true);
@@ -60,7 +62,7 @@ export const SuggestedUser = ({ user }: Props) => {
             >
               {user.username}
             </Link>
-            <span className="text-secondary text-xs">Suggested for you</span>
+            <span className='text-secondary text-xs'>Suggested for you</span>
           </div>
 
           {isHovered && (
@@ -85,8 +87,8 @@ export const SuggestedUser = ({ user }: Props) => {
                 }
               }}
             >
-              <div className="flex items-center justify-center gap-3">
-                <div className="w-[70px]">
+              <div className='flex items-center justify-center gap-3'>
+                <div className='w-[70px]'>
                   <ProfilePhoto
                     profile_photo={user.profile_photo}
                     imageSize={{
@@ -100,50 +102,50 @@ export const SuggestedUser = ({ user }: Props) => {
                     }}
                   />
                 </div>
-                <div className="flex w-full flex-col items-start justify-center">
+                <div className='flex w-full flex-col items-start justify-center'>
                   <Link
                     href={user.username}
-                    className="max-w-36 truncate overflow-hidden text-sm font-bold"
+                    className='max-w-36 truncate overflow-hidden text-sm font-bold'
                   >
                     {user.username}
                   </Link>
-                  <p className="text-secondary text-sm">{user.fullname}</p>
+                  <p className='text-secondary text-sm'>{user.fullname}</p>
                 </div>
               </div>
 
-              <div className="border-separator grid grid-cols-3 border-b py-4">
-                <p className="text-center font-bold">
-                  0 <span className="block text-sm font-normal">posts</span>
+              <div className='border-separator grid grid-cols-3 border-b py-4'>
+                <p className='text-center font-bold'>
+                  0 <span className='block text-sm font-normal'>posts</span>
                 </p>
-                <p className="text-center font-bold">
-                  0 <span className="block text-sm font-normal">followers</span>
+                <p className='text-center font-bold'>
+                  0 <span className='block text-sm font-normal'>followers</span>
                 </p>
-                <p className="text-center font-bold">
-                  0 <span className="block text-sm font-normal">following</span>
+                <p className='text-center font-bold'>
+                  0 <span className='block text-sm font-normal'>following</span>
                 </p>
               </div>
 
-              <div className="border-separator flex h-full w-full flex-col items-center justify-center gap-3 border-b p-4">
-                <CameraIcon />
+              <div className='border-separator flex h-full w-full flex-col items-center justify-center gap-3 border-b p-4'>
+                <CameraCircleIcon />
 
-                <p className="text-center text-sm font-bold">
+                <p className='text-center text-sm font-bold'>
                   No posts yet!
                   <br />
-                  <span className="text-sm font-normal">
+                  <span className='text-sm font-normal'>
                     When {user.username} shares something, you&apos;ll see it
                     here.
                   </span>
                 </p>
               </div>
 
-              <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg px-4 py-[6px] font-semibold text-white">
+              <button className='mt-4 flex w-full items-center justify-center gap-2 rounded-lg px-4 py-[6px] font-semibold text-white'>
                 <SimilarAccountsIcon />
-                <span className="text-sm">Follow</span>
+                <span className='text-sm'>Follow</span>
               </button>
             </div>
           )}
         </div>
-        <button className="text-blue hover:text-blue-hover text-xs font-semibold">
+        <button className='text-blue hover:text-blue-hover text-xs font-semibold'>
           Follow
         </button>
       </div>
