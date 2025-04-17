@@ -1,4 +1,4 @@
-export const NewPostIcon = () => {
+export const NewPostSidebarIcon = () => {
   return (
     <>
       <svg

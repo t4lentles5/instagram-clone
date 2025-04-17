@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
-import { NotificationsIcon } from '@/components/icons/NotificationsIcon';
+
+import { NotificationsSidebarIcon } from '@/features/home/sidebar/icons/NotificationsSidebarIcon';
 
 export const NotificationsButton = () => {
   const pathname = usePathname();
@@ -45,7 +47,7 @@ export const NotificationsButton = () => {
           className='hover:bg-background-hover hidden w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:flex'
           onClick={toggleNotifications}
         >
-          <NotificationsIcon isActive={isActive} />
+          <NotificationsSidebarIcon isActive={isActive} />
           <span
             className={`${
               isSidebarCollapsed ? 'hidden' : 'xl:block'

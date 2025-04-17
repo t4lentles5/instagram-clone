@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { NewPostModal } from '@/features/home/sidebar/components/NewPostModal';
 
-import { NewPostIcon } from '@/components/icons/NewPostIcon';
+import { NewPostSidebarIcon } from '@/features/home/sidebar/icons/NewPostSidebarIcon';
 
 export const NewPostButton = () => {
   const { isSidebarCollapsed, isNewPostDialogOpen } = useSidebarStore();
@@ -17,7 +17,7 @@ export const NewPostButton = () => {
           className='hover:bg-background-hover flex cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:w-full'
           onClick={() => setIsOpen(true)}
         >
-          <NewPostIcon />
+          <NewPostSidebarIcon />
 
           <span
             className={`${

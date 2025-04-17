@@ -2,7 +2,7 @@ interface Props {
   isActive: boolean;
 }
 
-export const SearchIcon = ({ isActive }: Props) => {
+export const SearchSidebarIcon = ({ isActive }: Props) => {
   return (
     <>
       {isActive ? (

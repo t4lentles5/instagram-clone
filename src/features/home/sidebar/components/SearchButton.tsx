@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
-import { SearchIcon } from '@/components/icons/SearchIcon';
+
+import { SearchSidebarIcon } from '@/features/home/sidebar/icons/SearchSidebarIcon';
 
 export const SearchButton = () => {
   const pathname = usePathname();
@@ -45,7 +47,7 @@ export const SearchButton = () => {
           className='hover:bg-background-hover hidden w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:flex'
           onClick={toggleSearch}
         >
-          <SearchIcon isActive={isActive} />
+          <SearchSidebarIcon isActive={isActive} />
           <span
             className={`${
               isSidebarCollapsed ? 'hidden' : 'xl:block'

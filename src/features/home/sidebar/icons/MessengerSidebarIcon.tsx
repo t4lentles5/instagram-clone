@@ -2,7 +2,7 @@ interface Props {
   isActive: boolean;
 }
 
-export const MessengerIcon = ({ isActive }: Props) => {
+export const MessengerSidebarIcon = ({ isActive }: Props) => {
   return (
     <>
       {isActive ? (

@@ -2,7 +2,7 @@ interface Props {
   isActive: boolean;
 }
 
-export const NotificationsIcon = ({ isActive }: Props) => {
+export const NotificationsSidebarIcon = ({ isActive }: Props) => {
   return (
     <>
       {isActive ? (
