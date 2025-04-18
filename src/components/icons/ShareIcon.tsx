@@ -1,4 +1,4 @@
-export const SharePostIcon = () => {
+export const ShareIcon = () => {
   return (
     <>
       <svg
