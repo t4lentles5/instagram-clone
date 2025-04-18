@@ -7,7 +7,7 @@ import { NewPostButton } from '@/features/home/sidebar/components/NewPostButton'
 import { SidebarNavItemProfile } from '@/features/home/sidebar/components/SidebarNavItemProfile';
 
 import { ExploreSidebarIcon } from '@/features/home/sidebar/icons/ExploreSidebarIcon';
-import { ReelsSidebarIcon } from '@/components/icons/ReelsSidebarIcon';
+import { ReelsSidebarIcon } from '@/features/home/sidebar/icons/ReelsSidebarIcon';
 import { MessengerSidebarIcon } from '@/features/home/sidebar/icons/MessengerSidebarIcon';
 import { HomeSidebarIcon } from '@/features/home/sidebar/icons/HomeSidebarIcon';
 
