@@ -13,7 +13,7 @@ import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 import { CommentIcon } from '@/components/icons/CommentIcon';
 import { EmojiPostIcon } from '@/features/home/post/icons/EmojiPostIcon';
 import { SaveIcon } from '@/components/icons/SaveIcon';
-import { SharePostIcon } from '@/features/home/post/icons/SharePostIcon';
+import { ShareIcon } from '@/components/icons/ShareIcon';
 import { LikeIcon } from '@/components/icons/LikeIcon';
 import { MoreOptions24 } from '@/components/icons/MoreOptions24';
 
@@ -87,7 +87,7 @@ export const PostCard = ({ post }: Props) => {
                 <CommentIcon />
               </div>
               <div className='p-2'>
-                <SharePostIcon />
+                <ShareIcon />
               </div>
             </div>
             <div className='py-2 pl-2'>
