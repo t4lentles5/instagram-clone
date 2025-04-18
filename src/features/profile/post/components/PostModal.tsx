@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 
 import { XIcon } from '@/components/icons/XIcon';
-import { MoreOptionsIcon } from '@/components/icons/MoreOptionsIcon';
+import { MoreOptions24 } from '@/components/icons/MoreOptions24';
 
 interface Props {
   post: {
@@ -73,7 +73,7 @@ export const PostModal = ({ post }: Props) => {
               </div>
               <div className='pr-2'>
                 <div className='p-2'>
-                  <MoreOptionsIcon />
+                  <MoreOptions24 />
                 </div>
               </div>
             </div>

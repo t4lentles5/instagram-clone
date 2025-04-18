@@ -1,4 +1,4 @@
-export const CarouselIcon = () => {
+export const CarouselProfilePostIcon = () => {
   return (
     <>
       <svg

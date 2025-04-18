@@ -1,4 +1,4 @@
-export const MoreOptionsPostIcon = () => {
+export const MoreOptions24 = () => {
   return (
     <>
       <svg

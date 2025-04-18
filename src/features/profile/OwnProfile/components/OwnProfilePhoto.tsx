@@ -2,11 +2,16 @@
 
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+
 import { User } from '@/interfaces/user.interface';
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
+
 import { deleteProfilePhoto } from '@/actions/user/delete-profile-photo';
-import { CameraIcon } from '@/components/icons/CameraIcon';
+
+import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { PhotoOptionsModal } from '@/features/profile/OwnProfile/components/PhotoOptionsModal';
+
+import { CameraIcon } from '@/features/profile/icons/CameraIcon';
+
 import styles from '@/features/profile/OwnProfile/components/image-loader.module.css';
 
 interface Props {

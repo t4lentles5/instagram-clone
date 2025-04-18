@@ -10,8 +10,6 @@ import { useThemeStore } from '@/store/theme/theme-store';
 
 import { MoonMoreOptionsIcon } from '@/features/home/sidebar/icons/MoonMoreOptionsIcon';
 import { BackMoreOptionsIcon } from '@/features/home/sidebar/icons/BackMoreOptionsIcon';
-import { MoonSmallMoreOptionsIcon } from '@/features/home/sidebar/icons/MoonSmallMoreOptionsIcon';
-import { SunSmallMoreOptionsIcon } from '@/features/home/sidebar/icons/SunSmallMoreOptionsIcon';
 import { SavedMoreOptionsIcon } from '@/features/home/sidebar/icons/SavedMoreOptionsIcon';
 import { SettingsMoreOptionsIcon } from '@/features/home/sidebar/icons/SettingsMoreOptionsIcon';
 import { SunMoreOptionsIcon } from '@/features/home/sidebar/icons/SunMoreOptionsIcon';
@@ -152,11 +150,7 @@ export const SidebarMoreOptions = () => {
               Switch appearance
             </span>
             <div className='flex w-[30px] justify-end'>
-              {isDarkMode ? (
-                <MoonSmallMoreOptionsIcon />
-              ) : (
-                <SunSmallMoreOptionsIcon />
-              )}
+              {isDarkMode ? <MoonMoreOptionsIcon /> : <SunMoreOptionsIcon />}
             </div>
           </div>
 

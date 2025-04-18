@@ -2,9 +2,10 @@ import Link from 'next/link';
 import { User } from '@/interfaces/user.interface';
 import { OwnProfilePhoto } from '@/features/profile/OwnProfile/components/OwnProfilePhoto';
 
-import { MyOptionsIcon } from '@/components/icons/MyOptionsIcon';
 import { getPostsCountByUsername } from '@/actions/post/get-posts-count-by-username';
-import { SimilarAccountsIcon } from '@/components/icons/SimilarAccountsIcon';
+
+import { MyOptionsIcon } from '@/features/profile/icons/MyOptionsIcon';
+import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
 
 interface Props {
   user: User;

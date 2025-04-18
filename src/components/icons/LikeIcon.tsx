@@ -1,4 +1,4 @@
-export const LikePostIcon = () => {
+export const LikeIcon = () => {
   return (
     <>
       <svg

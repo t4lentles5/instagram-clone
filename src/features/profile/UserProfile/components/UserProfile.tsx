@@ -1,7 +1,7 @@
 import { User } from '@/interfaces/user.interface';
 
 import { OptionsIcon } from '@/components/icons/OptionsIcon';
-import { SimilarAccountsIcon } from '@/components/icons/SimilarAccountsIcon';
+import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
 
 interface Props {
   user: User;

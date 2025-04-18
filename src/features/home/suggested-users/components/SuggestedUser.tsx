@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { User } from '@/interfaces/user.interface';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 
-import { SimilarAccountsIcon } from '@/components/icons/SimilarAccountsIcon';
-import { CameraCircleIcon } from '@/components/icons/CameraCircleIcon';
+import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
+import { CameraCircleIcon } from '@/features/profile/icons/CameraCircleIcon';
 
 interface Props {
   user: User;

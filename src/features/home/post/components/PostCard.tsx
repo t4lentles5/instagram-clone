@@ -12,10 +12,10 @@ import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 
 import { CommentPostIcon } from '@/features/home/post/icons/CommentPostIcon';
 import { EmojiPostIcon } from '@/features/home/post/icons/EmojiPostIcon';
-import { LikePostIcon } from '@/features/home/post/icons/LikePostIcon';
-import { MoreOptionsPostIcon } from '@/features/home/post/icons/MoreOptionsPostIcon';
 import { SavePostIcon } from '@/features/home/post/icons/SavePostIcon';
 import { SharePostIcon } from '@/features/home/post/icons/SharePostIcon';
+import { LikeIcon } from '@/components/icons/LikeIcon';
+import { MoreOptions24 } from '@/components/icons/MoreOptions24';
 
 interface Props {
   post: Post;
@@ -68,7 +68,7 @@ export const PostCard = ({ post }: Props) => {
           </div>
 
           <div className='flex w-8 justify-end'>
-            <MoreOptionsPostIcon />
+            <MoreOptions24 />
           </div>
         </div>
 
@@ -81,7 +81,7 @@ export const PostCard = ({ post }: Props) => {
           <div className='flex justify-between py-1'>
             <div className='flex'>
               <div className='py-2 pr-2'>
-                <LikePostIcon />
+                <LikeIcon />
               </div>
               <div className='p-2'>
                 <CommentPostIcon />
