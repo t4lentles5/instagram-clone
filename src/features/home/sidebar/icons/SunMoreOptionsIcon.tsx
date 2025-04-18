@@ -1,4 +1,4 @@
-export const SunIcon = () => {
+export const SunMoreOptionsIcon = () => {
   return (
     <>
       <svg

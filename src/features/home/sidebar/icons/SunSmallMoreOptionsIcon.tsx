@@ -1,4 +1,4 @@
-export const SunSmallIcon = () => {
+export const SunSmallMoreOptionsIcon = () => {
   return (
     <>
       <svg

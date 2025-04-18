@@ -4,17 +4,18 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
 import { logout } from '@/actions/auth/logout';
+
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { useThemeStore } from '@/store/theme/theme-store';
 
-import { MoonIcon } from '@/components/icons/MoonIcon';
-import { BackIcon } from '@/components/icons/BackSmallIcon';
-import { MoonSmallIcon } from '@/components/icons/MoonSmallIcon';
-import { SunSmallIcon } from '@/components/icons/SunSmallIcon';
-import { SavedSidebarIcon } from '@/components/icons/SavedSidebarIcon';
-import { SettingsIcon } from '@/components/icons/SettingsIcon';
-import { SunIcon } from '@/components/icons/SunIcon';
-import { SettingsSidebarIcon } from '@/components/icons/SettingsSidebarIcon';
+import { MoonMoreOptionsIcon } from '@/features/home/sidebar/icons/MoonMoreOptionsIcon';
+import { BackMoreOptionsIcon } from '@/features/home/sidebar/icons/BackMoreOptionsIcon';
+import { MoonSmallMoreOptionsIcon } from '@/features/home/sidebar/icons/MoonSmallMoreOptionsIcon';
+import { SunSmallMoreOptionsIcon } from '@/features/home/sidebar/icons/SunSmallMoreOptionsIcon';
+import { SavedMoreOptionsIcon } from '@/features/home/sidebar/icons/SavedMoreOptionsIcon';
+import { SettingsMoreOptionsIcon } from '@/features/home/sidebar/icons/SettingsMoreOptionsIcon';
+import { SunMoreOptionsIcon } from '@/features/home/sidebar/icons/SunMoreOptionsIcon';
+import { SettingsSidebarIcon } from '@/features/home/sidebar/icons/SettingsSidebarIcon';
 
 export const SidebarMoreOptions = () => {
   const { isSidebarCollapsed } = useSidebarStore();
@@ -92,7 +93,7 @@ export const SidebarMoreOptions = () => {
               className={`hover:bg-popoverHover flex w-full items-center justify-start gap-3 rounded-lg p-4`}
               href={'/settings'}
             >
-              <SettingsIcon />
+              <SettingsMoreOptionsIcon />
               <span className='text-sm leading-[18px]'>Setting</span>
             </Link>
 
@@ -100,7 +101,7 @@ export const SidebarMoreOptions = () => {
               className={`hover:bg-popoverHover flex w-full items-center justify-start gap-3 rounded-lg p-4`}
               href={'/saved'}
             >
-              <SavedSidebarIcon />
+              <SavedMoreOptionsIcon />
               <span className='text-sm leading-[18px]'>Saved</span>
             </Link>
 
@@ -108,7 +109,7 @@ export const SidebarMoreOptions = () => {
               className={`hover:bg-popoverHover flex w-full items-center justify-start gap-3 p-4 hover:rounded-lg`}
               onClick={handleSwitchAppearanceOpen}
             >
-              {isDarkMode ? <MoonIcon /> : <SunIcon />}
+              {isDarkMode ? <MoonMoreOptionsIcon /> : <SunMoreOptionsIcon />}
               <span className='text-sm leading-[18px]'>Switch appearance</span>
             </button>
           </div>
@@ -145,13 +146,17 @@ export const SidebarMoreOptions = () => {
               className='w-6 text-[#6a6a6a]'
               onClick={handleSwitchAppearanceOpen}
             >
-              <BackIcon />
+              <BackMoreOptionsIcon />
             </button>
             <span className='w-[180px] text-left text-base leading-5 font-semibold'>
               Switch appearance
             </span>
             <div className='flex w-[30px] justify-end'>
-              {isDarkMode ? <MoonSmallIcon /> : <SunSmallIcon />}
+              {isDarkMode ? (
+                <MoonSmallMoreOptionsIcon />
+              ) : (
+                <SunSmallMoreOptionsIcon />
+              )}
             </div>
           </div>
 

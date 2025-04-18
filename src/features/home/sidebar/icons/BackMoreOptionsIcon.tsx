@@ -1,4 +1,4 @@
-export const BackIcon = () => {
+export const BackMoreOptionsIcon = () => {
   return (
     <>
       <svg

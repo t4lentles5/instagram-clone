@@ -1,4 +1,4 @@
-export const SettingsIcon = () => {
+export const SettingsMoreOptionsIcon = () => {
   return (
     <>
       <svg
