@@ -10,9 +10,9 @@ import { Post } from '@/interfaces/post.interface';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 
-import { CommentPostIcon } from '@/features/home/post/icons/CommentPostIcon';
+import { CommentIcon } from '@/components/icons/CommentIcon';
 import { EmojiPostIcon } from '@/features/home/post/icons/EmojiPostIcon';
-import { SavePostIcon } from '@/features/home/post/icons/SavePostIcon';
+import { SaveIcon } from '@/components/icons/SaveIcon';
 import { SharePostIcon } from '@/features/home/post/icons/SharePostIcon';
 import { LikeIcon } from '@/components/icons/LikeIcon';
 import { MoreOptions24 } from '@/components/icons/MoreOptions24';
@@ -84,14 +84,14 @@ export const PostCard = ({ post }: Props) => {
                 <LikeIcon />
               </div>
               <div className='p-2'>
-                <CommentPostIcon />
+                <CommentIcon />
               </div>
               <div className='p-2'>
                 <SharePostIcon />
               </div>
             </div>
             <div className='py-2 pl-2'>
-              <SavePostIcon />
+              <SaveIcon />
             </div>
           </div>
 

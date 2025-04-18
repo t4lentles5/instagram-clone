@@ -1,4 +1,4 @@
-export const CommentPostIcon = () => {
+export const CommentIcon = () => {
   return (
     <>
       <svg
