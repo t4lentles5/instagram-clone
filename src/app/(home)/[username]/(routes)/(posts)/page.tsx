@@ -4,8 +4,8 @@ import { getPostsByUsername } from '@/actions/user/get-posts-by-username';
 
 import { CarouselProfilePostIcon } from '@/features/profile/icons/CarouselProfilePostIcon';
 import { CommentsProfilePostIcon } from '@/features/profile/icons/CommentsProfilePostIcon';
-import { LikeIcon } from '@/components/icons/LikeIcon';
 import { CameraCircleIcon } from '@/features/profile/icons/CameraCircleIcon';
+import { LikesProfilePostIcon } from '@/features/profile/icons/LikesProfilePostIcon';
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -42,7 +42,7 @@ export default async function PostsPage({ params }: Props) {
                 <div className='flex h-full items-center justify-center gap-8 text-white'>
                   <span className='flex items-center justify-center'>
                     <span className='mt-0.5 mr-[7px]'>
-                      <LikeIcon />
+                      <LikesProfilePostIcon />
                     </span>
                     <span className='text-base leading-5 font-bold'>100</span>
                   </span>
