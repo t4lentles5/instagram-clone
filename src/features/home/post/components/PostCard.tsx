@@ -4,19 +4,19 @@ import Link from 'next/link';
 
 import { getExactDate } from '@/utils/get-exact-date';
 import { formatDate } from '@/utils/format-date';
+import { getAspectClass } from '@/utils/get-aspect-class';
 
 import { Post } from '@/interfaces/post.interface';
 
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 
-import { CommentIcon } from '@/components/icons/CommentIcon';
+import { CommentIcon } from '@/features/home/post/icons/CommentIcon';
 import { EmojiIcon13 } from '@/features/home/post/icons/EmojiIcon13';
-import { SaveIcon } from '@/components/icons/SaveIcon';
-import { ShareIcon } from '@/components/icons/ShareIcon';
-import { LikeIcon } from '@/components/icons/LikeIcon';
-import { MoreOptions24 } from '@/components/icons/MoreOptions24';
-import { getAspectClass } from '@/utils/get-aspect-class';
+import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
+import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
+import { LikeIcon } from '@/features/home/post/icons/LikeIcon';
+import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
 
 interface Props {
   post: Post;

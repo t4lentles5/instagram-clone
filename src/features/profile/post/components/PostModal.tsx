@@ -9,11 +9,11 @@ import { formatPostDate } from '@/utils/format-post-date';
 import { getExactDate } from '@/utils/get-exact-date';
 
 import { XIcon } from '@/components/icons/XIcon';
-import { MoreOptions24 } from '@/components/icons/MoreOptions24';
-import { LikeIcon } from '@/components/icons/LikeIcon';
-import { CommentIcon } from '@/components/icons/CommentIcon';
-import { SaveIcon } from '@/components/icons/SaveIcon';
-import { ShareIcon } from '@/components/icons/ShareIcon';
+import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
+import { LikeIcon } from '@/features/home/post/icons/LikeIcon';
+import { CommentIcon } from '@/features/home/post/icons/CommentIcon';
+import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
+import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
 import { EmojiIcon } from '@/features/home/post/icons/EmojiIcon';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 import { getAspectClass } from '@/utils/get-aspect-class';
@@ -150,7 +150,7 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div
-            className='border-popover relative max-w-[687px] items-center border-r bg-black'
+            className='border-popover relative max-w-[687px] items-center overflow-hidden border-r bg-black'
             style={{ aspectRatio: aspect_ratio_image }}
           >
             <PostCarousel images={post.PostImages.map((img) => img.imageUrl)} />
