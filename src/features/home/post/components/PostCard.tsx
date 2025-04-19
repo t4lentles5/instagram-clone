@@ -11,25 +11,23 @@ import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 
 import { CommentIcon } from '@/components/icons/CommentIcon';
-import { EmojiPostIcon } from '@/features/home/post/icons/EmojiPostIcon';
+import { EmojiIcon13 } from '@/features/home/post/icons/EmojiIcon13';
 import { SaveIcon } from '@/components/icons/SaveIcon';
 import { ShareIcon } from '@/components/icons/ShareIcon';
 import { LikeIcon } from '@/components/icons/LikeIcon';
 import { MoreOptions24 } from '@/components/icons/MoreOptions24';
+import { getAspectClass } from '@/utils/get-aspect-class';
 
 interface Props {
   post: Post;
 }
 
 export const PostCard = ({ post }: Props) => {
-  const getAspectClass = () => {
-    if (post.aspect_ratio === 'square') return '1';
-    if (post.aspect_ratio === 'portrait') return '4/5';
-    if (post.aspect_ratio === 'video') return '16/9';
-    if (post.aspect_ratio === 'original') return post.first_image_dimensions!;
-  };
-
-  const aspect_ratio_image = getAspectClass();
+  const { aspect_ratio, first_image_dimensions } = post;
+  const aspect_ratio_image = getAspectClass(
+    aspect_ratio,
+    first_image_dimensions!,
+  );
 
   return (
     <>
@@ -59,7 +57,6 @@ export const PostCard = ({ post }: Props) => {
             <span className='flex items-center justify-center'>•</span>
 
             <time
-              dateTime='2025-03-31T15:30:23.000Z'
               className='text-secondary text-sm leading-[18px]'
               title={getExactDate(post.createdAt.toString())}
             >
@@ -72,10 +69,12 @@ export const PostCard = ({ post }: Props) => {
           </div>
         </div>
 
-        <PostCarousel
-          images={post.PostImages.map((img) => img.imageUrl)}
-          aspect_ratio_image={aspect_ratio_image}
-        />
+        <div
+          className='border-border-popover relative overflow-hidden rounded-[4px] border bg-black'
+          style={{ aspectRatio: aspect_ratio_image }}
+        >
+          <PostCarousel images={post.PostImages.map((img) => img.imageUrl)} />
+        </div>
 
         <div className='flex w-full flex-col'>
           <div className='flex justify-between py-1'>
@@ -128,7 +127,7 @@ export const PostCard = ({ post }: Props) => {
               className='text-secondary p-1 md:order-2'
               aria-label='Add emoji'
             >
-              <EmojiPostIcon />
+              <EmojiIcon13 />
             </button>
 
             <form className='flex flex-1 items-center'>

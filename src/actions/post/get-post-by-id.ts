@@ -22,6 +22,14 @@ export const getPostById = async (postId: string) => {
       caption: true,
       createdAt: true,
       id: true,
+      likes: {
+        select: {
+          postId: true,
+          userId: true,
+        },
+      },
+      first_image_dimensions: true,
+      aspect_ratio: true,
     },
   });
 

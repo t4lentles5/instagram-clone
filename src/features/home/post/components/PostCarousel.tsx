@@ -5,10 +5,9 @@ import { BackPostIcon } from '@/features/home/post/icons/BackPostIcon';
 
 interface Props {
   images: string[];
-  aspect_ratio_image: string | undefined;
 }
 
-export function PostCarousel({ images, aspect_ratio_image }: Props) {
+export function PostCarousel({ images }: Props) {
   const [current, setCurrent] = useState(0);
 
   const prev = () => {
@@ -20,10 +19,7 @@ export function PostCarousel({ images, aspect_ratio_image }: Props) {
   };
 
   return (
-    <div
-      className='border-border-popover relative overflow-hidden rounded-[4px] border bg-black'
-      style={{ aspectRatio: aspect_ratio_image }}
-    >
+    <>
       {images.length > 0 && (
         <img
           key={current}
@@ -66,6 +62,6 @@ export function PostCarousel({ images, aspect_ratio_image }: Props) {
             />
           ))}
       </div>
-    </div>
+    </>
   );
 }

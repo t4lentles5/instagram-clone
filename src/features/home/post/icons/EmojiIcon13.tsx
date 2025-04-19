@@ -1,4 +1,4 @@
-export const EmojiPostIcon = () => {
+export const EmojiIcon13 = () => {
   return (
     <>
       <svg
