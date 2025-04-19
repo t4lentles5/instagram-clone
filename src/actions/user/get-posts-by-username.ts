@@ -16,6 +16,9 @@ export const getPostsByUsername = async (username: string) => {
     where: {
       authorId: user.id,
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
     select: {
       PostImages: {
         select: {
