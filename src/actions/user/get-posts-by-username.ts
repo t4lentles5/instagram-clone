@@ -17,17 +17,28 @@ export const getPostsByUsername = async (username: string) => {
       authorId: user.id,
     },
     select: {
-      id: true,
       PostImages: {
-        select: { imageUrl: true, imageUrlId: true },
+        select: {
+          imageUrl: true,
+        },
       },
       author: {
         select: {
-          profile_photo: true,
           username: true,
+          profile_photo: true,
         },
       },
+      caption: true,
       createdAt: true,
+      id: true,
+      likes: {
+        select: {
+          postId: true,
+          userId: true,
+        },
+      },
+      first_image_dimensions: true,
+      aspect_ratio: true,
     },
   });
 

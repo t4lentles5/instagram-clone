@@ -1,6 +1,10 @@
-import { getPostById } from '@/actions/post/get-post-by-id';
-import { PostModal } from '@/features/profile/post/components/PostModal';
 import { notFound } from 'next/navigation';
+
+import { getPostById } from '@/actions/post/get-post-by-id';
+
+import { getPostsByUsername } from '@/actions/user/get-posts-by-username';
+
+import { PostModal } from '@/features/profile/post/components/PostModal';
 
 type Props = {
   params: Promise<{
@@ -16,5 +20,7 @@ export default async function PostModalPage({ params }: Props) {
     notFound();
   }
 
-  return <PostModal post={post} />;
+  const posts = await getPostsByUsername(post.author.username);
+
+  return <PostModal currentPostId={post.id} posts={posts} />;
 }

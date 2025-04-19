@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
@@ -17,9 +17,11 @@ import { ShareIcon } from '@/components/icons/ShareIcon';
 import { EmojiIcon } from '@/features/home/post/icons/EmojiIcon';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 import { getAspectClass } from '@/utils/get-aspect-class';
+import { BackIcon } from '@/features/home/post/icons/BackIcon';
+import { NextIcon } from '@/features/home/post/icons/NextIcon';
 
 interface Props {
-  post: {
+  posts: {
     id: string;
     caption: string | null;
     createdAt: Date;
@@ -33,11 +35,34 @@ interface Props {
     likes: { postId: string; userId: string }[];
     first_image_dimensions: string | null;
     aspect_ratio: string;
-  };
+  }[];
+  currentPostId: string;
 }
 
-export const PostModal = ({ post }: Props) => {
+export const PostModal = ({ posts, currentPostId }: Props) => {
   const router = useRouter();
+  const [currentIndex, setCurrentIndex] = useState(() =>
+    posts.findIndex((p) => p.id === currentPostId),
+  );
+  const goToPost = (index: number) => {
+    if (index >= 0 && index < posts.length) {
+      setCurrentIndex(index);
+      const nextPost = posts[index];
+
+      router.replace(`/p/${nextPost.id}`);
+    }
+  };
+
+  useEffect(() => {
+    if (currentIndex + 1 < posts.length) {
+      router.prefetch(`/p/${posts[currentIndex + 1].id}`);
+    }
+    if (currentIndex - 1 >= 0) {
+      router.prefetch(`/p/${posts[currentIndex - 1].id}`);
+    }
+  }, [currentIndex]);
+
+  const post = posts[currentIndex];
 
   const { aspect_ratio, first_image_dimensions } = post;
 
@@ -47,24 +72,83 @@ export const PostModal = ({ post }: Props) => {
   );
 
   useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
+    const originalStyles = {
+      overflow: document.body.style.overflow,
+      paddingRight: document.body.style.paddingRight,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
+    };
+
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    const scrollY = window.scrollY;
+
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
 
     return () => {
-      document.body.style.overflow = originalOverflow;
+      document.body.style.overflow = originalStyles.overflow;
+      document.body.style.paddingRight = originalStyles.paddingRight;
+      document.body.style.position = originalStyles.position;
+      document.body.style.top = originalStyles.top;
+      document.body.style.width = originalStyles.width;
+
+      window.scrollTo(0, scrollY);
     };
   }, []);
 
   return (
     <>
-      <div className='bg-background-overlay fixed inset-0 z-50 flex items-center justify-center'>
+      <div
+        className='bg-background-overlay fixed inset-0 z-50 flex items-center justify-center'
+        onClick={() => router.back()}
+      >
         <button
-          onClick={() => router.back()}
+          onClick={(e) => {
+            router.back();
+            e.stopPropagation();
+          }}
           className='absolute top-[10px] right-[10px] cursor-pointer p-2'
         >
           <XIcon />
         </button>
-        <div className='bg-background flex h-11/12 w-7/9 xl:w-9/10'>
+
+        {posts.length > 1 && (
+          <>
+            {currentIndex !== 0 && (
+              <button
+                onClick={(e) => {
+                  goToPost(currentIndex - 1);
+                  e.stopPropagation();
+                }}
+                className='absolute top-1/2 left-3 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black'
+              >
+                <BackIcon />
+              </button>
+            )}
+            {currentIndex !== posts.length - 1 && (
+              <button
+                onClick={(e) => {
+                  goToPost(currentIndex + 1);
+                  e.stopPropagation();
+                }}
+                className='absolute top-1/2 right-3 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black'
+              >
+                <NextIcon />
+              </button>
+            )}
+          </>
+        )}
+
+        <div
+          className='bg-background flex h-11/12 w-7/9 xl:w-8/10'
+          onClick={(e) => e.stopPropagation()}
+        >
           <div
             className='border-popover relative max-w-[687px] items-center border-r bg-black'
             style={{ aspectRatio: aspect_ratio_image }}
@@ -156,9 +240,8 @@ export const PostModal = ({ post }: Props) => {
 
               <button
                 type='submit'
-                className='ml-2 text-sm font-semibold text-blue-500 opacity-0 transition-opacity duration-200 disabled:opacity-50'
+                className='disabled:text-secondary text-primary ml-2 text-sm font-semibold'
                 disabled
-                aria-hidden='true'
               >
                 Post
               </button>

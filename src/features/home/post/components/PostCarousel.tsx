@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { NextPostIcon } from '@/features/home/post/icons/NextPostIcon';
-import { BackPostIcon } from '@/features/home/post/icons/BackPostIcon';
+import { NextIcon12 } from '@/features/home/post/icons/NextIcon12';
+import { BackIcon12 } from '@/features/home/post/icons/BackIcon12';
 
 interface Props {
   images: string[];
@@ -36,7 +36,7 @@ export function PostCarousel({ images }: Props) {
               onClick={prev}
               className='absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black'
             >
-              <BackPostIcon />
+              <BackIcon12 />
             </button>
           )}
           {current !== images.length - 1 && (
@@ -44,7 +44,7 @@ export function PostCarousel({ images }: Props) {
               onClick={next}
               className='absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black'
             >
-              <NextPostIcon />
+              <NextIcon12 />
             </button>
           )}
         </>
