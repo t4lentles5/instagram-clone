@@ -12,10 +12,9 @@ export interface Post {
     profile_photo: User['profile_photo'];
     username: User['username'];
   };
-  PostImages: PostImagesI[];
-}
-
-interface PostImagesI {
-  id: string;
-  imageUrl: string;
+  PostImages: { id: string; imageUrl: string }[];
+  likes: {
+    postId: true;
+    userId: true;
+  }[];
 }

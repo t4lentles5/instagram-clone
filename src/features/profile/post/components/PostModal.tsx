@@ -19,23 +19,10 @@ import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 import { getAspectClass } from '@/utils/get-aspect-class';
 import { BackIcon } from '@/features/home/post/icons/BackIcon';
 import { NextIcon } from '@/features/home/post/icons/NextIcon';
+import { Post } from '@/interfaces/post.interface';
 
 interface Props {
-  posts: {
-    id: string;
-    caption: string | null;
-    createdAt: Date;
-    author: {
-      username: string;
-      profile_photo: string | null;
-    };
-    PostImages: {
-      imageUrl: string;
-    }[];
-    likes: { postId: string; userId: string }[];
-    first_image_dimensions: string | null;
-    aspect_ratio: string;
-  }[];
+  posts: Post[];
   currentPostId: string;
 }
 

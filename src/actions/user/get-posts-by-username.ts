@@ -23,6 +23,7 @@ export const getPostsByUsername = async (username: string) => {
       PostImages: {
         select: {
           imageUrl: true,
+          imageUrlId: true,
         },
       },
       author: {

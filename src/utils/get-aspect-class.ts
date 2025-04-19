@@ -1,6 +1,8 @@
+import { Post } from '@/interfaces/post.interface';
+
 export const getAspectClass = (
-  aspect_ratio: string,
-  first_image_dimensions: string,
+  aspect_ratio: Post['aspect_ratio'],
+  first_image_dimensions: Post['first_image_dimensions'],
 ) => {
   if (aspect_ratio === 'square') return '1';
   if (aspect_ratio === 'portrait') return '4/5';
