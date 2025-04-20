@@ -44,7 +44,9 @@ export default async function PostsPage({ params }: Props) {
                     <span className='mt-0.5 mr-[7px]'>
                       <LikesProfilePostIcon />
                     </span>
-                    <span className='text-base leading-5 font-bold'>100</span>
+                    <span className='text-base leading-5 font-bold'>
+                      {post.likes.length}
+                    </span>
                   </span>
 
                   <span className='flex items-center justify-center'>

@@ -9,18 +9,16 @@ import { getAspectClass } from '@/utils/get-aspect-class';
 import { Post } from '@/interfaces/post.interface';
 import { User } from '@/interfaces/user.interface';
 
-import { likePost } from '@/actions/post/like-post';
-import { dislikePost } from '@/actions/post/dislike-post';
-
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
+import { LikeButton } from '@/features/home/post/components/LikeButton';
 
 import { CommentIcon } from '@/features/home/post/icons/CommentIcon';
 import { EmojiIcon13 } from '@/features/home/post/icons/EmojiIcon13';
 import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
 import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
-import { LikeIcon } from '@/features/home/post/icons/LikeIcon';
 import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
+import { likePost } from '@/actions/post/like-post';
 
 interface Props {
   post: Post;
@@ -34,16 +32,7 @@ export const PostCard = ({ post, userId }: Props) => {
     first_image_dimensions!,
   );
 
-  const isLiked = !!post.likes.find((user) => user.userId === userId);
-  const like = post.likes.find((like) => like.userId === userId);
-
-  const toggleLike = () => {
-    if (isLiked) {
-      dislikePost(like!.id);
-    } else {
-      likePost(post.id, userId);
-    }
-  };
+  const hasLiked = post.likes.some((like) => like.userId === userId);
 
   return (
     <>
@@ -88,6 +77,11 @@ export const PostCard = ({ post, userId }: Props) => {
         <div
           className='border-border-popover relative overflow-hidden rounded-[4px] border bg-black'
           style={{ aspectRatio: aspect_ratio_image }}
+          onDoubleClick={() => {
+            if (!hasLiked) {
+              likePost(post.id, userId);
+            }
+          }}
         >
           <PostCarousel images={post.PostImages.map((img) => img.imageUrl)} />
         </div>
@@ -95,9 +89,7 @@ export const PostCard = ({ post, userId }: Props) => {
         <div className='flex w-full flex-col'>
           <div className='flex justify-between py-1'>
             <div className='flex'>
-              <button className='py-2 pr-2' onClick={() => toggleLike()}>
-                <LikeIcon isLiked={isLiked} />
-              </button>
+              <LikeButton post={post} userId={userId} />
               <div className='p-2'>
                 <CommentIcon />
               </div>
@@ -110,23 +102,11 @@ export const PostCard = ({ post, userId }: Props) => {
             </div>
           </div>
 
-          <div>
-            {post.likes.length <= 0 ? (
-              <span>
-                Be te first to{' '}
-                <button
-                  className='hover:text-secondary cursor-pointer font-semibold'
-                  onClick={() => likePost(post.id, userId)}
-                >
-                  like this
-                </button>
-              </span>
-            ) : (
-              <span className='text-sm leading-[18px] font-semibold'>
-                {post.likes.length} likes
-              </span>
-            )}
-          </div>
+          {post.likes.length > 0 && (
+            <span className='text-sm leading-[18px] font-semibold'>
+              {post.likes.length} {post.likes.length <= 1 ? 'like' : 'likes'}
+            </span>
+          )}
 
           <div className=''>
             <div>

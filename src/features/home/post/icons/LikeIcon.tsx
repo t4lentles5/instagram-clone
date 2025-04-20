@@ -1,11 +1,11 @@
 interface Props {
-  isLiked: boolean;
+  hasLiked: boolean;
 }
 
-export const LikeIcon = ({ isLiked }: Props) => {
+export const LikeIcon = ({ hasLiked }: Props) => {
   return (
     <>
-      {isLiked ? (
+      {hasLiked ? (
         <svg
           aria-label='Like'
           fill='#ff3040'

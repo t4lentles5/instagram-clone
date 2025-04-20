@@ -3,30 +3,33 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
+import { LikeButton } from '@/features/home/post/components/LikeButton';
 
 import { formatPostDate } from '@/utils/format-post-date';
+import { getAspectClass } from '@/utils/get-aspect-class';
 import { getExactDate } from '@/utils/get-exact-date';
 
+import { Post } from '@/interfaces/post.interface';
+
 import { XIcon } from '@/components/icons/XIcon';
-import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
-import { LikeIcon } from '@/features/home/post/icons/LikeIcon';
 import { CommentIcon } from '@/features/home/post/icons/CommentIcon';
 import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
+import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
 import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
 import { EmojiIcon } from '@/features/home/post/icons/EmojiIcon';
-import { PostCarousel } from '@/features/home/post/components/PostCarousel';
-import { getAspectClass } from '@/utils/get-aspect-class';
 import { BackIcon } from '@/features/home/post/icons/BackIcon';
 import { NextIcon } from '@/features/home/post/icons/NextIcon';
-import { Post } from '@/interfaces/post.interface';
+import { likePost } from '@/actions/post/like-post';
 
 interface Props {
   posts: Post[];
   currentPostId: string;
+  userId: string;
 }
 
-export const PostModal = ({ posts, currentPostId }: Props) => {
+export const PostModal = ({ posts, currentPostId, userId }: Props) => {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(() =>
     posts.findIndex((p) => p.id === currentPostId),
@@ -89,6 +92,8 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
     };
   }, []);
 
+  const hasLiked = post.likes.some((like) => like.userId === userId);
+
   return (
     <>
       <div
@@ -139,6 +144,11 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
           <div
             className='border-popover relative max-w-[687px] items-center overflow-hidden border-r bg-black'
             style={{ aspectRatio: aspect_ratio_image }}
+            onDoubleClick={() => {
+              if (!hasLiked) {
+                likePost(post.id, userId);
+              }
+            }}
           >
             <PostCarousel images={post.PostImages.map((img) => img.imageUrl)} />
           </div>
@@ -177,9 +187,7 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
             <div className='border-popover border-b'>
               <section className='flex justify-between px-4 py-[6px]'>
                 <div className='flex'>
-                  <button className='py-2 pr-2'>
-                    <LikeIcon />
-                  </button>
+                  <LikeButton post={post} userId={userId} />
                   <button className='p-2'>
                     <CommentIcon />
                   </button>
@@ -192,11 +200,24 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
                 </button>
               </section>
 
-              <section className='mb-4 flex flex-col px-4'>
-                <span className='text-sm'>
-                  {post.likes.length}{' '}
-                  <span className='font-semibold'>likes</span>
-                </span>
+              <section className='mb-4 flex flex-col px-4 text-sm'>
+                {post.likes.length <= 0 ? (
+                  <span className='text-sm'>
+                    Be te first to{' '}
+                    <button
+                      className='hover:text-secondary cursor-pointer font-semibold'
+                      onClick={() => likePost(post.id, userId)}
+                    >
+                      like this
+                    </button>
+                  </span>
+                ) : (
+                  <span className='text-sm font-semibold'>
+                    {post.likes.length}{' '}
+                    {post.likes.length <= 1 ? 'like' : 'likes'}
+                  </span>
+                )}
+
                 <time
                   className='text-secondary text-xs'
                   title={getExactDate(post.createdAt.toString())}
