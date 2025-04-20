@@ -11,6 +11,7 @@ export const getPosts = async () => {
         select: {
           profile_photo: true,
           username: true,
+          id: true,
         },
       },
       id: true,
@@ -25,6 +26,9 @@ export const getPosts = async () => {
           id: true,
           imageUrl: true,
         },
+      },
+      likes: {
+        select: { id: true, postId: true, userId: true },
       },
     },
   });

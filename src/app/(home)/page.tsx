@@ -13,15 +13,15 @@ export default async function HomePage() {
   const posts = await getPosts();
 
   return (
-    <div className="flex h-full w-full items-center justify-center">
-      <div className="flex w-[630px] flex-col items-center pt-4">
+    <div className='flex h-full w-full items-center justify-center'>
+      <div className='flex w-[630px] flex-col items-center pt-4'>
         <UserStories usersStories={users} user={user} />
         {posts.map((post) => (
-          <PostCard post={post} key={post.id} />
+          <PostCard post={post} key={post.id} userId={user.id} />
         ))}
       </div>
 
-      <div className="ml-16 hidden h-full w-[320px] flex-col justify-start pt-9 min-[1160px]:flex">
+      <div className='ml-16 hidden h-full w-[320px] flex-col justify-start pt-9 min-[1160px]:flex'>
         <SwitchUser user={user} />
 
         <SuggestedUsers users={users} />

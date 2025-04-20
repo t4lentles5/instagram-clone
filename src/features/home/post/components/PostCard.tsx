@@ -7,6 +7,10 @@ import { formatDate } from '@/utils/format-date';
 import { getAspectClass } from '@/utils/get-aspect-class';
 
 import { Post } from '@/interfaces/post.interface';
+import { User } from '@/interfaces/user.interface';
+
+import { likePost } from '@/actions/post/like-post';
+import { dislikePost } from '@/actions/post/dislike-post';
 
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
@@ -20,14 +24,26 @@ import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
 
 interface Props {
   post: Post;
+  userId: User['id'];
 }
 
-export const PostCard = ({ post }: Props) => {
+export const PostCard = ({ post, userId }: Props) => {
   const { aspect_ratio, first_image_dimensions } = post;
   const aspect_ratio_image = getAspectClass(
     aspect_ratio,
     first_image_dimensions!,
   );
+
+  const isLiked = !!post.likes.find((user) => user.userId === userId);
+  const like = post.likes.find((like) => like.userId === userId);
+
+  const toggleLike = () => {
+    if (isLiked) {
+      dislikePost(like!.id);
+    } else {
+      likePost(post.id, userId);
+    }
+  };
 
   return (
     <>
@@ -79,9 +95,9 @@ export const PostCard = ({ post }: Props) => {
         <div className='flex w-full flex-col'>
           <div className='flex justify-between py-1'>
             <div className='flex'>
-              <div className='py-2 pr-2'>
-                <LikeIcon />
-              </div>
+              <button className='py-2 pr-2' onClick={() => toggleLike()}>
+                <LikeIcon isLiked={isLiked} />
+              </button>
               <div className='p-2'>
                 <CommentIcon />
               </div>
@@ -95,9 +111,21 @@ export const PostCard = ({ post }: Props) => {
           </div>
 
           <div>
-            <span className='text-sm leading-[18px] font-semibold'>
-              100 likes
-            </span>
+            {post.likes.length <= 0 ? (
+              <span>
+                Be te first to{' '}
+                <button
+                  className='hover:text-secondary cursor-pointer font-semibold'
+                  onClick={() => likePost(post.id, userId)}
+                >
+                  like this
+                </button>
+              </span>
+            ) : (
+              <span className='text-sm leading-[18px] font-semibold'>
+                {post.likes.length} likes
+              </span>
+            )}
           </div>
 
           <div className=''>
