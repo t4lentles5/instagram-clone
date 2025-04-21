@@ -1,5 +1,7 @@
-import { getPostById } from '@/actions/post/get-post-by-id';
 import { notFound } from 'next/navigation';
+
+import { getPostById } from '@/actions/post/get-post-by-id';
+import { getPostsByUsername } from '@/actions/user/get-posts-by-username';
 
 type Props = {
   params: Promise<{
@@ -15,5 +17,14 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  return <div className="mt-2 grid place-content-center">{postId}</div>;
+  const posts = await getPostsByUsername(post.author.username);
+
+  return (
+    <div className='mt-2 grid place-content-center'>
+      {posts.map((post) => (
+        <h1 key={post.id}>{post.id}</h1>
+      ))}
+      {postId}
+    </div>
+  );
 }

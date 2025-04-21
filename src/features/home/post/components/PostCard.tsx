@@ -93,9 +93,9 @@ export const PostCard = ({ post, userId }: Props) => {
           <div className='flex justify-between py-1'>
             <div className='flex'>
               <LikeButton post={post} userId={userId} />
-              <div className='p-2'>
+              <Link href={`/p/${post.id}`} className='p-2'>
                 <CommentIcon />
-              </div>
+              </Link>
               <div className='p-2'>
                 <ShareIcon />
               </div>
