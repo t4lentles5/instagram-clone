@@ -55,9 +55,12 @@ export const PostCard = ({ post, userId }: Props) => {
             </div>
           </div>
           <div className='flex w-full items-baseline gap-x-1'>
-            <span className='text-sm leading-[18px]'>
+            <Link
+              href={`/${post.author.username}`}
+              className='text-sm leading-[18px] font-semibold'
+            >
               {post.author.username}
-            </span>
+            </Link>
 
             <span className='flex items-center justify-center'>•</span>
 
