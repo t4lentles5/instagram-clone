@@ -215,9 +215,13 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
                           </span>
                           {comment.text}
                         </p>
-                        <span className='text-secondary text-xs'>
+
+                        <time
+                          className='text-secondary text-xs'
+                          title={getExactDate(comment.createdAt.toString())}
+                        >
                           {formatDate(comment.createdAt.toString())}
-                        </span>
+                        </time>
                       </div>
                     </div>
 

@@ -31,6 +31,7 @@ export const getPosts = async () => {
         select: { id: true, postId: true, userId: true },
       },
       comments: {
+        orderBy: { createdAt: 'desc' },
         select: {
           id: true,
           postId: true,

@@ -25,8 +25,8 @@ export interface Post {
     text: string;
     createdAt: Date;
     user: {
-      username: string;
-      profile_photo: string;
+      username: User['username'];
+      profile_photo: User['profile_photo'];
     };
   }[];
 }
