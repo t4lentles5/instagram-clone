@@ -8,7 +8,7 @@ export function formatDate(dateString: string): string {
   const day = 24 * hour;
   const week = 7 * day;
 
-  if (diffInSeconds < 1) return 'now';
+  if (diffInSeconds <= 1) return 'now';
   if (diffInSeconds < minute) return `${diffInSeconds}s`;
   if (diffInSeconds < hour) return `${Math.floor(diffInSeconds / minute)}m`;
   if (diffInSeconds < day) return `${Math.floor(diffInSeconds / hour)}h`;
