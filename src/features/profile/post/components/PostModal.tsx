@@ -6,7 +6,9 @@ import { useRouter } from 'next/navigation';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { LikeButton } from '@/features/home/post/components/LikeButton';
-import { CommentForm } from './CommentForm';
+import { CommentForm } from '@/features/profile/post/components/CommentForm';
+import { PostComments } from '@/features/profile/post/components/PostComments';
+import { LikesModal } from '@/features/home/post/components/LikesModal';
 
 import { formatPostDate } from '@/utils/format-post-date';
 import { getAspectClass } from '@/utils/get-aspect-class';
@@ -24,7 +26,6 @@ import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
 import { EmojiIcon } from '@/features/home/post/icons/EmojiIcon';
 import { BackIcon } from '@/features/home/post/icons/BackIcon';
 import { NextIcon } from '@/features/home/post/icons/NextIcon';
-import { PostComments } from './PostComments';
 
 interface Props {
   posts: Post[];
@@ -33,6 +34,7 @@ interface Props {
 }
 
 export const PostModal = ({ posts, currentPostId, userId }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -219,10 +221,23 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
                     </button>
                   </span>
                 ) : (
-                  <span className='text-sm font-semibold'>
-                    {post.likes.length}{' '}
-                    {post.likes.length <= 1 ? 'like' : 'likes'}
-                  </span>
+                  <div>
+                    <button
+                      onClick={() => setIsOpen(true)}
+                      className='cursor-pointer text-sm leading-[18px] font-semibold'
+                    >
+                      {post.likes.length}{' '}
+                      {post.likes.length <= 1 ? 'like' : 'likes'}
+                    </button>
+
+                    {isOpen && (
+                      <LikesModal
+                        isOpen={isOpen}
+                        onClose={() => setIsOpen(false)}
+                        likes={post.likes}
+                      />
+                    )}
+                  </div>
                 )}
 
                 <time
