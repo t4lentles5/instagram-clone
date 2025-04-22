@@ -1,9 +1,9 @@
 import { useRef, useEffect } from 'react';
-import { Post } from '@/interfaces/post.interface';
+import { Comment } from '@/interfaces/post.interface';
 import { CommentItem } from './CommentItem';
 
 interface Props {
-  comments: Post['comments'];
+  comments: Comment[];
 }
 
 export const PostComments = ({ comments }: Props) => {

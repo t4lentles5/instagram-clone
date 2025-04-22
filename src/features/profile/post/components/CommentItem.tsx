@@ -7,19 +7,10 @@ import { getExactDate } from '@/utils/get-exact-date';
 
 import { CommentLikeIcon } from '@/features/profile/icons/CommentLikeIcon';
 
-import { User } from '@/interfaces/user.interface';
+import { Comment } from '@/interfaces/post.interface';
 
 interface Props {
-  comment: {
-    id: string;
-    postId: string;
-    text: string;
-    createdAt: Date;
-    user: {
-      username: User['username'];
-      profile_photo: User['profile_photo'];
-    };
-  };
+  comment: Comment;
 }
 
 export const CommentItem = ({ comment }: Props) => {

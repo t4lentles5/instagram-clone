@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { Post } from '@/interfaces/post.interface';
+import { Like } from '@/interfaces/post.interface';
 import { XIcon } from '@/components/icons/XIcon';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  likes: Post['likes'];
+  likes: Like[];
 }
 
 export const LikesModal = ({ isOpen, onClose, likes }: Props) => {
