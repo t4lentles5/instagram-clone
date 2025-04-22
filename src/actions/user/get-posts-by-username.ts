@@ -43,6 +43,20 @@ export const getPostsByUsername = async (username: string) => {
       likes: {
         select: { id: true, postId: true, userId: true },
       },
+      comments: {
+        select: {
+          id: true,
+          postId: true,
+          text: true,
+          createdAt: true,
+          user: {
+            select: {
+              username: true,
+              profile_photo: true,
+            },
+          },
+        },
+      },
     },
   });
 

@@ -111,26 +111,32 @@ export const PostCard = ({ post, userId }: Props) => {
             </span>
           )}
 
-          <div className=''>
-            <div>
-              <span className='text-sm leading-[18px] font-semibold'>
-                {post.author.username}
-              </span>{' '}
-              <span className='text-sm'>{post.caption}</span>
+          {post.caption && (
+            <div className=''>
+              <div>
+                <span className='text-sm leading-[18px] font-semibold'>
+                  {post.author.username}
+                </span>{' '}
+                <span className='text-sm'>{post.caption}</span>
+              </div>
+              <Link
+                href={'/explore/tags/some'}
+                className='text-blue-hover text-sm leading-[18px]'
+              >
+                #some
+              </Link>
             </div>
-            <Link
-              href={'/explore/tags/some'}
-              className='text-blue-hover text-sm leading-[18px]'
-            >
-              #some
-            </Link>
-          </div>
+          )}
 
-          <div>
-            <Link href={''} className='text-secondary text-sm leading-[18px]'>
-              View all 50 comments
+          {post.comments.length > 0 && (
+            <Link
+              href={`/p/${post.id}`}
+              className='text-secondary text-sm leading-[18px]'
+            >
+              View {post.comments.length > 1 && 'all'} {post.comments.length}{' '}
+              {post.comments.length > 1 ? 'comments' : 'comment'}
             </Link>
-          </div>
+          )}
 
           <div className='flex w-full items-center justify-between'>
             <button

@@ -6,10 +6,14 @@ import { useRouter } from 'next/navigation';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { LikeButton } from '@/features/home/post/components/LikeButton';
+import { CommentForm } from './CommentForm';
 
 import { formatPostDate } from '@/utils/format-post-date';
 import { getAspectClass } from '@/utils/get-aspect-class';
 import { getExactDate } from '@/utils/get-exact-date';
+import { formatDate } from '@/utils/format-date';
+
+import { likePost } from '@/actions/post/like-post';
 
 import { Post } from '@/interfaces/post.interface';
 
@@ -21,7 +25,7 @@ import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
 import { EmojiIcon } from '@/features/home/post/icons/EmojiIcon';
 import { BackIcon } from '@/features/home/post/icons/BackIcon';
 import { NextIcon } from '@/features/home/post/icons/NextIcon';
-import { likePost } from '@/actions/post/like-post';
+import { CommentLikeIcon } from '@/features/profile/icons/CommentLikeIcon';
 
 interface Props {
   posts: Post[];
@@ -138,11 +142,11 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
         )}
 
         <div
-          className='bg-background flex h-11/12 w-7/9 xl:w-8/10'
+          className='bg-background flex h-11/12'
           onClick={(e) => e.stopPropagation()}
         >
           <div
-            className='border-popover relative max-w-[687px] items-center overflow-hidden border-r bg-black'
+            className='border-popover relative max-w-[600px] min-w-[200px] items-center overflow-hidden border-r bg-black'
             style={{ aspectRatio: aspect_ratio_image }}
             onDoubleClick={() => {
               if (!hasLiked) {
@@ -153,7 +157,7 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
             <PostCarousel images={post.PostImages.map((img) => img.imageUrl)} />
           </div>
 
-          <div className='flex h-full grow flex-col'>
+          <div className='flex h-full max-w-[500px] min-w-[450px] grow flex-col'>
             <section className='border-popover flex items-center justify-between rounded-sm border-b'>
               <div className='flex grow items-center py-[14px] pr-1 pl-4'>
                 <ProfilePhoto
@@ -179,10 +183,56 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
               </div>
             </section>
 
-            <div className='border-popover flex grow flex-col items-center justify-center border-b'>
-              <h2 className='mb-2 text-2xl font-bold'>No comments yet.</h2>{' '}
-              <span className='text-sm'>Start the conversation.</span>
-            </div>
+            {post.comments.length > 0 ? (
+              <div className='border-popover scrollbar-hide grow overflow-y-scroll border-b p-4'>
+                {post.comments.map((comment) => (
+                  <div
+                    key={comment.id}
+                    className='flex items-start justify-between pt-3'
+                  >
+                    <div className='flex w-full'>
+                      <div className='w-[50px] shrink-0'>
+                        <ProfilePhoto
+                          profile_photo={comment.user.profile_photo}
+                          imageSize={{ size: 'w-8' }}
+                          backgroundDivSize={{ size: 'w-9' }}
+                          borderDivSize={{ size: 'w-10' }}
+                        />
+                      </div>
+
+                      <div className='max-w-[320px]'>
+                        <p className='text-sm leading-snug break-words whitespace-pre-wrap'>
+                          <span
+                            onClick={() => {
+                              router.back();
+                              setTimeout(() => {
+                                router.push(`/${comment.user.username}`);
+                              }, 10);
+                            }}
+                            className='mr-1 font-semibold'
+                          >
+                            {comment.user.username}
+                          </span>
+                          {comment.text}
+                        </p>
+                        <span className='text-secondary text-xs'>
+                          {formatDate(comment.createdAt.toString())}
+                        </span>
+                      </div>
+                    </div>
+
+                    <span className='mt-[9px] w-[24px] flex-shrink-0'>
+                      <CommentLikeIcon />
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className='border-popover flex grow flex-col items-center justify-center border-b'>
+                <h2 className='mb-2 text-2xl font-bold'>No comments yet.</h2>{' '}
+                <span className='text-sm'>Start the conversation.</span>
+              </div>
+            )}
 
             <div className='border-popover border-b'>
               <section className='flex justify-between px-4 py-[6px]'>
@@ -232,27 +282,7 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
                 <EmojiIcon />
               </button>
 
-              <form className='flex grow items-center'>
-                <textarea
-                  name='comment'
-                  id='comment'
-                  placeholder='Add a comment...'
-                  rows={1}
-                  className='max-h-[80px] min-h-[18px] w-full flex-1 resize-none overflow-y-auto border-none bg-transparent text-sm outline-none placeholder:text-gray-400 focus:ring-0'
-                  onInput={(e) => {
-                    e.currentTarget.style.height = 'auto';
-                    e.currentTarget.style.height = `${Math.min(e.currentTarget.scrollHeight, 80)}px`;
-                  }}
-                />
-              </form>
-
-              <button
-                type='submit'
-                className='disabled:text-secondary text-primary ml-2 text-sm font-semibold'
-                disabled
-              >
-                Post
-              </button>
+              <CommentForm postId={post.id} userId={userId} />
             </section>
           </div>
         </div>

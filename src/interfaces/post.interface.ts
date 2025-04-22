@@ -19,4 +19,14 @@ export interface Post {
     postId: string;
     userId: string;
   }[];
+  comments: {
+    id: string;
+    postId: string;
+    text: string;
+    createdAt: Date;
+    user: {
+      username: string;
+      profile_photo: string;
+    };
+  }[];
 }
