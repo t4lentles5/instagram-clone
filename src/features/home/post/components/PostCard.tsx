@@ -91,7 +91,7 @@ export const PostCard = ({ post, userId }: Props) => {
             }
           }}
         >
-          <PostCarousel images={post.PostImages.map((img) => img.imageUrl)} />
+          <PostCarousel images={post.postImages.map((img) => img.imageUrl)} />
         </div>
 
         <div className='flex w-full flex-col'>

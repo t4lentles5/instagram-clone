@@ -22,7 +22,7 @@ export const getPostById = async (postId: string) => {
       authorId: true,
       aspect_ratio: true,
       first_image_dimensions: true,
-      PostImages: {
+      postImages: {
         select: {
           id: true,
           imageUrl: true,

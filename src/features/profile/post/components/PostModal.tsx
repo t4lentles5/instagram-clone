@@ -157,7 +157,7 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
               }
             }}
           >
-            <PostCarousel images={post.PostImages.map((img) => img.imageUrl)} />
+            <PostCarousel images={post.postImages.map((img) => img.imageUrl)} />
           </div>
 
           <div className='flex h-full max-w-[500px] min-w-[450px] grow flex-col'>

@@ -21,7 +21,7 @@ export const getPosts = async () => {
       authorId: true,
       aspect_ratio: true,
       first_image_dimensions: true,
-      PostImages: {
+      postImages: {
         select: {
           id: true,
           imageUrl: true,
