@@ -1,16 +1,20 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 
 import { getExactDate } from '@/utils/get-exact-date';
 import { formatDate } from '@/utils/format-date';
 import { getAspectClass } from '@/utils/get-aspect-class';
 
+import { likePost } from '@/actions/post/like-post';
+
 import { Post } from '@/interfaces/post.interface';
 import { User } from '@/interfaces/user.interface';
 
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
+import { LikesModal } from './LikesModal';
 import { LikeButton } from '@/features/home/post/components/LikeButton';
 
 import { CommentIcon } from '@/features/home/post/icons/CommentIcon';
@@ -18,7 +22,6 @@ import { EmojiIcon13 } from '@/features/home/post/icons/EmojiIcon13';
 import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
 import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
 import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
-import { likePost } from '@/actions/post/like-post';
 
 interface Props {
   post: Post;
@@ -26,13 +29,15 @@ interface Props {
 }
 
 export const PostCard = ({ post, userId }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const { aspect_ratio, first_image_dimensions } = post;
   const aspect_ratio_image = getAspectClass(
     aspect_ratio,
     first_image_dimensions!,
   );
 
-  const hasLiked = post.likes.some((like) => like.userId === userId);
+  const hasLiked = post.likes.some((like) => like.user.id === userId);
 
   return (
     <>
@@ -106,9 +111,22 @@ export const PostCard = ({ post, userId }: Props) => {
           </div>
 
           {post.likes.length > 0 && (
-            <span className='text-sm leading-[18px] font-semibold'>
-              {post.likes.length} {post.likes.length <= 1 ? 'like' : 'likes'}
-            </span>
+            <div>
+              <button
+                onClick={() => setIsOpen(true)}
+                className='cursor-pointer text-sm leading-[18px] font-semibold'
+              >
+                {post.likes.length} {post.likes.length <= 1 ? 'like' : 'likes'}
+              </button>
+
+              {isOpen && (
+                <LikesModal
+                  isOpen={isOpen}
+                  onClose={() => setIsOpen(false)}
+                  likes={post.likes}
+                />
+              )}
+            </div>
           )}
 
           {post.caption && (

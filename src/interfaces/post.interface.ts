@@ -16,8 +16,14 @@ export interface Post {
   PostImages: { id: string; imageUrl: string }[];
   likes: {
     id: string;
-    postId: string;
     userId: string;
+    postId: string;
+    user: {
+      username: User['username'];
+      profile_photo: User['profile_photo'];
+      fullname: User['fullname'];
+      id: User['id'];
+    };
   }[];
   comments: {
     id: string;

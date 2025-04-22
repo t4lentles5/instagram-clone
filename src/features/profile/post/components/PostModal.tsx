@@ -97,7 +97,7 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
     };
   }, []);
 
-  const hasLiked = post.likes.some((like) => like.userId === userId);
+  const hasLiked = post.likes.some((like) => like.user.id === userId);
 
   return (
     <>
