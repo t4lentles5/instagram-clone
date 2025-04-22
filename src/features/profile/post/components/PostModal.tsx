@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
@@ -35,6 +35,8 @@ interface Props {
 
 export const PostModal = ({ posts, currentPostId, userId }: Props) => {
   const router = useRouter();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
   const [currentIndex, setCurrentIndex] = useState(() =>
     posts.findIndex((p) => p.id === currentPostId),
   );
@@ -242,7 +244,12 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
               <section className='flex justify-between px-4 py-[6px]'>
                 <div className='flex'>
                   <LikeButton post={post} userId={userId} />
-                  <button className='p-2'>
+                  <button
+                    className='p-2'
+                    onClick={() => {
+                      textareaRef.current?.focus();
+                    }}
+                  >
                     <CommentIcon />
                   </button>
                   <button className='p-2'>
@@ -286,7 +293,7 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
                 <EmojiIcon />
               </button>
 
-              <CommentForm postId={post.id} userId={userId} />
+              <CommentForm postId={post.id} userId={userId} ref={textareaRef} />
             </section>
           </div>
         </div>
