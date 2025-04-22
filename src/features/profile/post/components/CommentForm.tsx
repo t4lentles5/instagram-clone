@@ -58,7 +58,10 @@ export const CommentForm = forwardRef<HTMLTextAreaElement, Props>(
               handleSubmit(onSubmit)();
             }
           }}
-          {...register('text', { required: true })}
+          {...register('text', {
+            required: true,
+            validate: (value) => value.trim().length > 0,
+          })}
           ref={(e) => {
             textareaRef.current = e;
             register('text').ref(e);
