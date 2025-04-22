@@ -19,8 +19,8 @@ model User {
 
   posts    Post[]    @relation("AuthorPosts")
   taggedIn Post[]    @relation("TaggedPosts")
-  Like     Like[]
-  Comment  Comment[]
+  like     Like[]
+  comment  Comment[]
 }
 
 enum Aspect_ratio {
@@ -46,7 +46,7 @@ model Post {
 
   location    String?
   taggedUsers User[]       @relation("TaggedPosts")
-  PostImages  PostImages[]
+  postImages  PostImages[]
 
   @@index([authorId])
 }
