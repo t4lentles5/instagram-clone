@@ -4,6 +4,7 @@ import { persist } from 'zustand/middleware';
 type UserState = {
   userId: string;
   setUserId: (id: string) => void;
+  resetUserId: () => void;
 };
 
 export const useUserStore = create<UserState>()(
@@ -11,6 +12,7 @@ export const useUserStore = create<UserState>()(
     (set) => ({
       userId: '',
       setUserId: (id) => set({ userId: id }),
+      resetUserId: () => set({ userId: '' }),
     }),
     {
       name: 'user-id',

@@ -14,10 +14,12 @@ import { SavedMoreOptionsIcon } from '@/features/home/sidebar/icons/SavedMoreOpt
 import { SettingsMoreOptionsIcon } from '@/features/home/sidebar/icons/SettingsMoreOptionsIcon';
 import { SunMoreOptionsIcon } from '@/features/home/sidebar/icons/SunMoreOptionsIcon';
 import { SettingsSidebarIcon } from '@/features/home/sidebar/icons/SettingsSidebarIcon';
+import { useUserStore } from '@/store/user/user-store';
 
 export const SidebarMoreOptions = () => {
   const { isSidebarCollapsed } = useSidebarStore();
   const { isDarkMode, toggleTheme } = useThemeStore();
+  const { resetUserId } = useUserStore();
 
   const [open, setOpen] = useState(false);
   const [switchAppearanceOpen, setSwitchAppearanceOpen] = useState(false);
@@ -36,6 +38,7 @@ export const SidebarMoreOptions = () => {
   };
 
   const handleLogout = async () => {
+    resetUserId();
     await logout();
   };
 
