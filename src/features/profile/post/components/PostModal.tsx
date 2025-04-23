@@ -146,7 +146,7 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
         )}
 
         <div
-          className='flex h-11/12 items-center justify-center'
+          className='flex h-11/12 max-w-10/12 items-center justify-center'
           onClick={(e) => e.stopPropagation()}
         >
           <div
