@@ -186,7 +186,7 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
               </div>
             </section>
 
-            <PostComments comments={post.comments} />
+            <PostComments comments={post.comments} userId={userId} />
 
             <div className='border-popover border-b'>
               <section className='flex justify-between px-4 py-[6px]'>

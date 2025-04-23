@@ -4,9 +4,10 @@ import { CommentItem } from './CommentItem';
 
 interface Props {
   comments: Comment[];
+  userId: string;
 }
 
-export const PostComments = ({ comments }: Props) => {
+export const PostComments = ({ comments, userId }: Props) => {
   const newestCommentRef = useRef<HTMLDivElement>(null);
   const hasMounted = useRef(false);
 
@@ -36,7 +37,7 @@ export const PostComments = ({ comments }: Props) => {
                 ref={isNewest ? newestCommentRef : null}
                 className={isNewest ? 'scroll-mt-4' : undefined}
               >
-                <CommentItem comment={comment} />
+                <CommentItem comment={comment} userId={userId} />
               </div>
             );
           })}

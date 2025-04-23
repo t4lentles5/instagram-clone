@@ -46,4 +46,14 @@ export interface Comment {
     username: User['username'];
     profile_photo: User['profile_photo'];
   };
+  commentLike: {
+    id: string;
+    userId: string;
+    commentId: string;
+    user: {
+      username: User['username'];
+      profile_photo: User['profile_photo'];
+      fullname: User['fullname'];
+    };
+  }[];
 }

@@ -1,19 +1,19 @@
 import { useRouter } from 'next/navigation';
 
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
+import { LikeCommentButton } from './LikeCommentButton';
 
 import { formatDate } from '@/utils/format-date';
 import { getExactDate } from '@/utils/get-exact-date';
 
 import { Comment } from '@/interfaces/post.interface';
 
-import { HeartIcon } from '@/components/icons/HeartIcon';
-
 interface Props {
   comment: Comment;
+  userId: string;
 }
 
-export const CommentItem = ({ comment }: Props) => {
+export const CommentItem = ({ comment, userId }: Props) => {
   const router = useRouter();
 
   return (
@@ -54,9 +54,7 @@ export const CommentItem = ({ comment }: Props) => {
           </div>
         </div>
 
-        <span className='mt-[9px] w-[24px] flex-shrink-0'>
-          <HeartIcon type={'like'} size={12} />
-        </span>
+        <LikeCommentButton comment={comment} userId={userId} />
       </div>
     </>
   );

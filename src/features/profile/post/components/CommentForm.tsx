@@ -1,6 +1,7 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react';
-import { createCommentPost } from '@/actions/post/create-comment-post';
 import { SubmitHandler, useForm } from 'react-hook-form';
+
+import { createCommentPost } from '@/actions/post/comment/create-comment-post';
 
 interface Props {
   userId: string;
