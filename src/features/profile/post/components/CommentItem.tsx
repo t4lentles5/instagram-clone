@@ -7,6 +7,8 @@ import { formatDate } from '@/utils/format-date';
 import { getExactDate } from '@/utils/get-exact-date';
 
 import { Comment } from '@/interfaces/post.interface';
+import { useState } from 'react';
+import { LikesModal } from '@/features/home/post/components/LikesModal';
 
 interface Props {
   comment: Comment;
@@ -14,6 +16,7 @@ interface Props {
 
 export const CommentItem = ({ comment }: Props) => {
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -45,11 +48,29 @@ export const CommentItem = ({ comment }: Props) => {
             </p>
 
             <time
-              className='text-secondary text-xs'
+              className='text-secondary pr-3 text-xs'
               title={getExactDate(comment.createdAt.toString())}
             >
               {formatDate(comment.createdAt.toString())}
             </time>
+
+            {comment.commentLike.length > 0 && (
+              <button
+                className='text-secondary cursor-pointer text-xs font-semibold'
+                onClick={() => setIsOpen(true)}
+              >
+                {comment.commentLike.length}{' '}
+                {comment.commentLike.length > 1 ? 'likes' : 'like'}
+              </button>
+            )}
+
+            {isOpen && (
+              <LikesModal
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+                likes={comment.commentLike}
+              />
+            )}
           </div>
         </div>
 
