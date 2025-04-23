@@ -17,7 +17,7 @@ import { PostCarousel } from '@/features/home/post/components/PostCarousel';
 import { LikesModal } from './LikesModal';
 import { LikeButton } from '@/features/home/post/components/LikeButton';
 
-import { CommentIcon } from '@/features/home/post/icons/CommentIcon';
+import { CommentIcon } from '@/components/icons/CommentIcon';
 import { EmojiIcon13 } from '@/features/home/post/icons/EmojiIcon13';
 import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
 import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
@@ -99,7 +99,7 @@ export const PostCard = ({ post, userId }: Props) => {
             <div className='flex'>
               <LikeButton post={post} userId={userId} />
               <Link href={`/p/${post.id}`} className='p-2'>
-                <CommentIcon />
+                <CommentIcon type={'comment'} size={24} />
               </Link>
               <div className='p-2'>
                 <ShareIcon />

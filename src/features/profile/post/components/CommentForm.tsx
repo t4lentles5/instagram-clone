@@ -69,7 +69,7 @@ export const CommentForm = forwardRef<HTMLTextAreaElement, Props>(
         />
         <button
           type='submit'
-          className='disabled:text-secondary text-primary ml-2 text-sm font-semibold'
+          className='disabled:text-secondary text-blue hover:text-primary ml-2 cursor-pointer text-sm font-semibold'
           disabled={!isValid}
         >
           Post

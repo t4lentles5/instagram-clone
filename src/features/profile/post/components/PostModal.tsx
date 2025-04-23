@@ -19,7 +19,7 @@ import { likePost } from '@/actions/post/like-post';
 import { Post } from '@/interfaces/post.interface';
 
 import { XIcon } from '@/components/icons/XIcon';
-import { CommentIcon } from '@/features/home/post/icons/CommentIcon';
+import { CommentIcon } from '@/components/icons/CommentIcon';
 import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
 import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
 import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
@@ -198,7 +198,7 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
                       textareaRef.current?.focus();
                     }}
                   >
-                    <CommentIcon />
+                    <CommentIcon type={'comment'} size={24} />
                   </button>
                   <button className='p-2'>
                     <ShareIcon />

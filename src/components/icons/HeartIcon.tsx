@@ -26,6 +26,7 @@ export const HeartIcon = ({ isActive, hasLiked, type, size }: Props) => {
 
   return (
     <svg
+      className='hover:text-secondary'
       aria-label={label}
       fill={fillColor}
       height={size}
