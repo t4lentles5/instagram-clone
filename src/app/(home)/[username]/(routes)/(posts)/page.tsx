@@ -27,12 +27,12 @@ export default async function PostsPage({ params }: Props) {
               className='group relative'
             >
               <img
-                src={post.PostImages[0].imageUrl}
+                src={post.postImages[0].imageUrl}
                 alt=''
                 className='aspect-3/4 object-cover'
               />
 
-              {post.PostImages.length > 1 && (
+              {post.postImages.length > 1 && (
                 <div className='absolute top-2 right-2 text-white'>
                   <CarouselProfilePostIcon />
                 </div>
