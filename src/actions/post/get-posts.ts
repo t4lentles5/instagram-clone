@@ -56,6 +56,21 @@ export const getPosts = async () => {
               profile_photo: true,
             },
           },
+          commentLike: {
+            orderBy: { createdAt: 'desc' },
+            select: {
+              id: true,
+              userId: true,
+              commentId: true,
+              user: {
+                select: {
+                  username: true,
+                  profile_photo: true,
+                  fullname: true,
+                },
+              },
+            },
+          },
         },
       },
     },
