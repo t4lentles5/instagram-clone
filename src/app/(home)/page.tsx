@@ -17,7 +17,7 @@ export default async function HomePage() {
       <div className='flex w-[630px] flex-col items-center pt-4'>
         <UserStories usersStories={users} user={user} />
         {posts.map((post) => (
-          <PostCard post={post} key={post.id} userId={user.id} />
+          <PostCard post={post} key={post.id} />
         ))}
       </div>
 

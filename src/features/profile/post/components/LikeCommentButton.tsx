@@ -1,14 +1,19 @@
 import { dislikeComment } from '@/actions/post/comment/dislike-comment';
 import { likeComment } from '@/actions/post/comment/like-comment';
+
 import { HeartIcon } from '@/components/icons/HeartIcon';
+
 import { Comment } from '@/interfaces/post.interface';
+
+import { useUserStore } from '@/store/user/user-store';
 
 interface Props {
   comment: Comment;
-  userId: string;
 }
 
-export const LikeCommentButton = ({ comment, userId }: Props) => {
+export const LikeCommentButton = ({ comment }: Props) => {
+  const { userId } = useUserStore();
+
   const hasLiked = comment.commentLike.some((like) => like.userId === userId);
   const like = comment.commentLike.find((like) => like.userId === userId);
 

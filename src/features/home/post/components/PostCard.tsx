@@ -10,7 +10,6 @@ import { getAspectClass } from '@/utils/get-aspect-class';
 import { likePost } from '@/actions/post/like-post';
 
 import { Post } from '@/interfaces/post.interface';
-import { User } from '@/interfaces/user.interface';
 
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { PostCarousel } from '@/features/home/post/components/PostCarousel';
@@ -22,13 +21,15 @@ import { EmojiIcon13 } from '@/features/home/post/icons/EmojiIcon13';
 import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
 import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
 import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
+import { useUserStore } from '@/store/user/user-store';
 
 interface Props {
   post: Post;
-  userId: User['id'];
 }
 
-export const PostCard = ({ post, userId }: Props) => {
+export const PostCard = ({ post }: Props) => {
+  const { userId } = useUserStore();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const { aspect_ratio, first_image_dimensions } = post;

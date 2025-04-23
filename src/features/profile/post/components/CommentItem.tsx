@@ -10,10 +10,9 @@ import { Comment } from '@/interfaces/post.interface';
 
 interface Props {
   comment: Comment;
-  userId: string;
 }
 
-export const CommentItem = ({ comment, userId }: Props) => {
+export const CommentItem = ({ comment }: Props) => {
   const router = useRouter();
 
   return (
@@ -54,7 +53,7 @@ export const CommentItem = ({ comment, userId }: Props) => {
           </div>
         </div>
 
-        <LikeCommentButton comment={comment} userId={userId} />
+        <LikeCommentButton comment={comment} />
       </div>
     </>
   );

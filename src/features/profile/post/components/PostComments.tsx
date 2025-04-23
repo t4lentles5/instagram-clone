@@ -1,13 +1,13 @@
 import { useRef, useEffect } from 'react';
+
 import { Comment } from '@/interfaces/post.interface';
 import { CommentItem } from './CommentItem';
 
 interface Props {
   comments: Comment[];
-  userId: string;
 }
 
-export const PostComments = ({ comments, userId }: Props) => {
+export const PostComments = ({ comments }: Props) => {
   const newestCommentRef = useRef<HTMLDivElement>(null);
   const hasMounted = useRef(false);
 
@@ -37,7 +37,7 @@ export const PostComments = ({ comments, userId }: Props) => {
                 ref={isNewest ? newestCommentRef : null}
                 className={isNewest ? 'scroll-mt-4' : undefined}
               >
-                <CommentItem comment={comment} userId={userId} />
+                <CommentItem comment={comment} />
               </div>
             );
           })}

@@ -37,7 +37,7 @@ export const login = async (email: string, password: string) => {
       path: '/',
     });
 
-    return { ok: true, message: 'Log in Successfully' };
+    return { ok: true, user };
   } catch (error) {
     console.log(error);
     return { ok: false, message: 'An error occurred during login' };

@@ -13,6 +13,7 @@ import { LikesModal } from '@/features/home/post/components/LikesModal';
 import { formatPostDate } from '@/utils/format-post-date';
 import { getAspectClass } from '@/utils/get-aspect-class';
 import { getExactDate } from '@/utils/get-exact-date';
+import { useUserStore } from '@/store/user/user-store';
 
 import { likePost } from '@/actions/post/like-post';
 
@@ -30,12 +31,12 @@ import { NextIcon } from '@/features/home/post/icons/NextIcon';
 interface Props {
   posts: Post[];
   currentPostId: string;
-  userId: string;
 }
 
-export const PostModal = ({ posts, currentPostId, userId }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const PostModal = ({ posts, currentPostId }: Props) => {
+  const { userId } = useUserStore();
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [currentIndex, setCurrentIndex] = useState(() =>
@@ -186,7 +187,7 @@ export const PostModal = ({ posts, currentPostId, userId }: Props) => {
               </div>
             </section>
 
-            <PostComments comments={post.comments} userId={userId} />
+            <PostComments comments={post.comments} />
 
             <div className='border-popover border-b'>
               <section className='flex justify-between px-4 py-[6px]'>
