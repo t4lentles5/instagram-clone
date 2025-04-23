@@ -146,11 +146,11 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
         )}
 
         <div
-          className='bg-background flex h-11/12'
+          className='flex h-11/12 items-center justify-center'
           onClick={(e) => e.stopPropagation()}
         >
           <div
-            className='border-popover relative max-w-[600px] min-w-[200px] items-center overflow-hidden border-r bg-black'
+            className={` ${post.aspect_ratio === 'video' && 'aspect-square'} border-popover relative h-full w-full max-w-[687px] overflow-hidden border-r bg-black`}
             style={{ aspectRatio: aspect_ratio_image }}
             onDoubleClick={() => {
               if (!hasLiked) {
@@ -161,7 +161,7 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
             <PostCarousel images={post.postImages.map((img) => img.imageUrl)} />
           </div>
 
-          <div className='flex h-full max-w-[500px] min-w-[450px] grow flex-col'>
+          <div className='bg-background flex h-full max-w-[500px] min-w-[400px] grow flex-col'>
             <section className='border-popover flex items-center justify-between rounded-sm border-b'>
               <div className='flex grow items-center py-[14px] pr-1 pl-4'>
                 <ProfilePhoto
