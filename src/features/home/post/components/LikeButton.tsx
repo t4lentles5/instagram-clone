@@ -3,7 +3,7 @@ import { likePost } from '@/actions/post/like-post';
 
 import { Post } from '@/interfaces/post.interface';
 
-import { LikeIcon } from '@/features/home/post/icons/LikeIcon';
+import { HeartIcon } from '@/components/icons/HeartIcon';
 
 interface Props {
   post: Post;
@@ -25,7 +25,7 @@ export const LikeButton = ({ post, userId }: Props) => {
   return (
     <>
       <button className='cursor-pointer py-2 pr-2' onClick={() => toggleLike()}>
-        <LikeIcon hasLiked={hasLiked} />
+        <HeartIcon type={'like'} size={24} hasLiked={hasLiked} />
       </button>
     </>
   );

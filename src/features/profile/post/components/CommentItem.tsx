@@ -5,9 +5,9 @@ import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { formatDate } from '@/utils/format-date';
 import { getExactDate } from '@/utils/get-exact-date';
 
-import { CommentLikeIcon } from '@/features/profile/icons/CommentLikeIcon';
-
 import { Comment } from '@/interfaces/post.interface';
+
+import { HeartIcon } from '@/components/icons/HeartIcon';
 
 interface Props {
   comment: Comment;
@@ -55,7 +55,7 @@ export const CommentItem = ({ comment }: Props) => {
         </div>
 
         <span className='mt-[9px] w-[24px] flex-shrink-0'>
-          <CommentLikeIcon />
+          <HeartIcon type={'like'} size={12} />
         </span>
       </div>
     </>

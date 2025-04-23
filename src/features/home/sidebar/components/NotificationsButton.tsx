@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 
-import { NotificationsSidebarIcon } from '@/features/home/sidebar/icons/NotificationsSidebarIcon';
+import { HeartIcon } from '@/components/icons/HeartIcon';
 
 export const NotificationsButton = () => {
   const pathname = usePathname();
@@ -47,7 +47,7 @@ export const NotificationsButton = () => {
           className='hover:bg-background-hover hidden w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:flex'
           onClick={toggleNotifications}
         >
-          <NotificationsSidebarIcon isActive={isActive} />
+          <HeartIcon isActive={isActive} type={'notification'} size={24} />
           <span
             className={`${
               isSidebarCollapsed ? 'hidden' : 'xl:block'
