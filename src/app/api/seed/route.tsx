@@ -1,16 +1,21 @@
 import { NextResponse } from 'next/server';
+
 import { promises as fs } from 'fs';
 import path from 'path';
 import bcrypt from 'bcrypt';
 import sharp from 'sharp';
+
 import prisma from '@/config/prisma';
 import { initialData } from '@/seed/seed';
+
 import { changeProfilePhoto } from '@/actions/user/change-profile-photo';
 import { deleteAllProfilePhotos } from '@/actions/seed/delete-all-profile-photos';
 import { createPost } from '@/actions/post/create-post';
 
 export async function POST() {
   try {
+    await prisma.like.deleteMany();
+    await prisma.comment.deleteMany();
     await prisma.postImages.deleteMany();
     await prisma.post.deleteMany();
     await prisma.user.deleteMany();
