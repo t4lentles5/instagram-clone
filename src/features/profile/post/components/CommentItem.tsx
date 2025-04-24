@@ -1,3 +1,4 @@
+import { RefObject, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
@@ -7,16 +8,30 @@ import { formatDate } from '@/utils/format-date';
 import { getExactDate } from '@/utils/get-exact-date';
 
 import { Comment } from '@/interfaces/post.interface';
-import { useState } from 'react';
 import { LikesModal } from '@/features/home/post/components/LikesModal';
 
 interface Props {
   comment: Comment;
+  textareaRef: RefObject<HTMLTextAreaElement | null>;
 }
 
-export const CommentItem = ({ comment }: Props) => {
+export const CommentItem = ({ comment, textareaRef }: Props) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+
+  const replyComment = () => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+
+    const usernameTag = `@${comment.user.username} `;
+
+    textarea.value = '';
+
+    textarea.value = usernameTag;
+
+    textarea.focus();
+    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+  };
 
   return (
     <>
@@ -55,22 +70,33 @@ export const CommentItem = ({ comment }: Props) => {
             </time>
 
             {comment.commentLike.length > 0 && (
-              <button
-                className='text-secondary cursor-pointer text-xs font-semibold'
-                onClick={() => setIsOpen(true)}
-              >
-                {comment.commentLike.length}{' '}
-                {comment.commentLike.length > 1 ? 'likes' : 'like'}
-              </button>
+              <>
+                <button
+                  className='text-secondary cursor-pointer pr-3 text-xs font-semibold'
+                  onClick={() => setIsOpen(true)}
+                >
+                  {comment.commentLike.length}{' '}
+                  {comment.commentLike.length > 1 ? 'likes' : 'like'}
+                </button>
+
+                {isOpen && (
+                  <LikesModal
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                    likes={comment.commentLike}
+                  />
+                )}
+              </>
             )}
 
-            {isOpen && (
-              <LikesModal
-                isOpen={isOpen}
-                onClose={() => setIsOpen(false)}
-                likes={comment.commentLike}
-              />
-            )}
+            <button
+              className='text-secondary cursor-pointer text-xs font-semibold'
+              onClick={() => {
+                replyComment();
+              }}
+            >
+              Reply
+            </button>
           </div>
         </div>
 

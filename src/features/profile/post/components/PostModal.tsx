@@ -187,7 +187,7 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
               </div>
             </section>
 
-            <PostComments comments={post.comments} />
+            <PostComments comments={post.comments} textareaRef={textareaRef} />
 
             <div className='border-border border-b'>
               <section className='flex justify-between px-4 py-[6px]'>
