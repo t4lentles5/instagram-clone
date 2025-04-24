@@ -15,6 +15,7 @@ import { createPost } from '@/actions/post/create-post';
 export async function POST() {
   try {
     await prisma.like.deleteMany();
+    await prisma.commentLike.deleteMany();
     await prisma.comment.deleteMany();
     await prisma.postImages.deleteMany();
     await prisma.post.deleteMany();

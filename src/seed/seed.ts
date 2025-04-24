@@ -8,7 +8,7 @@ interface User {
 }
 
 interface Post {
-  caption: string;
+  caption?: string;
   imagesUrl: string[];
   userUsername: string;
   aspect_ratio: 'original' | 'square' | 'portrait' | 'video';
@@ -194,6 +194,11 @@ export const initialData: SeedData = {
       imagesUrl: ['/post_images/image_10.jpg'],
       userUsername: 'omar_10',
       aspect_ratio: 'video',
+    },
+    {
+      imagesUrl: ['/post_images/image_13.jpg'],
+      userUsername: 'omar_10',
+      aspect_ratio: 'original',
     },
   ],
 };

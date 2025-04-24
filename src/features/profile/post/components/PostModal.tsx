@@ -150,7 +150,7 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div
-            className={` ${post.aspect_ratio === 'video' && 'aspect-square'} border-popover relative h-full w-full max-w-[687px] overflow-hidden border-r bg-black`}
+            className={` ${post.aspect_ratio === 'video' && 'aspect-square'} border-border relative h-full w-full max-w-[687px] overflow-hidden border-r bg-black`}
             style={{ aspectRatio: aspect_ratio_image }}
             onDoubleClick={() => {
               if (!hasLiked) {
@@ -162,7 +162,7 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
           </div>
 
           <div className='bg-background flex h-full max-w-[500px] min-w-[400px] grow flex-col'>
-            <section className='border-popover flex items-center justify-between rounded-sm border-b'>
+            <section className='border-border flex items-center justify-between rounded-sm border-b'>
               <div className='flex grow items-center py-[14px] pr-1 pl-4'>
                 <ProfilePhoto
                   profile_photo={post.author.profile_photo}
@@ -189,7 +189,7 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
 
             <PostComments comments={post.comments} />
 
-            <div className='border-popover border-b'>
+            <div className='border-border border-b'>
               <section className='flex justify-between px-4 py-[6px]'>
                 <div className='flex'>
                   <LikeButton post={post} userId={userId} />

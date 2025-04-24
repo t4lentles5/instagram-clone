@@ -27,7 +27,7 @@ export const PostComments = ({ comments }: Props) => {
   return (
     <>
       {comments.length > 0 ? (
-        <div className='border-popover scrollbar-hide grow overflow-y-scroll border-b p-4'>
+        <div className='border-border scrollbar-hide grow overflow-y-scroll border-b p-4'>
           {comments.map((comment, index) => {
             const isNewest = index === 0;
 
