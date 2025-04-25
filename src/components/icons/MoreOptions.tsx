@@ -1,4 +1,4 @@
-export const MoreOptions24 = () => {
+export const MoreOptions = () => {
   return (
     <>
       <svg

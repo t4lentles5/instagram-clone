@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 
 import { getPostById } from '@/actions/post/get-post-by-id';
 
-import { PostModal } from '@/features/profile/post/components/PostModal';
+import { PostModal } from '@/components/ui/post/PostModal';
 
 type Props = {
   params: Promise<{

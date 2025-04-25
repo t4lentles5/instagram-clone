@@ -1,5 +1,5 @@
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
-import { LikesModal } from '@/features/home/post/components/LikesModal';
+import { LikesModal } from '@/components/ui/post/LikesModal';
 import { Reply } from '@/interfaces/post.interface';
 import { formatDate } from '@/utils/format-date';
 import { getExactDate } from '@/utils/get-exact-date';

@@ -3,12 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { PostCarousel } from '@/features/home/post/components/PostCarousel';
+import { PostCarousel } from '@/components/ui/post/PostCarousel';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
-import { LikeButton } from '@/features/home/post/components/LikeButton';
+import { LikeButton } from '@/components/ui/post/LikeButton';
 import { CommentForm } from '@/features/profile/post/components/CommentForm';
-import { PostComments } from '@/features/profile/post/components/PostComments';
-import { LikesModal } from '@/features/home/post/components/LikesModal';
+import { PostComments } from '@/components/ui/post/PostComments';
+import { LikesModal } from '@/components/ui/post/LikesModal';
 
 import { formatPostDate } from '@/utils/format-post-date';
 import { getAspectClass } from '@/utils/get-aspect-class';
@@ -21,10 +21,10 @@ import { Post } from '@/interfaces/post.interface';
 
 import { XIcon } from '@/components/icons/XIcon';
 import { CommentIcon } from '@/components/icons/CommentIcon';
-import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
-import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
-import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
-import { EmojiIcon } from '@/features/home/post/icons/EmojiIcon';
+import { SaveIcon } from '@/components/icons/SaveIcon';
+import { MoreOptions } from '@/components/icons/MoreOptions';
+import { ShareIcon } from '@/components/icons/ShareIcon';
+import { EmojiIcon } from '@/components/icons/EmojiIcon';
 
 interface Props {
   post: Post;
@@ -130,7 +130,7 @@ export const PostModal = ({ post }: Props) => {
               </div>
               <div className='pr-2'>
                 <div className='p-2'>
-                  <MoreOptions24 />
+                  <MoreOptions />
                 </div>
               </div>
             </section>
@@ -208,7 +208,7 @@ export const PostModal = ({ post }: Props) => {
 
             <section className='flex py-[6px] pr-4'>
               <button className='px-4 py-2'>
-                <EmojiIcon />
+                <EmojiIcon size={24} />
               </button>
 
               <CommentForm

@@ -1,7 +1,7 @@
 import { useRef, useEffect, RefObject, Dispatch, SetStateAction } from 'react';
 
 import { Comment } from '@/interfaces/post.interface';
-import { CommentItem } from './CommentItem';
+import { CommentItem } from '../../../features/profile/post/components/CommentItem';
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { getExactDate } from '@/utils/get-exact-date';
 import { formatDate } from '@/utils/format-date';

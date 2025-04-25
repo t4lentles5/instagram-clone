@@ -12,16 +12,16 @@ import { likePost } from '@/actions/post/like-post';
 import { Post } from '@/interfaces/post.interface';
 
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
-import { PostCarousel } from '@/features/home/post/components/PostCarousel';
+import { PostCarousel } from '@/components/ui/post/PostCarousel';
 import { LikesModal } from './LikesModal';
-import { LikeButton } from '@/features/home/post/components/LikeButton';
+import { LikeButton } from '@/components/ui/post/LikeButton';
 
 import { CommentIcon } from '@/components/icons/CommentIcon';
-import { EmojiIcon13 } from '@/features/home/post/icons/EmojiIcon13';
-import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
-import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
-import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
+import { SaveIcon } from '@/components/icons/SaveIcon';
+import { ShareIcon } from '@/components/icons/ShareIcon';
+import { MoreOptions } from '@/components/icons/MoreOptions';
 import { useUserStore } from '@/store/user/user-store';
+import { EmojiIcon } from '@/components/icons/EmojiIcon';
 
 interface Props {
   post: Post;
@@ -79,7 +79,7 @@ export const PostCard = ({ post }: Props) => {
           </div>
 
           <div className='flex w-8 justify-end'>
-            <MoreOptions24 />
+            <MoreOptions />
           </div>
         </div>
 
@@ -163,7 +163,7 @@ export const PostCard = ({ post }: Props) => {
               className='text-secondary p-1 md:order-2'
               aria-label='Add emoji'
             >
-              <EmojiIcon13 />
+              <EmojiIcon size={13} />
             </button>
 
             <form className='flex flex-1 items-center'>

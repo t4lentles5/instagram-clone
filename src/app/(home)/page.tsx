@@ -4,7 +4,7 @@ import { SwitchUser } from '@/features/home/suggested-users/components/SwitchUse
 import { Footer } from '@/components/layout/Footer';
 import { SuggestedUsers } from '@/features/home/suggested-users/components/SuggestedUsers';
 import { UserStories } from '@/features/home/user-stories/components/UserStories';
-import { PostCard } from '@/features/home/post/components/PostCard';
+import { PostCard } from '@/components/ui/post/PostCard';
 import { getPosts } from '@/actions/post/get-posts';
 
 export default async function HomePage() {
