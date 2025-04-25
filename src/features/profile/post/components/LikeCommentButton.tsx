@@ -3,12 +3,12 @@ import { likeComment } from '@/actions/post/comment/like-comment';
 
 import { HeartIcon } from '@/components/icons/HeartIcon';
 
-import { Comment } from '@/interfaces/post.interface';
+import { Comment, Reply } from '@/interfaces/post.interface';
 
 import { useUserStore } from '@/store/user/user-store';
 
 interface Props {
-  comment: Comment;
+  comment: Comment | Reply;
 }
 
 export const LikeCommentButton = ({ comment }: Props) => {
