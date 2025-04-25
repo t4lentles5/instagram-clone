@@ -139,6 +139,10 @@ export const PostModal = ({ post }: Props) => {
               comments={post.comments}
               textareaRef={textareaRef}
               setReplyToCommentId={setReplyToCommentId}
+              postCaption={post.caption}
+              profile_photo={post.author.profile_photo}
+              username={post.author.username}
+              postCreatedAt={post.createdAt}
             />
 
             <div className='border-border border-b'>
