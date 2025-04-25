@@ -4,6 +4,5 @@ export function getExactDate(dateString: string): string {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
-    timeZone: 'UTC',
   }).format(date);
 }
