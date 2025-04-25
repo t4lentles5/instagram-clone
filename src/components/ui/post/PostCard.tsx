@@ -148,13 +148,15 @@ export const PostCard = ({ post }: Props) => {
           )}
 
           {post.comments.length > 0 && (
-            <Link
-              href={`/p/${post.id}`}
-              className='text-secondary text-sm leading-[18px]'
-            >
-              View {post.comments.length > 1 && 'all'} {post.comments.length}{' '}
-              {post.comments.length > 1 ? 'comments' : 'comment'}
-            </Link>
+            <div>
+              <Link
+                href={`/p/${post.id}`}
+                className='text-secondary text-sm leading-[18px]'
+              >
+                View {post.comments.length > 1 && 'all'} {post.comments.length}{' '}
+                {post.comments.length > 1 ? 'comments' : 'comment'}
+              </Link>
+            </div>
           )}
 
           <div className='flex w-full items-center justify-between'>
