@@ -57,6 +57,7 @@ export const getPostsByUsername = async (username: string) => {
         },
       },
       comments: {
+        where: { parentId: null },
         orderBy: { createdAt: 'desc' },
         select: {
           id: true,
@@ -67,6 +68,37 @@ export const getPostsByUsername = async (username: string) => {
             select: {
               username: true,
               profile_photo: true,
+            },
+          },
+          replies: {
+            orderBy: { createdAt: 'asc' },
+            select: {
+              id: true,
+              parentId: true,
+              postId: true,
+              text: true,
+              createdAt: true,
+              user: {
+                select: {
+                  username: true,
+                  profile_photo: true,
+                },
+              },
+              commentLike: {
+                orderBy: { createdAt: 'desc' },
+                select: {
+                  id: true,
+                  userId: true,
+                  commentId: true,
+                  user: {
+                    select: {
+                      username: true,
+                      profile_photo: true,
+                      fullname: true,
+                    },
+                  },
+                },
+              },
             },
           },
           commentLike: {

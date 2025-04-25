@@ -1,4 +1,4 @@
-import { useRef, useEffect, RefObject } from 'react';
+import { useRef, useEffect, RefObject, Dispatch, SetStateAction } from 'react';
 
 import { Comment } from '@/interfaces/post.interface';
 import { CommentItem } from './CommentItem';
@@ -6,9 +6,14 @@ import { CommentItem } from './CommentItem';
 interface Props {
   comments: Comment[];
   textareaRef: RefObject<HTMLTextAreaElement | null>;
+  setReplyToCommentId: Dispatch<SetStateAction<string | null>>;
 }
 
-export const PostComments = ({ comments, textareaRef }: Props) => {
+export const PostComments = ({
+  comments,
+  textareaRef,
+  setReplyToCommentId,
+}: Props) => {
   const newestCommentRef = useRef<HTMLDivElement>(null);
   const hasMounted = useRef(false);
 
@@ -38,7 +43,11 @@ export const PostComments = ({ comments, textareaRef }: Props) => {
                 ref={isNewest ? newestCommentRef : null}
                 className={isNewest ? 'scroll-mt-4' : undefined}
               >
-                <CommentItem comment={comment} textareaRef={textareaRef} />
+                <CommentItem
+                  comment={comment}
+                  textareaRef={textareaRef}
+                  setReplyToCommentId={setReplyToCommentId}
+                />
               </div>
             );
           })}

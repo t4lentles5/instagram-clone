@@ -38,6 +38,7 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [replyToCommentId, setReplyToCommentId] = useState<string | null>(null);
 
   const [currentIndex, setCurrentIndex] = useState(() =>
     posts.findIndex((p) => p.id === currentPostId),
@@ -187,7 +188,11 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
               </div>
             </section>
 
-            <PostComments comments={post.comments} textareaRef={textareaRef} />
+            <PostComments
+              comments={post.comments}
+              textareaRef={textareaRef}
+              setReplyToCommentId={setReplyToCommentId}
+            />
 
             <div className='border-border border-b'>
               <section className='flex justify-between px-4 py-[6px]'>
@@ -255,7 +260,13 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
                 <EmojiIcon />
               </button>
 
-              <CommentForm postId={post.id} userId={userId} ref={textareaRef} />
+              <CommentForm
+                postId={post.id}
+                userId={userId}
+                ref={textareaRef}
+                replyToCommentId={replyToCommentId}
+                setReplyToCommentId={setReplyToCommentId}
+              />
             </section>
           </div>
         </div>

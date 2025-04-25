@@ -1,4 +1,10 @@
-import { forwardRef, useImperativeHandle, useRef } from 'react';
+import {
+  Dispatch,
+  forwardRef,
+  SetStateAction,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { createCommentPost } from '@/actions/post/comment/create-comment-post';
@@ -6,6 +12,8 @@ import { createCommentPost } from '@/actions/post/comment/create-comment-post';
 interface Props {
   userId: string;
   postId: string;
+  replyToCommentId: string | null;
+  setReplyToCommentId: Dispatch<SetStateAction<string | null>>;
 }
 
 interface CommentFormInputs {
@@ -13,7 +21,7 @@ interface CommentFormInputs {
 }
 
 export const CommentForm = forwardRef<HTMLTextAreaElement, Props>(
-  ({ userId, postId }, ref) => {
+  ({ userId, postId, replyToCommentId, setReplyToCommentId }, ref) => {
     const {
       register,
       handleSubmit,
@@ -28,7 +36,14 @@ export const CommentForm = forwardRef<HTMLTextAreaElement, Props>(
     const onSubmit: SubmitHandler<CommentFormInputs> = async (data) => {
       const { text } = data;
 
-      await createCommentPost(text, postId, userId);
+      await createCommentPost(
+        text,
+        postId,
+        userId,
+        replyToCommentId ?? undefined,
+      );
+
+      setReplyToCommentId(null);
       reset();
 
       if (textareaRef.current) {

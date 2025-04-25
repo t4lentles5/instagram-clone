@@ -1,53 +1,48 @@
-import { Dispatch, RefObject, SetStateAction, useState } from 'react';
-import { useRouter } from 'next/navigation';
-
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
-import { LikeCommentButton } from './LikeCommentButton';
-
+import { LikesModal } from '@/features/home/post/components/LikesModal';
+import { Reply } from '@/interfaces/post.interface';
 import { formatDate } from '@/utils/format-date';
 import { getExactDate } from '@/utils/get-exact-date';
-
-import { Comment } from '@/interfaces/post.interface';
-import { LikesModal } from '@/features/home/post/components/LikesModal';
-import { ReplyComment } from './ReplyComment';
+import { useRouter } from 'next/navigation';
+import { Dispatch, RefObject, SetStateAction, useState } from 'react';
+import { LikeCommentButton } from './LikeCommentButton';
 
 interface Props {
-  comment: Comment;
+  reply: Reply;
   textareaRef: RefObject<HTMLTextAreaElement | null>;
   setReplyToCommentId: Dispatch<SetStateAction<string | null>>;
 }
 
-export const CommentItem = ({
-  comment,
+export const ReplyComment = ({
+  reply,
   textareaRef,
   setReplyToCommentId,
 }: Props) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [showReplies, setShowReplies] = useState(false);
 
   const replyComment = () => {
     const textarea = textareaRef.current;
     if (!textarea) return;
 
-    const usernameTag = `@${comment.user.username} `;
+    const usernameTag = `@${reply.user.username} `;
 
     textarea.value = '';
 
     textarea.value = usernameTag;
 
     textarea.focus();
-    setReplyToCommentId(comment.id);
+    setReplyToCommentId(reply.parentId);
     textarea.setSelectionRange(textarea.value.length, textarea.value.length);
   };
 
   return (
     <>
-      <div key={comment.id} className='flex items-start justify-between pt-3'>
+      <div key={reply.id} className='flex items-start justify-between pt-3'>
         <div className='flex w-full'>
           <div className='w-[50px] shrink-0'>
             <ProfilePhoto
-              profile_photo={comment.user.profile_photo}
+              profile_photo={reply.user.profile_photo}
               imageSize={{ size: 'w-8' }}
               backgroundDivSize={{ size: 'w-9' }}
               borderDivSize={{ size: 'w-10' }}
@@ -60,38 +55,38 @@ export const CommentItem = ({
                 onClick={() => {
                   router.back();
                   setTimeout(() => {
-                    router.push(`/${comment.user.username}`);
+                    router.push(`/${reply.user.username}`);
                   }, 10);
                 }}
                 className='mr-1 font-semibold'
               >
-                {comment.user.username}
+                {reply.user.username}
               </span>
-              {comment.text}
+              {reply.text}
             </p>
 
             <time
               className='text-secondary pr-3 text-xs'
-              title={getExactDate(comment.createdAt.toString())}
+              title={getExactDate(reply.createdAt.toString())}
             >
-              {formatDate(comment.createdAt.toString())}
+              {formatDate(reply.createdAt.toString())}
             </time>
 
-            {comment.commentLike.length > 0 && (
+            {reply.commentLike.length > 0 && (
               <>
                 <button
                   className='text-secondary cursor-pointer pr-3 text-xs font-semibold'
                   onClick={() => setIsOpen(true)}
                 >
-                  {comment.commentLike.length}{' '}
-                  {comment.commentLike.length > 1 ? 'likes' : 'like'}
+                  {reply.commentLike.length}{' '}
+                  {reply.commentLike.length > 1 ? 'likes' : 'like'}
                 </button>
 
                 {isOpen && (
                   <LikesModal
                     isOpen={isOpen}
                     onClose={() => setIsOpen(false)}
-                    likes={comment.commentLike}
+                    likes={reply.commentLike}
                   />
                 )}
               </>
@@ -108,40 +103,8 @@ export const CommentItem = ({
           </div>
         </div>
 
-        <LikeCommentButton comment={comment} />
+        <LikeCommentButton comment={reply} />
       </div>
-
-      {comment.replies.length > 0 && (
-        <div className='mt-4 ml-[54px]'>
-          <button
-            className='flex cursor-pointer items-center'
-            onClick={() => {
-              if (showReplies) {
-                setShowReplies(false);
-              } else {
-                setShowReplies(true);
-              }
-            }}
-          >
-            <div className='border-secondary mr-4 block h-0 w-6 border'></div>
-            <span className='text-secondary text-xs'>
-              {showReplies
-                ? 'Hide replies'
-                : `View replies (${comment.replies.length})`}
-            </span>
-          </button>
-
-          {showReplies &&
-            comment.replies.map((reply) => (
-              <ReplyComment
-                key={reply.id}
-                reply={reply}
-                textareaRef={textareaRef}
-                setReplyToCommentId={setReplyToCommentId}
-              />
-            ))}
-        </div>
-      )}
     </>
   );
 };

@@ -46,6 +46,7 @@ export interface Comment {
     username: User['username'];
     profile_photo: User['profile_photo'];
   };
+  replies: Reply[];
   commentLike: {
     id: string;
     userId: string;
@@ -56,4 +57,28 @@ export interface Comment {
       fullname: User['fullname'];
     };
   }[];
+}
+
+export interface Reply {
+  id: string;
+  parentId: string | null;
+  postId: string;
+  text: string;
+  createdAt: Date;
+  user: {
+    username: User['username'];
+    profile_photo: User['profile_photo'];
+  };
+  commentLike: CommentLike[];
+}
+
+interface CommentLike {
+  id: string;
+  userId: string;
+  commentId: string;
+  user: {
+    username: User['username'];
+    profile_photo: User['profile_photo'];
+    fullname: User['fullname'];
+  };
 }
