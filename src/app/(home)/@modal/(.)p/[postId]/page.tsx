@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 
 import { getPostById } from '@/actions/post/get-post-by-id';
-import { getPostsByUsername } from '@/actions/user/get-posts-by-username';
 
 import { PostModal } from '@/features/profile/post/components/PostModal';
 
@@ -19,7 +18,5 @@ export default async function PostModalPage({ params }: Props) {
     notFound();
   }
 
-  const posts = await getPostsByUsername(post.author.username);
-
-  return <PostModal currentPostId={post.id} posts={posts} />;
+  return <PostModal post={post} />;
 }

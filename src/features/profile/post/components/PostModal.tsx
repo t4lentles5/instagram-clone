@@ -25,43 +25,17 @@ import { SaveIcon } from '@/features/home/post/icons/SaveIcon';
 import { MoreOptions24 } from '@/features/home/post/icons/MoreOptions24';
 import { ShareIcon } from '@/features/home/post/icons/ShareIcon';
 import { EmojiIcon } from '@/features/home/post/icons/EmojiIcon';
-import { BackIcon } from '@/features/home/post/icons/BackIcon';
-import { NextIcon } from '@/features/home/post/icons/NextIcon';
 
 interface Props {
-  posts: Post[];
-  currentPostId: string;
+  post: Post;
 }
 
-export const PostModal = ({ posts, currentPostId }: Props) => {
+export const PostModal = ({ post }: Props) => {
   const { userId } = useUserStore();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [replyToCommentId, setReplyToCommentId] = useState<string | null>(null);
-
-  const [currentIndex, setCurrentIndex] = useState(() =>
-    posts.findIndex((p) => p.id === currentPostId),
-  );
-  const goToPost = (index: number) => {
-    if (index >= 0 && index < posts.length) {
-      setCurrentIndex(index);
-      const nextPost = posts[index];
-
-      router.replace(`/p/${nextPost.id}`);
-    }
-  };
-
-  useEffect(() => {
-    if (currentIndex + 1 < posts.length) {
-      router.prefetch(`/p/${posts[currentIndex + 1].id}`);
-    }
-    if (currentIndex - 1 >= 0) {
-      router.prefetch(`/p/${posts[currentIndex - 1].id}`);
-    }
-  }, [currentIndex]);
-
-  const post = posts[currentIndex];
 
   const { aspect_ratio, first_image_dimensions } = post;
 
@@ -118,33 +92,6 @@ export const PostModal = ({ posts, currentPostId }: Props) => {
         >
           <XIcon />
         </button>
-
-        {posts.length > 1 && (
-          <>
-            {currentIndex !== 0 && (
-              <button
-                onClick={(e) => {
-                  goToPost(currentIndex - 1);
-                  e.stopPropagation();
-                }}
-                className='absolute top-1/2 left-3 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black'
-              >
-                <BackIcon />
-              </button>
-            )}
-            {currentIndex !== posts.length - 1 && (
-              <button
-                onClick={(e) => {
-                  goToPost(currentIndex + 1);
-                  e.stopPropagation();
-                }}
-                className='absolute top-1/2 right-3 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black'
-              >
-                <NextIcon />
-              </button>
-            )}
-          </>
-        )}
 
         <div
           className='flex h-11/12 max-w-10/12 items-center justify-center'

@@ -29,9 +29,23 @@ export const getPostById = async (postId: string) => {
         },
       },
       likes: {
-        select: { id: true, postId: true, userId: true },
+        orderBy: { createdAt: 'desc' },
+        select: {
+          id: true,
+          postId: true,
+          userId: true,
+          user: {
+            select: {
+              username: true,
+              profile_photo: true,
+              fullname: true,
+              id: true,
+            },
+          },
+        },
       },
       comments: {
+        where: { parentId: null },
         orderBy: { createdAt: 'desc' },
         select: {
           id: true,
@@ -42,6 +56,52 @@ export const getPostById = async (postId: string) => {
             select: {
               username: true,
               profile_photo: true,
+            },
+          },
+          replies: {
+            orderBy: { createdAt: 'asc' },
+            select: {
+              id: true,
+              parentId: true,
+              postId: true,
+              text: true,
+              createdAt: true,
+              user: {
+                select: {
+                  username: true,
+                  profile_photo: true,
+                },
+              },
+              commentLike: {
+                orderBy: { createdAt: 'desc' },
+                select: {
+                  id: true,
+                  userId: true,
+                  commentId: true,
+                  user: {
+                    select: {
+                      username: true,
+                      profile_photo: true,
+                      fullname: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+          commentLike: {
+            orderBy: { createdAt: 'desc' },
+            select: {
+              id: true,
+              userId: true,
+              commentId: true,
+              user: {
+                select: {
+                  username: true,
+                  profile_photo: true,
+                  fullname: true,
+                },
+              },
             },
           },
         },
