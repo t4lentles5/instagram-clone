@@ -1,3 +1,4 @@
+import { getAuthenticatedUser } from '@/actions/auth/get-authenticated-user';
 import { getUserByUsername } from '@/actions/user/get-user-by-username';
 
 import { HeaderPageMobile } from '@/components/layout/HeaderPageMobile';
@@ -16,11 +17,14 @@ export default async function RoutesLayout({
 }) {
   const { username } = await params;
   const user = await getUserByUsername(username);
+  const authenticatedUser = await getAuthenticatedUser();
+
+  const isAuthenticatedUser = user.username === authenticatedUser.username;
 
   return (
     <>
       <HeaderPageMobile>{username}</HeaderPageMobile>
-      <UserProfileInfo user={user} />
+      <UserProfileInfo user={user} isAuthenticatedUser={isAuthenticatedUser} />
       <UserStats />
       <ProfileNavigation username={user.username} />
       {children}

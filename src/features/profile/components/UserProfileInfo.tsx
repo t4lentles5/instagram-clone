@@ -1,18 +1,17 @@
-import Link from 'next/link';
-
 import { User } from '@/interfaces/user.interface';
 import { UserProfilePhoto } from '@/features/profile/components/UserProfilePhoto';
 
 import { getPostsCountByUsername } from '@/actions/post/get-posts-count-by-username';
 
-import { MyOptionsIcon } from '@/features/profile/icons/MyOptionsIcon';
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
+import { OptionsIcon } from '@/components/icons/OptionsIcon';
 
 interface Props {
   user: User;
+  isAuthenticatedUser: boolean;
 }
 
-export const UserProfileInfo = async ({ user }: Props) => {
+export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
   const postsCount = await getPostsCountByUsername(user.username);
 
   return (
@@ -28,15 +27,28 @@ export const UserProfileInfo = async ({ user }: Props) => {
               </h2>
 
               <div className='flex items-center justify-center gap-2'>
-                <Link
-                  href={''}
-                  className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg px-4 py-[6px] text-sm font-semibold'
-                >
-                  Edit Profile
-                </Link>
+                {isAuthenticatedUser ? (
+                  <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg px-4 py-[6px] text-sm font-semibold'>
+                    Edit Profile
+                  </button>
+                ) : (
+                  <>
+                    <button className='bg-button hover:bg-button-hover cursor-pointer rounded-lg px-5 py-[6px] text-sm font-semibold'>
+                      Follow
+                    </button>
 
-                <button>
-                  <MyOptionsIcon />
+                    <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg px-4 py-[6px] text-sm font-semibold'>
+                      Message
+                    </button>
+
+                    <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg p-2'>
+                      <SimilarAccountsIcon />
+                    </button>
+                  </>
+                )}
+
+                <button className='cursor-pointer'>
+                  <OptionsIcon isAuthenticatedUser={isAuthenticatedUser} />
                 </button>
               </div>
             </div>
