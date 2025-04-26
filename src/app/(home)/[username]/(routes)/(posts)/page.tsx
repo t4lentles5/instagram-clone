@@ -1,11 +1,17 @@
 import Link from 'next/link';
 
 import { getPostsByUsername } from '@/actions/user/get-posts-by-username';
+import { getUserByUsername } from '@/actions/user/get-user-by-username';
 
-import { CarouselProfilePostIcon } from '@/features/profile/icons/CarouselProfilePostIcon';
+import { UserProfileInfo } from '@/features/profile/components/UserProfileInfo';
+import { HeaderPageMobile } from '@/components/layout/HeaderPageMobile';
+import { UserStats } from '@/features/profile/components/UserStats';
+import { ProfileNavigation } from '@/features/profile/components/ProfileNavigation';
+
 import { CameraCircleIcon } from '@/features/profile/icons/CameraCircleIcon';
-import { HeartIcon } from '@/components/icons/HeartIcon';
 import { CommentIcon } from '@/components/icons/CommentIcon';
+import { HeartIcon } from '@/components/icons/HeartIcon';
+import { CarouselProfilePostIcon } from '@/features/profile/icons/CarouselProfilePostIcon';
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -14,9 +20,15 @@ interface Props {
 export default async function PostsPage({ params }: Props) {
   const { username } = await params;
   const posts = await getPostsByUsername(username);
+  const user = await getUserByUsername(username);
 
   return (
     <>
+      <HeaderPageMobile>{username}</HeaderPageMobile>
+      <UserProfileInfo user={user} />
+      <UserStats />
+      <ProfileNavigation username={user.username} />
+
       {posts.length ? (
         <div className='grid w-full grid-cols-3 gap-1'>
           {posts.map((post) => (

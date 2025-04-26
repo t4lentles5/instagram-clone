@@ -1,6 +1,7 @@
 import Link from 'next/link';
+
 import { User } from '@/interfaces/user.interface';
-import { OwnProfilePhoto } from '@/features/profile/OwnProfile/components/OwnProfilePhoto';
+import { UserProfilePhoto } from '@/features/profile/components/UserProfilePhoto';
 
 import { getPostsCountByUsername } from '@/actions/post/get-posts-count-by-username';
 
@@ -11,14 +12,14 @@ interface Props {
   user: User;
 }
 
-export const OwnUserProfileInfo = async ({ user }: Props) => {
+export const UserProfileInfo = async ({ user }: Props) => {
   const postsCount = await getPostsCountByUsername(user.username);
 
   return (
     <>
       <main className='border-border mt-4 flex h-full w-full flex-col items-center border-b pb-0 md:mt-0 md:pb-10'>
         <div className='flex w-full'>
-          <OwnProfilePhoto user={user} />
+          <UserProfilePhoto user={user} />
 
           <div className='ml-5 flex h-full w-full flex-col gap-3 md:gap-5'>
             <div className='flex w-full items-center justify-start'>

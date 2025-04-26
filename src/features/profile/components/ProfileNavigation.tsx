@@ -1,10 +1,10 @@
-import { OwnProfileNavigationLink } from '@/features/profile/OwnProfile/components/OwnProfileNavigationLink';
+import { OwnProfileNavigationLink } from '@/features/profile/components/ProfileNavigationLink';
 
 interface Props {
   username: string;
 }
 
-export const OwnProfileNavigation = ({ username }: Props) => {
+export const ProfileNavigation = ({ username }: Props) => {
   const Items = [
     { label: 'Posts', href: `/${username}` },
     { label: 'Saved', href: `/${username}/saved` },
@@ -13,7 +13,7 @@ export const OwnProfileNavigation = ({ username }: Props) => {
 
   return (
     <>
-      <div className="grid w-full grid-cols-3 items-center md:flex md:items-center md:justify-center md:gap-16">
+      <div className='grid w-full grid-cols-3 items-center md:flex md:items-center md:justify-center md:gap-16'>
         {Items.map((item) => (
           <OwnProfileNavigationLink key={item.label} {...item} />
         ))}

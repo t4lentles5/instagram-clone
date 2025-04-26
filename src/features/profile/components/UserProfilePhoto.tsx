@@ -8,17 +8,16 @@ import { User } from '@/interfaces/user.interface';
 import { deleteProfilePhoto } from '@/actions/user/delete-profile-photo';
 
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
-import { PhotoOptionsModal } from '@/features/profile/OwnProfile/components/PhotoOptionsModal';
+import { PhotoOptionsModal } from '@/features/profile/components/PhotoOptionsModal';
+import styles from '@/features/profile/components/image-loader.module.css';
 
 import { CameraIcon } from '@/features/profile/icons/CameraIcon';
-
-import styles from '@/features/profile/OwnProfile/components/image-loader.module.css';
 
 interface Props {
   user: User;
 }
 
-export const OwnProfilePhoto = ({ user }: Props) => {
+export const UserProfilePhoto = ({ user }: Props) => {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = useState(false);
