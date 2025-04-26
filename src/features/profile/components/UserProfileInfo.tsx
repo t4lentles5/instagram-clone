@@ -56,13 +56,14 @@ export const UserProfileInfo = async ({ user }: Props) => {
 
             <div className='hidden w-full items-center justify-start md:flex md:gap-10'>
               <p className='text-center font-bold'>
-                {postsCount} <span className='font-normal'>posts</span>
+                {postsCount}{' '}
+                <span className='text-secondary font-normal'>posts</span>
               </p>
               <button className='px-2 font-bold'>
-                0 <span className='font-normal'>followers</span>
+                0 <span className='text-secondary font-normal'>followers</span>
               </button>
               <button className='px-2 font-bold'>
-                0 <span className='font-normal'>following</span>
+                0 <span className='text-secondary font-normal'>following</span>
               </button>
             </div>
             <div className='hidden md:block'>

@@ -1,4 +1,4 @@
-import { OwnProfileNavigationLink } from '@/features/profile/components/ProfileNavigationLink';
+import { ProfileNavigationLink } from '@/features/profile/components/ProfileNavigationLink';
 
 interface Props {
   username: string;
@@ -15,7 +15,7 @@ export const ProfileNavigation = ({ username }: Props) => {
     <>
       <div className='grid w-full grid-cols-3 items-center md:flex md:items-center md:justify-center md:gap-16'>
         {Items.map((item) => (
-          <OwnProfileNavigationLink key={item.label} {...item} />
+          <ProfileNavigationLink key={item.label} {...item} />
         ))}
       </div>
     </>

@@ -12,7 +12,7 @@ interface Props {
   href: string;
 }
 
-export const OwnProfileNavigationLink = ({ label, href }: Props) => {
+export const ProfileNavigationLink = ({ label, href }: Props) => {
   const pathname = usePathname();
 
   const icons = [
