@@ -12,6 +12,7 @@ import { PhotoOptionsModal } from '@/features/profile/components/PhotoOptionsMod
 import styles from '@/features/profile/components/image-loader.module.css';
 
 import { CameraIcon } from '@/features/profile/icons/CameraIcon';
+import { useUserStore } from '@/store/user/user-store';
 
 interface Props {
   user: User;
@@ -19,6 +20,7 @@ interface Props {
 
 export const UserProfilePhoto = ({ user }: Props) => {
   const router = useRouter();
+  const { userId } = useUserStore();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,8 +45,6 @@ export const UserProfilePhoto = ({ user }: Props) => {
         body: formData,
       });
 
-      console.log(res);
-
       if (!res.ok) {
         throw new Error('Failed to upload photo');
       }
@@ -65,7 +65,6 @@ export const UserProfilePhoto = ({ user }: Props) => {
 
     try {
       if (user.profile_photo_id) {
-        setIsLoading(true);
         await deleteProfilePhoto(user.profile_photo_id, user.id);
       }
 
@@ -74,6 +73,7 @@ export const UserProfilePhoto = ({ user }: Props) => {
       router.refresh();
     } catch (error) {
       console.error('Error removing profile photo:', error);
+      setIsLoading(false);
     }
   };
 
@@ -82,7 +82,7 @@ export const UserProfilePhoto = ({ user }: Props) => {
       <div
         className='relative flex w-full cursor-pointer items-center justify-center rounded-full'
         onClick={() => {
-          if (!user.profile_photo) {
+          if (!user.profile_photo && user.id === userId) {
             fileInputRef.current?.click();
           }
         }}
@@ -103,9 +103,10 @@ export const UserProfilePhoto = ({ user }: Props) => {
           }}
         />
 
-        {user.profile_photo && (
+        {user.profile_photo && user.id === userId && (
           <>
             <button
+              aria-label='Open photo options'
               className='absolute h-20 w-20 cursor-pointer rounded-full md:h-[150px] md:w-[150px]'
               onClick={(e) => {
                 e.stopPropagation();
@@ -130,7 +131,7 @@ export const UserProfilePhoto = ({ user }: Props) => {
           </div>
         )}
 
-        {!user.profile_photo && !isLoading && (
+        {!user.profile_photo && user.id === userId && !isLoading && (
           <div className='bg-image-overlay absolute flex h-20 w-20 items-center justify-center rounded-full md:h-[150px] md:w-[150px]'>
             <CameraIcon />
           </div>
