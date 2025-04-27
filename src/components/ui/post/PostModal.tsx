@@ -8,7 +8,6 @@ import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { LikeButton } from '@/components/ui/post/LikeButton';
 import { CommentForm } from '@/features/profile/post/components/CommentForm';
 import { PostComments } from '@/components/ui/post/PostComments';
-import { LikesModal } from '@/components/ui/post/LikesModal';
 
 import { formatPostDate } from '@/utils/format-post-date';
 import { getAspectClass } from '@/utils/get-aspect-class';
@@ -25,6 +24,7 @@ import { SaveIcon } from '@/components/icons/SaveIcon';
 import { MoreOptions } from '@/components/icons/MoreOptions';
 import { ShareIcon } from '@/components/icons/ShareIcon';
 import { EmojiIcon } from '@/components/icons/EmojiIcon';
+import { useLikesModal } from '@/hooks/useLikesModal';
 
 interface Props {
   post: Post;
@@ -32,8 +32,9 @@ interface Props {
 
 export const PostModal = ({ post }: Props) => {
   const { userId } = useUserStore();
+  const { openModal, Modal } = useLikesModal();
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [replyToCommentId, setReplyToCommentId] = useState<string | null>(null);
 
@@ -180,20 +181,14 @@ export const PostModal = ({ post }: Props) => {
                 ) : (
                   <div>
                     <button
-                      onClick={() => setIsOpen(true)}
+                      onClick={() => openModal(post.likes)}
                       className='cursor-pointer text-sm leading-[18px] font-semibold'
                     >
                       {post.likes.length}{' '}
                       {post.likes.length <= 1 ? 'like' : 'likes'}
                     </button>
 
-                    {isOpen && (
-                      <LikesModal
-                        isOpen={isOpen}
-                        onClose={() => setIsOpen(false)}
-                        likes={post.likes}
-                      />
-                    )}
+                    {Modal}
                   </div>
                 )}
 

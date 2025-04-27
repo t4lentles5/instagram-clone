@@ -1,11 +1,15 @@
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
-import { LikesModal } from '@/components/ui/post/LikesModal';
-import { Reply } from '@/interfaces/post.interface';
-import { formatDate } from '@/utils/format-date';
-import { getExactDate } from '@/utils/get-exact-date';
+import { Dispatch, RefObject, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
-import { Dispatch, RefObject, SetStateAction, useState } from 'react';
+
+import { getExactDate } from '@/utils/get-exact-date';
+import { formatDate } from '@/utils/format-date';
+
+import { useLikesModal } from '@/hooks/useLikesModal';
+
+import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { LikeCommentButton } from './LikeCommentButton';
+
+import { Reply } from '@/interfaces/post.interface';
 
 interface Props {
   reply: Reply;
@@ -19,7 +23,7 @@ export const ReplyComment = ({
   setReplyToCommentId,
 }: Props) => {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
+  const { openModal, Modal } = useLikesModal();
 
   const replyComment = () => {
     const textarea = textareaRef.current;
@@ -76,19 +80,13 @@ export const ReplyComment = ({
               <>
                 <button
                   className='text-secondary cursor-pointer pr-3 text-xs font-semibold'
-                  onClick={() => setIsOpen(true)}
+                  onClick={() => openModal(reply.commentLike)}
                 >
                   {reply.commentLike.length}{' '}
                   {reply.commentLike.length > 1 ? 'likes' : 'like'}
                 </button>
 
-                {isOpen && (
-                  <LikesModal
-                    isOpen={isOpen}
-                    onClose={() => setIsOpen(false)}
-                    likes={reply.commentLike}
-                  />
-                )}
+                {Modal}
               </>
             )}
 

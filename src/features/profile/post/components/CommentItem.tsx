@@ -8,8 +8,9 @@ import { formatDate } from '@/utils/format-date';
 import { getExactDate } from '@/utils/get-exact-date';
 
 import { Comment } from '@/interfaces/post.interface';
-import { LikesModal } from '@/components/ui/post/LikesModal';
+
 import { ReplyComment } from './ReplyComment';
+import { useLikesModal } from '@/hooks/useLikesModal';
 
 interface Props {
   comment: Comment;
@@ -23,7 +24,8 @@ export const CommentItem = ({
   setReplyToCommentId,
 }: Props) => {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
+  const { openModal, Modal } = useLikesModal();
+
   const [showReplies, setShowReplies] = useState(false);
 
   const replyComment = () => {
@@ -81,19 +83,13 @@ export const CommentItem = ({
               <>
                 <button
                   className='text-secondary cursor-pointer pr-3 text-xs font-semibold'
-                  onClick={() => setIsOpen(true)}
+                  onClick={() => openModal(comment.commentLike)}
                 >
                   {comment.commentLike.length}{' '}
                   {comment.commentLike.length > 1 ? 'likes' : 'like'}
                 </button>
 
-                {isOpen && (
-                  <LikesModal
-                    isOpen={isOpen}
-                    onClose={() => setIsOpen(false)}
-                    likes={comment.commentLike}
-                  />
-                )}
+                {Modal}
               </>
             )}
 

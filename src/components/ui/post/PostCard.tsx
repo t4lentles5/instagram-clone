@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 
 import { getExactDate } from '@/utils/get-exact-date';
@@ -13,7 +12,6 @@ import { Post } from '@/interfaces/post.interface';
 
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { PostCarousel } from '@/components/ui/post/PostCarousel';
-import { LikesModal } from './LikesModal';
 import { LikeButton } from '@/components/ui/post/LikeButton';
 
 import { CommentIcon } from '@/components/icons/CommentIcon';
@@ -22,6 +20,7 @@ import { ShareIcon } from '@/components/icons/ShareIcon';
 import { MoreOptions } from '@/components/icons/MoreOptions';
 import { useUserStore } from '@/store/user/user-store';
 import { EmojiIcon } from '@/components/icons/EmojiIcon';
+import { useLikesModal } from '@/hooks/useLikesModal';
 
 interface Props {
   post: Post;
@@ -29,8 +28,7 @@ interface Props {
 
 export const PostCard = ({ post }: Props) => {
   const { userId } = useUserStore();
-
-  const [isOpen, setIsOpen] = useState(false);
+  const { openModal, Modal } = useLikesModal();
 
   const { aspect_ratio, first_image_dimensions } = post;
   const aspect_ratio_image = getAspectClass(
@@ -114,19 +112,13 @@ export const PostCard = ({ post }: Props) => {
           {post.likes.length > 0 && (
             <div>
               <button
-                onClick={() => setIsOpen(true)}
+                onClick={() => openModal(post.likes)}
                 className='cursor-pointer text-sm leading-[18px] font-semibold'
               >
                 {post.likes.length} {post.likes.length <= 1 ? 'like' : 'likes'}
               </button>
 
-              {isOpen && (
-                <LikesModal
-                  isOpen={isOpen}
-                  onClose={() => setIsOpen(false)}
-                  likes={post.likes}
-                />
-              )}
+              {Modal}
             </div>
           )}
 
