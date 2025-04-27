@@ -38,7 +38,7 @@ export const ProfileNavigationLink = ({ label, href }: Props) => {
   return (
     <>
       <Link
-        className={`${pathname === `${href}` && `border-foreground mx-12 border-b-2 md:border-t md:border-b-0`} mb-1 flex items-center justify-center gap-2 py-3 md:mb-0 md:py-5`}
+        className={`${pathname === `${href}` && `border-foreground border-b-2 md:border-t md:border-b-0`} mx-12 mb-1 flex items-center justify-center gap-2 py-3 md:mx-0 md:mb-0 md:py-5`}
         href={href}
       >
         {icons.find((item) => item.label === label)?.icon}
