@@ -1,23 +1,29 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { BackIcon } from '@/components/icons/BackIcon';
+import { OptionsVerticalIcon } from '../icons/OptionsVerticalIcon';
 
-export const HeaderPageMobile = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
+interface Props {
+  username: string;
+}
+
+export const HeaderPageMobile = ({ username }: Props) => {
   const router = useRouter();
 
   return (
-    <header className='bg-background border-separator fixed top-0 z-50 flex w-full items-center border-b px-4 py-3 md:hidden'>
-      <Link href='#' onClick={() => router.back()} className='fixed'>
+    <header className='bg-background border-border fixed top-0 z-50 flex w-full items-center border-b px-4 py-3 md:hidden'>
+      <button
+        onClick={() => router.back()}
+        className='fixed left-3 cursor-pointer'
+      >
         <BackIcon />
-      </Link>
-      <p className='w-full text-center font-semibold'>{children}</p>
+      </button>
+      <p className='w-full text-center font-semibold'>{username}</p>
+      <button className='fixed right-3 cursor-pointer'>
+        <OptionsVerticalIcon />
+      </button>
     </header>
   );
 };

@@ -4,7 +4,6 @@ import { getUserByUsername } from '@/actions/user/get-user-by-username';
 import { HeaderPageMobile } from '@/components/layout/HeaderPageMobile';
 import { ProfileNavigation } from '@/features/profile/components/ProfileNavigation';
 import { UserProfileInfo } from '@/features/profile/components/UserProfileInfo';
-import { UserStats } from '@/features/profile/components/UserStats';
 
 type Params = Promise<{ username: string }>;
 
@@ -23,10 +22,12 @@ export default async function RoutesLayout({
 
   return (
     <>
-      <HeaderPageMobile>{username}</HeaderPageMobile>
+      <HeaderPageMobile username={username} />
       <UserProfileInfo user={user} isAuthenticatedUser={isAuthenticatedUser} />
-      <UserStats />
-      <ProfileNavigation username={user.username} />
+      <ProfileNavigation
+        username={user.username}
+        isAuthenticatedUser={isAuthenticatedUser}
+      />
       {children}
     </>
   );

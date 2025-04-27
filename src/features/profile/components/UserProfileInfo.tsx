@@ -16,7 +16,7 @@ export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
 
   return (
     <>
-      <main className='border-border mt-4 flex h-full w-full flex-col items-center border-b pb-0 md:mt-0 md:pb-10'>
+      <main className='md:border-border mt-4 flex h-full w-full flex-col items-center pb-0 md:mt-0 md:border-b md:pb-10'>
         <div className='flex w-full'>
           <UserProfilePhoto user={user} />
 
@@ -27,50 +27,39 @@ export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
               </h2>
 
               <div className='flex items-center justify-center gap-2'>
-                {isAuthenticatedUser ? (
-                  <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg px-4 py-[6px] text-sm font-semibold'>
-                    Edit Profile
-                  </button>
-                ) : (
-                  <>
-                    <button className='bg-button hover:bg-button-hover cursor-pointer rounded-lg px-5 py-[6px] text-sm font-semibold'>
-                      Follow
-                    </button>
-
+                <div className='hidden items-center justify-center gap-2 md:flex'>
+                  {isAuthenticatedUser ? (
                     <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg px-4 py-[6px] text-sm font-semibold'>
-                      Message
+                      Edit Profile
                     </button>
+                  ) : (
+                    <>
+                      <button className='bg-button hover:bg-button-hover cursor-pointer rounded-lg px-5 py-[6px] text-sm font-semibold text-white'>
+                        Follow
+                      </button>
 
-                    <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg p-2'>
-                      <SimilarAccountsIcon />
-                    </button>
-                  </>
-                )}
+                      <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg px-4 py-[6px] text-sm font-semibold'>
+                        Message
+                      </button>
+
+                      <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg p-2'>
+                        <SimilarAccountsIcon />
+                      </button>
+                    </>
+                  )}
+                </div>
 
                 <button className='cursor-pointer'>
                   <OptionsIcon isAuthenticatedUser={isAuthenticatedUser} />
                 </button>
               </div>
             </div>
-            <div className='flex gap-2 md:hidden'>
-              <button className='rounded-lg px-4 py-[6px] text-sm font-semibold text-white'>
-                Follow
-              </button>
 
-              <button className='text-primary rounded-lg px-4 py-[6px] text-sm font-semibold'>
-                Message
-              </button>
-
-              <button className='text-primary rounded-lg px-2 font-semibold'>
-                <SimilarAccountsIcon />
-              </button>
-            </div>
-
-            <div className='hidden w-full items-center justify-start md:flex md:gap-10'>
-              <p className='text-center font-bold'>
+            <div className='flex w-full items-center justify-between pr-10 sm:justify-start sm:gap-10 sm:pr-0'>
+              <button className='px-2 font-bold'>
                 {postsCount}{' '}
                 <span className='text-secondary font-normal'>posts</span>
-              </p>
+              </button>
               <button className='px-2 font-bold'>
                 0 <span className='text-secondary font-normal'>followers</span>
               </button>
@@ -88,6 +77,28 @@ export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
         <div className='flex w-full flex-col justify-start p-4 md:hidden'>
           <h3 className='text-sm font-semibold'>{user.fullname}</h3>
           <span className='text-sm'>💜</span>
+        </div>
+
+        <div className='flex w-full items-center justify-evenly gap-2 p-4 pt-0 md:hidden'>
+          {isAuthenticatedUser ? (
+            <button className='bg-button-secondary hover:bg-button-secondary-hover w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold'>
+              Edit Profile
+            </button>
+          ) : (
+            <>
+              <button className='bg-button hover:bg-button-hover w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold text-white'>
+                Follow
+              </button>
+
+              <button className='bg-button-secondary hover:bg-button-secondary-hover w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold'>
+                Message
+              </button>
+
+              <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg p-2'>
+                <SimilarAccountsIcon />
+              </button>
+            </>
+          )}
         </div>
       </main>
     </>
