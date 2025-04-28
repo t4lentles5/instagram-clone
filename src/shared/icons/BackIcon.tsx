@@ -1,4 +1,4 @@
-export const BackIcon = () => {
+export default function BackIcon() {
   return (
     <>
       <svg
@@ -15,4 +15,4 @@ export const BackIcon = () => {
       </svg>
     </>
   );
-};
+}

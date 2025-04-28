@@ -1,4 +1,4 @@
-export const XIcon = () => {
+export default function XIcon() {
   return (
     <>
       <svg
@@ -32,4 +32,4 @@ export const XIcon = () => {
       </svg>
     </>
   );
-};
+}

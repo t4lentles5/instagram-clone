@@ -1,4 +1,4 @@
-export const ShareIcon = () => {
+export default function ShareIcon() {
   return (
     <>
       <svg
@@ -30,4 +30,4 @@ export const ShareIcon = () => {
       </svg>
     </>
   );
-};
+}

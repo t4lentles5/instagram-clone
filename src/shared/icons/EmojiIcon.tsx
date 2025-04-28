@@ -2,7 +2,7 @@ interface Props {
   size: number;
 }
 
-export const EmojiIcon = ({ size }: Props) => {
+export default function EmojiIcon({ size }: Props) {
   return (
     <>
       <svg
@@ -18,4 +18,4 @@ export const EmojiIcon = ({ size }: Props) => {
       </svg>
     </>
   );
-};
+}

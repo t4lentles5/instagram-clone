@@ -1,4 +1,4 @@
-export const SaveIcon = () => {
+export default function SaveIcon() {
   return (
     <>
       <svg
@@ -21,4 +21,4 @@ export const SaveIcon = () => {
       </svg>
     </>
   );
-};
+}

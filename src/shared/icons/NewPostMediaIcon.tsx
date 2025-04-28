@@ -1,4 +1,4 @@
-export const NewPostMediaIcon = () => {
+export default function NewPostMediaIcon() {
   return (
     <>
       <svg
@@ -26,4 +26,4 @@ export const NewPostMediaIcon = () => {
       </svg>
     </>
   );
-};
+}

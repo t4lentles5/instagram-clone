@@ -1,4 +1,4 @@
-export const OptionsVerticalIcon = () => {
+export default function OptionsVerticalIcon() {
   return (
     <>
       <svg
@@ -16,4 +16,4 @@ export const OptionsVerticalIcon = () => {
       </svg>
     </>
   );
-};
+}

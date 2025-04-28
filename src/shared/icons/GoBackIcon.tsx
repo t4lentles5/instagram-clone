@@ -1,4 +1,4 @@
-export const GoBackIcon = () => {
+export default function GoBackIcon() {
   return (
     <>
       <svg
@@ -20,4 +20,4 @@ export const GoBackIcon = () => {
       </svg>
     </>
   );
-};
+}

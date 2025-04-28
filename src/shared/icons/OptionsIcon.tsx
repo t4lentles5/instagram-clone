@@ -2,7 +2,7 @@ interface Props {
   isAuthenticatedUser: boolean;
 }
 
-export const OptionsIcon = ({ isAuthenticatedUser }: Props) => {
+export default function OptionsIcon({ isAuthenticatedUser }: Props) {
   return (
     <>
       {isAuthenticatedUser ? (
@@ -50,4 +50,4 @@ export const OptionsIcon = ({ isAuthenticatedUser }: Props) => {
       )}
     </>
   );
-};
+}
