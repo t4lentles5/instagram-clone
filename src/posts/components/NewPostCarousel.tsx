@@ -34,7 +34,7 @@ export function NewPostCarousel({ selectedFiles }: Props) {
           {current !== 0 && (
             <button
               onClick={prev}
-              className='bg-background-overlay text-primary absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full p-2'
+              className='absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-black/60 p-2 text-white'
             >
               <LeftChevron />
             </button>
@@ -42,7 +42,7 @@ export function NewPostCarousel({ selectedFiles }: Props) {
           {current !== selectedFiles.length - 1 && (
             <button
               onClick={next}
-              className='bg-background-overlay text-primary absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full p-2'
+              className='absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-black/60 p-2 text-white'
             >
               <RightChevron />
             </button>
@@ -50,13 +50,13 @@ export function NewPostCarousel({ selectedFiles }: Props) {
         </>
       )}
 
-      <div className='absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 justify-center gap-1'>
+      <div className='absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 justify-center gap-1'>
         {selectedFiles.map((_, index) => (
           <div
             key={index}
             onClick={() => setCurrent(index)}
-            className={`h-2 w-2 cursor-pointer rounded-full ${
-              index === current ? 'bg-white' : 'bg-white/50'
+            className={`h-1.5 w-1.5 cursor-pointer rounded-full ${
+              index === current ? 'bg-blue' : 'bg-white/50'
             }`}
           />
         ))}
