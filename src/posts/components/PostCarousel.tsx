@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import { GoBackIcon } from '@/components/icons/GoBackIcon';
-import { GoNextIcon } from '@/components/icons/GoNextIcon';
+import { GoBackIcon, GoNextIcon } from '@/shared/icons';
 
 interface Props {
   images: string[];

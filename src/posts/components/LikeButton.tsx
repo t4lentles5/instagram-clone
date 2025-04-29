@@ -3,7 +3,7 @@ import { likePost } from '@/actions/post/like-post';
 
 import { Post } from '@/interfaces/post.interface';
 
-import { HeartIcon } from '@/components/icons/HeartIcon';
+import { HeartIcon } from '@/shared/icons';
 
 interface Props {
   post: Post;

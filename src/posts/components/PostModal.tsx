@@ -3,28 +3,30 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { PostCarousel } from '@/components/ui/post/PostCarousel';
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
-import { LikeButton } from '@/components/ui/post/LikeButton';
+import { PostCarousel } from '@/posts/components/PostCarousel';
+import { LikeButton } from '@/posts/components/LikeButton';
 import { CommentForm } from '@/features/profile/post/components/CommentForm';
-import { PostComments } from '@/components/ui/post/PostComments';
+import { PostComments } from '@/posts/components/PostComments';
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 
 import { formatPostDate } from '@/utils/format-post-date';
 import { getAspectClass } from '@/utils/get-aspect-class';
 import { getExactDate } from '@/utils/get-exact-date';
 import { useUserStore } from '@/store/user/user-store';
 
+import { useLikesModal } from '@/posts/hooks/useLikesModal';
 import { likePost } from '@/actions/post/like-post';
 
 import { Post } from '@/interfaces/post.interface';
 
-import { XIcon } from '@/components/icons/XIcon';
-import { CommentIcon } from '@/components/icons/CommentIcon';
-import { SaveIcon } from '@/components/icons/SaveIcon';
-import { MoreOptions } from '@/components/icons/MoreOptions';
-import { ShareIcon } from '@/components/icons/ShareIcon';
-import { EmojiIcon } from '@/components/icons/EmojiIcon';
-import { useLikesModal } from '@/hooks/useLikesModal';
+import {
+  CommentIcon,
+  EmojiIcon,
+  MoreOptionsIcon,
+  SaveIcon,
+  ShareIcon,
+  XIcon,
+} from '@/shared/icons';
 
 interface Props {
   post: Post;
@@ -131,7 +133,7 @@ export const PostModal = ({ post }: Props) => {
               </div>
               <div className='pr-2'>
                 <div className='p-2'>
-                  <MoreOptions />
+                  <MoreOptionsIcon />
                 </div>
               </div>
             </section>

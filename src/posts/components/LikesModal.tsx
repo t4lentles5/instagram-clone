@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 import { Comment, Like } from '@/interfaces/post.interface';
-import { XIcon } from '@/components/icons/XIcon';
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
-import Link from 'next/link';
+
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
+
+import { XIcon } from '@/shared/icons';
 
 interface Props {
   isOpen: boolean;

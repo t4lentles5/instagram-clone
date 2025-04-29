@@ -1,7 +1,7 @@
 import { Dispatch, RefObject, SetStateAction, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 import { LikeCommentButton } from './LikeCommentButton';
 
 import { formatDate } from '@/utils/format-date';
@@ -10,7 +10,7 @@ import { getExactDate } from '@/utils/get-exact-date';
 import { Comment } from '@/interfaces/post.interface';
 
 import { ReplyComment } from './ReplyComment';
-import { useLikesModal } from '@/hooks/useLikesModal';
+import { useLikesModal } from '@/posts/hooks/useLikesModal';
 
 interface Props {
   comment: Comment;

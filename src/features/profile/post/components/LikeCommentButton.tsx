@@ -1,7 +1,7 @@
 import { dislikeComment } from '@/actions/post/comment/dislike-comment';
 import { likeComment } from '@/actions/post/comment/like-comment';
 
-import { HeartIcon } from '@/components/icons/HeartIcon';
+import { HeartIcon } from '@/shared/icons';
 
 import { Comment, Reply } from '@/interfaces/post.interface';
 

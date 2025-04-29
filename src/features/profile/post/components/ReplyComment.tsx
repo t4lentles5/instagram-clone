@@ -4,12 +4,12 @@ import { useRouter } from 'next/navigation';
 import { getExactDate } from '@/utils/get-exact-date';
 import { formatDate } from '@/utils/format-date';
 
-import { useLikesModal } from '@/hooks/useLikesModal';
+import { useLikesModal } from '@/posts/hooks/useLikesModal';
 
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { LikeCommentButton } from './LikeCommentButton';
 
 import { Reply } from '@/interfaces/post.interface';
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 
 interface Props {
   reply: Reply;

@@ -7,20 +7,22 @@ import { formatDate } from '@/utils/format-date';
 import { getAspectClass } from '@/utils/get-aspect-class';
 
 import { likePost } from '@/actions/post/like-post';
+import { useUserStore } from '@/store/user/user-store';
+import { useLikesModal } from '@/posts/hooks/useLikesModal';
 
 import { Post } from '@/interfaces/post.interface';
 
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
-import { PostCarousel } from '@/components/ui/post/PostCarousel';
-import { LikeButton } from '@/components/ui/post/LikeButton';
+import { PostCarousel } from '@/posts/components/PostCarousel';
+import { LikeButton } from '@/posts/components/LikeButton';
 
-import { CommentIcon } from '@/components/icons/CommentIcon';
-import { SaveIcon } from '@/components/icons/SaveIcon';
-import { ShareIcon } from '@/components/icons/ShareIcon';
-import { MoreOptions } from '@/components/icons/MoreOptions';
-import { useUserStore } from '@/store/user/user-store';
-import { EmojiIcon } from '@/components/icons/EmojiIcon';
-import { useLikesModal } from '@/hooks/useLikesModal';
+import {
+  CommentIcon,
+  EmojiIcon,
+  MoreOptionsIcon,
+  SaveIcon,
+  ShareIcon,
+} from '@/shared/icons';
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 
 interface Props {
   post: Post;
@@ -77,7 +79,7 @@ export const PostCard = ({ post }: Props) => {
           </div>
 
           <div className='flex w-8 justify-end'>
-            <MoreOptions />
+            <MoreOptionsIcon />
           </div>
         </div>
 

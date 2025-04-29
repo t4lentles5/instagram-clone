@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 
 import { Like } from '@/interfaces/post.interface';
 import { Comment } from '@/interfaces/post.interface';
-import { LikesModal } from '@/components/ui/post/LikesModal';
+import { LikesModal } from '@/posts/components/LikesModal';
 
 export function useLikesModal() {
   const [isOpen, setIsOpen] = useState(false);

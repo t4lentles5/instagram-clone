@@ -1,11 +1,13 @@
 import { useRef, useEffect, RefObject, Dispatch, SetStateAction } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { Comment } from '@/interfaces/post.interface';
-import { CommentItem } from '../../../features/profile/post/components/CommentItem';
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
+
 import { getExactDate } from '@/utils/get-exact-date';
 import { formatDate } from '@/utils/format-date';
-import { useRouter } from 'next/navigation';
+
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
+import { CommentItem } from '@/features/profile/post/components/CommentItem';
 
 interface Props {
   comments: Comment[];

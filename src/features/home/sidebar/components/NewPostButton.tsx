@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
-import { NewPostModal } from '@/features/home/sidebar/components/NewPostModal';
+import { NewPostModal } from '@/posts/components/NewPostModal';
 
 import { NewPostSidebarIcon } from '@/features/home/sidebar/icons/NewPostSidebarIcon';
 
