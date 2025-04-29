@@ -5,17 +5,13 @@ import { useUserStore } from '@/store/user/user-store';
 import { NewPostMediaIcon } from '@/shared/icons';
 import {
   BackPostIcon,
-  CropLandscapeIcon,
-  CropPortraitIcon,
-  CropSquareIcon,
   OpenMediaGalleryIcon,
-  PhotoOutlineIcon,
   PlusIcon,
-  SelectCropIcon,
   SelectZoomIcon,
   DeleteIcon,
 } from '@/posts/icons';
 import { NewPostCarousel } from './NewPostCarousel';
+import { SelectCrop } from './SelectCrop';
 
 interface Props {
   isOpen: boolean;
@@ -122,58 +118,10 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                 <NewPostCarousel selectedFiles={selectedFiles} />
                 <div className='absolute bottom-0 flex w-full justify-between p-4'>
                   <div className='flex gap-3'>
-                    <div>
-                      <button
-                        className={`${isCropOptionsOpen ? 'bg-white text-black hover:bg-white/80' : 'bg-background-overlay hover:bg-background-overlay/80 text-white'} relative cursor-pointer rounded-full p-2 transition-colors duration-200`}
-                        onClick={() => setIsCropOptionsOpen(!isCropOptionsOpen)}
-                      >
-                        <SelectCropIcon />
-                      </button>
-                      {isCropOptionsOpen && (
-                        <div
-                          className={`${isCropOptionsOpen ? '' : ''} bg-background-overlay divide-border absolute bottom-16 divide-y rounded-lg text-white`}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                          }}
-                        >
-                          <div>
-                            <button className='ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold'>
-                              Original{' '}
-                              <span className='p-3'>
-                                <PhotoOutlineIcon />
-                              </span>
-                            </button>
-                          </div>
-
-                          <div>
-                            <button className='ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold'>
-                              1:1{' '}
-                              <span className='p-3'>
-                                <CropSquareIcon />
-                              </span>
-                            </button>
-                          </div>
-
-                          <div>
-                            <button className='ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold'>
-                              4:5{' '}
-                              <span className='p-3'>
-                                <CropPortraitIcon />
-                              </span>
-                            </button>
-                          </div>
-
-                          <div>
-                            <button className='ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold'>
-                              16:9{' '}
-                              <span className='p-3'>
-                                <CropLandscapeIcon />
-                              </span>
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                    <SelectCrop
+                      isCropOptionsOpen={isCropOptionsOpen}
+                      setIsCropOptionsOpen={setIsCropOptionsOpen}
+                    />
 
                     <div>
                       <button
