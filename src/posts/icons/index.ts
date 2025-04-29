@@ -6,3 +6,7 @@ export { default as OpenMediaGalleryIcon } from './OpenMediaGalleryIcon';
 export { default as PhotoOutlineIcon } from './PhotoOutlineIcon';
 export { default as SelectCropIcon } from './SelectCropIcon';
 export { default as SelectZoomIcon } from './SelectZoomIcon';
+export { default as PlusIcon } from './PlusIcon';
+export { default as DeleteIcon } from './DeleteIcon';
+export { default as LeftChevron } from './LeftChevron';
+export { default as RightChevron } from './RightChevron';

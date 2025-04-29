@@ -10,9 +10,12 @@ import {
   CropSquareIcon,
   OpenMediaGalleryIcon,
   PhotoOutlineIcon,
+  PlusIcon,
   SelectCropIcon,
   SelectZoomIcon,
+  DeleteIcon,
 } from '@/posts/icons';
+import { NewPostCarousel } from './NewPostCarousel';
 
 interface Props {
   isOpen: boolean;
@@ -116,11 +119,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
               </header>
 
               <div className='relative aspect-square h-full w-full'>
-                <img
-                  src={URL.createObjectURL(selectedFiles[0])}
-                  alt='Selected Image'
-                  className='h-full w-full object-cover'
-                />
+                <NewPostCarousel selectedFiles={selectedFiles} />
                 <div className='absolute bottom-0 flex w-full justify-between p-4'>
                   <div className='flex gap-3'>
                     <div>
@@ -210,12 +209,29 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                     </button>
                     {isMediaGalleryOpen && (
                       <div
-                        className='absolute bottom-16'
+                        className='bg-background-overlay absolute right-2 bottom-16 m-2 flex gap-3 rounded-lg p-2'
                         onClick={(e) => {
                           e.stopPropagation();
                         }}
                       >
-                        <span>gallery</span>
+                        {selectedFiles.map((image) => (
+                          <div
+                            key={image.name}
+                            className='relative max-h-[100px] max-w-[100px]'
+                          >
+                            <img
+                              src={URL.createObjectURL(image)}
+                              alt='Selected Image'
+                              className='aspect-square object-cover'
+                            />
+                            <span className='text-primary bg-background-overlay absolute top-1 right-1 rounded-full p-1'>
+                              <DeleteIcon />
+                            </span>
+                          </div>
+                        ))}
+                        <div className='text-secondary border-border grid h-12 w-12 place-items-center rounded-full border'>
+                          <PlusIcon />
+                        </div>
                       </div>
                     )}
                   </div>
