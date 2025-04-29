@@ -2,8 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import { BackIcon } from '@/components/icons/BackIcon';
-import { OptionsVerticalIcon } from '../icons/OptionsVerticalIcon';
+import { BackIcon, OptionsVerticalIcon } from '@/shared/icons';
 
 interface Props {
   username: string;
