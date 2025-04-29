@@ -3,9 +3,8 @@ import Link from 'next/link';
 import { getPostsByUsername } from '@/actions/user/get-posts-by-username';
 
 import { CameraCircleIcon } from '@/features/profile/icons/CameraCircleIcon';
-import { CommentIcon } from '@/components/icons/CommentIcon';
-import { HeartIcon } from '@/components/icons/HeartIcon';
 import { CarouselProfilePostIcon } from '@/features/profile/icons/CarouselProfilePostIcon';
+import { CommentIcon, HeartIcon } from '@/shared/icons';
 
 interface Props {
   params: Promise<{ username: string }>;

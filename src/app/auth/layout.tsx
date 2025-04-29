@@ -1,5 +1,5 @@
-import { AuthThemeProvider } from '@/components/theme/AuthThemeProvider';
-import { Footer } from '@/components/layout/Footer';
+import { Footer } from '@/shared/components/Footer';
+import { AuthThemeProvider } from '@/shared/providers/AuthThemeProvider';
 
 export default function AuthLayout({
   children,
@@ -7,7 +7,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-screen max-w-screen flex-col items-center">
+    <div className='flex h-screen max-w-screen flex-col items-center'>
       <AuthThemeProvider>{children}</AuthThemeProvider>
       <Footer />
     </div>

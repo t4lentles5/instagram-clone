@@ -4,7 +4,7 @@ import { UserProfilePhoto } from '@/features/profile/components/UserProfilePhoto
 import { getPostsCountByUsername } from '@/actions/post/get-posts-count-by-username';
 
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
-import { OptionsIcon } from '@/components/icons/OptionsIcon';
+import { OptionsIcon } from '@/shared/icons';
 
 interface Props {
   user: User;

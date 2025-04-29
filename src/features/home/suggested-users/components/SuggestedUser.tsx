@@ -4,10 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import { User } from '@/interfaces/user.interface';
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
 import { CameraCircleIcon } from '@/features/profile/icons/CameraCircleIcon';
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 
 interface Props {
   user: User;

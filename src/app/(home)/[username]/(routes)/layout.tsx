@@ -1,9 +1,9 @@
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticated-user';
 import { getUserByUsername } from '@/actions/user/get-user-by-username';
 
-import { HeaderPageMobile } from '@/components/layout/HeaderPageMobile';
 import { ProfileNavigation } from '@/features/profile/components/ProfileNavigation';
 import { UserProfileInfo } from '@/features/profile/components/UserProfileInfo';
+import { HeaderPageMobile } from '@/shared/components/HeaderPageMobile';
 
 type Params = Promise<{ username: string }>;
 

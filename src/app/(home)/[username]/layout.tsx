@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { getAuthenticatedUser } from '@/actions/auth/get-authenticated-user';
 import { getUserByUsername } from '@/actions/user/get-user-by-username';
 
-import { Footer } from '@/components/layout/Footer';
+import { Footer } from '@/shared/components/Footer';
 
 export const revalidate = 3600;
 

@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 
-import { HeartIcon } from '@/components/icons/HeartIcon';
+import { HeartIcon } from '@/shared/icons';
 
 export const NotificationsButton = () => {
   const pathname = usePathname();

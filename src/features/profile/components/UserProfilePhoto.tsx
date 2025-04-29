@@ -1,7 +1,7 @@
 'use client';
 
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
 import { PhotoOptionsModal } from '@/features/profile/components/PhotoOptionsModal';
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 
 import { useUserStore } from '@/store/user/user-store';
 import { useProfilePhoto } from '@/features/profile/hooks/useProfilePhoto';

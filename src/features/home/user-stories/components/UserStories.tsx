@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import { ProfilePhoto } from '@/components/ui/ProfilePhoto';
+
 import { User } from '@/interfaces/user.interface';
+
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 
 interface Props {
   usersStories: User[];
@@ -10,13 +12,13 @@ interface Props {
 export const UserStories = ({ usersStories, user }: Props) => {
   return (
     <>
-      <div className="mb-6 flex w-full gap-[10px] py-2">
+      <div className='mb-6 flex w-full gap-[10px] py-2'>
         <Link
           href={`/stories/${user.username}`}
           key={user.id}
-          className="flex flex-col items-center justify-center"
+          className='flex flex-col items-center justify-center'
         >
-          <div className="px-1 pb-1">
+          <div className='px-1 pb-1'>
             {/* <div> */}
 
             <ProfilePhoto
@@ -34,7 +36,7 @@ export const UserStories = ({ usersStories, user }: Props) => {
             {/* </div> */}
           </div>
 
-          <span className="text-primary max-w-14 truncate overflow-hidden text-xs">
+          <span className='text-primary max-w-14 truncate overflow-hidden text-xs'>
             {user.username}
           </span>
         </Link>
@@ -43,9 +45,9 @@ export const UserStories = ({ usersStories, user }: Props) => {
           <Link
             href={`/stories/${user.username}`}
             key={user.id}
-            className="flex flex-col items-center justify-center"
+            className='flex flex-col items-center justify-center'
           >
-            <div className="relative px-1 pb-1">
+            <div className='relative px-1 pb-1'>
               <ProfilePhoto
                 profile_photo={user.profile_photo}
                 imageSize={{
@@ -60,7 +62,7 @@ export const UserStories = ({ usersStories, user }: Props) => {
               />
             </div>
 
-            <span className="text-primary max-w-14 truncate overflow-hidden text-xs">
+            <span className='text-primary max-w-14 truncate overflow-hidden text-xs'>
               {user.username}
             </span>
           </Link>
