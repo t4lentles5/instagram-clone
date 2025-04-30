@@ -1,15 +1,30 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { LeftChevron, RightChevron } from '@/posts/icons';
 
 interface Props {
   selectedFiles: File[];
+  selectedCrop: 'original' | 'square' | 'portrait' | 'video';
 }
 
-export function NewPostCarousel({ selectedFiles }: Props) {
+export function NewPostCarousel({ selectedFiles, selectedCrop }: Props) {
   const [current, setCurrent] = useState(0);
+  const [originalAspectRatio, setOriginalAspectRatio] =
+    useState<string>('1 / 1');
+
+  useEffect(() => {
+    if (selectedCrop === 'original' && selectedFiles.length > 0) {
+      const img = new Image();
+      img.src = URL.createObjectURL(selectedFiles[0]);
+
+      img.onload = () => {
+        const ratio = img.width / img.height;
+        setOriginalAspectRatio(`${ratio}`);
+      };
+    }
+  }, [selectedCrop, selectedFiles]);
 
   const prev = () => {
     setCurrent((prev) => (prev === 0 ? selectedFiles.length - 1 : prev - 1));
@@ -21,12 +36,29 @@ export function NewPostCarousel({ selectedFiles }: Props) {
 
   if (selectedFiles.length === 0) return null;
 
+  function getAspectRatio(crop: typeof selectedCrop): string {
+    switch (crop) {
+      case 'square':
+        return '1 / 1';
+      case 'portrait':
+        return '4 / 5';
+      case 'video':
+        return '16 / 9';
+      case 'original':
+      default:
+        return originalAspectRatio;
+    }
+  }
+
+  const aspectRatio = getAspectRatio(selectedCrop);
+
   return (
     <div className='relative aspect-square h-full w-full'>
       <img
         src={URL.createObjectURL(selectedFiles[current])}
         alt='Selected Image'
-        className='aspect-video h-full object-contain'
+        className='h-full w-full object-cover'
+        style={{ aspectRatio }}
       />
 
       {selectedFiles.length > 1 && (

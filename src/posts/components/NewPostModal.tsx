@@ -117,7 +117,10 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
               </header>
 
               <div className='relative aspect-square h-full w-full'>
-                <NewPostCarousel selectedFiles={selectedFiles} />
+                <NewPostCarousel
+                  selectedFiles={selectedFiles}
+                  selectedCrop={selectedCrop}
+                />
                 <div className='absolute bottom-0 flex w-full justify-between p-4'>
                   <div className='flex gap-3'>
                     <SelectCrop
