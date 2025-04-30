@@ -38,7 +38,7 @@ export const MediaGallery = ({
                   alt='Selected Image'
                   className='aspect-square object-cover'
                 />
-                <span className='text-primary bg-background-overlay absolute top-1 right-1 rounded-full p-1'>
+                <span className='bg-background-overlay absolute top-1 right-1 rounded-full p-1 text-white'>
                   <DeleteIcon />
                 </span>
               </div>

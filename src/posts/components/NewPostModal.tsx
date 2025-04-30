@@ -18,12 +18,18 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
   const { userId } = useUserStore();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
   const [isCropOptionsOpen, setIsCropOptionsOpen] = useState(false);
   const [isZoomCropOpen, setIsZoomCropOpen] = useState(false);
   const [isMediaGalleryOpen, setIsMediaGalleryOpen] = useState(false);
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
+
+  const [selectedCrop, setSelectedCrop] = useState<
+    'original' | 'square' | 'portrait' | 'video'
+  >('square');
+  const [cropZoomValue, setCropZoomValue] = useState(0);
 
   useEffect(() => {
     if (selectedFiles.length > 0) {
@@ -117,11 +123,15 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                     <SelectCrop
                       isCropOptionsOpen={isCropOptionsOpen}
                       setIsCropOptionsOpen={setIsCropOptionsOpen}
+                      selectedCrop={selectedCrop}
+                      setSelectedCrop={setSelectedCrop}
                     />
 
                     <CropZoom
                       isZoomCropOpen={isZoomCropOpen}
                       setIsZoomCropOpen={setIsZoomCropOpen}
+                      cropZoomValue={cropZoomValue}
+                      setCropZoomValue={setCropZoomValue}
                     />
                   </div>
 

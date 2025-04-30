@@ -11,11 +11,17 @@ import {
 interface Props {
   isCropOptionsOpen: boolean;
   setIsCropOptionsOpen: Dispatch<SetStateAction<boolean>>;
+  selectedCrop: string;
+  setSelectedCrop: Dispatch<
+    SetStateAction<'video' | 'original' | 'square' | 'portrait'>
+  >;
 }
 
 export const SelectCrop = ({
   isCropOptionsOpen,
   setIsCropOptionsOpen,
+  selectedCrop,
+  setSelectedCrop,
 }: Props) => {
   return (
     <>
@@ -34,7 +40,12 @@ export const SelectCrop = ({
             }}
           >
             <div>
-              <button className='ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold'>
+              <button
+                className={`${selectedCrop === 'original' ? 'text-white' : 'text-secondary'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
+                onClick={() => {
+                  setSelectedCrop('original');
+                }}
+              >
                 Original{' '}
                 <span className='p-3'>
                   <PhotoOutlineIcon />
@@ -43,7 +54,12 @@ export const SelectCrop = ({
             </div>
 
             <div>
-              <button className='ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold'>
+              <button
+                className={`${selectedCrop === 'square' ? 'text-white' : 'text-secondary'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
+                onClick={() => {
+                  setSelectedCrop('square');
+                }}
+              >
                 1:1{' '}
                 <span className='p-3'>
                   <CropSquareIcon />
@@ -52,7 +68,12 @@ export const SelectCrop = ({
             </div>
 
             <div>
-              <button className='ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold'>
+              <button
+                className={`${selectedCrop === 'portrait' ? 'text-white' : 'text-secondary'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
+                onClick={() => {
+                  setSelectedCrop('portrait');
+                }}
+              >
                 4:5{' '}
                 <span className='p-3'>
                   <CropPortraitIcon />
@@ -61,7 +82,12 @@ export const SelectCrop = ({
             </div>
 
             <div>
-              <button className='ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold'>
+              <button
+                className={`${selectedCrop === 'video' ? 'text-white' : 'text-secondary'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
+                onClick={() => {
+                  setSelectedCrop('video');
+                }}
+              >
                 16:9{' '}
                 <span className='p-3'>
                   <CropLandscapeIcon />
