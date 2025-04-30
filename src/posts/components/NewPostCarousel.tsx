@@ -53,13 +53,14 @@ export function NewPostCarousel({ selectedFiles, selectedCrop }: Props) {
   const aspectRatio = getAspectRatio(selectedCrop);
 
   return (
-    <div className='relative aspect-square h-full w-full'>
-      <img
-        src={URL.createObjectURL(selectedFiles[current])}
-        alt='Selected Image'
-        className='h-full w-full object-cover'
-        style={{ aspectRatio }}
-      />
+    <div className='relative flex aspect-square h-full w-full items-center justify-center'>
+      <div className='max-h-full max-w-full' style={{ aspectRatio }}>
+        <img
+          src={URL.createObjectURL(selectedFiles[current])}
+          alt='Selected Image'
+          className='h-full w-full object-cover'
+        />
+      </div>
 
       {selectedFiles.length > 1 && (
         <>
@@ -86,7 +87,7 @@ export function NewPostCarousel({ selectedFiles, selectedCrop }: Props) {
                 key={index}
                 onClick={() => setCurrent(index)}
                 className={`h-1.5 w-1.5 cursor-pointer rounded-full ${
-                  index === current ? 'bg-blue' : 'bg-white/50'
+                  index === current ? 'bg-blue' : 'bg-[#a8a8a8]'
                 }`}
               />
             ))}
