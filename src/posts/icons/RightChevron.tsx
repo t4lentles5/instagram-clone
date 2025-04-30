@@ -14,9 +14,9 @@ export default function RightChevron() {
           fill='none'
           points='8 3 17.004 12 8 21'
           stroke='currentColor'
-          stroke-linecap='round'
-          stroke-linejoin='round'
-          stroke-width='2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          strokeWidth='2'
         ></polyline>
       </svg>
     </>

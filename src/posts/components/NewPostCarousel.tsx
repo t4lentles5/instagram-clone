@@ -26,7 +26,7 @@ export function NewPostCarousel({ selectedFiles }: Props) {
       <img
         src={URL.createObjectURL(selectedFiles[current])}
         alt='Selected Image'
-        className='h-full w-full object-cover'
+        className='aspect-video h-full object-contain'
       />
 
       {selectedFiles.length > 1 && (
@@ -47,20 +47,20 @@ export function NewPostCarousel({ selectedFiles }: Props) {
               <RightChevron />
             </button>
           )}
+
+          <div className='absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 justify-center gap-1'>
+            {selectedFiles.map((_, index) => (
+              <div
+                key={index}
+                onClick={() => setCurrent(index)}
+                className={`h-1.5 w-1.5 cursor-pointer rounded-full ${
+                  index === current ? 'bg-blue' : 'bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
         </>
       )}
-
-      <div className='absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 justify-center gap-1'>
-        {selectedFiles.map((_, index) => (
-          <div
-            key={index}
-            onClick={() => setCurrent(index)}
-            className={`h-1.5 w-1.5 cursor-pointer rounded-full ${
-              index === current ? 'bg-blue' : 'bg-white/50'
-            }`}
-          />
-        ))}
-      </div>
     </div>
   );
 }
