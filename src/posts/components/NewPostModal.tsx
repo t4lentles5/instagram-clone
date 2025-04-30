@@ -120,6 +120,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                 <NewPostCarousel
                   selectedFiles={selectedFiles}
                   selectedCrop={selectedCrop}
+                  cropZoomValue={cropZoomValue}
                 />
                 <div className='absolute bottom-0 flex w-full justify-between p-4'>
                   <div className='flex gap-3'>

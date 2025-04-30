@@ -1,30 +1,72 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { LeftChevron, RightChevron } from '@/posts/icons';
 
 interface Props {
   selectedFiles: File[];
   selectedCrop: 'original' | 'square' | 'portrait' | 'video';
+  cropZoomValue: number;
 }
 
-export function NewPostCarousel({ selectedFiles, selectedCrop }: Props) {
+export function NewPostCarousel({
+  selectedFiles,
+  selectedCrop,
+  cropZoomValue,
+}: Props) {
   const [current, setCurrent] = useState(0);
   const [originalAspectRatio, setOriginalAspectRatio] =
     useState<string>('1 / 1');
+  const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(
+    null,
+  );
+  const [offsets, setOffsets] = useState<{ x: number; y: number }[]>([]);
+  const [scales, setScales] = useState<number[]>([]);
+
+  useEffect(() => {
+    setOffsets(selectedFiles.map(() => ({ x: 0, y: 0 })));
+    setScales(selectedFiles.map(() => 1));
+  }, [selectedFiles]);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  const scale = 1 + cropZoomValue / 100;
+
+  useEffect(() => {
+    setScales((prev) =>
+      prev.map((s, index) => (index === current ? 1 + cropZoomValue / 100 : s)),
+    );
+  }, [cropZoomValue, current]);
 
   useEffect(() => {
     if (selectedCrop === 'original' && selectedFiles.length > 0) {
       const img = new Image();
       img.src = URL.createObjectURL(selectedFiles[0]);
-
       img.onload = () => {
         const ratio = img.width / img.height;
         setOriginalAspectRatio(`${ratio}`);
       };
     }
   }, [selectedCrop, selectedFiles]);
+
+  useEffect(() => {
+    setOffsets(selectedFiles.map(() => ({ x: 0, y: 0 })));
+  }, [selectedFiles]);
+
+  useEffect(() => {
+    if (scale === 1) {
+      setOffsets((prev) =>
+        prev.map((offset, index) =>
+          index === current ? { x: 0, y: 0 } : offset,
+        ),
+      );
+    }
+  }, [scale, current]);
+
+  const currentOffset = offsets[current] ?? { x: 0, y: 0 };
+  const currentScale = scales[current] ?? 1;
 
   const prev = () => {
     setCurrent((prev) => (prev === 0 ? selectedFiles.length - 1 : prev - 1));
@@ -33,8 +75,6 @@ export function NewPostCarousel({ selectedFiles, selectedCrop }: Props) {
   const next = () => {
     setCurrent((prev) => (prev === selectedFiles.length - 1 ? 0 : prev + 1));
   };
-
-  if (selectedFiles.length === 0) return null;
 
   function getAspectRatio(crop: typeof selectedCrop): string {
     switch (crop) {
@@ -52,13 +92,62 @@ export function NewPostCarousel({ selectedFiles, selectedCrop }: Props) {
 
   const aspectRatio = getAspectRatio(selectedCrop);
 
+  const onMouseDown = (e: React.MouseEvent) => {
+    if (scale <= 1) return;
+    setDragStart({ x: e.clientX, y: e.clientY });
+  };
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!dragStart || scale <= 1) return;
+
+    const dx = e.clientX - dragStart.x;
+    const dy = e.clientY - dragStart.y;
+
+    const container = containerRef.current;
+    const image = imageRef.current;
+    if (!container || !image) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const maxOffsetX = ((scale - 1) * containerRect.width) / 2;
+    const maxOffsetY = ((scale - 1) * containerRect.height) / 2;
+
+    const newOffset = {
+      x: Math.max(-maxOffsetX, Math.min(currentOffset.x + dx, maxOffsetX)),
+      y: Math.max(-maxOffsetY, Math.min(currentOffset.y + dy, maxOffsetY)),
+    };
+
+    setOffsets((prev) =>
+      prev.map((offset, index) => (index === current ? newOffset : offset)),
+    );
+    setDragStart({ x: e.clientX, y: e.clientY });
+  };
+
+  const onMouseUp = () => {
+    setDragStart(null);
+  };
+
   return (
-    <div className='relative flex aspect-square h-full w-full items-center justify-center'>
-      <div className='max-h-full max-w-full' style={{ aspectRatio }}>
+    <div
+      ref={containerRef}
+      className='relative flex h-full w-full items-center justify-center'
+      onMouseDown={onMouseDown}
+      onMouseMove={onMouseMove}
+      onMouseUp={onMouseUp}
+      onMouseLeave={onMouseUp}
+    >
+      <div
+        className='max-h-full max-w-full overflow-hidden'
+        style={{ aspectRatio }}
+      >
         <img
+          ref={imageRef}
           src={URL.createObjectURL(selectedFiles[current])}
           alt='Selected Image'
-          className='h-full w-full object-cover'
+          className='h-full w-full cursor-grab object-cover transition-transform duration-75 select-none active:cursor-grabbing'
+          style={{
+            transform: `scale(${currentScale}) translate(${currentOffset.x / currentScale}px, ${currentOffset.y / currentScale}px)`,
+          }}
+          draggable={false}
         />
       </div>
 
