@@ -21,6 +21,7 @@
   --color-red: var(--text-red);
   --color-secondary: var(--text-secondary);
   --color-post-image-overlay: var(--post-image-overlay);
+  --color-background-modal: var(--background-modal);
 }
 
 @layer utilities {
@@ -70,6 +71,7 @@
     --text-red: rgb(237, 73, 86);
     --text-secondary: rgb(115, 115, 115);
     --post-image-overlay: rgba(0, 0, 0, 0.7);
+    --background-modal: rgb(245, 245, 245);
   }
 
   .dark {
@@ -93,5 +95,6 @@
     --text-red: rgb(237, 73, 86);
     --text-secondary: rgb(168, 168, 168);
     --post-image-overlay: rgba(0, 0, 0, 0.7);
+    --background-modal: rgb(18, 18, 18);
   }
 }
