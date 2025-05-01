@@ -3,17 +3,22 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { LeftChevron, RightChevron } from '@/posts/icons';
+import { Filter } from './NewPostModal';
 
 interface Props {
   selectedFiles: File[];
   selectedCrop: 'original' | 'square' | 'portrait' | 'video';
   cropZoomValue: number;
+  selectedFilter: Filter;
+  filterStrengths: Record<string, number>;
 }
 
 export function NewPostCarousel({
   selectedFiles,
   selectedCrop,
   cropZoomValue,
+  selectedFilter,
+  filterStrengths,
 }: Props) {
   const [current, setCurrent] = useState(0);
   const [originalAspectRatio, setOriginalAspectRatio] =
@@ -125,6 +130,29 @@ export function NewPostCarousel({
   const onMouseUp = () => {
     setDragStart(null);
   };
+  function getAdjustedFilterStyle(baseStyle: string, strength: number): string {
+    if (strength === 0 || baseStyle === 'none') return 'none';
+    if (strength === 100) return baseStyle;
+
+    const neutralValues: Record<string, number> = {
+      brightness: 100,
+      contrast: 100,
+      saturate: 100,
+      sepia: 0,
+      grayscale: 0,
+    };
+
+    const scale = strength / 100;
+
+    return baseStyle.replace(/(\w+)\(([\d.]+)%\)/g, (_, name, value) => {
+      const original = parseFloat(value);
+      const neutral = neutralValues[name] ?? 100;
+
+      const adjusted = neutral + (original - neutral) * scale;
+
+      return `${name}(${adjusted}%)`;
+    });
+  }
 
   return (
     <div
@@ -146,6 +174,10 @@ export function NewPostCarousel({
           className='h-full w-full cursor-grab object-cover transition-transform duration-75 select-none active:cursor-grabbing'
           style={{
             transform: `scale(${currentScale}) translate(${currentOffset.x / currentScale}px, ${currentOffset.y / currentScale}px)`,
+            filter: getAdjustedFilterStyle(
+              selectedFilter.filterStyle,
+              filterStrengths[selectedFilter.name] ?? 100,
+            ),
           }}
           draggable={false}
         />
