@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 
-import { SearchSidebarIcon } from '@/features/home/sidebar/icons/SearchSidebarIcon';
+import { SearchSidebarIcon } from '../icons/SearchSidebarIcon';
 
 export const SearchButton = () => {
   const pathname = usePathname();

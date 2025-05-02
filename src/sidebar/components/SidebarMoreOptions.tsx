@@ -8,12 +8,12 @@ import { logout } from '@/actions/auth/logout';
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { useThemeStore } from '@/store/theme/theme-store';
 
-import { MoonMoreOptionsIcon } from '@/features/home/sidebar/icons/MoonMoreOptionsIcon';
-import { BackMoreOptionsIcon } from '@/features/home/sidebar/icons/BackMoreOptionsIcon';
-import { SavedMoreOptionsIcon } from '@/features/home/sidebar/icons/SavedMoreOptionsIcon';
-import { SettingsMoreOptionsIcon } from '@/features/home/sidebar/icons/SettingsMoreOptionsIcon';
-import { SunMoreOptionsIcon } from '@/features/home/sidebar/icons/SunMoreOptionsIcon';
-import { SettingsSidebarIcon } from '@/features/home/sidebar/icons/SettingsSidebarIcon';
+import { MoonMoreOptionsIcon } from '../icons/MoonMoreOptionsIcon';
+import { BackMoreOptionsIcon } from '../icons/BackMoreOptionsIcon';
+import { SavedMoreOptionsIcon } from '../icons/SavedMoreOptionsIcon';
+import { SettingsMoreOptionsIcon } from '../icons/SettingsMoreOptionsIcon';
+import { SunMoreOptionsIcon } from '../icons/SunMoreOptionsIcon';
+import { SettingsSidebarIcon } from '../icons/SettingsSidebarIcon';
 import { useUserStore } from '@/store/user/user-store';
 
 export const SidebarMoreOptions = () => {
@@ -65,7 +65,7 @@ export const SidebarMoreOptions = () => {
     <>
       <div
         onClick={handleOpen}
-        className='relative hidden h-14 w-full cursor-pointer items-center justify-center md:flex'
+        className='relative hidden h-14 w-full items-center justify-center md:flex'
         ref={popoverRef}
       >
         <button className='hover:bg-background-hover flex w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:w-full'>
@@ -91,7 +91,7 @@ export const SidebarMoreOptions = () => {
         >
           <div className='border-border border-b pb-2'>
             <Link
-              className={`hover:bg-popoverHover flex w-full items-center justify-start gap-3 rounded-lg p-4`}
+              className={`hover:bg-background-hover flex w-full items-center justify-start gap-3 rounded-lg p-4`}
               href={'/settings'}
             >
               <SettingsMoreOptionsIcon />
@@ -99,7 +99,7 @@ export const SidebarMoreOptions = () => {
             </Link>
 
             <Link
-              className={`hover:bg-popoverHover flex w-full items-center justify-start gap-3 rounded-lg p-4`}
+              className={`hover:bg-background-hover flex w-full items-center justify-start gap-3 rounded-lg p-4`}
               href={'/saved'}
             >
               <SavedMoreOptionsIcon />
@@ -107,7 +107,7 @@ export const SidebarMoreOptions = () => {
             </Link>
 
             <button
-              className={`hover:bg-popoverHover flex w-full items-center justify-start gap-3 p-4 hover:rounded-lg`}
+              className={`hover:bg-background-hover flex w-full cursor-pointer items-center justify-start gap-3 p-4 hover:rounded-lg`}
               onClick={handleSwitchAppearanceOpen}
             >
               {isDarkMode ? <MoonMoreOptionsIcon /> : <SunMoreOptionsIcon />}
@@ -117,7 +117,7 @@ export const SidebarMoreOptions = () => {
 
           <div className='border-border border-b py-2'>
             <button
-              className={`hover:bg-popoverHover w-full cursor-pointer p-4 text-left text-sm leading-[18px] hover:rounded-lg`}
+              className={`hover:bg-background-hover w-full cursor-pointer p-4 text-left text-sm leading-[18px] hover:rounded-lg`}
               type='button'
               onClick={() => {}}
             >
@@ -126,7 +126,7 @@ export const SidebarMoreOptions = () => {
           </div>
           <div className='mt-2'>
             <button
-              className={`hover:bg-popoverHover w-full cursor-pointer p-4 text-left text-sm leading-[18px] hover:rounded-lg`}
+              className={`hover:bg-background-hover w-full cursor-pointer p-4 text-left text-sm leading-[18px] hover:rounded-lg`}
               type='button'
               onClick={handleLogout}
             >
@@ -144,7 +144,7 @@ export const SidebarMoreOptions = () => {
         >
           <div className='border-border flex w-full items-center border-b p-4 hover:rounded-lg'>
             <button
-              className='w-6 text-[#6a6a6a]'
+              className='text-secondary w-6 cursor-pointer'
               onClick={handleSwitchAppearanceOpen}
             >
               <BackMoreOptionsIcon />
@@ -159,7 +159,7 @@ export const SidebarMoreOptions = () => {
 
           <div className='items- flex w-full justify-center p-2'>
             <button
-              className='hover:bg-popoverHover flex w-full cursor-pointer items-center justify-between rounded-lg p-4 text-left'
+              className='hover:bg-background-hover flex w-full cursor-pointer items-center justify-between rounded-lg p-4 text-left'
               onClick={(e) => {
                 e.stopPropagation();
                 toggleTheme();

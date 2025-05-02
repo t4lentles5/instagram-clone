@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { NewPostModal } from '@/posts/components/NewPostModal';
 
-import { NewPostSidebarIcon } from '@/features/home/sidebar/icons/NewPostSidebarIcon';
+import { NewPostSidebarIcon } from '../icons/NewPostSidebarIcon';
 
 export const NewPostButton = () => {
   const { isSidebarCollapsed, isNewPostDialogOpen } = useSidebarStore();

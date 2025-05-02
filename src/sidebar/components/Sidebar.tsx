@@ -4,11 +4,11 @@ import Link from 'next/link';
 
 import { User } from '@/interfaces/user.interface';
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
-import { SidebarMoreOptions } from '@/features/home/sidebar/components/SidebarMoreOptions';
-import { SidebarNav } from '@/features/home/sidebar/components/SidebarNav';
+import { SidebarMoreOptions } from './SidebarMoreOptions';
+import { SidebarNav } from './SidebarNav';
 
-import { InstagramIcon } from '@/features/home/sidebar/icons/InstagramIcon';
-import { InstagramSmallIcon } from '@/features/home/sidebar/icons/InstagramSmallIcon';
+import { InstagramIcon } from '../icons/InstagramIcon';
+import { InstagramSmallIcon } from '../icons/InstagramSmallIcon';
 
 interface Props {
   user: User;
