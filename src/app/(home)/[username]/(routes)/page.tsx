@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 import { getPostsByUsername } from '@/actions/user/get-posts-by-username';
 
-import { CameraCircleIcon } from '@/features/profile/icons/CameraCircleIcon';
 import { CarouselProfilePostIcon } from '@/features/profile/icons/CarouselProfilePostIcon';
 import { CommentIcon, HeartIcon } from '@/shared/icons';
+import { NoPosts } from '@/features/profile/post/components/NoPosts';
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -62,17 +62,7 @@ export default async function PostsPage({ params }: Props) {
           ))}
         </div>
       ) : (
-        <div className='flex h-full w-full flex-col items-center justify-center gap-5'>
-          <CameraCircleIcon />
-          <p className='mt-4 text-center text-3xl font-bold'>Share Photos</p>
-
-          <p className='text-sm font-normal'>
-            When you share photos, they will appear on your profile.
-          </p>
-          <button className='text-blue text-sm font-normal'>
-            Share your first photo
-          </button>
-        </div>
+        <NoPosts />
       )}
     </>
   );
