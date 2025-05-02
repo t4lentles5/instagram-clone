@@ -71,7 +71,7 @@ export const SignUpForm = () => {
 
   return (
     <>
-      <form className="w-ful my-5" onSubmit={handleSubmit(onSubmit)}>
+      <form className='w-ful my-5' onSubmit={handleSubmit(onSubmit)}>
         <SignUpFormInput
           value={'email'}
           register={register}
@@ -143,11 +143,11 @@ export const SignUpForm = () => {
           }}
         />
 
-        <div className="w-full px-10 py-2">
+        <div className='w-full px-10 py-2'>
           <button
-            type="submit"
+            type='submit'
             disabled={!isValid}
-            className={`${isValid ? 'bg-button hover:bg-button-hover cursor-pointer' : 'bg-button-disabled'} w-full rounded-lg px-4 py-[7px] text-sm font-semibold text-white`}
+            className={`${isValid ? 'bg-button hover:bg-button-hover cursor-pointer' : 'bg-button-disabled'} w-full rounded-lg px-4 py-[7px] text-sm font-semibold`}
           >
             Sign up
           </button>

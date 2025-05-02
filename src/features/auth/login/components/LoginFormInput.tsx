@@ -27,12 +27,12 @@ export const LoginFormInput = ({
 
   return (
     <>
-      <div className="mx-10 mb-[6px]">
-        <div className="border-input-border bg-input-bg flex h-[36px] flex-col gap-3 rounded-[3px] border">
-          <div className="bg-input-bg flex h-10 w-full gap-3 text-xs">
-            <label className="flex h-full w-4/5 flex-col items-center px-2">
+      <div className='mx-10 mb-[6px]'>
+        <div className='border-input-border bg-input-bg flex h-[36px] flex-col gap-3 rounded-[3px] border'>
+          <div className='bg-input-bg flex h-10 w-full gap-3 text-xs'>
+            <label className='flex h-full w-4/5 flex-col items-center px-2'>
               {inputValue && (
-                <span className="bg-input-bg text-secondary flex w-full grow items-center text-[9px]">
+                <span className='bg-input-bg text-secondary flex w-full grow items-center text-[9px]'>
                   {placeholder}
                 </span>
               )}
@@ -51,10 +51,10 @@ export const LoginFormInput = ({
             </label>
 
             {value === 'password' && setShowPassword && inputValue && (
-              <div className="flex w-1/4 items-center justify-center">
+              <div className='flex w-1/4 items-center justify-center'>
                 <button
-                  className="cursor-pointer pl-2 font-semibold"
-                  type="button"
+                  className='cursor-pointer pl-2 font-semibold'
+                  type='button'
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? 'Hide' : 'Show'}
@@ -64,9 +64,7 @@ export const LoginFormInput = ({
           </div>
         </div>
 
-        {errors && (
-          <span className="text-xs text-red-500">{errors.message}</span>
-        )}
+        {errors && <span className='text-red text-xs'>{errors.message}</span>}
       </div>
     </>
   );
