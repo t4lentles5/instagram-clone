@@ -2,26 +2,32 @@
 
 @theme {
   --color-background-hover: var(--background-hover);
+  --color-background-modal: var(--background-modal);
   --color-background-overlay: var(--background-overlay);
   --color-background: var(--background);
-  --color-blue-hover: var(--text-blue-hover);
-  --color-blue: var(--text-blue);
+
+  --color-primary: var(--text-primary);
+  --color-primary-active: var(--text-primary-active);
+  --color-link-hover: var(--text-link-hover);
+  --color-link: var(--text-link);
+
+  --color-button-secondary: var(--button-secondary);
+  --color-button-secondary-hover: var(--button-secondary-hover);
+
+  --color-separator: var(--border-separator);
+
   --color-border-popover: var(--border-popover);
   --color-border: var(--border);
   --color-button-disabled: var(--button-disabled);
   --color-button-hover: var(--button-hover);
-  --color-button-secondary-hover: var(--button-secondary-hover);
-  --color-button-secondary: var(--button-secondary);
   --color-button: var(--button);
   --color-image-overlay: var(--image-overlay);
   --color-input-bg: var(--input-bg);
   --color-input-border: var(--input-border);
   --color-popover: var(--popover);
-  --color-primary: var(--text-primary);
+  --color-post-image-overlay: var(--post-image-overlay);
   --color-red: var(--text-red);
   --color-secondary: var(--text-secondary);
-  --color-post-image-overlay: var(--post-image-overlay);
-  --color-background-modal: var(--background-modal);
 }
 
 @layer utilities {
@@ -51,50 +57,62 @@
 
 @layer base {
   :root {
-    --background-hover: rgb(242, 242, 242);
+    --background-hover: rgb(0, 0, 0, 0.05);
+    --background-modal: rgb(245, 245, 245);
     --background-overlay: rgba(0, 0, 0, 0.65);
     --background: rgb(255, 255, 255);
+
+    --text-primary: rgb(0, 0, 0);
+    --text-primary-active: rgb(163, 188, 255); /** change*/
+    --text-link-hover: rgb(0, 55, 107);
+    --text-link: rgb(0, 149, 246);
+
+    --button-secondary-hover: rgb(219, 219, 219);
+    --button-secondary: rgb(239, 239, 239);
+
+    --border-separator: rgb(54, 54, 54);
+
     --border-popover: rgb(219, 219, 219);
     --border: rgb(219, 219, 219);
     --button-disabled: rgb(0, 105, 173);
     --button-hover: rgb(24, 119, 242);
-    --button-secondary-hover: rgb(219, 219, 219);
-    --button-secondary: rgb(239, 239, 239);
     --button: rgb(0, 149, 246);
     --image-overlay: rgba(85, 85, 85, 0.7);
     --input-bg: rgb(18, 18, 18);
     --input-border: rgb(85, 85, 85);
     --popover: rgb(255, 255, 255);
-    --text-blue-hover: rgb(22, 72, 120);
-    --text-blue: rgb(0, 149, 246);
-    --text-primary: rgb(0, 0, 0);
+    --post-image-overlay: rgba(0, 0, 0, 0.7);
     --text-red: rgb(237, 73, 86);
     --text-secondary: rgb(115, 115, 115);
-    --post-image-overlay: rgba(0, 0, 0, 0.7);
-    --background-modal: rgb(245, 245, 245);
   }
 
   .dark {
-    --background-hover: rgb(26, 26, 26);
+    --background-hover: rgb(255, 255, 255, 0.1);
+    --background-modal: rgb(18, 18, 18);
     --background-overlay: rgba(0, 0, 0, 0.65);
     --background: rgb(0, 0, 0);
+
+    --text-primary: rgb(245, 245, 245);
+    --text-primary-active: rgb(163, 188, 255);
+    --text-link: rgb(0, 149, 246);
+    --text-link-hover: rgb(224, 241, 255);
+
+    --button-secondary: rgb(54, 54, 54);
+    --button-secondary-hover: rgb(38, 38, 38);
+
+    --border-separator: rgb(54, 54, 54);
+
     --border-popover: rgb(54, 54, 54);
     --border: rgb(38, 38, 38);
     --button-disabled: rgb(0, 105, 173);
     --button-hover: rgb(24, 119, 242);
-    --button-secondary-hover: rgb(38, 38, 38);
-    --button-secondary: rgb(54, 54, 54);
     --button: rgb(0, 149, 246);
     --image-overlay: rgba(85, 85, 85, 0.7);
     --input-bg: rgb(18, 18, 18);
     --input-border: rgb(85, 85, 85);
     --popover: rgb(38, 38, 38);
-    --text-blue-hover: rgb(224, 241, 255);
-    --text-blue: rgb(0, 149, 246);
-    --text-primary: rgb(245, 245, 245);
+    --post-image-overlay: rgba(0, 0, 0, 0.7);
     --text-red: rgb(237, 73, 86);
     --text-secondary: rgb(168, 168, 168);
-    --post-image-overlay: rgba(0, 0, 0, 0.7);
-    --background-modal: rgb(18, 18, 18);
   }
 }
