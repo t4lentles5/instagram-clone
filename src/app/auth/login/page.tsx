@@ -11,16 +11,16 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <main className="flex h-[650px] w-full justify-center p-8">
+    <main className='flex h-[650px] w-full justify-center p-8'>
       <LoginImages />
 
-      <div className="flex w-[350px] flex-col gap-3 pt-3">
-        <div className="border-border flex w-full flex-col gap-3 border py-[10px]">
-          <div className="mt-9 mb-3 flex w-full items-center justify-center">
+      <div className='flex w-[350px] flex-col gap-3 pt-3'>
+        <div className='border-border flex w-full flex-col gap-3 border py-[10px]'>
+          <div className='mt-9 mb-3 flex w-full items-center justify-center'>
             <i
-              data-visualcompletion="css-img"
-              aria-label="Instagram"
-              role="img"
+              data-visualcompletion='css-img'
+              aria-label='Instagram'
+              role='img'
               style={{
                 backgroundImage:
                   'url("https://static.cdninstagram.com/rsrc.php/v4/yB/r/E7m8ZCMOFDS.png")',
@@ -38,21 +38,21 @@ export default function LoginPage() {
 
           <OrComponent />
 
-          <button className="text-blue hover:text-blue-hover mt-2 text-sm font-bold">
+          <button className='text-link mt-2 text-sm font-bold'>
             Sign in as a guest
           </button>
 
-          <Link href={'/auth/reset-password'} className="text-center text-sm">
+          <Link href={'/auth/reset-password'} className='text-center text-sm'>
             Forgot password?
           </Link>
         </div>
 
-        <div className="border-border w-full border">
-          <p className="p-5 text-center text-sm">
+        <div className='border-border w-full border'>
+          <p className='p-5 text-center text-sm'>
             Don&apos;t have an account?{' '}
             <Link
               href={'/auth/signup'}
-              className="text-blue text-sm font-semibold"
+              className='text-link text-sm font-semibold'
             >
               Sign up
             </Link>
