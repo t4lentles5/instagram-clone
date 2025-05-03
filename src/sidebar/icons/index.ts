@@ -1,14 +1,13 @@
 export { default as BackMoreOptionsIcon } from './BackMoreOptionsIcon';
+export { default as DarkModeIcon } from './DarkModeIcon';
 export { default as ExploreSidebarIcon } from './ExploreSidebarIcon';
 export { default as HomeSidebarIcon } from './HomeSidebarIcon';
 export { default as InstagramIcon } from './InstagramIcon';
 export { default as InstagramSmallIcon } from './InstagramSmallIcon';
 export { default as MessengerSidebarIcon } from './MessengerSidebarIcon';
-export { default as MoonMoreOptionsIcon } from './MoonMoreOptionsIcon';
 export { default as NewPostSidebarIcon } from './NewPostSidebarIcon';
 export { default as ReelsSidebarIcon } from './ReelsSidebarIcon';
 export { default as SavedMoreOptionsIcon } from './SavedMoreOptionsIcon';
 export { default as SearchSidebarIcon } from './SearchSidebarIcon';
 export { default as SettingsMoreOptionsIcon } from './SettingsMoreOptionsIcon';
 export { default as SettingsSidebarIcon } from './SettingsSidebarIcon';
-export { default as SunMoreOptionsIcon } from './SunMoreOptionsIcon';

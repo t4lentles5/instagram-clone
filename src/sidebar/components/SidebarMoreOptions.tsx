@@ -11,11 +11,10 @@ import { useUserStore } from '@/store/user/user-store';
 
 import {
   BackMoreOptionsIcon,
-  MoonMoreOptionsIcon,
+  DarkModeIcon,
   SavedMoreOptionsIcon,
   SettingsMoreOptionsIcon,
   SettingsSidebarIcon,
-  SunMoreOptionsIcon,
 } from '@/sidebar/icons/';
 
 export const SidebarMoreOptions = () => {
@@ -112,7 +111,7 @@ export const SidebarMoreOptions = () => {
               className={`hover:bg-ig-hover-overlay active:bg-ig-active-overlay flex w-full cursor-pointer items-center justify-start gap-3 p-4 hover:rounded-lg`}
               onClick={handleSwitchAppearanceOpen}
             >
-              {isDarkMode ? <MoonMoreOptionsIcon /> : <SunMoreOptionsIcon />}
+              <DarkModeIcon isDarkMode={isDarkMode} />
               <span className='text-sm leading-[18px]'>Switch appearance</span>
             </button>
           </div>
@@ -155,7 +154,7 @@ export const SidebarMoreOptions = () => {
               Switch appearance
             </span>
             <div className='flex w-[30px] justify-end'>
-              {isDarkMode ? <MoonMoreOptionsIcon /> : <SunMoreOptionsIcon />}
+              <DarkModeIcon isDarkMode={isDarkMode} />
             </div>
           </div>
 
