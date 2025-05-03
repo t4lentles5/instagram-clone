@@ -1,8 +1,31 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-background-hover: var(--background-hover);
-  --color-background-modal: var(--background-modal);
+  --color-ig-primary-background: var(--ig-primary-background);
+  --color-ig-banner-background: var(--ig-banner-background);
+
+  --color-ig-primary-button: var(--ig-primary-button);
+  --color-ig-primary-button-hover: var(--ig-primary-button-hover);
+  --color-ig-primary-button-disabled: var(--ig-primary-button-disabled);
+
+  --color-ig-hover-overlay: var(--ig-hover-overlay);
+  --color-ig-active-overlay: var(--ig-active-overlay);
+
+  --color-ig-primary-text: var(--ig-primary-text);
+  --color-ig-secondary-text: var(--ig-secondary-text);
+  --color-ig-link: var(--ig-link);
+  --color-ig-link-active: var(--ig-link-active);
+
+  --color-ig-separator: var(--ig-separator);
+  --color-ig-stroke: var(--ig-stroke);
+  --color-ig-stroke-input: var(--ig-stroke-input);
+
+  --color-ig-secondary-background: rgb(18, 18, 18);
+  --color-ig-elevated-separator: rgb(54, 54, 54);
+  --color-grey-2: rgb(219, 219, 219);
+  --color-ig-badge: rgb(255, 48, 64);
+
+  /* --color-background-modal: var(--background-modal);
   --color-background-overlay: var(--background-overlay);
   --color-background: var(--background);
 
@@ -27,22 +50,22 @@
   --color-popover: var(--popover);
   --color-post-image-overlay: var(--post-image-overlay);
   --color-red: var(--text-red);
-  --color-secondary: var(--text-secondary);
+  --color-secondary: var(--text-secondary); */
 }
 
 @layer utilities {
   body {
-    color: var(--text-primary);
-    background: var(--background);
+    color: var(--ig-primary-text);
+    background: var(--ig-primary-background);
     font-family:
       -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
       sans-serif;
   }
 
   input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px var(--color-input-bg) inset !important;
-    -webkit-text-fill-color: var(--color-primary) !important;
-    caret-color: var(--color-primary);
+    -webkit-box-shadow: 0 0 0 1000px var(--ig-secondary-background) inset !important;
+    -webkit-text-fill-color: var(--ig-primary-text) !important;
+    caret-color: var(--ig-primary-text);
     transition: background-color 5000s ease-in-out 0s;
   }
 
@@ -57,13 +80,31 @@
 
 @layer base {
   :root {
-    --background-hover: rgb(0, 0, 0, 0.05);
-    --background-modal: rgb(245, 245, 245);
+    --ig-primary-background: rgb(255, 255, 255);
+    --ig-banner-background: rgb(255, 255, 255);
+
+    --ig-primary-button: rgb(0, 149, 246); /** need change*/
+    --ig-primary-button-hover: rgb(24, 119, 242); /** need change*/
+    --ig-primary-button-disabled: rgb(0, 149, 246, 0.7); /** need change*/
+
+    --ig-hover-overlay: rgb(0, 0, 0, 0.05);
+    --ig-active-overlay: rgb(0, 0, 0, 0.03);
+
+    --ig-primary-text: rgb(0, 0, 0);
+    --ig-secondary-text: rgb(168, 168, 168); /** need change*/
+    --ig-link: rgb(224, 241, 255); /** need change*/
+    --ig-link-active: rgb(224, 241, 255, 0.5); /** need change*/
+
+    --ig-separator: rgb(219, 219, 219);
+    --ig-stroke: rgb(219, 219, 219, 0.3);
+    --ig-stroke-input: rgb(219, 219, 219);
+
+    /*     --background-modal: rgb(245, 245, 245);
     --background-overlay: rgba(0, 0, 0, 0.65);
     --background: rgb(255, 255, 255);
 
     --text-primary: rgb(0, 0, 0);
-    --text-primary-active: rgb(163, 188, 255); /** change*/
+    --text-primary-active: rgb(163, 188, 255); 
     --text-link-hover: rgb(0, 55, 107);
     --text-link: rgb(0, 149, 246);
 
@@ -83,12 +124,30 @@
     --popover: rgb(255, 255, 255);
     --post-image-overlay: rgba(0, 0, 0, 0.7);
     --text-red: rgb(237, 73, 86);
-    --text-secondary: rgb(115, 115, 115);
+    --text-secondary: rgb(115, 115, 115); */
   }
 
   .dark {
-    --background-hover: rgb(255, 255, 255, 0.1);
-    --background-modal: rgb(18, 18, 18);
+    --ig-primary-background: rgb(0, 0, 0);
+    --ig-banner-background: rgb(38, 38, 38);
+
+    --ig-primary-button: rgb(0, 149, 246);
+    --ig-primary-button-hover: rgb(24, 119, 242);
+    --ig-primary-button-disabled: rgb(0, 149, 246, 0.7);
+
+    --ig-hover-overlay: rgb(255, 255, 255, 0.1);
+    --ig-active-overlay: rgb(255, 255, 255, 0.03);
+
+    --ig-primary-text: rgb(245, 245, 245);
+    --ig-secondary-text: rgb(168, 168, 168);
+    --ig-link: rgb(224, 241, 255);
+    --ig-link-active: rgb(224, 241, 255, 0.5);
+
+    --ig-separator: rgb(38, 38, 38);
+    --ig-stroke: rgb(85, 85, 85, 0.3);
+    --ig-stroke-input: rgb(85, 85, 85);
+
+    /* --background-modal: rgb(18, 18, 18);
     --background-overlay: rgba(0, 0, 0, 0.65);
     --background: rgb(0, 0, 0);
 
@@ -113,6 +172,6 @@
     --popover: rgb(38, 38, 38);
     --post-image-overlay: rgba(0, 0, 0, 0.7);
     --text-red: rgb(237, 73, 86);
-    --text-secondary: rgb(168, 168, 168);
+    --text-secondary: rgb(168, 168, 168); */
   }
 }

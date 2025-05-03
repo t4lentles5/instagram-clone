@@ -28,18 +28,18 @@ export const LoginFormInput = ({
   return (
     <>
       <div className='mx-10 mb-[6px]'>
-        <div className='border-input-border bg-input-bg flex h-[36px] flex-col gap-3 rounded-[3px] border'>
-          <div className='bg-input-bg flex h-10 w-full gap-3 text-xs'>
-            <label className='flex h-full w-4/5 flex-col items-center px-2'>
+        <div className='border-ig-stroke-input bg-ig-secondary-background flex h-[36px] flex-col gap-3 rounded-[3px] border'>
+          <div className='bg-ig-secondary-background flex h-10 w-full gap-3 text-xs'>
+            <label className='text-ig-secondary-text flex h-full w-4/5 flex-col items-center px-2'>
               {inputValue && (
-                <span className='bg-input-bg text-secondary flex w-full grow items-center text-[9px]'>
+                <span className='bg-ig-secondary-background text-ig-secondary-text flex w-full grow items-center text-[9px]'>
                   {placeholder}
                 </span>
               )}
 
               <input
                 type={type}
-                className={`text-primary bg-input-bg h-4 w-full grow border-none focus:outline-hidden ${inputValue && 'text-xs leading-3'}`}
+                className={`bg-ig-secondary-background h-4 w-full grow border-none focus:outline-hidden ${inputValue && 'text-xs leading-3'}`}
                 placeholder={placeholder}
                 {...register(value, {
                   required: {
@@ -64,7 +64,9 @@ export const LoginFormInput = ({
           </div>
         </div>
 
-        {errors && <span className='text-red text-xs'>{errors.message}</span>}
+        {errors && (
+          <span className='text-ig-badge text-xs'>{errors.message}</span>
+        )}
       </div>
     </>
   );
