@@ -1,4 +1,4 @@
-export const InstagramIcon = () => {
+export default function InstagramIcon() {
   return (
     <>
       <svg
@@ -8,6 +8,7 @@ export const InstagramIcon = () => {
         role='img'
         viewBox='32 4 113 32'
         width='103'
+        className='active:text-ig-primary-text/50 active:scale-95'
       >
         <title>Instagram</title>
         <path
@@ -19,4 +20,4 @@ export const InstagramIcon = () => {
       </svg>
     </>
   );
-};
+}

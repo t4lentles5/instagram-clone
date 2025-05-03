@@ -2,7 +2,7 @@ interface Props {
   isActive: boolean;
 }
 
-export const HomeSidebarIcon = ({ isActive }: Props) => {
+export default function HomeSidebarIcon({ isActive }: Props) {
   return (
     <>
       {isActive ? (
@@ -38,4 +38,4 @@ export const HomeSidebarIcon = ({ isActive }: Props) => {
       )}
     </>
   );
-};
+}

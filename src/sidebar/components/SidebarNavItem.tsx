@@ -21,7 +21,7 @@ export const SidebarNavItem = ({ icon: Icon, label, href }: Props) => {
     <div className='flex h-12 items-center justify-center md:h-14 md:w-full'>
       <Link
         href={href}
-        className='hover:bg-background-hover flex items-center justify-start gap-4 rounded-lg p-3 md:w-full'
+        className='hover:bg-ig-hover-overlay active:bg-ig-active-overlay active:text-ig-primary-text/50 flex cursor-pointer items-center justify-start gap-4 rounded-lg p-3 active:scale-95 md:w-full'
       >
         <Icon isActive={isActive} />
 

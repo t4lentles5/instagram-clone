@@ -1,4 +1,4 @@
-export const MoonMoreOptionsIcon = () => {
+export default function MoonMoreOptionsIcon() {
   return (
     <>
       <svg
@@ -14,4 +14,4 @@ export const MoonMoreOptionsIcon = () => {
       </svg>
     </>
   );
-};
+}

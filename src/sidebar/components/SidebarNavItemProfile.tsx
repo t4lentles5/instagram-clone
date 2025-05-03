@@ -17,7 +17,7 @@ export const SidebarNavItemProfile = ({ user }: Props) => {
     <>
       <div className='flex h-12 items-center justify-center md:h-14 md:w-full'>
         <Link
-          className='hover:bg-background-hover relative flex items-center justify-start gap-4 rounded-lg p-3 md:w-full'
+          className='hover:bg-ig-hover-overlay active:bg-ig-active-overlay active:text-ig-primary-text/50 flex cursor-pointer items-center justify-start gap-4 rounded-lg p-3 active:scale-95 md:w-full'
           href={`/${user.username}`}
         >
           <div className='relative'>

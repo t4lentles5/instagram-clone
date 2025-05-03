@@ -6,10 +6,12 @@ import { SidebarNavItem } from './SidebarNavItem';
 import { NewPostButton } from './NewPostButton';
 import { SidebarNavItemProfile } from './SidebarNavItemProfile';
 
-import { ExploreSidebarIcon } from '../icons/ExploreSidebarIcon';
-import { ReelsSidebarIcon } from '../icons/ReelsSidebarIcon';
-import { MessengerSidebarIcon } from '../icons/MessengerSidebarIcon';
-import { HomeSidebarIcon } from '../icons/HomeSidebarIcon';
+import {
+  ExploreSidebarIcon,
+  HomeSidebarIcon,
+  MessengerSidebarIcon,
+  ReelsSidebarIcon,
+} from '@/sidebar/icons';
 
 interface Props {
   user: User;
@@ -17,7 +19,7 @@ interface Props {
 
 export const SidebarNav = ({ user }: Props) => {
   return (
-    <nav className='border-border flex justify-evenly border-t md:flex-col md:border-0'>
+    <nav className='border-ig-separator bg-ig-primary-background flex justify-evenly border-t md:flex-col md:border-0'>
       <SidebarNavItem icon={HomeSidebarIcon} label='Home' href='/' />
 
       <SearchButton />

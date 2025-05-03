@@ -2,7 +2,7 @@ interface Props {
   isActive: boolean;
 }
 
-export const ReelsSidebarIcon = ({ isActive }: Props) => {
+export default function ReelsSidebarIcon({ isActive }: Props) {
   return (
     <>
       {isActive ? (
@@ -78,4 +78,4 @@ export const ReelsSidebarIcon = ({ isActive }: Props) => {
       )}
     </>
   );
-};
+}

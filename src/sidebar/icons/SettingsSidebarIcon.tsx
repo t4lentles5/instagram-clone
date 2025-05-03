@@ -2,7 +2,7 @@ interface Props {
   isActive: boolean;
 }
 
-export const SettingsSidebarIcon = ({ isActive }: Props) => {
+export default function SettingsSidebarIcon({ isActive }: Props) {
   return (
     <>
       {isActive ? (
@@ -64,4 +64,4 @@ export const SettingsSidebarIcon = ({ isActive }: Props) => {
       )}
     </>
   );
-};
+}

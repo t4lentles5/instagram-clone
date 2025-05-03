@@ -1,4 +1,4 @@
-export const SettingsMoreOptionsIcon = () => {
+export default function SettingsMoreOptionsIcon() {
   return (
     <>
       <svg
@@ -30,4 +30,4 @@ export const SettingsMoreOptionsIcon = () => {
       </svg>
     </>
   );
-};
+}

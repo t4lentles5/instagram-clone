@@ -1,4 +1,4 @@
-export const NewPostSidebarIcon = () => {
+export default function NewPostSidebarIcon() {
   return (
     <>
       <svg
@@ -43,4 +43,4 @@ export const NewPostSidebarIcon = () => {
       </svg>
     </>
   );
-};
+}

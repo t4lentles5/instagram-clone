@@ -1,4 +1,4 @@
-export const SunMoreOptionsIcon = () => {
+export default function SunMoreOptionsIcon() {
   return (
     <>
       <svg
@@ -14,4 +14,4 @@ export const SunMoreOptionsIcon = () => {
       </svg>
     </>
   );
-};
+}

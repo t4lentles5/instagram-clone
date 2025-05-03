@@ -44,7 +44,7 @@ export const NotificationsButton = () => {
       <div className='hidden h-12 items-center justify-center md:flex md:h-14 md:w-full'>
         <button
           ref={buttonRef}
-          className='hover:bg-background-hover hidden w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:flex'
+          className={`${isSidebarCollapsed && isNotificationsActive && 'border-grey-2 border'} hover:bg-ig-hover-overlay active:bg-ig-active-overlay active:text-ig-primary-text/50 flex cursor-pointer items-center justify-start gap-4 rounded-lg p-3 active:scale-95 md:w-full`}
           onClick={toggleNotifications}
         >
           <HeartIcon isActive={isActive} type={'notification'} size={24} />
@@ -61,7 +61,7 @@ export const NotificationsButton = () => {
       {isNotificationsActive && (
         <div
           ref={notificationRef}
-          className={`border-border bg-background absolute bottom-0 left-[73px] flex h-screen w-[400px] flex-col justify-start gap-4 overflow-hidden rounded-lg border-r`}
+          className={`border-ig-separator bg-ig-primary-background absolute bottom-0 left-[73px] flex h-screen w-[400px] flex-col justify-start gap-4 overflow-hidden rounded-lg border-r`}
         >
           Notifications
         </div>

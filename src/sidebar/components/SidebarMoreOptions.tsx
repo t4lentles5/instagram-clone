@@ -7,14 +7,16 @@ import { logout } from '@/actions/auth/logout';
 
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { useThemeStore } from '@/store/theme/theme-store';
-
-import { MoonMoreOptionsIcon } from '../icons/MoonMoreOptionsIcon';
-import { BackMoreOptionsIcon } from '../icons/BackMoreOptionsIcon';
-import { SavedMoreOptionsIcon } from '../icons/SavedMoreOptionsIcon';
-import { SettingsMoreOptionsIcon } from '../icons/SettingsMoreOptionsIcon';
-import { SunMoreOptionsIcon } from '../icons/SunMoreOptionsIcon';
-import { SettingsSidebarIcon } from '../icons/SettingsSidebarIcon';
 import { useUserStore } from '@/store/user/user-store';
+
+import {
+  BackMoreOptionsIcon,
+  MoonMoreOptionsIcon,
+  SavedMoreOptionsIcon,
+  SettingsMoreOptionsIcon,
+  SettingsSidebarIcon,
+  SunMoreOptionsIcon,
+} from '@/sidebar/icons/';
 
 export const SidebarMoreOptions = () => {
   const { isSidebarCollapsed } = useSidebarStore();
@@ -68,7 +70,7 @@ export const SidebarMoreOptions = () => {
         className='relative hidden h-14 w-full items-center justify-center md:flex'
         ref={popoverRef}
       >
-        <button className='hover:bg-background-hover flex w-full cursor-pointer items-center justify-start gap-4 rounded-lg p-3 md:w-full'>
+        <button className='hover:bg-ig-hover-overlay active:bg-ig-active-overlay active:text-ig-primary-text/50 flex cursor-pointer items-center justify-start gap-4 rounded-lg p-3 active:scale-95 md:w-full'>
           <SettingsSidebarIcon isActive={isActive} />
 
           <span
@@ -87,11 +89,11 @@ export const SidebarMoreOptions = () => {
             open
               ? 'translate-y-[5px] opacity-100'
               : 'pointer-events-none -translate-x-2 opacity-0'
-          } bg-popover absolute bottom-full left-14 w-[266px] transform gap-2 rounded-2xl p-2 shadow-2xl ease-in-out xl:left-0 xl:mb-1`}
+          } bg-ig-banner-background absolute bottom-full left-14 w-[266px] transform gap-2 rounded-2xl p-2 shadow-2xl ease-in-out xl:left-0 xl:mb-1`}
         >
-          <div className='border-border border-b pb-2'>
+          <div className='border-ig-stroke border-b pb-2'>
             <Link
-              className={`hover:bg-background-hover flex w-full items-center justify-start gap-3 rounded-lg p-4`}
+              className={`hover:bg-ig-hover-overlay active:bg-ig-active-overlay flex w-full items-center justify-start gap-3 rounded-lg p-4`}
               href={'/settings'}
             >
               <SettingsMoreOptionsIcon />
@@ -99,7 +101,7 @@ export const SidebarMoreOptions = () => {
             </Link>
 
             <Link
-              className={`hover:bg-background-hover flex w-full items-center justify-start gap-3 rounded-lg p-4`}
+              className={`hover:bg-ig-hover-overlay active:bg-ig-active-overlay flex w-full items-center justify-start gap-3 rounded-lg p-4`}
               href={'/saved'}
             >
               <SavedMoreOptionsIcon />
@@ -107,7 +109,7 @@ export const SidebarMoreOptions = () => {
             </Link>
 
             <button
-              className={`hover:bg-background-hover flex w-full cursor-pointer items-center justify-start gap-3 p-4 hover:rounded-lg`}
+              className={`hover:bg-ig-hover-overlay active:bg-ig-active-overlay flex w-full cursor-pointer items-center justify-start gap-3 p-4 hover:rounded-lg`}
               onClick={handleSwitchAppearanceOpen}
             >
               {isDarkMode ? <MoonMoreOptionsIcon /> : <SunMoreOptionsIcon />}
@@ -115,9 +117,9 @@ export const SidebarMoreOptions = () => {
             </button>
           </div>
 
-          <div className='border-border border-b py-2'>
+          <div className='border-ig-stroke border-b py-2'>
             <button
-              className={`hover:bg-background-hover w-full cursor-pointer p-4 text-left text-sm leading-[18px] hover:rounded-lg`}
+              className={`hover:bg-ig-hover-overlay active:bg-ig-active-overlay w-full cursor-pointer p-4 text-left text-sm leading-[18px] hover:rounded-lg`}
               type='button'
               onClick={() => {}}
             >
@@ -126,7 +128,7 @@ export const SidebarMoreOptions = () => {
           </div>
           <div className='mt-2'>
             <button
-              className={`hover:bg-background-hover w-full cursor-pointer p-4 text-left text-sm leading-[18px] hover:rounded-lg`}
+              className={`hover:bg-ig-hover-overlay active:bg-ig-active-overlay w-full cursor-pointer p-4 text-left text-sm leading-[18px] hover:rounded-lg`}
               type='button'
               onClick={handleLogout}
             >
@@ -140,9 +142,9 @@ export const SidebarMoreOptions = () => {
             switchAppearanceOpen
               ? 'translate-y-[4px] opacity-100'
               : 'pointer-events-none -translate-x-2 opacity-0'
-          } bg-popover absolute bottom-full left-14 w-[266px] transform rounded-2xl shadow-2xl ease-in-out xl:left-0 xl:mb-1`}
+          } bg-ig-banner-background absolute bottom-full left-14 w-[266px] transform rounded-2xl shadow-2xl ease-in-out xl:left-0 xl:mb-1`}
         >
-          <div className='border-border flex w-full items-center border-b p-4 hover:rounded-lg'>
+          <div className='border-ig-stroke flex w-full items-center border-b p-4 hover:rounded-lg'>
             <button
               className='text-secondary w-6 cursor-pointer'
               onClick={handleSwitchAppearanceOpen}
@@ -159,7 +161,7 @@ export const SidebarMoreOptions = () => {
 
           <div className='items- flex w-full justify-center p-2'>
             <button
-              className='hover:bg-background-hover flex w-full cursor-pointer items-center justify-between rounded-lg p-4 text-left'
+              className='hover:bg-ig-hover-overlay active:bg-ig-active-overlay flex w-full cursor-pointer items-center justify-between rounded-lg p-4 text-left'
               onClick={(e) => {
                 e.stopPropagation();
                 toggleTheme();
@@ -176,7 +178,7 @@ export const SidebarMoreOptions = () => {
                   onChange={toggleTheme}
                   className='peer sr-only'
                 />
-                <div className='bg-primary after:bg-background relative h-4 w-[26px] rounded-full after:absolute after:start-[2px] after:top-[2px] after:h-3 after:w-3 after:rounded-full after:transition-all peer-checked:after:translate-x-[10px]'></div>
+                <div className='bg-ig-primary-text after:bg-ig-primary-background relative h-4 w-[26px] rounded-full after:absolute after:start-[2px] after:top-[2px] after:h-3 after:w-3 after:rounded-full after:transition-all peer-checked:after:translate-x-[10px]'></div>
               </label>
             </button>
           </div>

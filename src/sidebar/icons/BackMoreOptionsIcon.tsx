@@ -1,4 +1,4 @@
-export const BackMoreOptionsIcon = () => {
+export default function BackMoreOptionsIcon() {
   return (
     <>
       <svg
@@ -15,4 +15,4 @@ export const BackMoreOptionsIcon = () => {
       </svg>
     </>
   );
-};
+}

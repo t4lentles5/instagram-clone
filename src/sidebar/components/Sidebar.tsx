@@ -7,8 +7,7 @@ import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { SidebarMoreOptions } from './SidebarMoreOptions';
 import { SidebarNav } from './SidebarNav';
 
-import { InstagramIcon } from '../icons/InstagramIcon';
-import { InstagramSmallIcon } from '../icons/InstagramSmallIcon';
+import { InstagramIcon, InstagramSmallIcon } from '@/sidebar/icons';
 
 interface Props {
   user: User;
@@ -22,7 +21,7 @@ export const Sidebar = ({ user }: Props) => {
       <div
         className={`${
           isSidebarCollapsed ? 'md:w-[73px]' : 'md:w-full'
-        } bg-background md:border-border fixed bottom-0 w-full origin-left transform flex-col md:static md:flex md:h-screen md:border-r md:px-3 md:pt-2 md:pb-[19px]`}
+        } md:border-ig-separator fixed bottom-0 w-full origin-left transform flex-col md:static md:flex md:h-screen md:border-r md:px-3 md:pt-2 md:pb-[19px]`}
       >
         <div
           className={`${
@@ -37,7 +36,7 @@ export const Sidebar = ({ user }: Props) => {
         <div
           className={`${
             isSidebarCollapsed ? 'block' : 'xl:hidden'
-          } hover:bg-background-hover mt-4 mb-7 hidden rounded-lg p-3 md:block md:w-full`}
+          } hover:bg-ig-hover-overlay active:bg-ig-active-overlay active:text-ig-primary-text/50 mt-4 mb-7 hidden rounded-lg p-3 active:scale-95 md:block md:w-full`}
         >
           <Link href={'/'}>
             <InstagramSmallIcon />

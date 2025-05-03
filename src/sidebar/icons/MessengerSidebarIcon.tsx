@@ -2,7 +2,7 @@ interface Props {
   isActive: boolean;
 }
 
-export const MessengerSidebarIcon = ({ isActive }: Props) => {
+export default function MessengerSidebarIcon({ isActive }: Props) {
   return (
     <>
       {isActive ? (
@@ -42,4 +42,4 @@ export const MessengerSidebarIcon = ({ isActive }: Props) => {
       )}
     </>
   );
-};
+}
