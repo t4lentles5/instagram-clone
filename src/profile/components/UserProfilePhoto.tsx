@@ -5,7 +5,7 @@ import { useUserStore } from '@/store/user/user-store';
 import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 import { PhotoOptionsModal } from './PhotoOptionsModal';
 
-import { User } from '@/interfaces/user.interface';
+import { User } from '@/shared/interfaces/user.interface';
 import { useProfilePhoto } from '../hooks/useProfilePhoto';
 
 import { CameraIcon } from '../icons/CameraIcon';

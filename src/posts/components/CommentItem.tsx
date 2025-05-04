@@ -7,7 +7,7 @@ import { LikeCommentButton } from './LikeCommentButton';
 import { formatDate } from '@/utils/format-date';
 import { getExactDate } from '@/utils/get-exact-date';
 
-import { Comment } from '@/interfaces/post.interface';
+import { Comment } from '@/shared/interfaces/post.interface';
 
 import { ReplyComment } from './ReplyComment';
 import { useLikesModal } from '@/posts/hooks/useLikesModal';

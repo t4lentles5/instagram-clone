@@ -1,4 +1,4 @@
-import { Post } from '@/interfaces/post.interface';
+import { Post } from '@/shared/interfaces/post.interface';
 
 export const getAspectClass = (
   aspect_ratio: Post['aspect_ratio'],

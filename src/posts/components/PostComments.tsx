@@ -1,7 +1,7 @@
 import { useRef, useEffect, RefObject, Dispatch, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { Comment } from '@/interfaces/post.interface';
+import { Comment } from '@/shared/interfaces/post.interface';
 
 import { getExactDate } from '@/utils/get-exact-date';
 import { formatDate } from '@/utils/format-date';

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { User } from '@/interfaces/user.interface';
+import { User } from '@/shared/interfaces/user.interface';
 
 import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 

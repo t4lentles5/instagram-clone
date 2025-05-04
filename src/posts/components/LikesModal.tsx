@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 
-import { Comment, Like } from '@/interfaces/post.interface';
+import { Comment, Like } from '@/shared/interfaces/post.interface';
 
 import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 

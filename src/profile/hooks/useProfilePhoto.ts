@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { deleteProfilePhoto } from '@/actions/user/delete-profile-photo';
-import { User } from '@/interfaces/user.interface';
+import { User } from '@/shared/interfaces/user.interface';
 
 export function useProfilePhoto(user: User) {
   const router = useRouter();

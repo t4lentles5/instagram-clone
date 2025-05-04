@@ -8,7 +8,7 @@ import { useLikesModal } from '@/posts/hooks/useLikesModal';
 
 import { LikeCommentButton } from '@/posts/components/LikeCommentButton';
 
-import { Reply } from '@/interfaces/post.interface';
+import { Reply } from '@/shared/interfaces/post.interface';
 import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 
 interface Props {

@@ -2,8 +2,8 @@
 
 import { useState, useCallback } from 'react';
 
-import { Like } from '@/interfaces/post.interface';
-import { Comment } from '@/interfaces/post.interface';
+import { Like } from '@/shared/interfaces/post.interface';
+import { Comment } from '@/shared/interfaces/post.interface';
 import { LikesModal } from '@/posts/components/LikesModal';
 
 export function useLikesModal() {

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { dislikePost } from '@/actions/post/dislike-post';
 import { likePost } from '@/actions/post/like-post';
 
-import { Post } from '@/interfaces/post.interface';
+import { Post } from '@/shared/interfaces/post.interface';
 
 import { HeartIcon } from '@/shared/icons';
 

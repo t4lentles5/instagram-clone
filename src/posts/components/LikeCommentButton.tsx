@@ -5,7 +5,7 @@ import { likeComment } from '@/actions/post/comment/like-comment';
 
 import { HeartIcon } from '@/shared/icons';
 
-import { Comment, Reply } from '@/interfaces/post.interface';
+import { Comment, Reply } from '@/shared/interfaces/post.interface';
 
 import { useUserStore } from '@/store/user/user-store';
 import styles from './like-animation.module.css';

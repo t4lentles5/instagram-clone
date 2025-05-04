@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { User } from '@/interfaces/user.interface';
+import { User } from '@/shared/interfaces/user.interface';
 import { useSidebarStore } from '@/store/sidebar/sidebar-store';
 import { SidebarMoreOptions } from './SidebarMoreOptions';
 import { SidebarNav } from './SidebarNav';

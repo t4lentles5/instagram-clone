@@ -18,7 +18,7 @@ import { useUserStore } from '@/store/user/user-store';
 import { useLikesModal } from '@/posts/hooks/useLikesModal';
 import { likePost } from '@/actions/post/like-post';
 
-import { Post } from '@/interfaces/post.interface';
+import { Post } from '@/shared/interfaces/post.interface';
 
 import {
   CommentIcon,
