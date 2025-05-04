@@ -1,9 +1,13 @@
+import { useState } from 'react';
+
 import { dislikePost } from '@/actions/post/dislike-post';
 import { likePost } from '@/actions/post/like-post';
 
 import { Post } from '@/interfaces/post.interface';
 
 import { HeartIcon } from '@/shared/icons';
+
+import styles from './like-animation.module.css';
 
 interface Props {
   post: Post;
@@ -22,10 +26,26 @@ export const LikeButton = ({ post, userId }: Props) => {
     }
   };
 
+  const [isPopping, setIsPopping] = useState(false);
+  const [hasLikedLocal, setHasLikedLocal] = useState(hasLiked);
+
+  const handleLike = () => {
+    if (!hasLikedLocal) {
+      setIsPopping(true);
+      setTimeout(() => setIsPopping(false), 300);
+    }
+
+    setHasLikedLocal((prev) => !prev);
+    toggleLike();
+  };
+
   return (
     <>
-      <button className='cursor-pointer py-2 pr-2' onClick={() => toggleLike()}>
-        <HeartIcon type={'like'} size={24} hasLiked={hasLiked} />
+      <button
+        className={`hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer py-2 pr-2 ${isPopping && styles['animate-pop']}`}
+        onClick={handleLike}
+      >
+        <HeartIcon type='like' size={24} hasLiked={hasLiked} />
       </button>
     </>
   );
