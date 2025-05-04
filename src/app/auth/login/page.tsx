@@ -44,7 +44,7 @@ export default function LoginPage() {
 
           <Link
             href={'/auth/reset-password'}
-            className='text-ig-link active:text-ig-link-active text-center text-sm'
+            className='text-ig-link active:text-ig-link-pressed text-center text-sm'
           >
             Forgot password?
           </Link>

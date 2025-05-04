@@ -33,7 +33,7 @@ export const ProfilePhoto = ({
       <img
         src={profile_photo || '/default_photo.jpg'}
         alt='Profile photo'
-        className={`relative z-0 aspect-square rounded-full ${imageSize.size} ${imageSize.mdSize}`}
+        className={`relative z-0 aspect-square cursor-pointer rounded-full ${imageSize.size} ${imageSize.mdSize}`}
       />
     </div>
   );
