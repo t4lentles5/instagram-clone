@@ -415,26 +415,19 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
       <dialog
         ref={dialogOptionsRef}
         onCancel={() => setIsOptionsDialogOpen(false)}
-        className='bg-background-modal backdrop:bg-background-overlay fixed top-1/2 left-1/2 w-[400px] -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl'
-        aria-labelledby='discard-dialog-title'
-        aria-describedby='discard-dialog-description'
+        className='bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 w-[400px] -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl'
       >
         <div className='flex flex-col items-center text-center'>
           <div className='p-6'>
-            <h3 id='discard-dialog-title' className='text-primary mb-1 text-xl'>
-              Discard post?
-            </h3>
-            <p
-              id='discard-dialog-description'
-              className='text-secondary text-sm'
-            >
+            <h3 className='text-ig-primary-text mb-1 text-xl'>Discard post?</h3>
+            <p className='text-ig-secondary-text text-sm'>
               If you leave, your edits won&apos;t be saved.
             </p>
           </div>
 
-          <div className='border-border-popover flex w-full flex-col border-t'>
+          <div className='border-ig-elevated-separator flex w-full flex-col border-t'>
             <button
-              className='h-12 w-full cursor-pointer px-2 py-1 text-sm font-bold text-red-500'
+              className='text-ig-badge h-12 w-full cursor-pointer px-2 py-1 text-sm font-bold'
               onClick={() => {
                 setIsOptionsDialogOpen(false);
                 setPreviewUrls([]);
@@ -457,7 +450,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
             </button>
 
             <button
-              className='text-primary border-border-popover h-12 w-full cursor-pointer border-t px-2 py-1 text-sm'
+              className='text-ig-primary-text border-ig-elevated-separator h-12 w-full cursor-pointer border-t px-2 py-1 text-sm'
               onClick={() => setIsOptionsDialogOpen(false)}
             >
               Cancel
