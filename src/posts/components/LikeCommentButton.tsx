@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { dislikeComment } from '@/actions/post/comment/dislike-comment';
 import { likeComment } from '@/actions/post/comment/like-comment';
 
@@ -6,6 +8,7 @@ import { HeartIcon } from '@/shared/icons';
 import { Comment, Reply } from '@/interfaces/post.interface';
 
 import { useUserStore } from '@/store/user/user-store';
+import styles from './like-animation.module.css';
 
 interface Props {
   comment: Comment | Reply;
@@ -25,11 +28,24 @@ export const LikeCommentButton = ({ comment }: Props) => {
     }
   };
 
+  const [isPopping, setIsPopping] = useState(false);
+  const [hasLikedLocal, setHasLikedLocal] = useState(hasLiked);
+
+  const handleLike = () => {
+    if (!hasLikedLocal) {
+      setIsPopping(true);
+      setTimeout(() => setIsPopping(false), 300);
+    }
+
+    setHasLikedLocal((prev) => !prev);
+    toggleLike();
+  };
+
   return (
     <>
       <button
-        className='mt-[9px] w-[24px] flex-shrink-0 cursor-pointer'
-        onClick={() => toggleLike()}
+        className={`${isPopping && styles['animate-pop']} mt-[9px] w-[24px] flex-shrink-0 cursor-pointer`}
+        onClick={handleLike}
       >
         <HeartIcon type={'like'} size={12} hasLiked={hasLiked} />
       </button>

@@ -1,4 +1,4 @@
-import { Dispatch, RefObject, SetStateAction, useState } from 'react';
+import { Dispatch, RefObject, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
@@ -16,17 +16,19 @@ interface Props {
   comment: Comment;
   textareaRef: RefObject<HTMLTextAreaElement | null>;
   setReplyToCommentId: Dispatch<SetStateAction<string | null>>;
+  showReplies: boolean;
+  setShowReplies: Dispatch<SetStateAction<boolean>>;
 }
 
 export const CommentItem = ({
   comment,
   textareaRef,
   setReplyToCommentId,
+  showReplies,
+  setShowReplies,
 }: Props) => {
   const router = useRouter();
   const { openModal, Modal } = useLikesModal();
-
-  const [showReplies, setShowReplies] = useState(false);
 
   const replyComment = () => {
     const textarea = textareaRef.current;
@@ -56,7 +58,7 @@ export const CommentItem = ({
             />
           </div>
 
-          <div className='max-w-[320px]'>
+          <div className='max-w-[270px]'>
             <p className='text-sm leading-snug break-words whitespace-pre-wrap'>
               <span
                 onClick={() => {
@@ -73,7 +75,7 @@ export const CommentItem = ({
             </p>
 
             <time
-              className='text-secondary pr-3 text-xs'
+              className='text-ig-secondary-text pr-3 text-xs'
               title={getExactDate(comment.createdAt.toString())}
             >
               {formatDate(comment.createdAt.toString())}
@@ -82,7 +84,7 @@ export const CommentItem = ({
             {comment.commentLike.length > 0 && (
               <>
                 <button
-                  className='text-secondary cursor-pointer pr-3 text-xs font-semibold'
+                  className='text-ig-secondary-text cursor-pointer pr-3 text-xs font-semibold'
                   onClick={() => openModal(comment.commentLike)}
                 >
                   {comment.commentLike.length}{' '}
@@ -94,7 +96,7 @@ export const CommentItem = ({
             )}
 
             <button
-              className='text-secondary cursor-pointer text-xs font-semibold'
+              className='text-ig-secondary-text cursor-pointer text-xs font-semibold'
               onClick={() => {
                 replyComment();
               }}
@@ -119,8 +121,8 @@ export const CommentItem = ({
               }
             }}
           >
-            <div className='border-secondary mr-4 block h-0 w-6 border'></div>
-            <span className='text-secondary text-xs'>
+            <div className='border-ig-secondary-text mr-4 block h-0 w-6 border'></div>
+            <span className='text-ig-secondary-text text-xs font-semibold'>
               {showReplies
                 ? 'Hide replies'
                 : `View replies (${comment.replies.length})`}

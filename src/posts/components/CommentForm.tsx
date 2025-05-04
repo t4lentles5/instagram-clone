@@ -14,6 +14,7 @@ interface Props {
   postId: string;
   replyToCommentId: string | null;
   setReplyToCommentId: Dispatch<SetStateAction<string | null>>;
+  setShowReplies: Dispatch<SetStateAction<boolean>>;
 }
 
 interface CommentFormInputs {
@@ -21,7 +22,10 @@ interface CommentFormInputs {
 }
 
 export const CommentForm = forwardRef<HTMLTextAreaElement, Props>(
-  ({ userId, postId, replyToCommentId, setReplyToCommentId }, ref) => {
+  (
+    { userId, postId, replyToCommentId, setReplyToCommentId, setShowReplies },
+    ref,
+  ) => {
     const {
       register,
       handleSubmit,
@@ -44,6 +48,7 @@ export const CommentForm = forwardRef<HTMLTextAreaElement, Props>(
       );
 
       setReplyToCommentId(null);
+      setShowReplies(true);
       reset();
 
       if (textareaRef.current) {
@@ -61,7 +66,7 @@ export const CommentForm = forwardRef<HTMLTextAreaElement, Props>(
         <textarea
           placeholder='Add a comment...'
           rows={1}
-          className='max-h-[80px] min-h-[18px] w-full flex-1 resize-none overflow-y-auto border-none bg-transparent text-sm outline-none placeholder:text-gray-400 focus:ring-0'
+          className='max-h-[80px] min-h-[18px] w-full flex-1 resize-none overflow-y-auto border-none bg-transparent text-sm outline-none focus:ring-0'
           onInput={(e) => {
             const el = e.currentTarget;
             el.style.height = 'auto';
@@ -85,7 +90,7 @@ export const CommentForm = forwardRef<HTMLTextAreaElement, Props>(
         />
         <button
           type='submit'
-          className='disabled:text-secondary text-blue hover:text-primary ml-2 cursor-pointer text-sm font-semibold'
+          className='disabled:text-blue-2/50 text-ig-primary-button hover:text-ig-link active:text-ig-primary-text-pressed ml-2 cursor-pointer text-sm font-semibold'
           disabled={!isValid}
         >
           Post

@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { CameraCircleIcon } from '../../icons/CameraCircleIcon';
+
 import { NewPostModal } from '@/posts/components/NewPostModal';
+import { CameraCircleIcon } from '@/posts/icons';
 
 export const NoPosts = () => {
   const [isOpen, setIsOpen] = useState(false);

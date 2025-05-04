@@ -6,7 +6,7 @@ import { formatDate } from '@/utils/format-date';
 
 import { useLikesModal } from '@/posts/hooks/useLikesModal';
 
-import { LikeCommentButton } from './LikeCommentButton';
+import { LikeCommentButton } from '@/posts/components/LikeCommentButton';
 
 import { Reply } from '@/interfaces/post.interface';
 import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
@@ -53,7 +53,7 @@ export const ReplyComment = ({
             />
           </div>
 
-          <div className='max-w-[320px]'>
+          <div className='max-w-[230px]'>
             <p className='text-sm leading-snug break-words whitespace-pre-wrap'>
               <span
                 onClick={() => {
@@ -70,7 +70,7 @@ export const ReplyComment = ({
             </p>
 
             <time
-              className='text-secondary pr-3 text-xs'
+              className='text-ig-secondary-text pr-3 text-xs'
               title={getExactDate(reply.createdAt.toString())}
             >
               {formatDate(reply.createdAt.toString())}
@@ -79,7 +79,7 @@ export const ReplyComment = ({
             {reply.commentLike.length > 0 && (
               <>
                 <button
-                  className='text-secondary cursor-pointer pr-3 text-xs font-semibold'
+                  className='text-ig-secondary-text cursor-pointer pr-3 text-xs font-semibold'
                   onClick={() => openModal(reply.commentLike)}
                 >
                   {reply.commentLike.length}{' '}
@@ -91,7 +91,7 @@ export const ReplyComment = ({
             )}
 
             <button
-              className='text-secondary cursor-pointer text-xs font-semibold'
+              className='text-ig-secondary-text cursor-pointer text-xs font-semibold'
               onClick={() => {
                 replyComment();
               }}
