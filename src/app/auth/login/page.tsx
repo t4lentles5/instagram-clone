@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { LoginForm } from '@/auth/login/components/LoginForm';
-import { LoginImages } from '@/auth/login/components/LoginImages';
-import { OrComponent } from '@/auth/components/OrComponent';
+import { LoginForm } from '@/features/auth/components/LoginForm';
+import { LoginImages } from '@/features/auth/components/LoginImages';
+import { OrComponent } from '@/features/auth/components/OrComponent';
 
 export const metadata: Metadata = {
   title: 'Login • Instagram',

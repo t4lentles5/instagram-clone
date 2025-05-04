@@ -5,12 +5,12 @@ import path from 'path';
 import bcrypt from 'bcrypt';
 import sharp from 'sharp';
 
-import prisma from '@/config/prisma';
+import prisma from '@/core/config/prisma';
 import { initialData } from '@/seed/seed';
 
-import { changeProfilePhoto } from '@/actions/user/change-profile-photo';
-import { deleteAllProfilePhotos } from '@/actions/seed/delete-all-profile-photos';
-import { createPost } from '@/actions/post/create-post';
+import { changeProfilePhoto } from '@/features/profile/actions/change-profile-photo';
+import { deleteAllProfilePhotos } from '@/seed/actions/delete-all-profile-photos';
+import { createPost } from '@/features/posts/actions/create-post';
 
 export async function POST() {
   try {

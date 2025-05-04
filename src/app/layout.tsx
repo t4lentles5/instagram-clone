@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
+
+import { ThemeProvider } from '@/core/shared/providers/ThemeProvider';
 import './globals.css';
-import { ThemeProvider } from '@/shared/providers/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'Instagram',

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
-import { getPostById } from '@/actions/post/get-post-by-id';
-import { getPostsByUsername } from '@/actions/user/get-posts-by-username';
+import { getPostById } from '@/features/posts/actions/get-post-by-id';
+import { getPostsByUsername } from '@/features/profile/actions/get-posts-by-username';
 
 type Props = {
   params: Promise<{

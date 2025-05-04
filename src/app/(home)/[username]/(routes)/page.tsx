@@ -1,11 +1,11 @@
 import Link from 'next/link';
 
-import { getPostsByUsername } from '@/actions/user/get-posts-by-username';
+import { getPostsByUsername } from '@/features/profile/actions/get-posts-by-username';
 
-import { NoPosts } from '@/posts/components/NoPosts';
+import { NoPosts } from '@/features/posts/components/NoPosts';
 
-import { CommentIcon, HeartIcon } from '@/shared/icons';
-import { CarouselProfilePostIcon } from '@/profile/icons/CarouselProfilePostIcon';
+import { CommentIcon, HeartIcon } from '@/core/shared/icons';
+import { CarouselProfilePostIcon } from '@/features/profile/icons/CarouselProfilePostIcon';
 
 interface Props {
   params: Promise<{ username: string }>;

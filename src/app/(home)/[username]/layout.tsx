@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { getAuthenticatedUser } from '@/actions/auth/get-authenticated-user';
-import { getUserByUsername } from '@/actions/user/get-user-by-username';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
+import { getUserByUsername } from '@/features/profile/actions/get-user-by-username';
 
-import { Footer } from '@/shared/components/Footer';
+import { Footer } from '@/core/shared/components/Footer';
 
 export const revalidate = 3600;
 

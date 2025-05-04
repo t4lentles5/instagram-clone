@@ -1,9 +1,9 @@
-import { getAuthenticatedUser } from '@/actions/auth/get-authenticated-user';
-import { getUserByUsername } from '@/actions/user/get-user-by-username';
-import { ProfileNavigation } from '@/profile/components/ProfileNavigation';
-import { UserProfileInfo } from '@/profile/components/UserProfileInfo';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
+import { getUserByUsername } from '@/features/profile/actions/get-user-by-username';
+import { ProfileNavigation } from '@/features/profile/components/ProfileNavigation';
+import { UserProfileInfo } from '@/features/profile/components/UserProfileInfo';
 
-import { HeaderPageMobile } from '@/shared/components/HeaderPageMobile';
+import { HeaderPageMobile } from '@/core/shared/components/HeaderPageMobile';
 
 type Params = Promise<{ username: string }>;
 

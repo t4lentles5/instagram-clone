@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { SignUpForm } from '@/auth/signup/components/SignUpForm';
-import { OrComponent } from '@/auth/components/OrComponent';
+import { SignUpForm } from '@/features/auth/components/SignUpForm';
+import { OrComponent } from '@/features/auth/components/OrComponent';
 
 export const metadata: Metadata = {
   title: 'Sign Up • Instagram',

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { changeProfilePhoto } from '@/actions/user/change-profile-photo';
+import { changeProfilePhoto } from '@/features/profile/actions/change-profile-photo';
 
 export async function POST(req: Request) {
   try {

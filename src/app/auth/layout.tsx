@@ -1,5 +1,5 @@
-import { Footer } from '@/shared/components/Footer';
-import { AuthThemeProvider } from '@/shared/providers/AuthThemeProvider';
+import { Footer } from '@/core/shared/components/Footer';
+import { AuthThemeProvider } from '@/core/shared/providers/AuthThemeProvider';
 
 export default function AuthLayout({
   children,

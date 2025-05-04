@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 
-import { getPostById } from '@/actions/post/get-post-by-id';
+import { getPostById } from '@/features/posts/actions/get-post-by-id';
 
-import { PostModal } from '@/posts/components/PostModal';
+import { PostModal } from '@/features/posts/components/PostModal';
 
 type Props = {
   params: Promise<{
