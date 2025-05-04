@@ -10,3 +10,4 @@ export { default as PlusIcon } from './PlusIcon';
 export { default as DeleteIcon } from './DeleteIcon';
 export { default as LeftChevron } from './LeftChevron';
 export { default as RightChevron } from './RightChevron';
+export { default as CameraCircleIcon } from './CameraCircleIcon';

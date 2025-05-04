@@ -1,4 +1,4 @@
-export const CameraCircleIcon = () => {
+export default function CameraCircleIcon() {
   return (
     <>
       <svg
@@ -39,4 +39,4 @@ export const CameraCircleIcon = () => {
       </svg>
     </>
   );
-};
+}

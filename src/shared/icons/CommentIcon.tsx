@@ -9,7 +9,6 @@ export default function CommentIcon({ type, size }: Props) {
       <svg
         aria-label={type === 'comment' ? 'Comment' : 'Comments'}
         fill='currentColor'
-        className='hover:text-secondary cursor-pointer'
         height={`${size}`}
         role='img'
         viewBox='0 0 24 24'

@@ -19,14 +19,15 @@ export default function HeartIcon({ isActive, hasLiked, type, size }: Props) {
 
   const label =
     type === 'like'
-      ? 'Like'
+      ? hasLiked
+        ? 'Unlike'
+        : 'Like'
       : type === 'notification'
         ? 'Notifications'
         : undefined;
 
   return (
     <svg
-      className='hover:text-secondary'
       aria-label={label}
       fill={fillColor}
       height={size}

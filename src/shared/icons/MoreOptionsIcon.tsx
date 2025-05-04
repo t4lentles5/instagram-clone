@@ -8,6 +8,7 @@ export default function MoreOptionsIcon() {
         role='img'
         viewBox='0 0 24 24'
         width='24'
+        className='active:text-ig-primary-text-pressed'
       >
         <title>More options</title>
         <circle cx='12' cy='12' r='1.5'></circle>
