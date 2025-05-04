@@ -188,7 +188,7 @@ export function NewPostCarousel({
           {current !== 0 && (
             <button
               onClick={prev}
-              className='absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-black/60 p-2 text-white'
+              className='bg-ig-icon-background text-web-always-white absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full p-2'
             >
               <LeftChevron />
             </button>
@@ -196,7 +196,7 @@ export function NewPostCarousel({
           {current !== selectedFiles.length - 1 && (
             <button
               onClick={next}
-              className='absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-black/60 p-2 text-white'
+              className='bg-ig-icon-background text-web-always-white absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full p-2'
             >
               <RightChevron />
             </button>
@@ -208,7 +208,7 @@ export function NewPostCarousel({
                 key={index}
                 onClick={() => setCurrent(index)}
                 className={`h-1.5 w-1.5 cursor-pointer rounded-full ${
-                  index === current ? 'bg-blue' : 'bg-[#a8a8a8]'
+                  index === current ? 'bg-ig-primary-button' : 'bg-grey-4'
                 }`}
               />
             ))}

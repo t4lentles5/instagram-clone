@@ -6,8 +6,9 @@ import Link from 'next/link';
 import { User } from '@/interfaces/user.interface';
 
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
-import { CameraCircleIcon } from '@/features/profile/icons/CameraCircleIcon';
+
 import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
+import { CameraCircleIcon } from '@/posts/icons';
 
 interface Props {
   user: User;
@@ -109,7 +110,9 @@ export const SuggestedUser = ({ user }: Props) => {
                   >
                     {user.username}
                   </Link>
-                  <p className='text-secondary text-sm'>{user.fullname}</p>
+                  <p className='text-secondary max-w-36 truncate overflow-hidden text-sm'>
+                    {user.fullname}
+                  </p>
                 </div>
               </div>
 

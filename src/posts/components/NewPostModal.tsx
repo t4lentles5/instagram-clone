@@ -197,6 +197,39 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
   };
 
   useEffect(() => {
+    if (isOpen) {
+      const originalStyles = {
+        overflow: document.body.style.overflow,
+        paddingRight: document.body.style.paddingRight,
+        position: document.body.style.position,
+        top: document.body.style.top,
+        width: document.body.style.width,
+      };
+
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+
+      const scrollY = window.scrollY;
+
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+
+      return () => {
+        document.body.style.overflow = originalStyles.overflow;
+        document.body.style.paddingRight = originalStyles.paddingRight;
+        document.body.style.position = originalStyles.position;
+        document.body.style.top = originalStyles.top;
+        document.body.style.width = originalStyles.width;
+
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
     const dialog = dialogRef.current;
     const dialogOptions = dialogOptionsRef.current;
 
@@ -245,21 +278,11 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, isOptionsDialogOpen, previewUrls]);
 
-  console.log({
-    showEditPost,
-    showFilters,
-    selectedFilter,
-    adjustmentValues,
-    filterStrengths,
-    selectedCrop,
-    cropZoomValue,
-  });
-
   return (
     <>
       <dialog
         ref={dialogRef}
-        className={`${showEditPost ? 'w-[856px]' : 'w-[516px]'} bg-background-modal backdrop:bg-background-overlay fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl`}
+        className={`${showEditPost ? 'w-[856px]' : 'w-[516px]'} bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl`}
         onCancel={handleCloseAttempt}
         onClick={(e) => {
           const dialog = dialogRef.current;
@@ -276,10 +299,10 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
           if (isMediaGalleryOpen) setIsMediaGalleryOpen(false);
         }}
       >
-        <div className='bg-background-modal flex flex-col rounded-lg'>
+        <div className='flex flex-col rounded-lg'>
           {previewUrls.length > 0 ? (
             <>
-              <header className='bg-background text-primary border-border flex w-full items-center rounded-t-lg border-b p-2 text-center font-semibold'>
+              <header className='bg-ig-primary-background text-ig-primary-text border-ig-elevated-separator flex w-full items-center rounded-t-lg border-b p-2 text-center font-semibold'>
                 <button
                   onClick={() => {
                     if (showEditPost) {
@@ -292,20 +315,20 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                       }
                     }
                   }}
-                  className='ml-2 cursor-pointer'
+                  className='active:text-ig-primary-text-pressed ml-2 cursor-pointer'
                 >
                   <BackPostIcon />
                 </button>
                 <div className='grow'>{showEditPost ? 'Edit' : 'Crop'}</div>
                 <button
                   onClick={() => setShowEditPost(true)}
-                  className='text-blue hover:text-blue-hover mr-2 cursor-pointer text-sm'
+                  className='text-ig-primary-button hover:text-ig-link active:text-ig-primary-button-pressed mr-2 cursor-pointer text-sm'
                 >
                   Next
                 </button>
               </header>
 
-              <div className='flex'>
+              <div className='bg-ig-secondary-background flex'>
                 <div className='relative aspect-square h-full w-[516px]'>
                   <NewPostCarousel
                     selectedFiles={selectedFiles}
@@ -359,15 +382,15 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
             </>
           ) : (
             <>
-              <header className='bg-background text-primary border-border rounded-t-lg border-b p-2 text-center font-semibold'>
+              <header className='bg-ig-primary-background text-ig-primary-text border-ig-elevated-separator rounded-t-lg border-b p-2 text-center font-semibold'>
                 Create new post
               </header>
 
-              <div className='text-primary flex aspect-square h-full flex-col items-center justify-center p-6'>
+              <div className='text-ig-primary-text flex aspect-square h-full flex-col items-center justify-center p-6'>
                 <NewPostMediaIcon />
                 <p className='mt-3 text-xl'>Drag photos and videos here</p>
                 <button
-                  className='hover:bg-button-hover bg-button mt-5 cursor-pointer rounded-lg px-4 py-[7px] text-sm font-semibold text-white'
+                  className='hover:bg-button-hover bg-ig-primary-button hover:bg-ig-primary-button-hover active:bg-ig-primary-button-pressed text-web-always-white mt-5 cursor-pointer rounded-lg px-4 py-[7px] text-sm font-semibold'
                   onClick={() => {
                     fileInputRef.current?.click();
                   }}

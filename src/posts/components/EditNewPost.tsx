@@ -41,17 +41,17 @@ export const EditNewPost = ({
 
   return (
     <>
-      <div className='bg-popover flex h-[516px] w-[340px] flex-col overflow-auto'>
+      <div className='bg-ig-elevated-background border-ig-elevated-separator flex h-[516px] w-[340px] flex-col overflow-auto border-l'>
         <div className='flex'>
           <button
             onClick={() => setShowFilters(true)}
-            className={`${showFilters ? 'text-primary border-white' : 'border-secondary text-[#595d61]'} w-full cursor-pointer border-b py-[10px] text-sm font-semibold`}
+            className={`${showFilters ? 'text-ig-link border-ig-primary-text' : 'border-ig-primary-text/30 text-ig-link/30'} w-full cursor-pointer border-b py-[10px] text-sm font-semibold`}
           >
             Filters
           </button>
           <button
             onClick={() => setShowFilters(false)}
-            className={`${!showFilters ? 'text-primary border-white' : 'border-secondary text-[#595d61]'} w-full cursor-pointer border-b py-[10px] text-sm font-semibold`}
+            className={`${!showFilters ? 'text-ig-link border-ig-primary-text' : 'border-ig-primary-text/30 text-ig-link/30'} w-full cursor-pointer border-b py-[10px] text-sm font-semibold`}
           >
             Adjustments
           </button>
@@ -67,7 +67,7 @@ export const EditNewPost = ({
                   onClick={() => setSelectedFilter(filter)}
                 >
                   <div
-                    className={`${selectedFilter.name === filter.name && 'border-blue'} border-background-modal overflow-hidden rounded-sm border-2`}
+                    className={`${selectedFilter.name === filter.name && 'border-ig-primary-button'} border-ig-elevated-background overflow-hidden rounded-sm border-2`}
                   >
                     <img
                       src='/filters-image.jpg'
@@ -77,7 +77,7 @@ export const EditNewPost = ({
                     />
                   </div>
                   <span
-                    className={`${selectedFilter.name === filter.name ? 'text-blue' : 'text-secondary'} mt-2 text-center text-xs`}
+                    className={`${selectedFilter.name === filter.name ? 'text-ig-primary-button' : 'text-ig-secondary-text'} mt-2 text-center text-xs`}
                   >
                     {filter.name}
                   </span>
@@ -98,9 +98,9 @@ export const EditNewPost = ({
                       Number(e.target.value),
                     )
                   }
-                  className='[&::-webkit-slider-thumb]:bg-primary bg-primary h-[2px] grow appearance-none rounded-lg [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-none'
+                  className='[&::-webkit-slider-thumb]:bg-ig-primary-text bg-ig-primary-text h-[2px] grow appearance-none rounded-lg [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-none'
                 />
-                <span className='text-primary ml-4 text-xs'>
+                <span className='text-ig-primary-text ml-4 text-xs'>
                   {filterStrengths[selectedFilter.name]}
                 </span>
               </div>
@@ -110,7 +110,9 @@ export const EditNewPost = ({
           <div className='mb-4'>
             {adjustmentValues.map((adjustment) => (
               <div key={adjustment.name} className='mb-1 px-4'>
-                <div className='text-primary py-4'>{adjustment.name}</div>
+                <div className='text-ig-primary-text py-4'>
+                  {adjustment.name}
+                </div>
                 <div className='flex h-6 items-center justify-center'>
                   <input
                     type='range'
@@ -120,9 +122,9 @@ export const EditNewPost = ({
                     onChange={(e) =>
                       updateAdjustmentValue(adjustment.name, +e.target.value)
                     }
-                    className='bg-border [&::-webkit-slider-thumb]:bg-primary h-[2px] w-full cursor-pointer appearance-none rounded-lg [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-none'
+                    className='bg-ig-stroke-adjustments [&::-webkit-slider-thumb]:bg-ig-primary-text h-[2px] w-full cursor-pointer appearance-none rounded-lg [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-none'
                   />
-                  <span className='text-secondary pl-4 text-xs'>
+                  <span className='text-ig-secondary-text pl-4 text-xs'>
                     {adjustment.value}
                   </span>
                 </div>

@@ -7,7 +7,7 @@ import { getExactDate } from '@/utils/get-exact-date';
 import { formatDate } from '@/utils/format-date';
 
 import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
-import { CommentItem } from '@/features/profile/post/components/CommentItem';
+import { CommentItem } from '@/posts/components/CommentItem';
 
 interface Props {
   comments: Comment[];
@@ -17,6 +17,8 @@ interface Props {
   profile_photo: string | null;
   username: string;
   postCreatedAt: Date;
+  showReplies: boolean;
+  setShowReplies: Dispatch<SetStateAction<boolean>>;
 }
 
 export const PostComments = ({
@@ -27,6 +29,8 @@ export const PostComments = ({
   profile_photo,
   username,
   postCreatedAt,
+  showReplies,
+  setShowReplies,
 }: Props) => {
   const router = useRouter();
   const newestCommentRef = useRef<HTMLDivElement>(null);
@@ -48,7 +52,7 @@ export const PostComments = ({
   return (
     <>
       {comments.length > 0 || postCaption ? (
-        <div className='border-border scrollbar-hide grow overflow-y-scroll border-b p-4'>
+        <div className='border-post-separator scrollbar-hide grow overflow-y-scroll border-b p-4'>
           {postCaption && (
             <div className='mt-[-5px] flex grow items-center pt-3 pb-4'>
               <ProfilePhoto
@@ -80,7 +84,7 @@ export const PostComments = ({
                 </p>
 
                 <time
-                  className='text-secondary pr-3 text-xs'
+                  className='text-ig-secondary-text pr-3 text-xs'
                   title={getExactDate(postCreatedAt.toString())}
                 >
                   {formatDate(postCreatedAt.toString())}
@@ -102,6 +106,8 @@ export const PostComments = ({
                   comment={comment}
                   textareaRef={textareaRef}
                   setReplyToCommentId={setReplyToCommentId}
+                  showReplies={showReplies}
+                  setShowReplies={setShowReplies}
                 />
               </div>
             );

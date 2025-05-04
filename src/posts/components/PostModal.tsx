@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { PostCarousel } from '@/posts/components/PostCarousel';
 import { LikeButton } from '@/posts/components/LikeButton';
-import { CommentForm } from '@/features/profile/post/components/CommentForm';
+import { CommentForm } from '@/posts/components/CommentForm';
 import { PostComments } from '@/posts/components/PostComments';
 import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 
@@ -33,20 +34,6 @@ interface Props {
 }
 
 export const PostModal = ({ post }: Props) => {
-  const { userId } = useUserStore();
-  const { openModal, Modal } = useLikesModal();
-  const router = useRouter();
-
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [replyToCommentId, setReplyToCommentId] = useState<string | null>(null);
-
-  const { aspect_ratio, first_image_dimensions } = post;
-
-  const aspect_ratio_image = getAspectClass(
-    aspect_ratio,
-    first_image_dimensions!,
-  );
-
   useEffect(() => {
     const originalStyles = {
       overflow: document.body.style.overflow,
@@ -78,12 +65,27 @@ export const PostModal = ({ post }: Props) => {
     };
   }, []);
 
+  const { userId } = useUserStore();
+  const { openModal, Modal } = useLikesModal();
+  const router = useRouter();
+
+  const [showReplies, setShowReplies] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [replyToCommentId, setReplyToCommentId] = useState<string | null>(null);
+
+  const { aspect_ratio, first_image_dimensions } = post;
+
+  const aspect_ratio_image = getAspectClass(
+    aspect_ratio,
+    first_image_dimensions!,
+  );
+
   const hasLiked = post.likes.some((like) => like.user.id === userId);
 
   return (
     <>
       <div
-        className='bg-background-overlay fixed inset-0 z-50 flex items-center justify-center'
+        className='bg-overlay-alpha-80 fixed inset-0 z-50 flex items-center justify-center'
         onClick={() => router.back()}
       >
         <button
@@ -101,7 +103,7 @@ export const PostModal = ({ post }: Props) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div
-            className={` ${post.aspect_ratio === 'video' && 'aspect-square'} border-border relative h-full w-full max-w-[687px] overflow-hidden border-r bg-black`}
+            className={` ${post.aspect_ratio === 'video' && 'aspect-square'} border-post-separator bg-web-always-black relative h-full w-full max-w-[687px] overflow-hidden border-r`}
             style={{ aspectRatio: aspect_ratio_image }}
             onDoubleClick={() => {
               if (!hasLiked) {
@@ -112,8 +114,8 @@ export const PostModal = ({ post }: Props) => {
             <PostCarousel images={post.postImages.map((img) => img.imageUrl)} />
           </div>
 
-          <div className='bg-background flex h-full max-w-[500px] min-w-[400px] grow flex-col'>
-            <section className='border-border flex items-center justify-between rounded-sm border-b'>
+          <div className='bg-ig-primary-background flex h-full max-w-[500px] min-w-[400px] grow flex-col'>
+            <section className='border-post-separator flex items-center justify-between rounded-sm border-b'>
               <div className='flex grow items-center py-[14px] pr-1 pl-4'>
                 <ProfilePhoto
                   profile_photo={post.author.profile_photo}
@@ -127,9 +129,12 @@ export const PostModal = ({ post }: Props) => {
                     size: 'w-10',
                   }}
                 />
-                <span className='ml-[14px] text-sm font-semibold'>
+                <Link
+                  href={`/${post.author.username}`}
+                  className='text-ig-secondary-button hover:text-ig-secondary-button-hover active:text-ig-secondary-button-pressed ml-[14px] text-sm font-semibold'
+                >
                   {post.author.username}
-                </span>
+                </Link>
               </div>
               <div className='pr-2'>
                 <div className='p-2'>
@@ -146,25 +151,29 @@ export const PostModal = ({ post }: Props) => {
               profile_photo={post.author.profile_photo}
               username={post.author.username}
               postCreatedAt={post.createdAt}
+              showReplies={showReplies}
+              setShowReplies={setShowReplies}
             />
 
-            <div className='border-border border-b'>
+            <div className='border-post-separator border-b'>
               <section className='flex justify-between px-4 py-[6px]'>
                 <div className='flex'>
                   <LikeButton post={post} userId={userId} />
                   <button
-                    className='p-2'
+                    className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer p-2'
                     onClick={() => {
                       textareaRef.current?.focus();
                     }}
                   >
                     <CommentIcon type={'comment'} size={24} />
                   </button>
-                  <button className='p-2'>
-                    <ShareIcon />
-                  </button>
+                  {userId !== post.author.id && (
+                    <button className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer p-2'>
+                      <ShareIcon />
+                    </button>
+                  )}
                 </div>
-                <button className='py-2 pl-2'>
+                <button className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer py-2 pl-2'>
                   <SaveIcon />
                 </button>
               </section>
@@ -174,7 +183,7 @@ export const PostModal = ({ post }: Props) => {
                   <span className='text-sm'>
                     Be te first to{' '}
                     <button
-                      className='hover:text-secondary cursor-pointer font-semibold'
+                      className='hover:text-ig-secondary-button-hover active:text-ig-secondary-button-pressed text-ig-secondary-button cursor-pointer font-semibold'
                       onClick={() => likePost(post.id, userId)}
                     >
                       like this
@@ -195,7 +204,7 @@ export const PostModal = ({ post }: Props) => {
                 )}
 
                 <time
-                  className='text-secondary text-xs'
+                  className='text-ig-secondary-text text-xs'
                   title={getExactDate(post.createdAt.toString())}
                 >
                   {formatPostDate(post.createdAt)}
@@ -204,7 +213,7 @@ export const PostModal = ({ post }: Props) => {
             </div>
 
             <section className='flex py-[6px] pr-4'>
-              <button className='px-4 py-2'>
+              <button className='text-ig-secondary-button active:text-ig-secondary-button-pressed cursor-pointer px-4 py-2'>
                 <EmojiIcon size={24} />
               </button>
 
@@ -214,6 +223,7 @@ export const PostModal = ({ post }: Props) => {
                 ref={textareaRef}
                 replyToCommentId={replyToCommentId}
                 setReplyToCommentId={setReplyToCommentId}
+                setShowReplies={setShowReplies}
               />
             </section>
           </div>

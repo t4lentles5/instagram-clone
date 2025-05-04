@@ -14,15 +14,15 @@ import { Post } from '@/interfaces/post.interface';
 
 import { PostCarousel } from '@/posts/components/PostCarousel';
 import { LikeButton } from '@/posts/components/LikeButton';
+import { CommentSection } from './CommentSection';
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 
 import {
   CommentIcon,
-  EmojiIcon,
   MoreOptionsIcon,
   SaveIcon,
   ShareIcon,
 } from '@/shared/icons';
-import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 
 interface Props {
   post: Post;
@@ -42,8 +42,8 @@ export const PostCard = ({ post }: Props) => {
 
   return (
     <>
-      <div className='border-border mx-auto mb-5 w-full max-w-[470px] border-b px-4 pb-4 sm:px-0'>
-        <div className='flex w-full items-center pb-[14px] pl-1'>
+      <article className='border-ig-separator mx-auto mb-5 w-full max-w-[470px] px-0 pb-2 min-[480px]:border-b min-[480px]:pb-4 sm:px-0 [480px]:px-4'>
+        <section className='flex w-full items-center pr-[16px] pb-[14px] pl-[17px] min-[480px]:pr-0 min-[480px]:pl-1'>
           <div className='mr-3'>
             <div className='h-8 w-8'>
               <ProfilePhoto
@@ -63,28 +63,30 @@ export const PostCard = ({ post }: Props) => {
           <div className='flex w-full items-baseline gap-x-1'>
             <Link
               href={`/${post.author.username}`}
-              className='text-sm leading-[18px] font-semibold'
+              className='max-w-36 truncate overflow-hidden text-sm leading-[18px] font-semibold'
             >
               {post.author.username}
             </Link>
 
-            <span className='flex items-center justify-center'>•</span>
+            <span className='text-ig-secondary-text flex items-center justify-center'>
+              •
+            </span>
 
             <time
-              className='text-secondary text-sm leading-[18px]'
+              className='text-ig-secondary-text text-sm leading-[18px]'
               title={getExactDate(post.createdAt.toString())}
             >
               {formatDate(post.createdAt.toString())}
             </time>
           </div>
 
-          <div className='flex w-8 justify-end'>
+          <button className='flex w-8 cursor-pointer justify-end'>
             <MoreOptionsIcon />
-          </div>
-        </div>
+          </button>
+        </section>
 
         <div
-          className='border-border-popover relative overflow-hidden rounded-[4px] border bg-black'
+          className='border-ig-separator bg-web-always-black relative overflow-hidden min-[480px]:rounded-[4px] min-[480px]:border'
           style={{ aspectRatio: aspect_ratio_image }}
           onDoubleClick={() => {
             if (!hasLiked) {
@@ -95,24 +97,29 @@ export const PostCard = ({ post }: Props) => {
           <PostCarousel images={post.postImages.map((img) => img.imageUrl)} />
         </div>
 
-        <div className='flex w-full flex-col'>
-          <div className='flex justify-between py-1'>
+        <div className='flex w-full flex-col px-4 min-[480px]:px-0'>
+          <section className='flex justify-between py-1'>
             <div className='flex'>
               <LikeButton post={post} userId={userId} />
-              <Link href={`/p/${post.id}`} className='p-2'>
+              <Link
+                href={`/p/${post.id}`}
+                className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer p-2'
+              >
                 <CommentIcon type={'comment'} size={24} />
               </Link>
-              <div className='p-2'>
-                <ShareIcon />
-              </div>
+              {userId !== post.author.id && (
+                <button className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer p-2'>
+                  <ShareIcon />
+                </button>
+              )}
             </div>
-            <div className='py-2 pl-2'>
+            <button className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer py-2 pl-2'>
               <SaveIcon />
-            </div>
-          </div>
+            </button>
+          </section>
 
           {post.likes.length > 0 && (
-            <div>
+            <section>
               <button
                 onClick={() => openModal(post.likes)}
                 className='cursor-pointer text-sm leading-[18px] font-semibold'
@@ -121,11 +128,11 @@ export const PostCard = ({ post }: Props) => {
               </button>
 
               {Modal}
-            </div>
+            </section>
           )}
 
           {post.caption && (
-            <div className=''>
+            <section>
               <div>
                 <span className='text-sm leading-[18px] font-semibold'>
                   {post.author.username}
@@ -134,59 +141,28 @@ export const PostCard = ({ post }: Props) => {
               </div>
               <Link
                 href={'/explore/tags/some'}
-                className='text-blue-hover text-sm leading-[18px]'
+                className='text-ig-colors-button-borderless-text active:text-ig-colors-button-borderless-text-pressed text-sm leading-[18px]'
               >
                 #some
               </Link>
-            </div>
+            </section>
           )}
 
           {post.comments.length > 0 && (
-            <div>
+            <section>
               <Link
                 href={`/p/${post.id}`}
-                className='text-secondary text-sm leading-[18px]'
+                className='text-ig-secondary-text text-sm leading-[18px]'
               >
                 View {post.comments.length > 1 && 'all'} {post.comments.length}{' '}
                 {post.comments.length > 1 ? 'comments' : 'comment'}
               </Link>
-            </div>
+            </section>
           )}
 
-          <div className='flex w-full items-center justify-between'>
-            <button
-              type='button'
-              className='text-secondary p-1 md:order-2'
-              aria-label='Add emoji'
-            >
-              <EmojiIcon size={13} />
-            </button>
-
-            <form className='flex flex-1 items-center'>
-              <textarea
-                name='comment'
-                id='comment'
-                placeholder='Add a comment...'
-                rows={1}
-                className='max-h-[120px] min-h-[18px] w-full flex-1 resize-none overflow-y-auto border-none bg-transparent text-sm outline-none placeholder:text-gray-400 focus:ring-0'
-                onInput={(e) => {
-                  e.currentTarget.style.height = 'auto';
-                  e.currentTarget.style.height = `${Math.min(e.currentTarget.scrollHeight, 120)}px`;
-                }}
-              />
-            </form>
-
-            {/* <button
-              type="submit"
-              className="ml-2 text-sm font-semibold text-blue-500 opacity-0 transition-opacity duration-200 disabled:opacity-50"
-              disabled
-              aria-hidden="true"
-            >
-              Post
-            </button> */}
-          </div>
+          <CommentSection postId={post.id} userId={userId} />
         </div>
-      </div>
+      </article>
     </>
   );
 };

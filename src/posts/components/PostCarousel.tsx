@@ -33,7 +33,7 @@ export function PostCarousel({ images }: Props) {
           {current !== 0 && (
             <button
               onClick={prev}
-              className='absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black'
+              className='bg-web-always-white/70 text-web-always-black/30 shadow-web-always-black/20 absolute top-1/2 left-2 z-10 -translate-y-1/2 cursor-pointer rounded-full p-[6px] shadow-2xs'
             >
               <GoBackIcon />
             </button>
@@ -41,7 +41,7 @@ export function PostCarousel({ images }: Props) {
           {current !== images.length - 1 && (
             <button
               onClick={next}
-              className='absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white p-[6px] text-black'
+              className='bg-web-always-white/70 text-web-always-black/30 shadow-web-always-black/20 absolute top-1/2 right-2 z-10 -translate-y-1/2 cursor-pointer rounded-full p-[6px] shadow-2xs'
             >
               <GoNextIcon />
             </button>
@@ -56,7 +56,9 @@ export function PostCarousel({ images }: Props) {
               key={index}
               onClick={() => setCurrent(index)}
               className={`h-1.5 w-1.5 cursor-pointer rounded-full ${
-                index === current ? 'bg-white' : 'bg-white/50'
+                index === current
+                  ? 'bg-web-always-white'
+                  : 'bg-web-always-white/50'
               }`}
             />
           ))}

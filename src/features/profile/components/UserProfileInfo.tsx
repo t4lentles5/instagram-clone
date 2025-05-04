@@ -68,14 +68,18 @@ export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
               </button>
             </div>
             <div className='hidden md:block'>
-              <h3 className='text-sm font-semibold'>{user.fullname}</h3>
+              <h3 className='max-w-36 truncate overflow-hidden text-sm font-semibold'>
+                {user.fullname}
+              </h3>
               <span className='text-sm'>{user.bio}</span>
             </div>
           </div>
         </div>
 
         <div className='flex w-full flex-col justify-start p-4 md:hidden'>
-          <h3 className='text-sm font-semibold'>{user.fullname}</h3>
+          <h3 className='max-w-36 truncate overflow-hidden text-sm font-semibold'>
+            {user.fullname}
+          </h3>
           <span className='text-sm'>💜</span>
         </div>
 

@@ -27,21 +27,21 @@ export const SelectCrop = ({
     <>
       <div>
         <button
-          className={`${isCropOptionsOpen ? 'bg-white text-black hover:bg-white/80' : 'bg-background-overlay hover:bg-background-overlay/80 text-white'} relative cursor-pointer rounded-full p-2 transition-colors duration-200`}
+          className={`${isCropOptionsOpen ? 'bg-web-always-white hover:bg-web-always-white/70 text-web-always-black' : 'bg-ig-icon-background hover:bg-ig-icon-background/70 text-web-always-white'} relative cursor-pointer rounded-full p-2 transition-colors duration-200`}
           onClick={() => setIsCropOptionsOpen(!isCropOptionsOpen)}
         >
           <SelectCropIcon />
         </button>
         {isCropOptionsOpen && (
           <div
-            className={`${isCropOptionsOpen ? '' : ''} bg-background-overlay divide-border absolute bottom-16 divide-y rounded-lg text-white`}
+            className={`${isCropOptionsOpen ? '' : ''} bg-ig-icon-background divide-ig-separator absolute bottom-16 divide-y rounded-lg text-white`}
             onClick={(e) => {
               e.stopPropagation();
             }}
           >
             <div>
               <button
-                className={`${selectedCrop === 'original' ? 'text-white' : 'text-secondary'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
+                className={`${selectedCrop === 'original' ? 'text-web-always-white' : 'text-ig-secondary-text'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
                 onClick={() => {
                   setSelectedCrop('original');
                 }}
@@ -55,7 +55,7 @@ export const SelectCrop = ({
 
             <div>
               <button
-                className={`${selectedCrop === 'square' ? 'text-white' : 'text-secondary'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
+                className={`${selectedCrop === 'square' ? 'text-web-always-white' : 'text-ig-secondary-text'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
                 onClick={() => {
                   setSelectedCrop('square');
                 }}
@@ -69,7 +69,7 @@ export const SelectCrop = ({
 
             <div>
               <button
-                className={`${selectedCrop === 'portrait' ? 'text-white' : 'text-secondary'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
+                className={`${selectedCrop === 'portrait' ? 'text-web-always-white' : 'text-ig-secondary-text'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
                 onClick={() => {
                   setSelectedCrop('portrait');
                 }}
@@ -83,7 +83,7 @@ export const SelectCrop = ({
 
             <div>
               <button
-                className={`${selectedCrop === 'video' ? 'text-white' : 'text-secondary'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
+                className={`${selectedCrop === 'video' ? 'text-web-always-white' : 'text-ig-secondary-text'} ml-3 flex cursor-pointer items-center justify-center px-1 text-sm font-semibold`}
                 onClick={() => {
                   setSelectedCrop('video');
                 }}

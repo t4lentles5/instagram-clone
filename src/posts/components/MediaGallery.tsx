@@ -16,14 +16,14 @@ export const MediaGallery = ({
     <>
       <div>
         <button
-          className={`${isMediaGalleryOpen ? 'bg-white text-black hover:bg-white/80' : 'bg-background-overlay hover:bg-background-overlay/80 text-white'} relative cursor-pointer rounded-full p-2 transition-colors duration-200`}
+          className={`${isMediaGalleryOpen ? 'bg-web-always-white hover:bg-web-always-white/70 text-web-always-black' : 'bg-ig-icon-background hover:bg-ig-icon-background/70 text-web-always-white'} relative cursor-pointer rounded-full p-2 transition-colors duration-200`}
           onClick={() => setIsMediaGalleryOpen(!isMediaGalleryOpen)}
         >
           <OpenMediaGalleryIcon />
         </button>
         {isMediaGalleryOpen && (
           <div
-            className='bg-background-overlay absolute right-2 bottom-16 m-2 flex gap-3 rounded-lg p-2'
+            className='bg-ig-icon-background absolute right-2 bottom-14 m-2 flex gap-3 rounded-lg p-3'
             onClick={(e) => {
               e.stopPropagation();
             }}
@@ -31,19 +31,19 @@ export const MediaGallery = ({
             {selectedFiles.map((image) => (
               <div
                 key={image.name}
-                className='relative max-h-[100px] max-w-[100px]'
+                className='relative max-h-[94px] max-w-[94px]'
               >
                 <img
                   src={URL.createObjectURL(image)}
                   alt='Selected Image'
                   className='aspect-square object-cover'
                 />
-                <span className='bg-background-overlay absolute top-1 right-1 rounded-full p-1 text-white'>
+                <span className='bg-ig-icon-background text-web-always-white absolute top-1 right-1 rounded-full p-1'>
                   <DeleteIcon />
                 </span>
               </div>
             ))}
-            <div className='text-secondary border-border grid h-12 w-12 place-items-center rounded-full border'>
+            <div className='text-ig-secondary-text border-ig-separator grid h-12 w-12 place-items-center rounded-full border'>
               <PlusIcon />
             </div>
           </div>
