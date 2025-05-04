@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { FieldError, UseFormRegister, UseFormWatch } from 'react-hook-form';
-import { LoginFormInputs } from '@/features/auth/login/components/LoginForm';
+import { LoginFormInputs } from '@/auth/login/components/LoginForm';
 
 interface Props {
   value: 'email' | 'password';
@@ -39,7 +39,7 @@ export const LoginFormInput = ({
 
               <input
                 type={type}
-                className={`bg-ig-secondary-background h-4 w-full grow border-none focus:outline-hidden ${inputValue && 'text-xs leading-3'}`}
+                className={`bg-ig-secondary-background text-ig-primary-text h-4 w-full grow border-none focus:outline-hidden ${inputValue && 'text-xs leading-3'}`}
                 placeholder={placeholder}
                 {...register(value, {
                   required: {

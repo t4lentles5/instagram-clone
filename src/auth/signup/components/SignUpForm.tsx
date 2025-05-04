@@ -9,7 +9,7 @@ import {
   usernameVerify,
 } from '@/actions/auth/register';
 import { login } from '@/actions/auth/login';
-import { SignUpFormInput } from '@/features/auth/signup/components/SignUpFormInput';
+import { SignUpFormInput } from '@/auth/signup/components/SignUpFormInput';
 
 export interface SignUpFormInputs {
   email: string;
@@ -147,7 +147,7 @@ export const SignUpForm = () => {
           <button
             type='submit'
             disabled={!isValid}
-            className={`${isValid ? 'bg-button hover:bg-button-hover cursor-pointer' : 'bg-button-disabled'} w-full rounded-lg px-4 py-[7px] text-sm font-semibold`}
+            className={`${isValid ? 'bg-ig-primary-button hover:bg-ig-primary-button-hover active:bg-ig-primary-button-pressed cursor-pointer' : 'bg-ig-primary-button-disabled'} w-full rounded-lg px-4 py-[7px] text-sm font-semibold`}
           >
             Sign up
           </button>

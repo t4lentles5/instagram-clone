@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { FieldError, UseFormRegister, UseFormWatch } from 'react-hook-form';
 import { XCircle } from 'phosphor-react';
-import { SignUpFormInputs } from '@/features/auth/signup/components/SignUpForm';
+import { SignUpFormInputs } from '@/auth/signup/components/SignUpForm';
 
 interface Props {
   value: 'email' | 'password' | 'fullname' | 'username';
@@ -42,21 +42,21 @@ export const SignUpFormInput = ({
     <>
       <div className='mx-10 mb-[6px]'>
         <div
-          className={`bg-input-bg flex h-[36px] flex-col gap-3 rounded-[3px] border ${
-            errors ? 'border-red' : 'border-input-border'
+          className={`bg-ig-secondary-background flex h-[36px] flex-col gap-3 rounded-[3px] border ${
+            errors ? 'border-ig-badge' : 'border-ig-stroke-input'
           }`}
         >
-          <div className='bg-input-bg flex h-10 w-full gap-3 text-xs'>
-            <label className='flex h-full w-4/5 flex-col items-center px-2'>
+          <div className='bg-ig-secondary-background flex h-10 w-full gap-3 text-xs'>
+            <label className='text-ig-secondary-text flex h-full w-4/5 flex-col items-center px-2'>
               {inputValue && (
-                <span className='bg-input-bg text-secondary flex w-full grow items-center text-[9px]'>
+                <span className='bg-ig-secondary-background text-ig-secondary-text flex w-full grow items-center text-[9px]'>
                   {placeholder}
                 </span>
               )}
 
               <input
                 type={type}
-                className={`text-primary bg-input-bg h-4 w-full grow border-none focus:outline-hidden ${inputValue && 'text-xs leading-3'}`}
+                className={`bg-ig-secondary-background text-ig-primary-text bg-input-bg h-4 w-full grow border-none focus:outline-hidden ${inputValue && 'text-xs leading-3'}`}
                 placeholder={placeholder}
                 {...register(value, {
                   required: {
@@ -84,13 +84,15 @@ export const SignUpFormInput = ({
 
             {errors && (
               <div className='flex w-1/5 items-center justify-center'>
-                <XCircle size={24} className='text-red' />
+                <XCircle size={24} className='text-ig-badge' />
               </div>
             )}
           </div>
         </div>
 
-        {errors && <span className='text-red text-xs'>{errors.message}</span>}
+        {errors && (
+          <span className='text-ig-badge text-xs'>{errors.message}</span>
+        )}
       </div>
     </>
   );
