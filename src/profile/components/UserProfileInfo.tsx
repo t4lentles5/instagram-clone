@@ -1,10 +1,11 @@
 import { User } from '@/interfaces/user.interface';
-import { UserProfilePhoto } from '@/features/profile/components/UserProfilePhoto';
 
 import { getPostsCountByUsername } from '@/actions/post/get-posts-count-by-username';
 
-import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
+import { UserProfilePhoto } from './UserProfilePhoto';
+
 import { OptionsIcon } from '@/shared/icons';
+import { SimilarAccountsIcon } from '../icons/SimilarAccountsIcon';
 
 interface Props {
   user: User;

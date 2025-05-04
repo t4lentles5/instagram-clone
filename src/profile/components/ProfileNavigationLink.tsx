@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { PostsLinkIcon } from '@/features/profile/icons/PostsLinkIcon';
-import { TaggedLinkIcon } from '@/features/profile/icons/TaggedLinkIcon';
-import { SavedLinkIcon } from '@/features/profile/icons/SavedLinkIcon';
-import { ReelsLinkIcon } from '@/features/profile/icons/ReelsLinkIcon';
+import { PostsLinkIcon } from '@/profile/icons/PostsLinkIcon';
+import { TaggedLinkIcon } from '@/profile/icons/TaggedLinkIcon';
+import { SavedLinkIcon } from '@/profile/icons/SavedLinkIcon';
+import { ReelsLinkIcon } from '@/profile/icons/ReelsLinkIcon';
 
 interface Props {
   label: string;

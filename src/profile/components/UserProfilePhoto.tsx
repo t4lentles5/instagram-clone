@@ -1,15 +1,16 @@
 'use client';
 
-import { PhotoOptionsModal } from '@/features/profile/components/PhotoOptionsModal';
-import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
-
 import { useUserStore } from '@/store/user/user-store';
-import { useProfilePhoto } from '@/features/profile/hooks/useProfilePhoto';
+
+import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
+import { PhotoOptionsModal } from './PhotoOptionsModal';
 
 import { User } from '@/interfaces/user.interface';
-import { CameraIcon } from '@/features/profile/icons/CameraIcon';
+import { useProfilePhoto } from '../hooks/useProfilePhoto';
 
-import styles from '@/features/profile/components/image-loader.module.css';
+import { CameraIcon } from '../icons/CameraIcon';
+
+import styles from '@/profile/components/image-loader.module.css';
 
 interface Props {
   user: User;

@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import { User } from '@/interfaces/user.interface';
 
-import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
+import { SimilarAccountsIcon } from '@/profile/icons/SimilarAccountsIcon';
 
 import { ProfilePhoto } from '@/shared/components/ProfilePhoto';
 import { CameraCircleIcon } from '@/posts/icons';
