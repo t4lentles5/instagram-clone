@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useUserStore } from '@/core/store/user/user-store';
-import { useImageFilters } from '@/features/posts/hooks/useImageFilters';
+import { useEditPost } from '@/features/posts/hooks/useEditPost';
 
 import { NewPostCarousel } from '@/features/posts/components/NewPostCarousel';
 import { SelectCrop } from '@/features/posts/components/SelectCrop';
@@ -11,7 +11,6 @@ import { EditNewPost } from '@/features/posts/components/EditNewPost';
 import { CloseModalOptions } from '@/features/posts/components/CloseModalOptions';
 
 import { filters } from '@/features/posts/utils/filters';
-import { Adjustment, adjustments } from '@/features/posts/utils/adjustments';
 
 import { NewPostMediaIcon } from '@/core/shared/icons';
 import { BackPostIcon } from '@/features/posts/icons';
@@ -30,51 +29,33 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     selectedFiles,
     setSelectedFiles,
     previewUrls,
-    setPreviewUrls,
+    showEditPost,
+    setShowEditPost,
+    showFilters,
+    setShowFilters,
+    isCropOptionsOpen,
+    setIsCropOptionsOpen,
+    isZoomCropOpen,
+    setIsZoomCropOpen,
+    isMediaGalleryOpen,
+    setIsMediaGalleryOpen,
+    selectedCrop,
+    setSelectedCrop,
+    cropZoomValue,
+    setCropZoomValue,
     selectedFilters,
     setFilterAt,
+    filterStrengths,
+    setFilterStrengths,
+    adjustmentValues,
+    setAdjustmentValues,
     clearAll,
-  } = useImageFilters();
+  } = useEditPost();
 
   const closeModalOptionsRef = useRef<HTMLDialogElement>(null);
   const [isOptionsDialogOpen, setIsOptionsDialogOpen] = useState(false);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isCropOptionsOpen, setIsCropOptionsOpen] = useState(false);
-  const [isZoomCropOpen, setIsZoomCropOpen] = useState(false);
-  const [isMediaGalleryOpen, setIsMediaGalleryOpen] = useState(false);
-
-  const [showEditPost, setShowEditPost] = useState(false);
-  const [showFilters, setShowFilters] = useState(true);
-  const [adjustmentValues, setAdjustmentValues] =
-    useState<Adjustment[]>(adjustments);
-  const [filterStrengths, setFilterStrengths] = useState<
-    Record<string, number>
-  >(() =>
-    filters.reduce(
-      (acc, filter) => {
-        acc[filter.name] = 100;
-        return acc;
-      },
-      {} as Record<string, number>,
-    ),
-  );
-
-  const [selectedCrop, setSelectedCrop] = useState<
-    'original' | 'square' | 'portrait' | 'video'
-  >('square');
-  const [cropZoomValue, setCropZoomValue] = useState(0);
-
-  useEffect(() => {
-    if (selectedFiles.length > 0) {
-      const urls = selectedFiles.map((file) => URL.createObjectURL(file));
-      setPreviewUrls(urls);
-
-      return () => {
-        urls.forEach((url) => URL.revokeObjectURL(url));
-      };
-    }
-  }, [selectedFiles]);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -192,11 +173,13 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
   console.log({
     selectedFiles,
     previewUrls,
-    selectedFilters,
-    adjustmentValues,
-    filterStrengths,
+    showEditPost,
+    showFilters,
     selectedCrop,
     cropZoomValue,
+    selectedFilters,
+    filterStrengths,
+    adjustmentValues,
   });
 
   return (
