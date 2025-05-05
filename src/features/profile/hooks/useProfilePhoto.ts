@@ -47,6 +47,7 @@ export function useProfilePhoto(user: User) {
       console.error('Error uploading profile photo:', error);
     } finally {
       setIsLoading(false);
+      setIsOpen(false);
     }
   };
 

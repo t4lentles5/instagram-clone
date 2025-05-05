@@ -5,7 +5,8 @@
   --color-ig-secondary-background: var(--ig-secondary-background);
   --color-ig-banner-background: var(--ig-banner-background);
   --color-ig-elevated-background: var(--ig-elevated-background);
-  --color-ig-icon-background: rgba(26, 26, 26, 0.8);
+  --color-ig-icon-background: rgb(26, 26, 26, 0.8);
+  --color-ig-option-pressed: rgb(0, 0, 0, 0.1);
 
   --color-ig-primary-button: rgb(0, 149, 246);
   --color-ig-primary-button-hover: rgb(24, 119, 242);
@@ -32,6 +33,8 @@
   --color-ig-active-overlay: var(--ig-active-overlay);
   --color-overlay-alpha-80: var(--overlay-alpha-80);
   --color-ig-image-overlay: rgb(0, 0, 0, 0.7);
+  --color-ig-image-overlay-pressed: rgb(0, 0, 0, 0.8);
+  --color-ig-profile-image-overlay: rgb(85, 85, 85, 0.7);
 
   --color-ig-primary-text: var(--ig-primary-text);
   --color-ig-primary-text-pressed: var(--ig-primary-text-pressed);

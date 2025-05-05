@@ -77,13 +77,13 @@ export const UserProfilePhoto = ({ user }: Props) => {
         )}
 
         {isLoading && (
-          <div className='bg-image-overlay absolute z-50 grid h-20 w-20 place-items-center rounded-full md:h-[150px] md:w-[150px]'>
+          <div className='bg-ig-profile-image-overlay absolute z-50 grid h-20 w-20 place-items-center rounded-full md:h-[150px] md:w-[150px]'>
             <div className={styles.loader}></div>
           </div>
         )}
 
         {!user.profile_photo && isOwner && !isLoading && (
-          <div className='bg-image-overlay absolute flex h-20 w-20 items-center justify-center rounded-full md:h-[150px] md:w-[150px]'>
+          <div className='bg-ig-profile-image-overlay absolute flex h-20 w-20 items-center justify-center rounded-full md:h-[150px] md:w-[150px]'>
             <CameraIcon />
           </div>
         )}

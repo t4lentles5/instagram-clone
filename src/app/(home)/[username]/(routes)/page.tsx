@@ -38,8 +38,8 @@ export default async function PostsPage({ params }: Props) {
                 </div>
               )}
 
-              <div className='bg-ig-image-overlay invisible absolute top-0 left-0 h-full w-full opacity-0 group-hover:visible group-hover:opacity-100'>
-                <div className='text-web-always-white flex h-full items-center justify-center gap-8'>
+              <div className='bg-ig-image-overlay active:bg-ig-image-overlay-pressed invisible absolute top-0 left-0 h-full w-full opacity-0 group-hover:visible group-hover:opacity-100'>
+                <div className='text-web-always-white active:text-web-always-white/70 flex h-full items-center justify-center gap-8'>
                   <span className='flex items-center justify-center'>
                     <span className='mt-0.5 mr-[7px]'>
                       <HeartIcon type={'likes'} size={19} />
