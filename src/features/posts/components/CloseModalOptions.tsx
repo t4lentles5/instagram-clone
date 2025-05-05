@@ -8,7 +8,7 @@ interface Props {
   setShowEditPost: Dispatch<SetStateAction<boolean>>;
   setFilterStrengths: Dispatch<SetStateAction<Record<string, number>>>;
   onClose: () => void;
-  clearAll: () => void;
+  resetStates: () => void;
 }
 
 export const CloseModalOptions = ({
@@ -17,7 +17,7 @@ export const CloseModalOptions = ({
   setShowEditPost,
   setFilterStrengths,
   onClose,
-  clearAll,
+  resetStates,
 }: Props) => {
   return (
     <>
@@ -40,7 +40,7 @@ export const CloseModalOptions = ({
               onClick={() => {
                 setIsModalOptionsOpen(false);
                 setShowEditPost(false);
-                clearAll();
+                resetStates();
                 setFilterStrengths(
                   filters.reduce(
                     (acc, filter) => {

@@ -62,7 +62,7 @@ export const useEditPost = () => {
     });
   };
 
-  const clearAll = () => {
+  const resetStates = () => {
     setSelectedFiles([]);
     setPreviewUrls([]);
     setSelectedFilters(selectedFiles.map(() => defaultFilters[8]));
@@ -102,6 +102,6 @@ export const useEditPost = () => {
     setFilterStrengths,
     adjustmentValues,
     setAdjustmentValues,
-    clearAll,
+    resetStates,
   };
 };

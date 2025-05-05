@@ -55,7 +55,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     setFilterStrengths,
     adjustmentValues,
     setAdjustmentValues,
-    clearAll,
+    resetStates,
   } = useEditPost();
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -295,7 +295,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
         setShowEditPost={setShowEditPost}
         setFilterStrengths={setFilterStrengths}
         onClose={onClose}
-        clearAll={clearAll}
+        resetStates={resetStates}
       />
     </>
   );
