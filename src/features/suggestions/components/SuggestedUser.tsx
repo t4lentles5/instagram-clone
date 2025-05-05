@@ -141,7 +141,7 @@ export const SuggestedUser = ({ user }: Props) => {
                 </p>
               </div>
 
-              <button className='mt-4 flex w-full items-center justify-center gap-2 rounded-lg px-4 py-[6px] font-semibold text-white'>
+              <button className='text-web-always-white mt-4 flex w-full items-center justify-center gap-2 rounded-lg px-4 py-[6px] font-semibold'>
                 <SimilarAccountsIcon />
                 <span className='text-sm'>Follow</span>
               </button>

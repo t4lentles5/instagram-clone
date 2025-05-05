@@ -34,7 +34,7 @@ export const SelectCrop = ({
         </button>
         {isCropOptionsOpen && (
           <div
-            className={`${isCropOptionsOpen ? '' : ''} bg-ig-icon-background divide-ig-separator absolute bottom-16 divide-y rounded-lg text-white`}
+            className={`${isCropOptionsOpen ? '' : ''} bg-ig-icon-background divide-ig-separator text-web-always-white absolute bottom-16 divide-y rounded-lg`}
             onClick={(e) => {
               e.stopPropagation();
             }}

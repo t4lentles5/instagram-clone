@@ -17,7 +17,7 @@ export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
 
   return (
     <>
-      <main className='md:border-border mt-4 flex h-full w-full flex-col items-center pb-0 md:mt-0 md:border-b md:pb-10'>
+      <main className='md:border-ig-separator mt-4 flex h-full w-full flex-col items-center pb-0 md:mt-0 md:border-b md:pb-10'>
         <div className='flex w-full'>
           <UserProfilePhoto user={user} />
 
@@ -30,42 +30,50 @@ export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
               <div className='flex items-center justify-center gap-2'>
                 <div className='hidden items-center justify-center gap-2 md:flex'>
                   {isAuthenticatedUser ? (
-                    <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg px-4 py-[6px] text-sm font-semibold'>
+                    <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed cursor-pointer rounded-lg px-4 py-[6px] text-sm font-semibold transition-colors duration-200'>
                       Edit Profile
                     </button>
                   ) : (
                     <>
-                      <button className='bg-button hover:bg-button-hover cursor-pointer rounded-lg px-5 py-[6px] text-sm font-semibold text-white'>
+                      <button className='bg-ig-primary-button hover:bg-ig-primary-button-hover active:bg-ig-primary-button-pressed text-web-always-white cursor-pointer rounded-lg px-5 py-[6px] text-sm font-semibold transition-colors duration-200'>
                         Follow
                       </button>
 
-                      <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg px-4 py-[6px] text-sm font-semibold'>
+                      <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed cursor-pointer rounded-lg px-4 py-[6px] text-sm font-semibold transition-colors duration-200'>
                         Message
                       </button>
 
-                      <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg p-2'>
+                      <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed cursor-pointer rounded-lg p-2 transition-colors duration-200'>
                         <SimilarAccountsIcon />
                       </button>
                     </>
                   )}
                 </div>
 
-                <button className='cursor-pointer'>
+                <button className='active:text-ig-primary-text-pressed cursor-pointer'>
                   <OptionsIcon isAuthenticatedUser={isAuthenticatedUser} />
                 </button>
               </div>
             </div>
 
             <div className='flex w-full items-center justify-between pr-10 sm:justify-start sm:gap-10 sm:pr-0'>
-              <button className='px-2 font-bold'>
+              <button className='active:text-ig-primary-text-pressed px-2 font-bold'>
                 {postsCount}{' '}
-                <span className='text-secondary font-normal'>posts</span>
+                <span className='text-ig-secondary-text font-normal'>
+                  posts
+                </span>
               </button>
-              <button className='px-2 font-bold'>
-                0 <span className='text-secondary font-normal'>followers</span>
+              <button className='active:text-ig-primary-text-pressed px-2 font-bold'>
+                0{' '}
+                <span className='text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer font-normal'>
+                  followers
+                </span>
               </button>
-              <button className='px-2 font-bold'>
-                0 <span className='text-secondary font-normal'>following</span>
+              <button className='active:text-ig-primary-text-pressed px-2 font-bold'>
+                0{' '}
+                <span className='text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer font-normal'>
+                  following
+                </span>
               </button>
             </div>
             <div className='hidden md:block'>
@@ -86,20 +94,20 @@ export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
 
         <div className='flex w-full items-center justify-evenly gap-2 p-4 pt-0 md:hidden'>
           {isAuthenticatedUser ? (
-            <button className='bg-button-secondary hover:bg-button-secondary-hover w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold'>
+            <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold transition-colors duration-200'>
               Edit Profile
             </button>
           ) : (
             <>
-              <button className='bg-button hover:bg-button-hover w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold text-white'>
+              <button className='bg-ig-primary-button hover:bg-ig-primary-button-hover active:bg-ig-primary-button-pressed text-web-always-white w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold transition-colors duration-200'>
                 Follow
               </button>
 
-              <button className='bg-button-secondary hover:bg-button-secondary-hover w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold'>
+              <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold transition-colors duration-200'>
                 Message
               </button>
 
-              <button className='bg-button-secondary hover:bg-button-secondary-hover cursor-pointer rounded-lg p-2'>
+              <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed cursor-pointer rounded-lg p-2 transition-colors duration-200'>
                 <SimilarAccountsIcon />
               </button>
             </>

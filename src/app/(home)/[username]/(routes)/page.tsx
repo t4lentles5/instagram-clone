@@ -33,13 +33,13 @@ export default async function PostsPage({ params }: Props) {
               />
 
               {post.postImages.length > 1 && (
-                <div className='absolute top-2 right-2 text-white'>
+                <div className='text-web-always-white absolute top-2 right-2'>
                   <CarouselProfilePostIcon />
                 </div>
               )}
 
-              <div className='bg-post-image-overlay invisible absolute top-0 left-0 h-full w-full opacity-0 group-hover:visible group-hover:opacity-100'>
-                <div className='flex h-full items-center justify-center gap-8 text-white'>
+              <div className='bg-ig-image-overlay invisible absolute top-0 left-0 h-full w-full opacity-0 group-hover:visible group-hover:opacity-100'>
+                <div className='text-web-always-white flex h-full items-center justify-center gap-8'>
                   <span className='flex items-center justify-center'>
                     <span className='mt-0.5 mr-[7px]'>
                       <HeartIcon type={'likes'} size={19} />

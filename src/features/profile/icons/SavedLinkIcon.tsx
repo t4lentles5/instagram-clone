@@ -1,13 +1,9 @@
-interface Props {
-  isActive: boolean;
-}
-
-export const SavedLinkIcon = ({ isActive }: Props) => {
+export const SavedLinkIcon = () => {
   return (
     <>
       <svg
         aria-label=''
-        className={`${isActive ? 'text-primary' : 'text-secondary'} h-6 w-6 md:h-3 md:w-3`}
+        className={`h-6 w-6 md:h-3 md:w-3`}
         fill='currentColor'
         height='12'
         role='img'

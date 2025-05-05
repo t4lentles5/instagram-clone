@@ -11,6 +11,13 @@
   --color-ig-primary-button-hover: rgb(24, 119, 242);
   --color-ig-primary-button-pressed: rgb(0, 149, 246, 0.5);
   --color-ig-primary-button-disabled: rgb(0, 149, 246, 0.7);
+  --color-ig-secondary-button-background: var(--ig-secondary-button-background);
+  --color-ig-secondary-button-background-hover: var(
+    --ig-secondary-button-background-hover
+  );
+  --color-ig-secondary-button-background-pressed: var(
+    --ig-secondary-button-background-pressed
+  );
   --color-ig-secondary-button: var(--ig-secondary-button);
   --color-ig-secondary-button-hover: var(--ig-secondary-button-hover);
   --color-ig-secondary-button-pressed: var(--ig-secondary-button-pressed);
@@ -24,6 +31,7 @@
   --color-ig-hover-overlay: var(--ig-hover-overlay);
   --color-ig-active-overlay: var(--ig-active-overlay);
   --color-overlay-alpha-80: var(--overlay-alpha-80);
+  --color-ig-image-overlay: rgb(0, 0, 0, 0.7);
 
   --color-ig-primary-text: var(--ig-primary-text);
   --color-ig-primary-text-pressed: var(--ig-primary-text-pressed);
@@ -55,6 +63,9 @@
     --ig-banner-background: rgb(255, 255, 255);
     --ig-elevated-background: rgb(255, 255, 255);
 
+    --ig-secondary-button-background: rgb(239, 239, 239);
+    --ig-secondary-button-background-hover: rgb(219, 219, 219);
+    --ig-secondary-button-background-pressed: rgb(239, 239, 239, 0.5);
     --ig-secondary-button: rgb(38, 38, 38);
     --ig-secondary-button-hover: rgb(38, 38, 38, 0.5);
     --ig-secondary-button-pressed: rgb(38, 38, 38, 0.7);
@@ -87,6 +98,9 @@
     --ig-banner-background: rgb(38, 38, 38);
     --ig-elevated-background: rgb(38, 38, 38);
 
+    --ig-secondary-button-background: rgb(54, 54, 54);
+    --ig-secondary-button-background-hover: rgb(38, 38, 38);
+    --ig-secondary-button-background-pressed: rgb(54, 54, 54, 0.5);
     --ig-secondary-button: rgb(245, 245, 245);
     --ig-secondary-button-hover: rgb(245, 245, 245, 0.5);
     --ig-secondary-button-pressed: rgb(245, 245, 245, 0.7);
