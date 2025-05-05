@@ -21,7 +21,7 @@ export const NoPosts = () => {
         </p>
         <button
           onClick={() => setIsOpen(true)}
-          className='text-link hover:text-link-hover active:text-link/50 cursor-pointer text-sm font-semibold'
+          className='text-ig-primary-button hover:text-ig-link active:text-ig-primary-button-pressed cursor-pointer text-sm font-semibold'
         >
           Share your first photo
         </button>
