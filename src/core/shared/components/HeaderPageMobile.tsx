@@ -12,15 +12,15 @@ export const HeaderPageMobile = ({ username }: Props) => {
   const router = useRouter();
 
   return (
-    <header className='bg-background border-border fixed top-0 z-50 flex w-full items-center border-b px-4 py-3 md:hidden'>
+    <header className='bg-ig-primary-background border-ig-separator fixed top-0 z-50 flex w-full items-center border-b px-4 py-3 md:hidden'>
       <button
         onClick={() => router.back()}
-        className='fixed left-3 cursor-pointer'
+        className='active:text-ig-primary-text-pressed fixed left-3 cursor-pointer'
       >
         <BackIcon />
       </button>
       <p className='w-full text-center font-semibold'>{username}</p>
-      <button className='fixed right-3 cursor-pointer'>
+      <button className='active:text-ig-primary-text-pressed fixed right-3 cursor-pointer'>
         <OptionsVerticalIcon />
       </button>
     </header>
