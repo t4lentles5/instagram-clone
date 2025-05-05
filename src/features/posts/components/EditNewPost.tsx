@@ -1,13 +1,15 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { Adjustment, Filter } from '@/features/posts/components/NewPostModal';
+import { Filter } from '@/features/posts/utils/filters';
+import { Adjustment } from '@/features/posts/utils/adjustments';
 
 interface Props {
   showFilters: boolean;
   setShowFilters: Dispatch<SetStateAction<boolean>>;
+  currentImageIndex: number;
   filters: Filter[];
-  selectedFilter: Filter;
-  setSelectedFilter: Dispatch<SetStateAction<Filter>>;
+  setFilterAt: (index: number, filter: Filter) => void;
+  selectedFilters: Filter[];
   filterStrengths: Record<string, number>;
   setFilterStrengths: Dispatch<SetStateAction<Record<string, number>>>;
   adjustmentValues: Adjustment[];
@@ -18,8 +20,9 @@ export const EditNewPost = ({
   showFilters,
   setShowFilters,
   filters,
-  selectedFilter,
-  setSelectedFilter,
+  currentImageIndex,
+  selectedFilters,
+  setFilterAt,
   filterStrengths,
   setFilterStrengths,
   adjustmentValues,
@@ -65,20 +68,27 @@ export const EditNewPost = ({
                 <button
                   key={filter.name}
                   className='flex cursor-pointer flex-col items-center justify-center'
-                  onClick={() => setSelectedFilter(filter)}
+                  onClick={() => setFilterAt(currentImageIndex, filter)}
                 >
                   <div
-                    className={`${selectedFilter.name === filter.name && 'border-ig-primary-button'} border-ig-elevated-background overflow-hidden rounded-sm border-2`}
+                    className={`${
+                      selectedFilters[currentImageIndex]?.name ===
+                        filter.name && 'border-ig-primary-button'
+                    } border-ig-elevated-background overflow-hidden rounded-sm border-2`}
                   >
                     <img
                       src='/filters-image.jpg'
                       alt=''
-                      className={`h-[88px] w-[84px]`}
+                      className='h-[88px] w-[84px]'
                       style={{ filter: filter.filterStyle }}
                     />
                   </div>
                   <span
-                    className={`${selectedFilter.name === filter.name ? 'text-ig-primary-button' : 'text-ig-secondary-text'} mt-2 text-center text-xs`}
+                    className={`${
+                      selectedFilters[currentImageIndex]?.name === filter.name
+                        ? 'text-ig-primary-button'
+                        : 'text-ig-secondary-text'
+                    } mt-2 text-center text-xs`}
                   >
                     {filter.name}
                   </span>
@@ -86,23 +96,25 @@ export const EditNewPost = ({
               ))}
             </div>
 
-            {selectedFilter.name !== 'Original' && (
+            {selectedFilters[currentImageIndex]?.name !== 'Original' && (
               <div className='flex items-center justify-center p-4'>
                 <input
                   type='range'
                   min={0}
                   max={100}
-                  value={filterStrengths[selectedFilter.name]}
+                  value={
+                    filterStrengths[selectedFilters[currentImageIndex].name]
+                  }
                   onChange={(e) =>
                     handleStrengthChange(
-                      selectedFilter.name,
+                      selectedFilters[currentImageIndex].name,
                       Number(e.target.value),
                     )
                   }
                   className='[&::-webkit-slider-thumb]:bg-ig-primary-text bg-ig-primary-text h-[2px] grow appearance-none rounded-lg [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-none'
                 />
                 <span className='text-ig-primary-text ml-4 text-xs'>
-                  {filterStrengths[selectedFilter.name]}
+                  {filterStrengths[selectedFilters[currentImageIndex].name]}
                 </span>
               </div>
             )}

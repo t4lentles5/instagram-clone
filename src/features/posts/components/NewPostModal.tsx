@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useUserStore } from '@/core/store/user/user-store';
+import { useImageFilters } from '@/features/posts/hooks/useImageFilters';
 
 import { NewPostCarousel } from '@/features/posts/components/NewPostCarousel';
 import { SelectCrop } from '@/features/posts/components/SelectCrop';
 import { CropZoom } from '@/features/posts/components/CropZoom';
 import { MediaGallery } from '@/features/posts/components/MediaGallery';
 import { EditNewPost } from '@/features/posts/components/EditNewPost';
+import { CloseModalOptions } from '@/features/posts/components/CloseModalOptions';
+
+import { filters } from '@/features/posts/utils/filters';
+import { Adjustment, adjustments } from '@/features/posts/utils/adjustments';
 
 import { NewPostMediaIcon } from '@/core/shared/icons';
 import { BackPostIcon } from '@/features/posts/icons';
@@ -16,123 +21,31 @@ interface Props {
   onClose: () => void;
 }
 
-export interface Filter {
-  name: string;
-  filterStyle: string;
-}
-
-export interface Adjustment {
-  name: string;
-  min: number;
-  max: number;
-  value: number;
-}
-
-const filters: Filter[] = [
-  {
-    name: 'Aden',
-    filterStyle: 'brightness(120%) contrast(90%) sepia(40%)',
-  },
-  {
-    name: 'Clarendon',
-    filterStyle: 'brightness(125%) contrast(130%) saturate(150%)',
-  },
-  {
-    name: 'Crema',
-    filterStyle: 'brightness(110%) contrast(105%) sepia(30%)',
-  },
-  {
-    name: 'Gingham',
-    filterStyle: 'brightness(115%) contrast(90%) sepia(50%)',
-  },
-  {
-    name: 'Juno',
-    filterStyle: 'brightness(110%) contrast(125%) saturate(160%)',
-  },
-  {
-    name: 'Lark',
-    filterStyle: 'brightness(120%) contrast(105%) saturate(130%)',
-  },
-  {
-    name: 'Ludwig',
-    filterStyle: 'brightness(115%) contrast(100%) sepia(10%)',
-  },
-  {
-    name: 'Moon',
-    filterStyle: 'grayscale(100%) contrast(120%) brightness(105%)',
-  },
-  {
-    name: 'Original',
-    filterStyle: 'none',
-  },
-  {
-    name: 'Perpetua',
-    filterStyle: 'brightness(120%) saturate(130%)',
-  },
-  {
-    name: 'Reyes',
-    filterStyle: 'brightness(110%) contrast(90%) sepia(35%)',
-  },
-  {
-    name: 'Slumber',
-    filterStyle: 'brightness(115%) saturate(90%) sepia(40%)',
-  },
-];
-
-const adjustments: Adjustment[] = [
-  {
-    name: 'Brightness',
-    min: -100,
-    max: 100,
-    value: 0,
-  },
-  {
-    name: 'Contrast',
-    min: -100,
-    max: 100,
-    value: 0,
-  },
-  {
-    name: 'Fade',
-    min: -100,
-    max: 100,
-    value: 0,
-  },
-  {
-    name: 'Saturation',
-    min: -100,
-    max: 100,
-    value: 0,
-  },
-  {
-    name: 'Temperature',
-    min: -100,
-    max: 100,
-    value: 0,
-  },
-  {
-    name: 'Vignette',
-    min: 0,
-    max: 100,
-    value: 0,
-  },
-];
-
 export const NewPostModal = ({ isOpen, onClose }: Props) => {
   const { userId } = useUserStore();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const dialogOptionsRef = useRef<HTMLDialogElement>(null);
+  const {
+    selectedFiles,
+    setSelectedFiles,
+    previewUrls,
+    setPreviewUrls,
+    selectedFilters,
+    setFilterAt,
+    clearAll,
+  } = useImageFilters();
+
+  const closeModalOptionsRef = useRef<HTMLDialogElement>(null);
   const [isOptionsDialogOpen, setIsOptionsDialogOpen] = useState(false);
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isCropOptionsOpen, setIsCropOptionsOpen] = useState(false);
   const [isZoomCropOpen, setIsZoomCropOpen] = useState(false);
   const [isMediaGalleryOpen, setIsMediaGalleryOpen] = useState(false);
 
   const [showEditPost, setShowEditPost] = useState(false);
   const [showFilters, setShowFilters] = useState(true);
-  const [selectedFilter, setSelectedFilter] = useState<Filter>(filters[8]);
   const [adjustmentValues, setAdjustmentValues] =
     useState<Adjustment[]>(adjustments);
   const [filterStrengths, setFilterStrengths] = useState<
@@ -146,9 +59,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
       {} as Record<string, number>,
     ),
   );
-
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
 
   const [selectedCrop, setSelectedCrop] = useState<
     'original' | 'square' | 'portrait' | 'video'
@@ -232,7 +142,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
 
   useEffect(() => {
     const dialog = dialogRef.current;
-    const dialogOptions = dialogOptionsRef.current;
+    const dialogOptions = closeModalOptionsRef.current;
 
     if (!dialog) return;
 
@@ -278,6 +188,16 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, isOptionsDialogOpen, previewUrls]);
+
+  console.log({
+    selectedFiles,
+    previewUrls,
+    selectedFilters,
+    adjustmentValues,
+    filterStrengths,
+    selectedCrop,
+    cropZoomValue,
+  });
 
   return (
     <>
@@ -335,8 +255,10 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                     selectedFiles={selectedFiles}
                     selectedCrop={selectedCrop}
                     cropZoomValue={cropZoomValue}
-                    selectedFilter={selectedFilter}
+                    selectedFilter={selectedFilters[currentImageIndex]}
                     filterStrengths={filterStrengths}
+                    currentImageIndex={currentImageIndex}
+                    setCurrentImageIndex={setCurrentImageIndex}
                   />
 
                   {!showEditPost && (
@@ -370,9 +292,10 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                   <EditNewPost
                     showFilters={showFilters}
                     setShowFilters={setShowFilters}
+                    currentImageIndex={currentImageIndex}
                     filters={filters}
-                    selectedFilter={selectedFilter}
-                    setSelectedFilter={setSelectedFilter}
+                    setFilterAt={setFilterAt}
+                    selectedFilters={selectedFilters}
                     filterStrengths={filterStrengths}
                     setFilterStrengths={setFilterStrengths}
                     adjustmentValues={adjustmentValues}
@@ -413,52 +336,14 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
         onChange={handleUpload}
       />
 
-      <dialog
-        ref={dialogOptionsRef}
-        onCancel={() => setIsOptionsDialogOpen(false)}
-        className='bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 w-[400px] -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl'
-      >
-        <div className='flex flex-col items-center text-center'>
-          <div className='p-6'>
-            <h3 className='text-ig-primary-text mb-1 text-xl'>Discard post?</h3>
-            <p className='text-ig-secondary-text text-sm'>
-              If you leave, your edits won&apos;t be saved.
-            </p>
-          </div>
-
-          <div className='border-ig-elevated-separator flex w-full flex-col border-t'>
-            <button
-              className='text-ig-badge h-12 w-full cursor-pointer px-2 py-1 text-sm font-bold'
-              onClick={() => {
-                setIsOptionsDialogOpen(false);
-                setPreviewUrls([]);
-                setSelectedFiles([]);
-                setSelectedFilter(filters[8]);
-                setShowEditPost(false);
-                setFilterStrengths(
-                  filters.reduce(
-                    (acc, filter) => {
-                      acc[filter.name] = 100;
-                      return acc;
-                    },
-                    {} as Record<string, number>,
-                  ),
-                );
-                onClose();
-              }}
-            >
-              Discard
-            </button>
-
-            <button
-              className='text-ig-primary-text border-ig-elevated-separator h-12 w-full cursor-pointer border-t px-2 py-1 text-sm'
-              onClick={() => setIsOptionsDialogOpen(false)}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      </dialog>
+      <CloseModalOptions
+        closeModalOptionsRef={closeModalOptionsRef}
+        setIsOptionsDialogOpen={setIsOptionsDialogOpen}
+        setShowEditPost={setShowEditPost}
+        setFilterStrengths={setFilterStrengths}
+        onClose={onClose}
+        clearAll={clearAll}
+      />
     </>
   );
 };

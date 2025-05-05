@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
-import { Filter } from '@/features/posts/components/NewPostModal';
+import { Filter } from '@/features/posts/utils/filters';
 import { LeftChevron, RightChevron } from '@/features/posts/icons';
 
 interface Props {
@@ -11,6 +11,8 @@ interface Props {
   cropZoomValue: number;
   selectedFilter: Filter;
   filterStrengths: Record<string, number>;
+  currentImageIndex: number;
+  setCurrentImageIndex: Dispatch<SetStateAction<number>>;
 }
 
 export function NewPostCarousel({
@@ -19,8 +21,9 @@ export function NewPostCarousel({
   cropZoomValue,
   selectedFilter,
   filterStrengths,
+  currentImageIndex,
+  setCurrentImageIndex,
 }: Props) {
-  const [current, setCurrent] = useState(0);
   const [originalAspectRatio, setOriginalAspectRatio] =
     useState<string>('1 / 1');
   const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(
@@ -38,6 +41,9 @@ export function NewPostCarousel({
   const imageRef = useRef<HTMLImageElement>(null);
 
   const scale = 1 + cropZoomValue / 100;
+
+  const current = currentImageIndex;
+  const setCurrent = setCurrentImageIndex;
 
   useEffect(() => {
     setScales((prev) =>
@@ -193,6 +199,7 @@ export function NewPostCarousel({
               <LeftChevron />
             </button>
           )}
+
           {current !== selectedFiles.length - 1 && (
             <button
               onClick={next}
