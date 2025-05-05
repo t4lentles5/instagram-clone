@@ -1,20 +1,18 @@
-import { useState } from 'react';
-
 import { useSidebarStore } from '@/features/sidebar/sidebar-store';
-import { NewPostModal } from '@/features/posts/components/NewPostModal';
 import { NewPostSidebarIcon } from '@/features/sidebar/icons';
+import { useNewPostModal } from '@/features/posts/hooks/useNewPostModal';
 
 export const NewPostButton = () => {
   const { isSidebarCollapsed, isNewPostDialogOpen } = useSidebarStore();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const { openModal, Modal } = useNewPostModal();
 
   return (
     <>
       <div className='flex h-12 items-center justify-center md:h-14 md:w-full'>
         <button
           className='hover:bg-ig-hover-overlay active:bg-ig-active-overlay active:text-ig-primary-text/50 flex cursor-pointer items-center justify-start gap-4 rounded-lg p-3 active:scale-95 md:w-full'
-          onClick={() => setIsOpen(true)}
+          onClick={openModal}
         >
           <NewPostSidebarIcon />
 
@@ -30,7 +28,7 @@ export const NewPostButton = () => {
         </button>
       </div>
 
-      <NewPostModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      {Modal}
     </>
   );
 };

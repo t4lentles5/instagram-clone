@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useUserStore } from '@/core/store/user/user-store';
 import { useEditPost } from '@/features/posts/hooks/useEditPost';
+import { useNewPostModal } from '@/features/posts/hooks/useNewPostModal';
 
 import { NewPostCarousel } from '@/features/posts/components/NewPostCarousel';
 import { SelectCrop } from '@/features/posts/components/SelectCrop';
@@ -22,8 +23,13 @@ interface Props {
 
 export const NewPostModal = ({ isOpen, onClose }: Props) => {
   const { userId } = useUserStore();
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const {
+    newPostModalRef,
+    modalOptionsRef,
+    fileInputRef,
+    isModalOptionsOpen,
+    setIsModalOptionsOpen,
+  } = useNewPostModal();
 
   const {
     selectedFiles,
@@ -51,9 +57,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     setAdjustmentValues,
     clearAll,
   } = useEditPost();
-
-  const closeModalOptionsRef = useRef<HTMLDialogElement>(null);
-  const [isOptionsDialogOpen, setIsOptionsDialogOpen] = useState(false);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -88,42 +91,35 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     }
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      const originalStyles = {
-        overflow: document.body.style.overflow,
-        paddingRight: document.body.style.paddingRight,
-        position: document.body.style.position,
-        top: document.body.style.top,
-        width: document.body.style.width,
-      };
+  const handleCloseAttempt = (e: React.SyntheticEvent) => {
+    e.preventDefault();
 
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-
-      const scrollY = window.scrollY;
-
-      document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-
-      return () => {
-        document.body.style.overflow = originalStyles.overflow;
-        document.body.style.paddingRight = originalStyles.paddingRight;
-        document.body.style.position = originalStyles.position;
-        document.body.style.top = originalStyles.top;
-        document.body.style.width = originalStyles.width;
-
-        window.scrollTo(0, scrollY);
-      };
+    if (previewUrls.length === 0) {
+      onClose();
+    } else {
+      setIsModalOptionsOpen(true);
     }
-  }, [isOpen]);
+  };
 
   useEffect(() => {
-    const dialog = dialogRef.current;
-    const dialogOptions = closeModalOptionsRef.current;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen && !isModalOptionsOpen) {
+        e.preventDefault();
+        if (previewUrls.length === 0) {
+          onClose();
+        } else {
+          setIsModalOptionsOpen(true);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, isModalOptionsOpen, previewUrls]);
+
+  useEffect(() => {
+    const dialog = newPostModalRef.current;
+    const dialogOptions = modalOptionsRef.current;
 
     if (!dialog) return;
 
@@ -131,44 +127,18 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
       dialog.showModal();
     }
 
-    if (!isOpen && dialog.open && !isOptionsDialogOpen) {
+    if (!isOpen && dialog.open && !isModalOptionsOpen) {
       dialog.close();
     }
 
-    if (isOptionsDialogOpen && dialogOptions && !dialogOptions.open) {
+    if (isModalOptionsOpen && dialogOptions && !dialogOptions.open) {
       dialogOptions.showModal();
     }
 
-    if (!isOptionsDialogOpen && dialogOptions?.open) {
+    if (!isModalOptionsOpen && dialogOptions?.open) {
       dialogOptions.close();
     }
-  }, [isOpen, isOptionsDialogOpen]);
-
-  const handleCloseAttempt = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-
-    if (previewUrls.length === 0) {
-      onClose();
-    } else {
-      setIsOptionsDialogOpen(true);
-    }
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen && !isOptionsDialogOpen) {
-        e.preventDefault();
-        if (previewUrls.length === 0) {
-          onClose();
-        } else {
-          setIsOptionsDialogOpen(true);
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, isOptionsDialogOpen, previewUrls]);
+  }, [isOpen, isModalOptionsOpen]);
 
   console.log({
     selectedFiles,
@@ -185,17 +155,17 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
   return (
     <>
       <dialog
-        ref={dialogRef}
+        ref={newPostModalRef}
         className={`${showEditPost ? 'w-[856px]' : 'w-[516px]'} bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl`}
         onCancel={handleCloseAttempt}
         onClick={(e) => {
-          const dialog = dialogRef.current;
+          const dialog = newPostModalRef.current;
           e.stopPropagation();
           if (dialog && e.target === dialog) {
             if (previewUrls.length === 0) {
               onClose();
             } else {
-              setIsOptionsDialogOpen(true);
+              setIsModalOptionsOpen(true);
             }
           }
           if (isCropOptionsOpen) setIsCropOptionsOpen(false);
@@ -213,7 +183,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                       setShowEditPost(false);
                     } else {
                       if (previewUrls.length > 0) {
-                        setIsOptionsDialogOpen(true);
+                        setIsModalOptionsOpen(true);
                       } else {
                         onClose();
                       }
@@ -320,8 +290,8 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
       />
 
       <CloseModalOptions
-        closeModalOptionsRef={closeModalOptionsRef}
-        setIsOptionsDialogOpen={setIsOptionsDialogOpen}
+        modalOptionsRef={modalOptionsRef}
+        setIsModalOptionsOpen={setIsModalOptionsOpen}
         setShowEditPost={setShowEditPost}
         setFilterStrengths={setFilterStrengths}
         onClose={onClose}

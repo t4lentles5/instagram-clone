@@ -3,8 +3,8 @@ import { Dispatch, RefObject, SetStateAction } from 'react';
 import { filters } from '@/features/posts/utils/filters';
 
 interface Props {
-  closeModalOptionsRef: RefObject<HTMLDialogElement | null>;
-  setIsOptionsDialogOpen: Dispatch<SetStateAction<boolean>>;
+  modalOptionsRef: RefObject<HTMLDialogElement | null>;
+  setIsModalOptionsOpen: Dispatch<SetStateAction<boolean>>;
   setShowEditPost: Dispatch<SetStateAction<boolean>>;
   setFilterStrengths: Dispatch<SetStateAction<Record<string, number>>>;
   onClose: () => void;
@@ -12,8 +12,8 @@ interface Props {
 }
 
 export const CloseModalOptions = ({
-  closeModalOptionsRef,
-  setIsOptionsDialogOpen,
+  modalOptionsRef,
+  setIsModalOptionsOpen,
   setShowEditPost,
   setFilterStrengths,
   onClose,
@@ -22,8 +22,8 @@ export const CloseModalOptions = ({
   return (
     <>
       <dialog
-        ref={closeModalOptionsRef}
-        onCancel={() => setIsOptionsDialogOpen(false)}
+        ref={modalOptionsRef}
+        onCancel={() => setIsModalOptionsOpen(false)}
         className='bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 w-[400px] -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl'
       >
         <div className='flex flex-col items-center text-center'>
@@ -38,7 +38,7 @@ export const CloseModalOptions = ({
             <button
               className='text-ig-badge h-12 w-full cursor-pointer px-2 py-1 text-sm font-bold'
               onClick={() => {
-                setIsOptionsDialogOpen(false);
+                setIsModalOptionsOpen(false);
                 setShowEditPost(false);
                 clearAll();
                 setFilterStrengths(
@@ -58,7 +58,7 @@ export const CloseModalOptions = ({
 
             <button
               className='text-ig-primary-text border-ig-elevated-separator h-12 w-full cursor-pointer border-t px-2 py-1 text-sm'
-              onClick={() => setIsOptionsDialogOpen(false)}
+              onClick={() => setIsModalOptionsOpen(false)}
             >
               Cancel
             </button>
