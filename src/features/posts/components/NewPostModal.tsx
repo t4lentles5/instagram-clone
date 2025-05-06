@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useUserStore } from '@/core/store/user/user-store';
 import { useEditPost } from '@/features/posts/hooks/useEditPost';
@@ -32,11 +32,12 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
   } = useNewPostModal();
 
   const {
-    selectedFiles,
     setSelectedFiles,
     previewUrls,
     showEditPost,
     setShowEditPost,
+    currentImageIndex,
+    setCurrentImageIndex,
     showFilters,
     setShowFilters,
     isCropOptionsOpen,
@@ -55,10 +56,9 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     setFilterStrengths,
     adjustmentValues,
     setAdjustmentValues,
+    handleDeleteImage,
     resetStates,
   } = useEditPost();
-
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -75,7 +75,8 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
 
       formData.append('userId', userId);
 
-      setSelectedFiles(filesArray);
+      setSelectedFiles((prev) => [...prev, ...filesArray]);
+
       e.target.value = '';
 
       const res = await fetch('/api/posts/create-post', {
@@ -141,7 +142,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
   }, [isOpen, isModalOptionsOpen]);
 
   console.log({
-    selectedFiles,
     previewUrls,
     showEditPost,
     showFilters,
@@ -205,10 +205,10 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
               <div className='bg-ig-secondary-background flex'>
                 <div className='relative aspect-square h-full w-[516px]'>
                   <NewPostCarousel
-                    selectedFiles={selectedFiles}
+                    previewUrls={previewUrls}
                     selectedCrop={selectedCrop}
                     cropZoomValue={cropZoomValue}
-                    selectedFilter={selectedFilters[currentImageIndex]}
+                    selectedFilters={selectedFilters}
                     filterStrengths={filterStrengths}
                     currentImageIndex={currentImageIndex}
                     setCurrentImageIndex={setCurrentImageIndex}
@@ -235,7 +235,11 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                       <MediaGallery
                         isMediaGalleryOpen={isMediaGalleryOpen}
                         setIsMediaGalleryOpen={setIsMediaGalleryOpen}
-                        selectedFiles={selectedFiles}
+                        previewUrls={previewUrls}
+                        fileInputRef={fileInputRef}
+                        handleDeleteImage={handleDeleteImage}
+                        currentImageIndex={currentImageIndex}
+                        setCurrentImageIndex={setCurrentImageIndex}
                       />
                     </div>
                   )}

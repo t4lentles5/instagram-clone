@@ -12,6 +12,7 @@ import {
 export const useEditPost = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const [isCropOptionsOpen, setIsCropOptionsOpen] = useState(false);
   const [isZoomCropOpen, setIsZoomCropOpen] = useState(false);
@@ -44,6 +45,7 @@ export const useEditPost = () => {
   useEffect(() => {
     if (selectedFiles.length > 0) {
       const urls = selectedFiles.map((file) => URL.createObjectURL(file));
+
       setPreviewUrls(urls);
       setSelectedFilters(urls.map(() => defaultFilters[8]));
 
@@ -52,6 +54,39 @@ export const useEditPost = () => {
       };
     }
   }, [selectedFiles]);
+
+  const handleDeleteImage = (image: string) => {
+    const indexToDelete = previewUrls.indexOf(image);
+    if (indexToDelete === -1) return;
+
+    const newPreviewUrls = previewUrls.filter((_, i) => i !== indexToDelete);
+    const newSelectedFiles = selectedFiles.filter(
+      (_, i) => i !== indexToDelete,
+    );
+    const newSelectedFilters = selectedFilters.filter(
+      (_, i) => i !== indexToDelete,
+    );
+    const newAdjustmentValues = adjustmentValues.filter(
+      (_, i) => i !== indexToDelete,
+    );
+
+    setPreviewUrls(newPreviewUrls);
+    setSelectedFiles(newSelectedFiles);
+    setSelectedFilters(newSelectedFilters);
+    setAdjustmentValues(newAdjustmentValues);
+
+    if (newPreviewUrls.length === 0) {
+      setIsMediaGalleryOpen(false);
+    }
+
+    setCurrentImageIndex((prevIndex) => {
+      if (prevIndex > indexToDelete) return prevIndex - 1;
+      if (prevIndex === indexToDelete) {
+        return Math.max(0, newPreviewUrls.length - 1);
+      }
+      return prevIndex;
+    });
+  };
 
   const setFilterAt = (index: number, filter: Filter) => {
     setSelectedFilters((prev) => {
@@ -63,6 +98,8 @@ export const useEditPost = () => {
   };
 
   const resetStates = () => {
+    setCropZoomValue(0);
+    setSelectedCrop('square');
     setSelectedFiles([]);
     setPreviewUrls([]);
     setSelectedFilters(selectedFiles.map(() => defaultFilters[8]));
@@ -79,10 +116,11 @@ export const useEditPost = () => {
   };
 
   return {
-    selectedFiles,
     setSelectedFiles,
     previewUrls,
     showEditPost,
+    currentImageIndex,
+    setCurrentImageIndex,
     setShowEditPost,
     showFilters,
     setShowFilters,
@@ -102,6 +140,7 @@ export const useEditPost = () => {
     setFilterStrengths,
     adjustmentValues,
     setAdjustmentValues,
+    handleDeleteImage,
     resetStates,
   };
 };

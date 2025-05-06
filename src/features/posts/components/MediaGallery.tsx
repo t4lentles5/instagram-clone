@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, RefObject, SetStateAction } from 'react';
 
 import {
   DeleteIcon,
@@ -9,13 +9,21 @@ import {
 interface Props {
   isMediaGalleryOpen: boolean;
   setIsMediaGalleryOpen: Dispatch<SetStateAction<boolean>>;
-  selectedFiles: File[];
+  previewUrls: string[];
+  fileInputRef: RefObject<HTMLInputElement | null>;
+  handleDeleteImage: (image: string) => void;
+  currentImageIndex: number;
+  setCurrentImageIndex: Dispatch<SetStateAction<number>>;
 }
 
 export const MediaGallery = ({
   isMediaGalleryOpen,
   setIsMediaGalleryOpen,
-  selectedFiles,
+  previewUrls,
+  fileInputRef,
+  handleDeleteImage,
+  currentImageIndex,
+  setCurrentImageIndex,
 }: Props) => {
   return (
     <>
@@ -28,29 +36,49 @@ export const MediaGallery = ({
         </button>
         {isMediaGalleryOpen && (
           <div
-            className='bg-ig-icon-background absolute right-2 bottom-14 m-2 flex gap-3 rounded-lg p-3'
+            className='bg-ig-icon-background absolute right-2 bottom-14 m-2 flex max-w-full gap-3 overflow-y-hidden rounded-lg p-3'
             onClick={(e) => {
               e.stopPropagation();
             }}
           >
-            {selectedFiles.map((image) => (
+            {previewUrls.map((image, index) => (
               <div
-                key={image.name}
-                className='relative max-h-[94px] max-w-[94px]'
+                key={index}
+                className='relative aspect-square h-[94px] w-[94px] cursor-pointer transition-transform duration-200 active:scale-110'
+                onClick={() => setCurrentImageIndex(index)}
               >
                 <img
-                  src={URL.createObjectURL(image)}
+                  src={image}
                   alt='Selected Image'
                   className='aspect-square object-cover'
                 />
-                <span className='bg-ig-icon-background text-web-always-white absolute top-1 right-1 rounded-full p-1'>
-                  <DeleteIcon />
-                </span>
+
+                {currentImageIndex === index && (
+                  <button
+                    className='bg-ig-icon-background text-web-always-white absolute top-1 right-1 cursor-pointer rounded-full p-1'
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteImage(image);
+                    }}
+                  >
+                    <DeleteIcon />
+                  </button>
+                )}
+
+                {currentImageIndex !== index && (
+                  <div className='bg-ig-image-selected-overlay absolute top-0 left-0 h-full w-full'></div>
+                )}
               </div>
             ))}
-            <div className='text-ig-secondary-text border-ig-separator grid h-12 w-12 place-items-center rounded-full border'>
+
+            <button
+              className='text-ig-secondary-text active:bg-ig-highlight-background border-ig-separator grid aspect-square h-12 w-12 cursor-pointer place-items-center rounded-full border'
+              onClick={() => {
+                fileInputRef.current?.click();
+              }}
+            >
               <PlusIcon />
-            </div>
+            </button>
           </div>
         )}
       </div>
