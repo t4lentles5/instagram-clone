@@ -1,12 +1,8 @@
 import { Dispatch, RefObject, SetStateAction } from 'react';
 
-import { filters } from '@/features/posts/utils/filters';
-
 interface Props {
   modalOptionsRef: RefObject<HTMLDialogElement | null>;
   setIsModalOptionsOpen: Dispatch<SetStateAction<boolean>>;
-  setShowEditPost: Dispatch<SetStateAction<boolean>>;
-  setFilterStrengths: Dispatch<SetStateAction<Record<string, number>>>;
   onClose: () => void;
   resetStates: () => void;
 }
@@ -14,8 +10,6 @@ interface Props {
 export const CloseModalOptions = ({
   modalOptionsRef,
   setIsModalOptionsOpen,
-  setShowEditPost,
-  setFilterStrengths,
   onClose,
   resetStates,
 }: Props) => {
@@ -39,17 +33,7 @@ export const CloseModalOptions = ({
               className='text-ig-badge h-12 w-full cursor-pointer px-2 py-1 text-sm font-bold'
               onClick={() => {
                 setIsModalOptionsOpen(false);
-                setShowEditPost(false);
                 resetStates();
-                setFilterStrengths(
-                  filters.reduce(
-                    (acc, filter) => {
-                      acc[filter.name] = 100;
-                      return acc;
-                    },
-                    {} as Record<string, number>,
-                  ),
-                );
                 onClose();
               }}
             >

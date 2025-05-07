@@ -98,11 +98,14 @@ export const useEditPost = () => {
   };
 
   const resetStates = () => {
+    const filesCount = selectedFiles.length;
+
+    setShowEditPost(false);
     setCropZoomValue(0);
     setSelectedCrop('square');
     setSelectedFiles([]);
     setPreviewUrls([]);
-    setSelectedFilters(selectedFiles.map(() => defaultFilters[8]));
+    setSelectedFilters(Array(filesCount).fill(defaultFilters[8]));
     setFilterStrengths(
       defaultFilters.reduce(
         (acc, filter) => {

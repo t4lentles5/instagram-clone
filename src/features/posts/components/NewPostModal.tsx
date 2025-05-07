@@ -296,8 +296,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
       <CloseModalOptions
         modalOptionsRef={modalOptionsRef}
         setIsModalOptionsOpen={setIsModalOptionsOpen}
-        setShowEditPost={setShowEditPost}
-        setFilterStrengths={setFilterStrengths}
         onClose={onClose}
         resetStates={resetStates}
       />
