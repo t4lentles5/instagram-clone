@@ -1,6 +1,12 @@
 'use client';
 
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import {
+  Dispatch,
+  RefObject,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 
 import { Filter } from '@/features/posts/utils/filters';
 import { LeftChevron, RightChevron } from '@/features/posts/icons';
@@ -8,49 +14,41 @@ import { LeftChevron, RightChevron } from '@/features/posts/icons';
 interface Props {
   previewUrls: string[];
   selectedCrop: 'original' | 'square' | 'portrait' | 'video';
-  cropZoomValue: number;
   showEditPost: boolean;
   selectedFilters: Filter[];
   filterStrengths: Record<string, number>;
   currentImageIndex: number;
   setCurrentImageIndex: Dispatch<SetStateAction<number>>;
+  onMouseDown: (e: React.MouseEvent) => void;
+  onMouseMove: (e: React.MouseEvent) => void;
+  onMouseUp: () => void;
+  currentScale: number;
+  currentOffset: {
+    x: number;
+    y: number;
+  };
+  containerRef: RefObject<HTMLDivElement | null>;
+  imageRef: RefObject<HTMLImageElement | null>;
 }
 
 export function NewPostCarousel({
   previewUrls,
   selectedCrop,
-  cropZoomValue,
   selectedFilters,
   showEditPost,
   filterStrengths,
   currentImageIndex,
   setCurrentImageIndex,
+  onMouseDown,
+  onMouseMove,
+  onMouseUp,
+  currentScale,
+  currentOffset,
+  containerRef,
+  imageRef,
 }: Props) {
   const [originalAspectRatio, setOriginalAspectRatio] =
     useState<string>('1 / 1');
-  const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(
-    null,
-  );
-  const [offsets, setOffsets] = useState<{ x: number; y: number }[]>([]);
-  const [scales, setScales] = useState<number[]>([]);
-
-  useEffect(() => {
-    setOffsets(previewUrls.map(() => ({ x: 0, y: 0 })));
-    setScales(previewUrls.map(() => 1));
-  }, [previewUrls]);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
-
-  const scale = 1 + cropZoomValue / 100;
-
-  useEffect(() => {
-    setScales((prev) =>
-      prev.map((s, index) =>
-        index === currentImageIndex ? 1 + cropZoomValue / 100 : s,
-      ),
-    );
-  }, [cropZoomValue, currentImageIndex]);
 
   useEffect(() => {
     if (selectedCrop === 'original' && previewUrls.length > 0) {
@@ -62,23 +60,6 @@ export function NewPostCarousel({
       };
     }
   }, [selectedCrop, previewUrls]);
-
-  useEffect(() => {
-    setOffsets(previewUrls.map(() => ({ x: 0, y: 0 })));
-  }, [previewUrls]);
-
-  useEffect(() => {
-    if (scale === 1) {
-      setOffsets((prev) =>
-        prev.map((offset, index) =>
-          index === currentImageIndex ? { x: 0, y: 0 } : offset,
-        ),
-      );
-    }
-  }, [scale, currentImageIndex]);
-
-  const currentOffset = offsets[currentImageIndex] ?? { x: 0, y: 0 };
-  const currentScale = scales[currentImageIndex] ?? 1;
 
   const prev = () => {
     setCurrentImageIndex((prev) =>
@@ -107,42 +88,6 @@ export function NewPostCarousel({
   }
 
   const aspectRatio = getAspectRatio(selectedCrop);
-
-  const onMouseDown = (e: React.MouseEvent) => {
-    if (scale <= 1) return;
-    setDragStart({ x: e.clientX, y: e.clientY });
-  };
-
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!dragStart || scale <= 1) return;
-
-    const dx = e.clientX - dragStart.x;
-    const dy = e.clientY - dragStart.y;
-
-    const container = containerRef.current;
-    const image = imageRef.current;
-    if (!container || !image) return;
-
-    const containerRect = container.getBoundingClientRect();
-    const maxOffsetX = ((scale - 1) * containerRect.width) / 2;
-    const maxOffsetY = ((scale - 1) * containerRect.height) / 2;
-
-    const newOffset = {
-      x: Math.max(-maxOffsetX, Math.min(currentOffset.x + dx, maxOffsetX)),
-      y: Math.max(-maxOffsetY, Math.min(currentOffset.y + dy, maxOffsetY)),
-    };
-
-    setOffsets((prev) =>
-      prev.map((offset, index) =>
-        index === currentImageIndex ? newOffset : offset,
-      ),
-    );
-    setDragStart({ x: e.clientX, y: e.clientY });
-  };
-
-  const onMouseUp = () => {
-    setDragStart(null);
-  };
 
   function getAdjustedFilterStyle(baseStyle: string, strength: number): string {
     if (strength === 0 || baseStyle === 'none') return 'none';
@@ -174,8 +119,6 @@ export function NewPostCarousel({
         filterStrengths[selectedFilters[currentImageIndex]?.name ?? ''] ?? 100,
       )
     : 'none';
-
-  console.log(showEditPost);
 
   return (
     <div

@@ -6,7 +6,7 @@ interface Props {
   isZoomCropOpen: boolean;
   setIsZoomCropOpen: Dispatch<SetStateAction<boolean>>;
   cropZoomValue: number;
-  setCropZoomValue: Dispatch<SetStateAction<number>>;
+  setCropZoomValue: (value: number) => void;
 }
 
 export const CropZoom = ({

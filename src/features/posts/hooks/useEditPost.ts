@@ -15,7 +15,6 @@ export const useEditPost = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const [isCropOptionsOpen, setIsCropOptionsOpen] = useState(false);
-  const [isZoomCropOpen, setIsZoomCropOpen] = useState(false);
   const [isMediaGalleryOpen, setIsMediaGalleryOpen] = useState(false);
 
   const [showEditPost, setShowEditPost] = useState(false);
@@ -24,7 +23,7 @@ export const useEditPost = () => {
   const [selectedCrop, setSelectedCrop] = useState<
     'original' | 'square' | 'portrait' | 'video'
   >('square');
-  const [cropZoomValue, setCropZoomValue] = useState(0);
+  // const [cropZoomValue, setCropZoomValue] = useState(0);
 
   const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
   const [filterStrengths, setFilterStrengths] = useState<
@@ -101,7 +100,7 @@ export const useEditPost = () => {
     const filesCount = selectedFiles.length;
 
     setShowEditPost(false);
-    setCropZoomValue(0);
+    // setCropZoomValue(0);
     setSelectedCrop('square');
     setSelectedFiles([]);
     setPreviewUrls([]);
@@ -129,14 +128,10 @@ export const useEditPost = () => {
     setShowFilters,
     isCropOptionsOpen,
     setIsCropOptionsOpen,
-    isZoomCropOpen,
-    setIsZoomCropOpen,
     isMediaGalleryOpen,
     setIsMediaGalleryOpen,
     selectedCrop,
     setSelectedCrop,
-    cropZoomValue,
-    setCropZoomValue,
     selectedFilters,
     setFilterAt,
     filterStrengths,

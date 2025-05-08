@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useUserStore } from '@/core/store/user/user-store';
 import { useEditPost } from '@/features/posts/hooks/useEditPost';
 import { useNewPostModal } from '@/features/posts/hooks/useNewPostModal';
+import { useCropZoom } from '@/features/posts/hooks/useCropZoom';
 
 import { NewPostCarousel } from '@/features/posts/components/new-post/NewPostCarousel';
 import { SelectCrop } from '@/features/posts/components/new-post/SelectCrop';
@@ -42,14 +43,10 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     setShowFilters,
     isCropOptionsOpen,
     setIsCropOptionsOpen,
-    isZoomCropOpen,
-    setIsZoomCropOpen,
     isMediaGalleryOpen,
     setIsMediaGalleryOpen,
     selectedCrop,
     setSelectedCrop,
-    cropZoomValue,
-    setCropZoomValue,
     selectedFilters,
     setFilterAt,
     filterStrengths,
@@ -59,6 +56,21 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     handleDeleteImage,
     resetStates,
   } = useEditPost();
+
+  const {
+    isZoomCropOpen,
+    setIsZoomCropOpen,
+    cropZoomValue,
+    setCropZoomValue,
+    // resetCropZoomValue,
+    onMouseDown,
+    onMouseMove,
+    onMouseUp,
+    currentScale,
+    currentOffset,
+    containerRef,
+    imageRef,
+  } = useCropZoom(previewUrls, currentImageIndex);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -146,7 +158,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     showEditPost,
     showFilters,
     selectedCrop,
-    cropZoomValue,
     selectedFilters,
     filterStrengths,
     adjustmentValues,
@@ -207,12 +218,18 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                   <NewPostCarousel
                     previewUrls={previewUrls}
                     selectedCrop={selectedCrop}
-                    cropZoomValue={cropZoomValue}
                     showEditPost={showEditPost}
                     selectedFilters={selectedFilters}
                     filterStrengths={filterStrengths}
                     currentImageIndex={currentImageIndex}
                     setCurrentImageIndex={setCurrentImageIndex}
+                    onMouseDown={onMouseDown}
+                    onMouseMove={onMouseMove}
+                    onMouseUp={onMouseUp}
+                    currentScale={currentScale}
+                    currentOffset={currentOffset}
+                    containerRef={containerRef}
+                    imageRef={imageRef}
                   />
 
                   {!showEditPost && (
