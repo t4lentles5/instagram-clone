@@ -9,6 +9,7 @@ interface Props {
   previewUrls: string[];
   selectedCrop: 'original' | 'square' | 'portrait' | 'video';
   cropZoomValue: number;
+  showEditPost: boolean;
   selectedFilters: Filter[];
   filterStrengths: Record<string, number>;
   currentImageIndex: number;
@@ -20,6 +21,7 @@ export function NewPostCarousel({
   selectedCrop,
   cropZoomValue,
   selectedFilters,
+  showEditPost,
   filterStrengths,
   currentImageIndex,
   setCurrentImageIndex,
@@ -166,6 +168,15 @@ export function NewPostCarousel({
     });
   }
 
+  const filterStyle = showEditPost
+    ? getAdjustedFilterStyle(
+        selectedFilters[currentImageIndex]?.filterStyle ?? 'none',
+        filterStrengths[selectedFilters[currentImageIndex]?.name ?? ''] ?? 100,
+      )
+    : 'none';
+
+  console.log(showEditPost);
+
   return (
     <div
       ref={containerRef}
@@ -186,11 +197,7 @@ export function NewPostCarousel({
           className='h-full w-full cursor-grab object-cover transition-transform duration-75 select-none active:cursor-grabbing'
           style={{
             transform: `scale(${currentScale}) translate(${currentOffset.x / currentScale}px, ${currentOffset.y / currentScale}px)`,
-            filter: getAdjustedFilterStyle(
-              selectedFilters[currentImageIndex]?.filterStyle ?? 'none',
-              filterStrengths[selectedFilters[currentImageIndex]?.name ?? ''] ??
-                100,
-            ),
+            filter: filterStyle,
           }}
           draggable={false}
         />

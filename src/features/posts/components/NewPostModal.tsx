@@ -208,6 +208,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                     previewUrls={previewUrls}
                     selectedCrop={selectedCrop}
                     cropZoomValue={cropZoomValue}
+                    showEditPost={showEditPost}
                     selectedFilters={selectedFilters}
                     filterStrengths={filterStrengths}
                     currentImageIndex={currentImageIndex}
