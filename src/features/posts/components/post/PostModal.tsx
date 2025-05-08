@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { PostCarousel } from '@/features/posts/components/PostCarousel';
-import { LikeButton } from '@/features/posts/components/LikeButton';
-import { CommentForm } from '@/features/posts/components/CommentForm';
-import { PostComments } from '@/features/posts/components/PostComments';
+import { PostCarousel } from '@/features/posts/components/post/PostCarousel';
+import { LikeButton } from '@/features/posts/components/likes/LikeButton';
+import { CommentForm } from '@/features/posts/components/comments/CommentForm';
+import { PostComments } from '@/features/posts/components/comments/PostComments';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 
 import { formatPostDate } from '@/features/posts/utils/format-post-date';

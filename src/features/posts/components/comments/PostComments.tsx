@@ -7,7 +7,7 @@ import { getExactDate } from '@/features/posts/utils/get-exact-date';
 import { formatDate } from '@/features/posts/utils/format-date';
 
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
-import { CommentItem } from '@/features/posts/components/CommentItem';
+import { CommentItem } from '@/features/posts/components/comments/CommentItem';
 
 interface Props {
   comments: Comment[];

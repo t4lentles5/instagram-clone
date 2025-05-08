@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { getPostsByUsername } from '@/features/profile/actions/get-posts-by-username';
 
-import { NoPosts } from '@/features/posts/components/NoPosts';
+import { NoPosts } from '@/features/posts/components/post/NoPosts';
 
 import { CommentIcon, HeartIcon } from '@/core/shared/icons';
 import { CarouselProfilePostIcon } from '@/features/profile/icons/CarouselProfilePostIcon';

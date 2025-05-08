@@ -7,7 +7,7 @@ import { Post } from '@/core/shared/interfaces/post.interface';
 
 import { HeartIcon } from '@/core/shared/icons';
 
-import styles from '@/features/posts/components/like-animation.module.css';
+import styles from '@/features/posts/components/likes/like-animation.module.css';
 
 interface Props {
   post: Post;

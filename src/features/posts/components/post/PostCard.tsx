@@ -12,9 +12,9 @@ import { useLikesModal } from '@/features/posts/hooks/useLikesModal';
 
 import { Post } from '@/core/shared/interfaces/post.interface';
 
-import { PostCarousel } from '@/features/posts/components/PostCarousel';
-import { LikeButton } from '@/features/posts/components/LikeButton';
-import { CommentSection } from '@/features/posts/components/CommentSection';
+import { PostCarousel } from '@/features/posts/components/post/PostCarousel';
+import { LikeButton } from '@/features/posts/components/likes/LikeButton';
+import { CommentSection } from '@/features/posts/components/comments/CommentSection';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 
 import {

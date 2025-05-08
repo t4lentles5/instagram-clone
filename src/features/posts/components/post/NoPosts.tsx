@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { NewPostModal } from '@/features/posts/components/NewPostModal';
+import { NewPostModal } from '@/features/posts/components/new-post/NewPostModal';
 import { CameraCircleIcon } from '@/features/posts/icons';
 
 export const NoPosts = () => {

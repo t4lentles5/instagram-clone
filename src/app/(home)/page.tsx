@@ -6,7 +6,7 @@ import { SwitchUser } from '@/features/suggestions/components/SwitchUser';
 import { Footer } from '@/core/shared/components/Footer';
 import { SuggestedUsers } from '@/features/suggestions/components/SuggestedUsers';
 import { UserStories } from '@/features/stories/components/UserStories';
-import { PostCard } from '@/features/posts/components/PostCard';
+import { PostCard } from '@/features/posts/components/post/PostCard';
 
 export default async function HomePage() {
   const user = await getAuthenticatedUser();

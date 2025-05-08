@@ -5,8 +5,8 @@ import { useLikesModal } from '@/features/posts/hooks/useLikesModal';
 import { Comment } from '@/core/shared/interfaces/post.interface';
 
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
-import { LikeCommentButton } from '@/features/posts/components/LikeCommentButton';
-import { ReplyComment } from '@/features/posts/components/ReplyComment';
+import { LikeCommentButton } from '@/features/posts/components/post/LikeCommentButton';
+import { ReplyComment } from '@/features/posts/components/post/ReplyComment';
 
 import { formatDate } from '@/features/posts/utils/format-date';
 import { getExactDate } from '@/features/posts/utils/get-exact-date';

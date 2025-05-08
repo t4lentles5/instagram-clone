@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect } from 'react';
 
 import { Like } from '@/core/shared/interfaces/post.interface';
 import { Comment } from '@/core/shared/interfaces/post.interface';
-import { LikesModal } from '@/features/posts/components/LikesModal';
+import { LikesModal } from '@/features/posts/components/likes/LikesModal';
 
 export function useLikesModal() {
   const [isOpen, setIsOpen] = useState(false);

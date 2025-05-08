@@ -4,12 +4,12 @@ import { useUserStore } from '@/core/store/user/user-store';
 import { useEditPost } from '@/features/posts/hooks/useEditPost';
 import { useNewPostModal } from '@/features/posts/hooks/useNewPostModal';
 
-import { NewPostCarousel } from '@/features/posts/components/NewPostCarousel';
-import { SelectCrop } from '@/features/posts/components/SelectCrop';
-import { CropZoom } from '@/features/posts/components/CropZoom';
-import { MediaGallery } from '@/features/posts/components/MediaGallery';
-import { EditNewPost } from '@/features/posts/components/EditNewPost';
-import { CloseModalOptions } from '@/features/posts/components/CloseModalOptions';
+import { NewPostCarousel } from '@/features/posts/components/new-post/NewPostCarousel';
+import { SelectCrop } from '@/features/posts/components/new-post/SelectCrop';
+import { CropZoom } from '@/features/posts/components/new-post/CropZoom';
+import { MediaGallery } from '@/features/posts/components/new-post/MediaGallery';
+import { EditNewPost } from '@/features/posts/components/new-post/EditNewPost';
+import { CloseModalOptions } from '@/features/posts/components/new-post/CloseModalOptions';
 
 import { filters } from '@/features/posts/utils/filters';
 

@@ -6,7 +6,7 @@ import { formatDate } from '@/features/posts/utils/format-date';
 
 import { useLikesModal } from '@/features/posts/hooks/useLikesModal';
 
-import { LikeCommentButton } from '@/features/posts/components/LikeCommentButton';
+import { LikeCommentButton } from '@/features/posts/components/post/LikeCommentButton';
 
 import { Reply } from '@/core/shared/interfaces/post.interface';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
