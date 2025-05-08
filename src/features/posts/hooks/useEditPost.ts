@@ -23,7 +23,6 @@ export const useEditPost = () => {
   const [selectedCrop, setSelectedCrop] = useState<
     'original' | 'square' | 'portrait' | 'video'
   >('square');
-  // const [cropZoomValue, setCropZoomValue] = useState(0);
 
   const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
   const [filterStrengths, setFilterStrengths] = useState<
@@ -100,7 +99,6 @@ export const useEditPost = () => {
     const filesCount = selectedFiles.length;
 
     setShowEditPost(false);
-    // setCropZoomValue(0);
     setSelectedCrop('square');
     setSelectedFiles([]);
     setPreviewUrls([]);

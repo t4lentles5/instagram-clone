@@ -57,20 +57,10 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     resetStates,
   } = useEditPost();
 
-  const {
-    isZoomCropOpen,
-    setIsZoomCropOpen,
-    cropZoomValue,
-    setCropZoomValue,
-    // resetCropZoomValue,
-    onMouseDown,
-    onMouseMove,
-    onMouseUp,
-    currentScale,
-    currentOffset,
-    containerRef,
-    imageRef,
-  } = useCropZoom(previewUrls, currentImageIndex);
+  const { isZoomCropOpen, setIsZoomCropOpen } = useCropZoom(
+    previewUrls,
+    currentImageIndex,
+  );
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -223,13 +213,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                     filterStrengths={filterStrengths}
                     currentImageIndex={currentImageIndex}
                     setCurrentImageIndex={setCurrentImageIndex}
-                    onMouseDown={onMouseDown}
-                    onMouseMove={onMouseMove}
-                    onMouseUp={onMouseUp}
-                    currentScale={currentScale}
-                    currentOffset={currentOffset}
-                    containerRef={containerRef}
-                    imageRef={imageRef}
                   />
 
                   {!showEditPost && (
@@ -243,10 +226,8 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                         />
 
                         <CropZoom
-                          isZoomCropOpen={isZoomCropOpen}
-                          setIsZoomCropOpen={setIsZoomCropOpen}
-                          cropZoomValue={cropZoomValue}
-                          setCropZoomValue={setCropZoomValue}
+                          previewUrls={previewUrls}
+                          currentImageIndex={currentImageIndex}
                         />
                       </div>
 

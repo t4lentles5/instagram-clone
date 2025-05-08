@@ -1,59 +1,48 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import { useCropZoomStore } from '../store/crop-zoom-store';
 
 export const useCropZoom = (
   previewUrls: string[],
   currentImageIndex: number,
 ) => {
-  const [isZoomCropOpen, setIsZoomCropOpen] = useState(false);
-  const [cropZoomValues, setCropZoomValues] = useState<number[]>([]);
+  const {
+    isZoomCropOpen,
+    setIsZoomCropOpen,
+    cropZoomValues,
+    offsets,
+    scales,
+    setCropZoomValue,
+    resetCropZoomValue,
+    setOffset,
+    setScale,
+    initialize,
+  } = useCropZoomStore();
 
   const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(
     null,
   );
-  const [offsets, setOffsets] = useState<{ x: number; y: number }[]>([]);
-  const [scales, setScales] = useState<number[]>([]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
-    setCropZoomValues(previewUrls.map(() => 0));
-    setOffsets(previewUrls.map(() => ({ x: 0, y: 0 })));
-    setScales(previewUrls.map(() => 1));
-  }, [previewUrls]);
-
-  const scale = 1 + (cropZoomValues[currentImageIndex] ?? 0) / 100;
+  const cropZoomValue = cropZoomValues[currentImageIndex] ?? 0;
+  const scale = 1 + cropZoomValue / 100;
+  const currentOffset = offsets[currentImageIndex] ?? { x: 0, y: 0 };
+  const currentScale = scales[currentImageIndex] ?? 1;
 
   useEffect(() => {
-    setScales((prev) =>
-      prev.map((s, index) => (index === currentImageIndex ? scale : s)),
-    );
-  }, [cropZoomValues, currentImageIndex]);
+    initialize(previewUrls.length);
+  }, [previewUrls.length, initialize]);
+
+  useEffect(() => {
+    setScale(currentImageIndex, scale);
+  }, [cropZoomValue, currentImageIndex, scale, setScale]);
 
   useEffect(() => {
     if (scale === 1) {
-      setOffsets((prev) =>
-        prev.map((offset, index) =>
-          index === currentImageIndex ? { x: 0, y: 0 } : offset,
-        ),
-      );
+      setOffset(currentImageIndex, { x: 0, y: 0 });
     }
-  }, [scale, currentImageIndex]);
-
-  const resetCropZoomValue = () => {
-    setCropZoomValues((prev) =>
-      prev.map((val, index) => (index === currentImageIndex ? 0 : val)),
-    );
-  };
-
-  const setCropZoomValue = (value: number) => {
-    setCropZoomValues((prev) =>
-      prev.map((val, index) => (index === currentImageIndex ? value : val)),
-    );
-  };
-
-  const currentOffset = offsets[currentImageIndex] ?? { x: 0, y: 0 };
-  const currentScale = scales[currentImageIndex] ?? 1;
+  }, [scale, currentImageIndex, setOffset]);
 
   const onMouseDown = (e: React.MouseEvent) => {
     if (scale <= 1) return;
@@ -79,11 +68,7 @@ export const useCropZoom = (
       y: Math.max(-maxOffsetY, Math.min(currentOffset.y + dy, maxOffsetY)),
     };
 
-    setOffsets((prev) =>
-      prev.map((offset, index) =>
-        index === currentImageIndex ? newOffset : offset,
-      ),
-    );
+    setOffset(currentImageIndex, newOffset);
     setDragStart({ x: e.clientX, y: e.clientY });
   };
 
@@ -94,9 +79,10 @@ export const useCropZoom = (
   return {
     isZoomCropOpen,
     setIsZoomCropOpen,
-    cropZoomValue: cropZoomValues[currentImageIndex] ?? 0,
-    setCropZoomValue,
-    resetCropZoomValue,
+    cropZoomValue,
+    setCropZoomValue: (value: number) =>
+      setCropZoomValue(currentImageIndex, value),
+    resetCropZoomValue: () => resetCropZoomValue(currentImageIndex),
     onMouseDown,
     onMouseMove,
     onMouseUp,

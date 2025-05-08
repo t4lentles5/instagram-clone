@@ -1,20 +1,15 @@
-import { Dispatch, SetStateAction } from 'react';
-
 import { SelectZoomIcon } from '@/features/posts/icons';
+import { useCropZoom } from '../../hooks/useCropZoom';
 
 interface Props {
-  isZoomCropOpen: boolean;
-  setIsZoomCropOpen: Dispatch<SetStateAction<boolean>>;
-  cropZoomValue: number;
-  setCropZoomValue: (value: number) => void;
+  previewUrls: string[];
+  currentImageIndex: number;
 }
 
-export const CropZoom = ({
-  isZoomCropOpen,
-  setIsZoomCropOpen,
-  cropZoomValue,
-  setCropZoomValue,
-}: Props) => {
+export const CropZoom = ({ previewUrls, currentImageIndex }: Props) => {
+  const { isZoomCropOpen, setIsZoomCropOpen, cropZoomValue, setCropZoomValue } =
+    useCropZoom(previewUrls, currentImageIndex);
+
   return (
     <>
       <div>

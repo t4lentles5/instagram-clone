@@ -1,15 +1,10 @@
 'use client';
 
-import {
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { Filter } from '@/features/posts/utils/filters';
 import { LeftChevron, RightChevron } from '@/features/posts/icons';
+import { useCropZoom } from '../../hooks/useCropZoom';
 
 interface Props {
   previewUrls: string[];
@@ -19,16 +14,6 @@ interface Props {
   filterStrengths: Record<string, number>;
   currentImageIndex: number;
   setCurrentImageIndex: Dispatch<SetStateAction<number>>;
-  onMouseDown: (e: React.MouseEvent) => void;
-  onMouseMove: (e: React.MouseEvent) => void;
-  onMouseUp: () => void;
-  currentScale: number;
-  currentOffset: {
-    x: number;
-    y: number;
-  };
-  containerRef: RefObject<HTMLDivElement | null>;
-  imageRef: RefObject<HTMLImageElement | null>;
 }
 
 export function NewPostCarousel({
@@ -39,14 +24,17 @@ export function NewPostCarousel({
   filterStrengths,
   currentImageIndex,
   setCurrentImageIndex,
-  onMouseDown,
-  onMouseMove,
-  onMouseUp,
-  currentScale,
-  currentOffset,
-  containerRef,
-  imageRef,
 }: Props) {
+  const {
+    onMouseDown,
+    onMouseMove,
+    onMouseUp,
+    currentScale,
+    currentOffset,
+    containerRef,
+    imageRef,
+  } = useCropZoom(previewUrls, currentImageIndex);
+
   const [originalAspectRatio, setOriginalAspectRatio] =
     useState<string>('1 / 1');
 
