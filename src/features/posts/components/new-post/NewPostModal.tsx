@@ -16,6 +16,7 @@ import { filters } from '@/features/posts/utils/filters';
 
 import { NewPostMediaIcon } from '@/core/shared/icons';
 import { BackPostIcon } from '@/features/posts/icons';
+import { useSelectedCropStore } from '../../store/selected-crop-store';
 
 interface Props {
   isOpen: boolean;
@@ -41,12 +42,8 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     setCurrentImageIndex,
     showFilters,
     setShowFilters,
-    isCropOptionsOpen,
-    setIsCropOptionsOpen,
     isMediaGalleryOpen,
     setIsMediaGalleryOpen,
-    selectedCrop,
-    setSelectedCrop,
     selectedFilters,
     setFilterAt,
     filterStrengths,
@@ -61,6 +58,8 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     previewUrls,
     currentImageIndex,
   );
+
+  const { isCropOptionsOpen, setIsCropOptionsOpen } = useSelectedCropStore();
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -147,7 +146,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     previewUrls,
     showEditPost,
     showFilters,
-    selectedCrop,
     selectedFilters,
     filterStrengths,
     adjustmentValues,
@@ -207,7 +205,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                 <div className='relative aspect-square h-full w-[516px]'>
                   <NewPostCarousel
                     previewUrls={previewUrls}
-                    selectedCrop={selectedCrop}
                     showEditPost={showEditPost}
                     selectedFilters={selectedFilters}
                     filterStrengths={filterStrengths}
@@ -218,12 +215,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                   {!showEditPost && (
                     <div className='absolute bottom-0 flex w-full justify-between p-4'>
                       <div className='flex gap-3'>
-                        <SelectCrop
-                          isCropOptionsOpen={isCropOptionsOpen}
-                          setIsCropOptionsOpen={setIsCropOptionsOpen}
-                          selectedCrop={selectedCrop}
-                          setSelectedCrop={setSelectedCrop}
-                        />
+                        <SelectCrop />
 
                         <CropZoom
                           previewUrls={previewUrls}

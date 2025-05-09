@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
-
 import {
   CropLandscapeIcon,
   CropPortraitIcon,
@@ -7,22 +5,16 @@ import {
   PhotoOutlineIcon,
   SelectCropIcon,
 } from '@/features/posts/icons';
+import { useSelectedCropStore } from '../../store/selected-crop-store';
 
-interface Props {
-  isCropOptionsOpen: boolean;
-  setIsCropOptionsOpen: Dispatch<SetStateAction<boolean>>;
-  selectedCrop: string;
-  setSelectedCrop: Dispatch<
-    SetStateAction<'video' | 'original' | 'square' | 'portrait'>
-  >;
-}
+export const SelectCrop = () => {
+  const {
+    selectedCrop,
+    setSelectedCrop,
+    isCropOptionsOpen,
+    setIsCropOptionsOpen,
+  } = useSelectedCropStore();
 
-export const SelectCrop = ({
-  isCropOptionsOpen,
-  setIsCropOptionsOpen,
-  selectedCrop,
-  setSelectedCrop,
-}: Props) => {
   return (
     <>
       <div>

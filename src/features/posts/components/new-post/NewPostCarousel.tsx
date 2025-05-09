@@ -5,10 +5,11 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Filter } from '@/features/posts/utils/filters';
 import { LeftChevron, RightChevron } from '@/features/posts/icons';
 import { useCropZoom } from '../../hooks/useCropZoom';
+import { useSelectedCropStore } from '../../store/selected-crop-store';
 
 interface Props {
   previewUrls: string[];
-  selectedCrop: 'original' | 'square' | 'portrait' | 'video';
+
   showEditPost: boolean;
   selectedFilters: Filter[];
   filterStrengths: Record<string, number>;
@@ -18,7 +19,7 @@ interface Props {
 
 export function NewPostCarousel({
   previewUrls,
-  selectedCrop,
+
   selectedFilters,
   showEditPost,
   filterStrengths,
@@ -34,6 +35,8 @@ export function NewPostCarousel({
     containerRef,
     imageRef,
   } = useCropZoom(previewUrls, currentImageIndex);
+
+  const { selectedCrop } = useSelectedCropStore();
 
   const [originalAspectRatio, setOriginalAspectRatio] =
     useState<string>('1 / 1');
