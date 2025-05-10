@@ -2,7 +2,8 @@ import { useEditPostStore } from '../../store/edit-post-store';
 import { useMediaGalleryStore } from '../../store/media-gallery-store';
 
 export const Adjustments = () => {
-  const { adjustmentValues, updateAdjustmentValue } = useEditPostStore();
+  const { adjustmentValues, updateAdjustmentValue, resetAdjustmentValue } =
+    useEditPostStore();
   const { currentImageIndex } = useMediaGalleryStore();
 
   const adjustments = adjustmentValues[currentImageIndex];
@@ -10,8 +11,20 @@ export const Adjustments = () => {
   return (
     <div className='mb-4'>
       {adjustments.map((adjustment) => (
-        <div key={adjustment.name} className='mb-1 px-4'>
-          <div className='text-ig-primary-text py-4'>{adjustment.name}</div>
+        <div key={adjustment.name} className='group mb-1 px-4'>
+          <div className='text-ig-primary-text flex justify-between py-4'>
+            <span>{adjustment.name}</span>
+            {adjustment.value !== 0 && (
+              <button
+                className='text-ig-primary-button hover:text-ig-link active:text-ig-link-pressed invisible text-sm font-bold group-hover:visible'
+                onClick={() => {
+                  resetAdjustmentValue(currentImageIndex, adjustment.name);
+                }}
+              >
+                Reset
+              </button>
+            )}
+          </div>
           <div className='flex h-6 items-center justify-center'>
             <input
               type='range'

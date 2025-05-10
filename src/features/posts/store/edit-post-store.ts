@@ -32,6 +32,7 @@ interface FilterState {
     name: string,
     value: number,
   ) => void;
+  resetAdjustmentValue: (imageIndex: number, name: string) => void;
 }
 
 export const useEditPostStore = create<FilterState>((set) => ({
@@ -89,6 +90,24 @@ export const useEditPostStore = create<FilterState>((set) => ({
 
       updated[imageIndex] = imageAdjustments.map((adj) =>
         adj.name === name ? { ...adj, value } : adj,
+      );
+
+      return { adjustmentValues: updated };
+    }),
+
+  resetAdjustmentValue: (imageIndex, name) =>
+    set((state) => {
+      const updated = [...state.adjustmentValues];
+      const imageAdjustments = updated[imageIndex] || [];
+
+      updated[imageIndex] = imageAdjustments.map((adj) =>
+        adj.name === name
+          ? {
+              ...adj,
+              value:
+                defaultAdjustments.find((a) => a.name === name)?.value ?? 0,
+            }
+          : adj,
       );
 
       return { adjustmentValues: updated };
