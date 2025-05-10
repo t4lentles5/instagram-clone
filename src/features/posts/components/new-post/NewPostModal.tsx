@@ -16,8 +16,6 @@ import { MediaGallery } from '@/features/posts/components/new-post/MediaGallery'
 import { EditNewPost } from '@/features/posts/components/new-post/EditNewPost';
 import { CloseModalOptions } from '@/features/posts/components/new-post/CloseModalOptions';
 
-import { filters } from '@/features/posts/utils/filters';
-
 import { NewPostMediaIcon } from '@/core/shared/icons';
 import { BackPostIcon } from '@/features/posts/icons';
 
@@ -191,7 +189,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                   )}
                 </div>
 
-                {showEditPost && <EditNewPost filters={filters} />}
+                {showEditPost && <EditNewPost />}
               </div>
             </>
           ) : (
