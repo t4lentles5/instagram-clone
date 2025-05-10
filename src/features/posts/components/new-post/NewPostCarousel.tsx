@@ -1,31 +1,20 @@
 'use client';
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Filter } from '@/features/posts/utils/filters';
+import { useCropZoom } from '@/features/posts/hooks/useCropZoom';
+import { useSelectedCropStore } from '@/features/posts/store/selected-crop-store';
+import { useMediaGalleryStore } from '@/features/posts/store/media-gallery-store';
+import { useNewPostStore } from '@/features/posts/store/new-post-store';
+import { useEditPostStore } from '@/features/posts/store/edit-post-store';
+
 import { LeftChevron, RightChevron } from '@/features/posts/icons';
-import { useCropZoom } from '../../hooks/useCropZoom';
-import { useSelectedCropStore } from '../../store/selected-crop-store';
 
 interface Props {
-  previewUrls: string[];
-
   showEditPost: boolean;
-  selectedFilters: Filter[];
-  filterStrengths: Record<string, number>;
-  currentImageIndex: number;
-  setCurrentImageIndex: Dispatch<SetStateAction<number>>;
 }
 
-export function NewPostCarousel({
-  previewUrls,
-
-  selectedFilters,
-  showEditPost,
-  filterStrengths,
-  currentImageIndex,
-  setCurrentImageIndex,
-}: Props) {
+export function NewPostCarousel({ showEditPost }: Props) {
   const {
     onMouseDown,
     onMouseMove,
@@ -34,9 +23,12 @@ export function NewPostCarousel({
     currentOffset,
     containerRef,
     imageRef,
-  } = useCropZoom(previewUrls, currentImageIndex);
+  } = useCropZoom();
 
   const { selectedCrop } = useSelectedCropStore();
+  const { currentImageIndex, setCurrentImageIndex } = useMediaGalleryStore();
+  const { previewUrls } = useNewPostStore();
+  const { selectedFilters, filterStrengths } = useEditPostStore();
 
   const [originalAspectRatio, setOriginalAspectRatio] =
     useState<string>('1 / 1');

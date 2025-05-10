@@ -1,20 +1,19 @@
 import { Dispatch, RefObject, SetStateAction } from 'react';
-import { useSelectedCropStore } from '../../store/selected-crop-store';
+
+import { useNewPost } from '@/features/posts/hooks/useNewPost';
 
 interface Props {
   modalOptionsRef: RefObject<HTMLDialogElement | null>;
   setIsModalOptionsOpen: Dispatch<SetStateAction<boolean>>;
   onClose: () => void;
-  resetStates: () => void;
 }
 
 export const CloseModalOptions = ({
   modalOptionsRef,
   setIsModalOptionsOpen,
   onClose,
-  resetStates,
 }: Props) => {
-  const { resetSelectedCrop } = useSelectedCropStore();
+  const { resetStates } = useNewPost();
 
   return (
     <>
@@ -37,7 +36,6 @@ export const CloseModalOptions = ({
               onClick={() => {
                 setIsModalOptionsOpen(false);
                 resetStates();
-                resetSelectedCrop();
                 onClose();
               }}
             >

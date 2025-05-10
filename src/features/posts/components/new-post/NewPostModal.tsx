@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 
 import { useUserStore } from '@/core/store/user/user-store';
-import { useEditPost } from '@/features/posts/hooks/useEditPost';
 import { useNewPostModal } from '@/features/posts/hooks/useNewPostModal';
 import { useCropZoom } from '@/features/posts/hooks/useCropZoom';
+import { useSelectedCropStore } from '@/features/posts/store/selected-crop-store';
+import { useMediaGalleryStore } from '@/features/posts/store/media-gallery-store';
+import { useNewPostStore } from '@/features/posts/store/new-post-store';
+import { useNewPost } from '@/features/posts/hooks/useNewPost';
+import { useEditPostStore } from '@/features/posts/store/edit-post-store';
 
 import { NewPostCarousel } from '@/features/posts/components/new-post/NewPostCarousel';
 import { SelectCrop } from '@/features/posts/components/new-post/SelectCrop';
@@ -16,7 +20,6 @@ import { filters } from '@/features/posts/utils/filters';
 
 import { NewPostMediaIcon } from '@/core/shared/icons';
 import { BackPostIcon } from '@/features/posts/icons';
-import { useSelectedCropStore } from '../../store/selected-crop-store';
 
 interface Props {
   isOpen: boolean;
@@ -33,33 +36,12 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     setIsModalOptionsOpen,
   } = useNewPostModal();
 
-  const {
-    setSelectedFiles,
-    previewUrls,
-    showEditPost,
-    setShowEditPost,
-    currentImageIndex,
-    setCurrentImageIndex,
-    showFilters,
-    setShowFilters,
-    isMediaGalleryOpen,
-    setIsMediaGalleryOpen,
-    selectedFilters,
-    setFilterAt,
-    filterStrengths,
-    setFilterStrengths,
-    adjustmentValues,
-    setAdjustmentValues,
-    handleDeleteImage,
-    resetStates,
-  } = useEditPost();
-
-  const { isZoomCropOpen, setIsZoomCropOpen } = useCropZoom(
-    previewUrls,
-    currentImageIndex,
-  );
-
+  const { isZoomCropOpen, setIsZoomCropOpen } = useCropZoom();
   const { isCropOptionsOpen, setIsCropOptionsOpen } = useSelectedCropStore();
+  const { isMediaGalleryOpen, setIsMediaGalleryOpen } = useMediaGalleryStore();
+  const { selectedFiles, setSelectedFiles, previewUrls } = useNewPostStore();
+  useNewPost();
+  const { showEditPost, setShowEditPost } = useEditPostStore();
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -76,7 +58,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
 
       formData.append('userId', userId);
 
-      setSelectedFiles((prev) => [...prev, ...filesArray]);
+      setSelectedFiles([...selectedFiles, ...filesArray]);
 
       e.target.value = '';
 
@@ -142,15 +124,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     }
   }, [isOpen, isModalOptionsOpen]);
 
-  console.log({
-    previewUrls,
-    showEditPost,
-    showFilters,
-    selectedFilters,
-    filterStrengths,
-    adjustmentValues,
-  });
-
   return (
     <>
       <dialog
@@ -203,53 +176,22 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
 
               <div className='bg-ig-secondary-background flex'>
                 <div className='relative aspect-square h-full w-[516px]'>
-                  <NewPostCarousel
-                    previewUrls={previewUrls}
-                    showEditPost={showEditPost}
-                    selectedFilters={selectedFilters}
-                    filterStrengths={filterStrengths}
-                    currentImageIndex={currentImageIndex}
-                    setCurrentImageIndex={setCurrentImageIndex}
-                  />
+                  <NewPostCarousel showEditPost={showEditPost} />
 
                   {!showEditPost && (
                     <div className='absolute bottom-0 flex w-full justify-between p-4'>
                       <div className='flex gap-3'>
                         <SelectCrop />
 
-                        <CropZoom
-                          previewUrls={previewUrls}
-                          currentImageIndex={currentImageIndex}
-                        />
+                        <CropZoom />
                       </div>
 
-                      <MediaGallery
-                        isMediaGalleryOpen={isMediaGalleryOpen}
-                        setIsMediaGalleryOpen={setIsMediaGalleryOpen}
-                        previewUrls={previewUrls}
-                        fileInputRef={fileInputRef}
-                        handleDeleteImage={handleDeleteImage}
-                        currentImageIndex={currentImageIndex}
-                        setCurrentImageIndex={setCurrentImageIndex}
-                      />
+                      <MediaGallery fileInputRef={fileInputRef} />
                     </div>
                   )}
                 </div>
 
-                {showEditPost && (
-                  <EditNewPost
-                    showFilters={showFilters}
-                    setShowFilters={setShowFilters}
-                    currentImageIndex={currentImageIndex}
-                    filters={filters}
-                    setFilterAt={setFilterAt}
-                    selectedFilters={selectedFilters}
-                    filterStrengths={filterStrengths}
-                    setFilterStrengths={setFilterStrengths}
-                    adjustmentValues={adjustmentValues}
-                    setAdjustmentValues={setAdjustmentValues}
-                  />
-                )}
+                {showEditPost && <EditNewPost filters={filters} />}
               </div>
             </>
           ) : (
@@ -288,7 +230,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
         modalOptionsRef={modalOptionsRef}
         setIsModalOptionsOpen={setIsModalOptionsOpen}
         onClose={onClose}
-        resetStates={resetStates}
       />
     </>
   );

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { NewPostModal } from '../components/new-post/NewPostModal';
+
+import { NewPostModal } from '@/features/posts/components/new-post/NewPostModal';
 
 export const useNewPostModal = () => {
   const [isOpen, setIsOpen] = useState(false);
