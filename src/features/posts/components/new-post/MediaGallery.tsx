@@ -1,4 +1,8 @@
-import { Dispatch, RefObject, SetStateAction, useState } from 'react';
+import { RefObject, useState } from 'react';
+
+import { useMediaGalleryStore } from '@/features/posts/store/media-gallery-store';
+import { useMediaGallery } from '@/features/posts/hooks/useMediaGallery';
+import { useNewPostStore } from '@/features/posts/store/new-post-store';
 
 import {
   DeleteIcon,
@@ -9,25 +13,20 @@ import {
 } from '@/features/posts/icons';
 
 interface Props {
-  isMediaGalleryOpen: boolean;
-  setIsMediaGalleryOpen: Dispatch<SetStateAction<boolean>>;
-  previewUrls: string[];
   fileInputRef: RefObject<HTMLInputElement | null>;
-  handleDeleteImage: (image: string) => void;
-  currentImageIndex: number;
-  setCurrentImageIndex: Dispatch<SetStateAction<number>>;
 }
 
-export const MediaGallery = ({
-  isMediaGalleryOpen,
-  setIsMediaGalleryOpen,
-  previewUrls,
-  fileInputRef,
-  handleDeleteImage,
-  currentImageIndex,
-  setCurrentImageIndex,
-}: Props) => {
+export const MediaGallery = ({ fileInputRef }: Props) => {
   const [galleryStartIndex, setGalleryStartIndex] = useState(0);
+  const {
+    isMediaGalleryOpen,
+    setIsMediaGalleryOpen,
+    currentImageIndex,
+    setCurrentImageIndex,
+  } = useMediaGalleryStore();
+
+  const { handleDeleteImage } = useMediaGallery();
+  const { previewUrls } = useNewPostStore();
 
   return (
     <>
