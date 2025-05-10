@@ -1,14 +1,9 @@
+import { useCropZoom } from '@/features/posts//hooks/useCropZoom';
 import { SelectZoomIcon } from '@/features/posts/icons';
-import { useCropZoom } from '../../hooks/useCropZoom';
 
-interface Props {
-  previewUrls: string[];
-  currentImageIndex: number;
-}
-
-export const CropZoom = ({ previewUrls, currentImageIndex }: Props) => {
+export const CropZoom = () => {
   const { isZoomCropOpen, setIsZoomCropOpen, cropZoomValue, setCropZoomValue } =
-    useCropZoom(previewUrls, currentImageIndex);
+    useCropZoom();
 
   return (
     <>

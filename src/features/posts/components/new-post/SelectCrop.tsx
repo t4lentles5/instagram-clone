@@ -1,3 +1,5 @@
+import { useSelectedCropStore } from '@/features/posts/store/selected-crop-store';
+
 import {
   CropLandscapeIcon,
   CropPortraitIcon,
@@ -5,7 +7,6 @@ import {
   PhotoOutlineIcon,
   SelectCropIcon,
 } from '@/features/posts/icons';
-import { useSelectedCropStore } from '../../store/selected-crop-store';
 
 export const SelectCrop = () => {
   const {

@@ -1,10 +1,10 @@
 import { useRef, useEffect, useState } from 'react';
-import { useCropZoomStore } from '../store/crop-zoom-store';
 
-export const useCropZoom = (
-  previewUrls: string[],
-  currentImageIndex: number,
-) => {
+import { useCropZoomStore } from '@/features/posts/store/crop-zoom-store';
+import { useMediaGalleryStore } from '@/features/posts/store/media-gallery-store';
+import { useNewPostStore } from '@/features/posts/store/new-post-store';
+
+export const useCropZoom = () => {
   const {
     isZoomCropOpen,
     setIsZoomCropOpen,
@@ -17,6 +17,8 @@ export const useCropZoom = (
     setScale,
     initialize,
   } = useCropZoomStore();
+  const { currentImageIndex } = useMediaGalleryStore();
+  const { previewUrls } = useNewPostStore();
 
   const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(
     null,
