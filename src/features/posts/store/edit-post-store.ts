@@ -16,15 +16,22 @@ interface FilterState {
 
   showFilters: boolean;
   setShowFilters: (open: boolean) => void;
+
   selectedFilters: Filter[];
   setSelectedFilters: (filters: Filter[]) => void;
+
   filterStrengths: Record<string, number>;
   setFilterStrength: (name: string, value: number) => void;
   resetFilterStrengths: () => void;
 
-  adjustmentValues: Adjustment[];
-  setAdjustmentValues: (adjustments: Adjustment[]) => void;
-  updateAdjustmentValue: (name: string, value: number) => void;
+  adjustmentValues: Adjustment[][];
+  setAdjustmentValues: (adjustments: Adjustment[][]) => void;
+  setAdjustmentValuesForAll: (count: number) => void;
+  updateAdjustmentValue: (
+    imageIndex: number,
+    name: string,
+    value: number,
+  ) => void;
 }
 
 export const useEditPostStore = create<FilterState>((set) => ({
@@ -61,16 +68,29 @@ export const useEditPostStore = create<FilterState>((set) => ({
       ),
     })),
 
-  adjustmentValues: defaultAdjustments,
-  setAdjustmentValues: (adjustments) => set({ adjustmentValues: adjustments }),
+  adjustmentValues: [],
 
-  updateAdjustmentValue: (
-    name,
-    value, // ✅
-  ) =>
-    set((state) => ({
-      adjustmentValues: state.adjustmentValues.map((adj) =>
-        adj.name === name ? { ...adj, value } : adj,
+  setAdjustmentValues: (adjustments) =>
+    set(() => ({
+      adjustmentValues: adjustments,
+    })),
+
+  setAdjustmentValuesForAll: (count) =>
+    set(() => ({
+      adjustmentValues: Array.from({ length: count }, () =>
+        defaultAdjustments.map((adj) => ({ ...adj })),
       ),
     })),
+
+  updateAdjustmentValue: (imageIndex, name, value) =>
+    set((state) => {
+      const updated = [...state.adjustmentValues];
+      const imageAdjustments = updated[imageIndex] || [];
+
+      updated[imageIndex] = imageAdjustments.map((adj) =>
+        adj.name === name ? { ...adj, value } : adj,
+      );
+
+      return { adjustmentValues: updated };
+    }),
 }));

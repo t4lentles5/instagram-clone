@@ -9,6 +9,8 @@ import { useNewPostStore } from '@/features/posts/store/new-post-store';
 import { useEditPostStore } from '@/features/posts/store/edit-post-store';
 
 import { LeftChevron, RightChevron } from '@/features/posts/icons';
+import { generateFilterStyle } from '../../utils/generate-adjustment-style';
+import { Adjustment } from '../../utils/adjustments';
 
 interface Props {
   showEditPost: boolean;
@@ -28,7 +30,8 @@ export function NewPostCarousel({ showEditPost }: Props) {
   const { selectedCrop } = useSelectedCropStore();
   const { currentImageIndex, setCurrentImageIndex } = useMediaGalleryStore();
   const { previewUrls } = useNewPostStore();
-  const { selectedFilters, filterStrengths } = useEditPostStore();
+  const { selectedFilters, filterStrengths, adjustmentValues } =
+    useEditPostStore();
 
   const [originalAspectRatio, setOriginalAspectRatio] =
     useState<string>('1 / 1');
@@ -96,12 +99,36 @@ export function NewPostCarousel({ showEditPost }: Props) {
     });
   }
 
-  const filterStyle = showEditPost
-    ? getAdjustedFilterStyle(
-        selectedFilters[currentImageIndex]?.filterStyle ?? 'none',
-        filterStrengths[selectedFilters[currentImageIndex]?.name ?? ''] ?? 100,
-      )
-    : 'none';
+  const isOriginalFilter =
+    selectedFilters[currentImageIndex]?.name === 'Original';
+
+  const filterStyle =
+    showEditPost && !isOriginalFilter
+      ? getAdjustedFilterStyle(
+          selectedFilters[currentImageIndex]?.filterStyle ?? 'none',
+          filterStrengths[selectedFilters[currentImageIndex]?.name ?? ''] ??
+            100,
+        )
+      : '';
+
+  const adjustmentStyle =
+    showEditPost && adjustmentValues[currentImageIndex]
+      ? generateFilterStyle(adjustmentValues[currentImageIndex])
+      : 'none';
+
+  const combinedFilter = `${filterStyle} ${adjustmentStyle}`.trim();
+
+  function generateVignetteStyle(adjustments: Adjustment[]): string {
+    const vignetteValue =
+      adjustments.find((adj) => adj.name === 'Vignette')?.value ?? 0;
+
+    if (vignetteValue === 0) {
+      return 'none';
+    }
+
+    const opacity = vignetteValue / 100;
+    return `radial-gradient(circle, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, ${opacity}) 100%)`;
+  }
 
   return (
     <div
@@ -113,8 +140,10 @@ export function NewPostCarousel({ showEditPost }: Props) {
       onMouseLeave={onMouseUp}
     >
       <div
-        className='max-h-full max-w-full overflow-hidden'
-        style={{ aspectRatio }}
+        className='relative max-h-full max-w-full overflow-hidden'
+        style={{
+          aspectRatio,
+        }}
       >
         <img
           ref={imageRef}
@@ -123,10 +152,20 @@ export function NewPostCarousel({ showEditPost }: Props) {
           className='h-full w-full cursor-grab object-cover transition-transform duration-75 select-none active:cursor-grabbing'
           style={{
             transform: `scale(${currentScale}) translate(${currentOffset.x / currentScale}px, ${currentOffset.y / currentScale}px)`,
-            filter: filterStyle,
+            filter: combinedFilter,
           }}
           draggable={false}
         />
+        {showEditPost && adjustmentValues[currentImageIndex] && (
+          <div
+            className='pointer-events-none absolute inset-0'
+            style={{
+              background: generateVignetteStyle(
+                adjustmentValues[currentImageIndex],
+              ),
+            }}
+          />
+        )}
       </div>
 
       {previewUrls.length > 1 && (

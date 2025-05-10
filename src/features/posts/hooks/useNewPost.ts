@@ -5,13 +5,12 @@ import { useSelectedCropStore } from '@/features/posts/store/selected-crop-store
 import { useEditPostStore } from '@/features/posts/store/edit-post-store';
 
 import { filters as defaultFilters } from '@/features/posts/utils/filters';
-import { adjustments as defaultAdjustments } from '@/features/posts/utils/adjustments';
 
 export const useNewPost = () => {
   const { selectedFiles, setSelectedFiles, setPreviewUrls } = useNewPostStore();
   const { resetSelectedCrop } = useSelectedCropStore();
   const { setSelectedFilters } = useEditPostStore();
-  const { resetFilterStrengths, setShowEditPost, setAdjustmentValues } =
+  const { resetFilterStrengths, setShowEditPost, setAdjustmentValuesForAll } =
     useEditPostStore();
 
   useEffect(() => {
@@ -21,11 +20,18 @@ export const useNewPost = () => {
       setPreviewUrls(urls);
       setSelectedFilters(urls.map(() => defaultFilters[8]));
 
+      setAdjustmentValuesForAll(selectedFiles.length);
+
       return () => {
         urls.forEach((url) => URL.revokeObjectURL(url));
       };
     }
-  }, [selectedFiles]);
+  }, [
+    selectedFiles,
+    setPreviewUrls,
+    setSelectedFilters,
+    setAdjustmentValuesForAll,
+  ]);
 
   const resetStates = () => {
     const filesCount = selectedFiles.length;
@@ -36,7 +42,7 @@ export const useNewPost = () => {
     setShowEditPost(false);
     resetFilterStrengths();
     setSelectedFilters(Array(filesCount).fill(defaultFilters[8]));
-    setAdjustmentValues(defaultAdjustments);
+    setAdjustmentValuesForAll(filesCount);
   };
 
   return { resetStates };
