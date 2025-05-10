@@ -1,46 +1,28 @@
-import { Dispatch, SetStateAction } from 'react';
-
 import { Filter } from '@/features/posts/utils/filters';
-import { Adjustment } from '@/features/posts/utils/adjustments';
+
+import { useMediaGalleryStore } from '@/features/posts/store/media-gallery-store';
+import { useEditPostStore } from '@/features/posts/store/edit-post-store';
+import { useEditPost } from '../../hooks/useEditPost';
 
 interface Props {
-  showFilters: boolean;
-  setShowFilters: Dispatch<SetStateAction<boolean>>;
-  currentImageIndex: number;
   filters: Filter[];
-  setFilterAt: (index: number, filter: Filter) => void;
-  selectedFilters: Filter[];
-  filterStrengths: Record<string, number>;
-  setFilterStrengths: Dispatch<SetStateAction<Record<string, number>>>;
-  adjustmentValues: Adjustment[];
-  setAdjustmentValues: Dispatch<SetStateAction<Adjustment[]>>;
 }
 
-export const EditNewPost = ({
-  showFilters,
-  setShowFilters,
-  filters,
-  currentImageIndex,
-  selectedFilters,
-  setFilterAt,
-  filterStrengths,
-  setFilterStrengths,
-  adjustmentValues,
-  setAdjustmentValues,
-}: Props) => {
-  const updateAdjustmentValue = (name: string, newValue: number) => {
-    setAdjustmentValues((prev) =>
-      prev.map((adj) =>
-        adj.name === name ? { ...adj, value: newValue } : adj,
-      ),
-    );
-  };
+export const EditNewPost = ({ filters }: Props) => {
+  const { currentImageIndex } = useMediaGalleryStore();
+  const { setFilterAt } = useEditPost();
+  const {
+    showFilters,
+    selectedFilters,
+    setShowFilters,
+    setFilterStrength,
+    filterStrengths,
+    adjustmentValues,
+    updateAdjustmentValue,
+  } = useEditPostStore();
 
   const handleStrengthChange = (filterName: string, newStrength: number) => {
-    setFilterStrengths((prev) => ({
-      ...prev,
-      [filterName]: newStrength,
-    }));
+    setFilterStrength(filterName, newStrength);
   };
 
   return (
@@ -68,7 +50,10 @@ export const EditNewPost = ({
                 <button
                   key={filter.name}
                   className='flex cursor-pointer flex-col items-center justify-center'
-                  onClick={() => setFilterAt(currentImageIndex, filter)}
+                  onClick={() => {
+                    setFilterAt(currentImageIndex, filter);
+                    console.log(selectedFilters);
+                  }}
                 >
                   <div
                     className={`${
