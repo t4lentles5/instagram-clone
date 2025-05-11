@@ -5,6 +5,8 @@ interface NewPostState {
   setSelectedFiles: (files: File[]) => void;
   previewUrls: string[];
   setPreviewUrls: (urls: string[]) => void;
+  postState: 'crop' | 'edit-post' | 'create-post';
+  setPostState: (state: 'crop' | 'edit-post' | 'create-post') => void;
 }
 
 export const useNewPostStore = create<NewPostState>((set) => ({
@@ -12,4 +14,6 @@ export const useNewPostStore = create<NewPostState>((set) => ({
   setSelectedFiles: (files) => set({ selectedFiles: files }),
   previewUrls: [],
   setPreviewUrls: (urls) => set({ previewUrls: urls }),
+  postState: 'crop',
+  setPostState: (state) => set({ postState: state }),
 }));

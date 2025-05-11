@@ -12,11 +12,7 @@ import { LeftChevron, RightChevron } from '@/features/posts/icons';
 import { generateFilterStyle } from '../../utils/generate-adjustment-style';
 import { Adjustment } from '../../utils/adjustments';
 
-interface Props {
-  showEditPost: boolean;
-}
-
-export function NewPostCarousel({ showEditPost }: Props) {
+export function NewPostCarousel() {
   const {
     onMouseDown,
     onMouseMove,
@@ -26,6 +22,8 @@ export function NewPostCarousel({ showEditPost }: Props) {
     containerRef,
     imageRef,
   } = useCropZoom();
+
+  const { postState } = useNewPostStore();
 
   const { selectedCrop } = useSelectedCropStore();
   const { currentImageIndex, setCurrentImageIndex } = useMediaGalleryStore();
@@ -103,7 +101,7 @@ export function NewPostCarousel({ showEditPost }: Props) {
     selectedFilters[currentImageIndex]?.name === 'Original';
 
   const filterStyle =
-    showEditPost && !isOriginalFilter
+    postState !== 'crop' && !isOriginalFilter
       ? getAdjustedFilterStyle(
           selectedFilters[currentImageIndex]?.filterStyle ?? 'none',
           filterStrengths[selectedFilters[currentImageIndex]?.name ?? ''] ??
@@ -112,7 +110,7 @@ export function NewPostCarousel({ showEditPost }: Props) {
       : '';
 
   const adjustmentStyle =
-    showEditPost && adjustmentValues[currentImageIndex]
+    postState !== 'crop' && adjustmentValues[currentImageIndex]
       ? generateFilterStyle(adjustmentValues[currentImageIndex])
       : 'none';
 
@@ -156,7 +154,7 @@ export function NewPostCarousel({ showEditPost }: Props) {
           }}
           draggable={false}
         />
-        {showEditPost && adjustmentValues[currentImageIndex] && (
+        {postState !== 'crop' && adjustmentValues[currentImageIndex] && (
           <div
             className='pointer-events-none absolute inset-0'
             style={{

@@ -7,10 +7,11 @@ import { useEditPostStore } from '@/features/posts/store/edit-post-store';
 import { filters as defaultFilters } from '@/features/posts/utils/filters';
 
 export const useNewPost = () => {
-  const { selectedFiles, setSelectedFiles, setPreviewUrls } = useNewPostStore();
+  const { selectedFiles, setSelectedFiles, setPreviewUrls, setPostState } =
+    useNewPostStore();
   const { resetSelectedCrop } = useSelectedCropStore();
-  const { setSelectedFilters } = useEditPostStore();
-  const { resetFilterStrengths, setShowEditPost, setAdjustmentValuesForAll } =
+  const { setSelectedFilters, setEditState } = useEditPostStore();
+  const { resetFilterStrengths, setAdjustmentValuesForAll } =
     useEditPostStore();
 
   useEffect(() => {
@@ -39,7 +40,8 @@ export const useNewPost = () => {
     setSelectedFiles([]);
     setPreviewUrls([]);
     resetSelectedCrop();
-    setShowEditPost(false);
+    setPostState('crop');
+    setEditState('filters');
     resetFilterStrengths();
     setSelectedFilters(Array(filesCount).fill(defaultFilters[8]));
     setAdjustmentValuesForAll(filesCount);

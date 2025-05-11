@@ -7,7 +7,6 @@ import { useSelectedCropStore } from '@/features/posts/store/selected-crop-store
 import { useMediaGalleryStore } from '@/features/posts/store/media-gallery-store';
 import { useNewPostStore } from '@/features/posts/store/new-post-store';
 import { useNewPost } from '@/features/posts/hooks/useNewPost';
-import { useEditPostStore } from '@/features/posts/store/edit-post-store';
 
 import { NewPostCarousel } from '@/features/posts/components/new-post/NewPostCarousel';
 import { SelectCrop } from '@/features/posts/components/new-post/SelectCrop';
@@ -37,9 +36,14 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
   const { isZoomCropOpen, setIsZoomCropOpen } = useCropZoom();
   const { isCropOptionsOpen, setIsCropOptionsOpen } = useSelectedCropStore();
   const { isMediaGalleryOpen, setIsMediaGalleryOpen } = useMediaGalleryStore();
-  const { selectedFiles, setSelectedFiles, previewUrls } = useNewPostStore();
+  const {
+    selectedFiles,
+    setSelectedFiles,
+    previewUrls,
+    postState,
+    setPostState,
+  } = useNewPostStore();
   useNewPost();
-  const { showEditPost, setShowEditPost } = useEditPostStore();
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -126,7 +130,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     <>
       <dialog
         ref={newPostModalRef}
-        className={`${showEditPost ? 'w-[856px]' : 'w-[516px]'} bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl`}
+        className={`${postState !== 'crop' ? 'w-[856px]' : 'w-[516px]'} bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl`}
         onCancel={handleCloseAttempt}
         onClick={(e) => {
           const dialog = newPostModalRef.current;
@@ -149,34 +153,56 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
               <header className='bg-ig-primary-background text-ig-primary-text border-ig-elevated-separator flex w-full items-center rounded-t-lg border-b p-2 text-center font-semibold'>
                 <button
                   onClick={() => {
-                    if (showEditPost) {
-                      setShowEditPost(false);
-                    } else {
+                    if (postState === 'crop') {
                       if (previewUrls.length > 0) {
                         setIsModalOptionsOpen(true);
                       } else {
                         onClose();
                       }
                     }
+
+                    if (postState === 'edit-post') {
+                      setPostState('crop');
+                    }
+
+                    if (postState === 'create-post') {
+                      setPostState('edit-post');
+                    }
                   }}
                   className='active:text-ig-primary-text-pressed ml-2 cursor-pointer'
                 >
                   <BackPostIcon />
                 </button>
-                <div className='grow'>{showEditPost ? 'Edit' : 'Crop'}</div>
+                <div className='grow'>
+                  {postState === 'crop' && 'Crop'}
+                  {postState === 'edit-post' && 'Edit'}
+                  {postState === 'create-post' && 'Create new post'}
+                </div>
                 <button
-                  onClick={() => setShowEditPost(true)}
+                  onClick={() => {
+                    if (postState === 'crop') {
+                      setPostState('edit-post');
+                    }
+
+                    if (postState === 'edit-post') {
+                      setPostState('create-post');
+                    }
+
+                    if (postState === 'create-post') {
+                      //todo!: function not implemented
+                    }
+                  }}
                   className='text-ig-primary-button hover:text-ig-link active:text-ig-primary-button-pressed mr-2 cursor-pointer text-sm'
                 >
-                  Next
+                  {postState === 'create-post' ? 'Share' : 'Next'}
                 </button>
               </header>
 
               <div className='bg-ig-secondary-background flex'>
                 <div className='relative aspect-square h-full w-[516px]'>
-                  <NewPostCarousel showEditPost={showEditPost} />
+                  <NewPostCarousel />
 
-                  {!showEditPost && (
+                  {postState === 'crop' && (
                     <div className='absolute bottom-0 flex w-full justify-between p-4'>
                       <div className='flex gap-3'>
                         <SelectCrop />
@@ -189,7 +215,9 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                   )}
                 </div>
 
-                {showEditPost && <EditNewPost />}
+                {postState === 'edit-post' && <EditNewPost />}
+
+                {postState === 'create-post' && <h1>create post</h1>}
               </div>
             </>
           ) : (

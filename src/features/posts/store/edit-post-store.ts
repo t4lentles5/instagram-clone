@@ -10,12 +10,9 @@ import {
   adjustments as defaultAdjustments,
 } from '@/features/posts/utils/adjustments';
 
-interface FilterState {
-  showEditPost: boolean;
-  setShowEditPost: (open: boolean) => void;
-
-  showFilters: boolean;
-  setShowFilters: (open: boolean) => void;
+interface EditPostState {
+  editState: 'filters' | 'adjustments';
+  setEditState: (state: 'filters' | 'adjustments') => void;
 
   selectedFilters: Filter[];
   setSelectedFilters: (filters: Filter[]) => void;
@@ -35,12 +32,9 @@ interface FilterState {
   resetAdjustmentValue: (imageIndex: number, name: string) => void;
 }
 
-export const useEditPostStore = create<FilterState>((set) => ({
-  showEditPost: false,
-  setShowEditPost: (open) => set({ showEditPost: open }),
-
-  showFilters: true,
-  setShowFilters: (open) => set({ showFilters: open }),
+export const useEditPostStore = create<EditPostState>((set) => ({
+  editState: 'filters',
+  setEditState: (state) => set({ editState: state }),
 
   selectedFilters: [],
   setSelectedFilters: (filters) => set({ selectedFilters: filters }),
