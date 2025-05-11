@@ -20,7 +20,7 @@ import {
 export const SidebarMoreOptions = () => {
   const { isSidebarCollapsed } = useSidebarStore();
   const { isDarkMode, toggleTheme } = useThemeStore();
-  const { resetUserId } = useUserStore();
+  const { resetAuthenticatedUser } = useUserStore();
 
   const [open, setOpen] = useState(false);
   const [switchAppearanceOpen, setSwitchAppearanceOpen] = useState(false);
@@ -39,7 +39,7 @@ export const SidebarMoreOptions = () => {
   };
 
   const handleLogout = async () => {
-    resetUserId();
+    resetAuthenticatedUser();
     await logout();
   };
 

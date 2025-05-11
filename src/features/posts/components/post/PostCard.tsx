@@ -29,7 +29,7 @@ interface Props {
 }
 
 export const PostCard = ({ post }: Props) => {
-  const { userId } = useUserStore();
+  const { authenticatedUser } = useUserStore();
   const { openModal, Modal } = useLikesModal();
 
   const { aspect_ratio, first_image_dimensions } = post;
@@ -38,7 +38,9 @@ export const PostCard = ({ post }: Props) => {
     first_image_dimensions!,
   );
 
-  const hasLiked = post.likes.some((like) => like.user.id === userId);
+  const hasLiked = post.likes.some(
+    (like) => like.user.id === authenticatedUser.id,
+  );
 
   return (
     <>
@@ -90,7 +92,7 @@ export const PostCard = ({ post }: Props) => {
           style={{ aspectRatio: aspect_ratio_image }}
           onDoubleClick={() => {
             if (!hasLiked) {
-              likePost(post.id, userId);
+              likePost(post.id, authenticatedUser.id);
             }
           }}
         >
@@ -100,14 +102,14 @@ export const PostCard = ({ post }: Props) => {
         <div className='flex w-full flex-col px-4 min-[480px]:px-0'>
           <section className='flex justify-between py-1'>
             <div className='flex'>
-              <LikeButton post={post} userId={userId} />
+              <LikeButton post={post} userId={authenticatedUser.id} />
               <Link
                 href={`/p/${post.id}`}
                 className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer p-2'
               >
                 <CommentIcon type={'comment'} size={24} />
               </Link>
-              {userId !== post.author.id && (
+              {authenticatedUser.id !== post.author.id && (
                 <button className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer p-2'>
                   <ShareIcon />
                 </button>
@@ -160,7 +162,7 @@ export const PostCard = ({ post }: Props) => {
             </section>
           )}
 
-          <CommentSection postId={post.id} userId={userId} />
+          <CommentSection postId={post.id} userId={authenticatedUser.id} />
         </div>
       </article>
     </>

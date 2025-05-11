@@ -17,6 +17,7 @@ import { CloseModalOptions } from '@/features/posts/components/new-post/CloseMod
 
 import { NewPostMediaIcon } from '@/core/shared/icons';
 import { BackPostIcon } from '@/features/posts/icons';
+import { CreateNewPost } from './CreateNewPost';
 
 interface Props {
   isOpen: boolean;
@@ -24,7 +25,7 @@ interface Props {
 }
 
 export const NewPostModal = ({ isOpen, onClose }: Props) => {
-  const { userId } = useUserStore();
+  const { authenticatedUser } = useUserStore();
   const {
     newPostModalRef,
     modalOptionsRef,
@@ -58,7 +59,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
         formData.append('images', file);
       });
 
-      formData.append('userId', userId);
+      formData.append('userId', authenticatedUser.id);
 
       setSelectedFiles([...selectedFiles, ...filesArray]);
 
@@ -217,7 +218,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
 
                 {postState === 'edit-post' && <EditNewPost />}
 
-                {postState === 'create-post' && <h1>create post</h1>}
+                {postState === 'create-post' && <CreateNewPost />}
               </div>
             </>
           ) : (

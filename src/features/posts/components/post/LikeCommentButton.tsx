@@ -14,16 +14,20 @@ interface Props {
 }
 
 export const LikeCommentButton = ({ comment }: Props) => {
-  const { userId } = useUserStore();
+  const { authenticatedUser } = useUserStore();
 
-  const hasLiked = comment.commentLike.some((like) => like.userId === userId);
-  const like = comment.commentLike.find((like) => like.userId === userId);
+  const hasLiked = comment.commentLike.some(
+    (like) => like.userId === authenticatedUser.id,
+  );
+  const like = comment.commentLike.find(
+    (like) => like.userId === authenticatedUser.id,
+  );
 
   const toggleLike = () => {
     if (hasLiked) {
       dislikeComment(like!.id, comment.postId);
     } else {
-      likeComment(userId, comment.id, comment.postId);
+      likeComment(authenticatedUser.id, comment.id, comment.postId);
     }
   };
 

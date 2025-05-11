@@ -65,7 +65,7 @@ export const PostModal = ({ post }: Props) => {
     };
   }, []);
 
-  const { userId } = useUserStore();
+  const { authenticatedUser } = useUserStore();
   const { openModal, Modal } = useLikesModal();
   const router = useRouter();
 
@@ -80,7 +80,9 @@ export const PostModal = ({ post }: Props) => {
     first_image_dimensions!,
   );
 
-  const hasLiked = post.likes.some((like) => like.user.id === userId);
+  const hasLiked = post.likes.some(
+    (like) => like.user.id === authenticatedUser.id,
+  );
 
   return (
     <>
@@ -107,7 +109,7 @@ export const PostModal = ({ post }: Props) => {
             style={{ aspectRatio: aspect_ratio_image }}
             onDoubleClick={() => {
               if (!hasLiked) {
-                likePost(post.id, userId);
+                likePost(post.id, authenticatedUser.id);
               }
             }}
           >
@@ -158,7 +160,7 @@ export const PostModal = ({ post }: Props) => {
             <div className='border-post-separator border-b'>
               <section className='flex justify-between px-4 py-[6px]'>
                 <div className='flex'>
-                  <LikeButton post={post} userId={userId} />
+                  <LikeButton post={post} userId={authenticatedUser.id} />
                   <button
                     className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer p-2'
                     onClick={() => {
@@ -167,7 +169,7 @@ export const PostModal = ({ post }: Props) => {
                   >
                     <CommentIcon type={'comment'} size={24} />
                   </button>
-                  {userId !== post.author.id && (
+                  {authenticatedUser.id !== post.author.id && (
                     <button className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer p-2'>
                       <ShareIcon />
                     </button>
@@ -184,7 +186,7 @@ export const PostModal = ({ post }: Props) => {
                     Be te first to{' '}
                     <button
                       className='hover:text-ig-secondary-button-hover active:text-ig-secondary-button-pressed text-ig-secondary-button cursor-pointer font-semibold'
-                      onClick={() => likePost(post.id, userId)}
+                      onClick={() => likePost(post.id, authenticatedUser.id)}
                     >
                       like this
                     </button>
@@ -219,7 +221,7 @@ export const PostModal = ({ post }: Props) => {
 
               <CommentForm
                 postId={post.id}
-                userId={userId}
+                userId={authenticatedUser.id}
                 ref={textareaRef}
                 replyToCommentId={replyToCommentId}
                 setReplyToCommentId={setReplyToCommentId}

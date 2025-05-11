@@ -15,7 +15,7 @@ export interface LoginFormInputs {
 export const LoginForm = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const { setUserId } = useUserStore();
+  const { setAuthenticatedUser } = useUserStore();
 
   const {
     register,
@@ -46,8 +46,8 @@ export const LoginForm = () => {
       return;
     }
 
-    const userId = resp.user!.id;
-    setUserId(userId);
+    const user = resp.user!;
+    setAuthenticatedUser(user);
 
     router.push('/');
   };

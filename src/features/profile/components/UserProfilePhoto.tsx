@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const UserProfilePhoto = ({ user }: Props) => {
-  const { userId } = useUserStore();
+  const { authenticatedUser } = useUserStore();
   const {
     fileInputRef,
     isOpen,
@@ -26,7 +26,7 @@ export const UserProfilePhoto = ({ user }: Props) => {
     handleRemovePhoto,
   } = useProfilePhoto(user);
 
-  const isOwner = user.id === userId;
+  const isOwner = user.id === authenticatedUser.id;
 
   return (
     <div className='w-full max-w-[120px] md:max-w-[284px]'>
