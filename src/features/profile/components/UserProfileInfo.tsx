@@ -1,3 +1,5 @@
+'use client';
+
 import { User } from '@/core/shared/interfaces/user.interface';
 
 import { UserProfilePhoto } from '@/features/profile/components/UserProfilePhoto';
@@ -5,15 +7,16 @@ import { UserProfilePhoto } from '@/features/profile/components/UserProfilePhoto
 import { OptionsIcon } from '@/core/shared/icons';
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
 import { follow } from '@/features/suggestions/actions/follow';
-import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
+import { useUserStore } from '@/core/store/user/user-store';
+import { DownChevronIcon } from '@/features/posts/icons';
 
 interface Props {
   user: User;
   isAuthenticatedUser: boolean;
 }
 
-export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
-  const authenticatedUser = await getAuthenticatedUser();
+export const UserProfileInfo = ({ user, isAuthenticatedUser }: Props) => {
+  const { authenticatedUser } = useUserStore();
 
   const isFollowing = user.followers.some(
     (follower) => follower.followerId === authenticatedUser.id,
@@ -40,8 +43,11 @@ export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
                   ) : (
                     <>
                       {isFollowing ? (
-                        <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed cursor-pointer rounded-lg px-5 py-[6px] text-sm font-semibold transition-colors duration-200'>
-                          Following
+                        <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed flex cursor-pointer items-center justify-center gap-1 rounded-lg px-5 py-[6px] text-sm font-semibold transition-colors duration-200'>
+                          <span>Following</span>
+                          <span>
+                            <DownChevronIcon size={12} />
+                          </span>
                         </button>
                       ) : (
                         <button
@@ -114,9 +120,23 @@ export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
             </button>
           ) : (
             <>
-              <button className='bg-ig-primary-button hover:bg-ig-primary-button-hover active:bg-ig-primary-button-pressed text-web-always-white w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold transition-colors duration-200'>
-                Follow
-              </button>
+              {isFollowing ? (
+                <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed flex w-full cursor-pointer items-center justify-center gap-1 rounded-lg px-5 py-[6px] text-sm font-semibold transition-colors duration-200'>
+                  <span>Following</span>
+                  <span>
+                    <DownChevronIcon size={12} />
+                  </span>
+                </button>
+              ) : (
+                <button
+                  className='bg-ig-primary-button hover:bg-ig-primary-button-hover active:bg-ig-primary-button-pressed text-web-always-white w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold transition-colors duration-200'
+                  onClick={async () => {
+                    await follow(user.id);
+                  }}
+                >
+                  Follow
+                </button>
+              )}
 
               <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed w-full cursor-pointer rounded-lg py-[6px] text-sm font-semibold transition-colors duration-200'>
                 Message

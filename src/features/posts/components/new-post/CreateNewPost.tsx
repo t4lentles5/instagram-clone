@@ -68,7 +68,7 @@ export const CreateNewPost = ({ register, watch }: Props) => {
         </div>
         <div className='flex h-11 cursor-pointer items-center justify-between'>
           <span>Advanced Settings</span>
-          <DownChevronIcon />
+          <DownChevronIcon size={16} />
         </div>
         <hr className='border-ig-separator w-full border-t' />
       </section>
