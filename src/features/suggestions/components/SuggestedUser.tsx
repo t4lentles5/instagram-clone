@@ -3,15 +3,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-import { User } from '@/core/shared/interfaces/user.interface';
+import { RecommendedUser } from '@/features/suggestions/interfaces/recommended-user.interface';
 
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
 
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import { CameraCircleIcon } from '@/features/posts/icons';
+import { follow } from '../actions/follow';
 
 interface Props {
-  user: User;
+  user: RecommendedUser;
 }
 
 export const SuggestedUser = ({ user }: Props) => {
@@ -26,8 +27,8 @@ export const SuggestedUser = ({ user }: Props) => {
           <Link
             href={`/${user.username}`}
             onMouseEnter={() => {
-              setIsHovered(true);
-              setIsProfilePhotoHovered(true);
+              setIsHovered(false);
+              setIsProfilePhotoHovered(false);
             }}
             onMouseLeave={() => {
               setIsHovered(false);
@@ -53,8 +54,8 @@ export const SuggestedUser = ({ user }: Props) => {
               href={`/${user.username}`}
               className='max-w-36 truncate overflow-hidden text-sm leading-[18px] font-semibold'
               onMouseEnter={() => {
-                setIsHovered(true);
-                setIsUsernameHovered(true);
+                setIsHovered(false);
+                setIsUsernameHovered(false);
               }}
               onMouseLeave={() => {
                 setIsHovered(false);
@@ -63,7 +64,9 @@ export const SuggestedUser = ({ user }: Props) => {
             >
               {user.username}
             </Link>
-            <span className='text-secondary text-xs'>Suggested for you</span>
+            <span className='text-ig-secondary-text text-xs'>
+              Suggested for you
+            </span>
           </div>
 
           {isHovered && (
@@ -72,11 +75,11 @@ export const SuggestedUser = ({ user }: Props) => {
                 isProfilePhotoHovered && 'top-10 -right-[80px]'
               } shadow-foregroundSecondary bg-background absolute z-10 w-[365px] rounded-lg p-4 shadow-sm`}
               onMouseEnter={() => {
-                setIsHovered(true);
+                setIsHovered(false);
                 if (isUsernameHovered) {
-                  setIsUsernameHovered(true);
+                  setIsUsernameHovered(false);
                 } else {
-                  setIsProfilePhotoHovered(true);
+                  setIsProfilePhotoHovered(false);
                 }
               }}
               onMouseLeave={() => {
@@ -148,7 +151,12 @@ export const SuggestedUser = ({ user }: Props) => {
             </div>
           )}
         </div>
-        <button className='text-blue hover:text-blue-hover text-xs font-semibold'>
+        <button
+          className='text-ig-primary-button hover:text-ig-link active:text-ig-primary-button-pressed cursor-pointer text-xs font-semibold'
+          onClick={async () => {
+            await follow(user.id);
+          }}
+        >
           Follow
         </button>
       </div>

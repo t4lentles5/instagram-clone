@@ -64,13 +64,13 @@ export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
                 </span>
               </button>
               <button className='active:text-ig-primary-text-pressed px-2 font-bold'>
-                0{' '}
+                {user.followers.length}{' '}
                 <span className='text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer font-normal'>
                   followers
                 </span>
               </button>
               <button className='active:text-ig-primary-text-pressed px-2 font-bold'>
-                0{' '}
+                {user.following.length}{' '}
                 <span className='text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer font-normal'>
                   following
                 </span>
