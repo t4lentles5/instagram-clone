@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { promises as fs } from 'fs';
+import mime from 'mime';
 import path from 'path';
 import bcrypt from 'bcrypt';
 import sharp from 'sharp';
@@ -105,7 +106,10 @@ export async function POST() {
         try {
           await fs.access(filePath);
           const fileBuffer = await fs.readFile(filePath);
-          const base64Image = fileBuffer.toString('base64');
+
+          const mimeType = mime.getType(filePath);
+          const base64Body = fileBuffer.toString('base64');
+          const base64Image = `data:${mimeType};base64,${base64Body}`;
 
           const uploadData = await createPost(base64Image, databasePost.id);
 

@@ -1,16 +1,17 @@
 import { EmojiIcon } from '@/core/shared/icons';
 import { useUserStore } from '@/core/store/user/user-store';
-import { useForm } from 'react-hook-form';
-import { AddCollaboratorsIcon, DownChevronIcon } from '../../icons';
 
-interface PostCaption {
-  caption: string;
+import { AddCollaboratorsIcon, DownChevronIcon } from '../../icons';
+import { UseFormRegister, UseFormWatch } from 'react-hook-form';
+import { PostCaption } from './NewPostModal';
+
+interface Props {
+  register: UseFormRegister<PostCaption>;
+  watch: UseFormWatch<PostCaption>;
 }
 
-export const CreateNewPost = () => {
+export const CreateNewPost = ({ register, watch }: Props) => {
   const { authenticatedUser } = useUserStore();
-
-  const { register, watch } = useForm<PostCaption>();
 
   const max = 2200;
   const caption = watch('caption') ?? '';

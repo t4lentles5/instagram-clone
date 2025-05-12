@@ -8,37 +8,17 @@ export const generateFilterStyle = (adjustments: Adjustment[]) => {
   const getValue = (name: string) =>
     adjustments.find((adj) => adj.name === name)?.value ?? 0;
 
-  const filters: string[] = [];
+  const brightness = mapRange(getValue('Brightness'), 50, 150);
+  const contrast = mapRange(getValue('Contrast'), 50, 150);
+  const saturate = mapRange(getValue('Saturation'), 0, 200);
+  const sepia = mapRange(getValue('Fade'), 0, 50);
+  const hueRotate = mapRange(getValue('Temperature'), -100, 100);
 
-  const brightnessVal = getValue('Brightness');
-  if (brightnessVal !== 0) {
-    const mapped = mapRange(brightnessVal, 100, 200);
-    filters.push(`brightness(${mapped}%)`);
-  }
-
-  const contrastVal = getValue('Contrast');
-  if (contrastVal !== 0) {
-    const mapped = mapRange(contrastVal, 100, 200);
-    filters.push(`contrast(${mapped}%)`);
-  }
-
-  const saturationVal = getValue('Saturation');
-  if (saturationVal !== 0) {
-    const mapped = mapRange(saturationVal, 100, 200);
-    filters.push(`saturate(${mapped}%)`);
-  }
-
-  const fadeVal = getValue('Fade');
-  if (fadeVal !== 0) {
-    const mapped = mapRange(fadeVal, 0, 100);
-    filters.push(`sepia(${mapped}%)`);
-  }
-
-  const tempVal = getValue('Temperature');
-  if (tempVal !== 0) {
-    const mapped = mapRange(tempVal, -100, 100);
-    filters.push(`hue-rotate(${mapped}deg)`);
-  }
-
-  return filters.join(' ');
+  return `
+    brightness(${brightness}%)
+    contrast(${contrast}%)
+    saturate(${saturate}%)
+    sepia(${sepia}%)
+    hue-rotate(${hueRotate}deg)
+  `.trim();
 };

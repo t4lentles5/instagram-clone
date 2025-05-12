@@ -16,7 +16,7 @@ export const Adjustments = () => {
             <span>{adjustment.name}</span>
             {adjustment.value !== 0 && (
               <button
-                className='text-ig-primary-button hover:text-ig-link active:text-ig-link-pressed invisible text-sm font-bold group-hover:visible'
+                className='text-ig-primary-button hover:text-ig-link active:text-ig-link-pressed invisible cursor-pointer text-sm font-bold group-hover:visible'
                 onClick={() => {
                   resetAdjustmentValue(currentImageIndex, adjustment.name);
                 }}

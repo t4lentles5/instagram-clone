@@ -18,13 +18,20 @@ import { CloseModalOptions } from '@/features/posts/components/new-post/CloseMod
 import { NewPostMediaIcon } from '@/core/shared/icons';
 import { BackPostIcon } from '@/features/posts/icons';
 import { CreateNewPost } from './CreateNewPost';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 
+export interface PostCaption {
+  caption: string;
+}
+
 export const NewPostModal = ({ isOpen, onClose }: Props) => {
+  const router = useRouter();
   const { authenticatedUser } = useUserStore();
   const {
     newPostModalRef,
@@ -35,6 +42,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
   } = useNewPostModal();
 
   const { isZoomCropOpen, setIsZoomCropOpen } = useCropZoom();
+  const { selectedCrop } = useSelectedCropStore();
   const { isCropOptionsOpen, setIsCropOptionsOpen } = useSelectedCropStore();
   const { isMediaGalleryOpen, setIsMediaGalleryOpen } = useMediaGalleryStore();
   const {
@@ -44,26 +52,33 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
     postState,
     setPostState,
   } = useNewPostStore();
-  useNewPost();
+  const { resetStates } = useNewPost();
 
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { register, watch, reset } = useForm<PostCaption>();
+
+  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
 
     const maxFiles = 10;
     const filesArray = Array.from(files).slice(0, maxFiles);
+    setSelectedFiles([...selectedFiles, ...filesArray]);
+    e.target.value = '';
+  };
+
+  const uploadPost = async () => {
+    if (selectedFiles.length === 0) return;
 
     try {
       const formData = new FormData();
-      filesArray.forEach((file) => {
+      selectedFiles.forEach((file) => {
         formData.append('images', file);
       });
 
+      const caption = watch('caption');
+      formData.append('caption', caption);
       formData.append('userId', authenticatedUser.id);
-
-      setSelectedFiles([...selectedFiles, ...filesArray]);
-
-      e.target.value = '';
+      formData.append('aspect_ratio', selectedCrop);
 
       const res = await fetch('/api/posts/create-post', {
         method: 'POST',
@@ -71,10 +86,15 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
       });
 
       if (!res.ok) {
-        throw new Error('Failed to upload images');
+        throw new Error('Failed to upload post');
       }
+
+      onClose();
+      reset();
+      resetStates();
+      router.refresh();
     } catch (error) {
-      console.error('Error al preparar la subida de imágenes:', error);
+      console.error('Error al crear el post:', error);
     }
   };
 
@@ -190,7 +210,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                     }
 
                     if (postState === 'create-post') {
-                      //todo!: function not implemented
+                      uploadPost();
                     }
                   }}
                   className='text-ig-primary-button hover:text-ig-link active:text-ig-primary-button-pressed mr-2 cursor-pointer text-sm'
@@ -218,7 +238,9 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
 
                 {postState === 'edit-post' && <EditNewPost />}
 
-                {postState === 'create-post' && <CreateNewPost />}
+                {postState === 'create-post' && (
+                  <CreateNewPost register={register} watch={watch} />
+                )}
               </div>
             </>
           ) : (
