@@ -1,5 +1,3 @@
-import { User } from '@/core/shared/interfaces/user.interface';
-
 import { NotificationsButton } from '@/features/sidebar/components/NotificationsButton';
 import { SearchButton } from '@/features/sidebar/components/SearchButton';
 import { SidebarNavItem } from '@/features/sidebar/components/SidebarNavItem';
@@ -13,11 +11,7 @@ import {
   ReelsSidebarIcon,
 } from '@/features/sidebar/icons';
 
-interface Props {
-  user: User;
-}
-
-export const SidebarNav = ({ user }: Props) => {
+export const SidebarNav = () => {
   return (
     <nav className='border-ig-separator bg-ig-primary-background flex justify-evenly border-t md:flex-col md:border-0'>
       <SidebarNavItem icon={HomeSidebarIcon} label='Home' href='/' />
@@ -42,7 +36,7 @@ export const SidebarNav = ({ user }: Props) => {
 
       <NewPostButton />
 
-      <SidebarNavItemProfile user={user} />
+      <SidebarNavItemProfile />
     </nav>
   );
 };

@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 
-import { User } from '@/core/shared/interfaces/user.interface';
 import { useSidebarStore } from '@/features/sidebar/sidebar-store';
 
 import { SidebarMoreOptions } from '@/features/sidebar/components/SidebarMoreOptions';
@@ -10,11 +9,7 @@ import { SidebarNav } from '@/features/sidebar/components/SidebarNav';
 
 import { InstagramIcon, InstagramSmallIcon } from '@/features/sidebar/icons';
 
-interface Props {
-  user: User;
-}
-
-export const Sidebar = ({ user }: Props) => {
+export const Sidebar = () => {
   const { isSidebarCollapsed } = useSidebarStore();
 
   return (
@@ -45,7 +40,7 @@ export const Sidebar = ({ user }: Props) => {
         </div>
 
         <div className='flex h-full flex-col justify-between'>
-          <SidebarNav user={user} />
+          <SidebarNav />
           <SidebarMoreOptions />
         </div>
       </div>

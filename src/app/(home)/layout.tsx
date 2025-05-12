@@ -17,7 +17,7 @@ export default async function Layout({
 
   return (
     <div className='flex min-h-screen flex-col md:grid md:grid-cols-[73px_1fr] xl:grid-cols-[244px_1fr]'>
-      <Sidebar user={user} />
+      <Sidebar />
 
       <div className='flex grow flex-col items-center'>{children}</div>
       {modal}
