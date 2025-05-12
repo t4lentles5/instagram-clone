@@ -1,20 +1,19 @@
-'use client';
-
 import { User } from '@/core/shared/interfaces/user.interface';
 
 import { UserProfilePhoto } from '@/features/profile/components/UserProfilePhoto';
 
 import { OptionsIcon } from '@/core/shared/icons';
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
-import { useUserStore } from '@/core/store/user/user-store';
 import { follow } from '@/features/suggestions/actions/follow';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
+
 interface Props {
   user: User;
   isAuthenticatedUser: boolean;
 }
 
-export const UserProfileInfo = ({ user, isAuthenticatedUser }: Props) => {
-  const { authenticatedUser } = useUserStore();
+export const UserProfileInfo = async ({ user, isAuthenticatedUser }: Props) => {
+  const authenticatedUser = await getAuthenticatedUser();
 
   const isFollowing = user.followers.some(
     (follower) => follower.followerId === authenticatedUser.id,
