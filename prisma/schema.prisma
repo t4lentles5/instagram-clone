@@ -22,6 +22,9 @@ model User {
   like        Like[]
   comment     Comment[]
   commentLike CommentLike[]
+
+  followers Follow[] @relation("follower")
+  following Follow[] @relation("following")
 }
 
 enum Aspect_ratio {
@@ -97,4 +100,17 @@ model CommentLike {
   createdAt DateTime @default(now())
 
   @@unique([userId, commentId])
+}
+
+model Follow {
+  id          String   @id @default(cuid())
+  follower    User     @relation("follower", fields: [followerId], references: [id])
+  followerId  String
+  following   User     @relation("following", fields: [followingId], references: [id])
+  followingId String
+  createdAt   DateTime @default(now())
+
+  @@unique([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
 }
