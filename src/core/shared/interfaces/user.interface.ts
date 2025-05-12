@@ -8,6 +8,9 @@ export interface User {
   bio: string | null;
   followers: Follow[];
   following: Follow[];
+  _count: {
+    posts: number;
+  };
 }
 
 export interface Follow {

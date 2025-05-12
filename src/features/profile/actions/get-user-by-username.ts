@@ -15,12 +15,15 @@ export const getUserByUsername = async (username: string) => {
       profile_photo: true,
       profile_photo_id: true,
       bio: true,
+      _count: {
+        select: {
+          posts: true,
+        },
+      },
       followers: true,
       following: true,
     },
   });
-
-  console.log(user);
 
   if (!user) {
     notFound();

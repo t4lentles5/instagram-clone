@@ -11,8 +11,6 @@ interface Props {
 }
 
 export const UserStories = ({ stories, user }: Props) => {
-  console.log(stories);
-
   return (
     <>
       <div className='mb-6 flex w-full gap-[10px] py-2'>
