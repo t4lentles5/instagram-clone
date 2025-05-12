@@ -1,15 +1,18 @@
 import Link from 'next/link';
 
-import { User } from '@/core/shared/interfaces/user.interface';
+import { Story } from '../interfaces/story.interface';
 
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
+import { AuthenticatedUser } from '@/features/auth/interfaces/authenticated-user.interface';
 
 interface Props {
-  usersStories: User[];
-  user: User;
+  stories: Story[];
+  user: AuthenticatedUser;
 }
 
-export const UserStories = ({ usersStories, user }: Props) => {
+export const UserStories = ({ stories, user }: Props) => {
+  console.log(stories);
+
   return (
     <>
       <div className='mb-6 flex w-full gap-[10px] py-2'>
@@ -41,32 +44,33 @@ export const UserStories = ({ usersStories, user }: Props) => {
           </span>
         </Link>
 
-        {usersStories.map((user) => (
-          <Link
-            href={`/stories/${user.username}`}
-            key={user.id}
-            className='flex flex-col items-center justify-center'
-          >
-            <div className='relative px-1 pb-1'>
-              <ProfilePhoto
-                profile_photo={user.profile_photo}
-                imageSize={{
-                  size: 'w-14',
-                }}
-                backgroundDivSize={{
-                  size: 'w-[60px]',
-                }}
-                borderDivSize={{
-                  size: 'w-[64px]',
-                }}
-              />
-            </div>
+        {stories &&
+          stories.map((story) => (
+            <Link
+              href={`/stories/${story.following.username}`}
+              key={story.id}
+              className='flex flex-col items-center justify-center'
+            >
+              <div className='relative px-1 pb-1'>
+                <ProfilePhoto
+                  profile_photo={story.following.profile_photo}
+                  imageSize={{
+                    size: 'w-14',
+                  }}
+                  backgroundDivSize={{
+                    size: 'w-[60px]',
+                  }}
+                  borderDivSize={{
+                    size: 'w-[64px]',
+                  }}
+                />
+              </div>
 
-            <span className='text-primary max-w-14 truncate overflow-hidden text-xs'>
-              {user.username}
-            </span>
-          </Link>
-        ))}
+              <span className='text-primary max-w-14 truncate overflow-hidden text-xs'>
+                {story.following.username}
+              </span>
+            </Link>
+          ))}
       </div>
     </>
   );
