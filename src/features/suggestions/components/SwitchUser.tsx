@@ -1,11 +1,10 @@
 import Link from 'next/link';
 
-import { User } from '@/core/shared/interfaces/user.interface';
-
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
+import { AuthenticatedUser } from '@/features/auth/interfaces/authenticated-user.interface';
 
 interface Props {
-  user: User;
+  user: AuthenticatedUser;
 }
 
 export const SwitchUser = ({ user }: Props) => {
@@ -13,19 +12,20 @@ export const SwitchUser = ({ user }: Props) => {
     <>
       <div className='mb-5 flex justify-between px-4'>
         <div className='flex gap-3'>
-          <ProfilePhoto
-            profile_photo={user.profile_photo}
-            imageSize={{
-              size: 'w-[44px]',
-            }}
-            backgroundDivSize={{
-              size: 'w-[48px]',
-            }}
-            borderDivSize={{
-              size: 'w-[52px]',
-            }}
-          />
-
+          <Link href={`/${user.username}`}>
+            <ProfilePhoto
+              profile_photo={user.profile_photo}
+              imageSize={{
+                size: 'w-[44px]',
+              }}
+              backgroundDivSize={{
+                size: 'w-[48px]',
+              }}
+              borderDivSize={{
+                size: 'w-[52px]',
+              }}
+            />
+          </Link>
           <div className='flex flex-col justify-center'>
             <Link
               href={`/${user.username}`}
@@ -33,13 +33,13 @@ export const SwitchUser = ({ user }: Props) => {
             >
               {user.username}
             </Link>
-            <span className='text-secondary text-sm leading-[18px]'>
+            <span className='text-ig-secondary-text text-sm leading-[18px]'>
               {user.fullname}
             </span>
           </div>
         </div>
 
-        <button className='text-blue hover:text-blue-hover text-xs font-semibold'>
+        <button className='text-ig-primary-button hover:text-ig-link active:text-ig-primary-button-pressed cursor-pointer text-xs font-semibold'>
           Switch
         </button>
       </div>
