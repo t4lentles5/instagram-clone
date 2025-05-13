@@ -19,5 +19,5 @@ export async function follow(followingId: string) {
     },
   });
 
-  revalidateTag('recommended-users');
+  revalidateTag('follow');
 }

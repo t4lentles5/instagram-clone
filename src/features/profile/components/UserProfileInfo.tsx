@@ -6,7 +6,8 @@ import { UserProfilePhoto } from '@/features/profile/components/UserProfilePhoto
 
 import { OptionsIcon } from '@/core/shared/icons';
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
-import { follow } from '@/features/suggestions/actions/follow';
+import { follow } from '@/core/shared/actions/follow';
+import { unfollow } from '@/core/shared/actions/unfollow';
 import { useUserStore } from '@/core/store/user/user-store';
 import { DownChevronIcon } from '@/features/posts/icons';
 
@@ -43,7 +44,12 @@ export const UserProfileInfo = ({ user, isAuthenticatedUser }: Props) => {
                   ) : (
                     <>
                       {isFollowing ? (
-                        <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed flex cursor-pointer items-center justify-center gap-1 rounded-lg px-5 py-[6px] text-sm font-semibold transition-colors duration-200'>
+                        <button
+                          className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed flex cursor-pointer items-center justify-center gap-1 rounded-lg px-5 py-[6px] text-sm font-semibold transition-colors duration-200'
+                          onClick={async () => {
+                            await unfollow(user.id);
+                          }}
+                        >
                           <span>Following</span>
                           <span>
                             <DownChevronIcon size={12} />
@@ -121,7 +127,12 @@ export const UserProfileInfo = ({ user, isAuthenticatedUser }: Props) => {
           ) : (
             <>
               {isFollowing ? (
-                <button className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed flex w-full cursor-pointer items-center justify-center gap-1 rounded-lg px-5 py-[6px] text-sm font-semibold transition-colors duration-200'>
+                <button
+                  className='bg-ig-secondary-button-background hover:bg-ig-secondary-button-background-hover active:bg-ig-secondary-button-background-pressed flex w-full cursor-pointer items-center justify-center gap-1 rounded-lg px-5 py-[6px] text-sm font-semibold transition-colors duration-200'
+                  onClick={async () => {
+                    await unfollow(user.id);
+                  }}
+                >
                   <span>Following</span>
                   <span>
                     <DownChevronIcon size={12} />

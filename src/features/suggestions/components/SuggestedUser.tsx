@@ -9,7 +9,7 @@ import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIco
 
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import { CameraCircleIcon } from '@/features/posts/icons';
-import { follow } from '../actions/follow';
+import { follow } from '../../../core/shared/actions/follow';
 
 interface Props {
   user: RecommendedUser;
