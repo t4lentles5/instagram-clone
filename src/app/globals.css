@@ -20,6 +20,15 @@
   --color-ig-secondary-button-background-pressed: var(
     --ig-secondary-button-background-pressed
   );
+  --color-ig-secondary-modal-button-background: var(
+    --ig-secondary-modal-button-background
+  );
+  --color-ig-secondary-modal-button-background-hover: var(
+    --ig-secondary-modal-button-background-hover
+  );
+  --color-ig-secondary-modal-button-background-pressed: var(
+    --ig-secondary-modal-button-background-pressed
+  );
   --color-ig-secondary-button: var(--ig-secondary-button);
   --color-ig-secondary-button-hover: var(--ig-secondary-button-hover);
   --color-ig-secondary-button-pressed: var(--ig-secondary-button-pressed);
@@ -72,6 +81,9 @@
     --ig-secondary-button-background: rgb(239, 239, 239);
     --ig-secondary-button-background-hover: rgb(219, 219, 219);
     --ig-secondary-button-background-pressed: rgb(239, 239, 239, 0.5);
+    --ig-secondary-modal-button-background: rgb(239, 239, 239);
+    --ig-secondary-modal-button-background-hover: rgb(219, 219, 219);
+    --ig-secondary-modal-button-background-pressed: rgb(219, 219, 219, 0.7);
     --ig-secondary-button: rgb(38, 38, 38);
     --ig-secondary-button-hover: rgb(38, 38, 38, 0.5);
     --ig-secondary-button-pressed: rgb(38, 38, 38, 0.7);
@@ -108,6 +120,9 @@
     --ig-secondary-button-background: rgb(54, 54, 54);
     --ig-secondary-button-background-hover: rgb(38, 38, 38);
     --ig-secondary-button-background-pressed: rgb(54, 54, 54, 0.5);
+    --ig-secondary-modal-button-background: rgb(85, 85, 85, 0.7);
+    --ig-secondary-modal-button-background-hover: rgb(54, 54, 54);
+    --ig-secondary-modal-button-background-pressed: rgb(54, 54, 54, 0.7);
     --ig-secondary-button: rgb(245, 245, 245);
     --ig-secondary-button-hover: rgb(245, 245, 245, 0.5);
     --ig-secondary-button-pressed: rgb(245, 245, 245, 0.7);
