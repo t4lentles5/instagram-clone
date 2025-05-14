@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { useModal } from '@/core/shared/hooks/useModal';
-import { FollowersModal } from './FollowersModal';
+import { useUserStore } from '@/core/store/user/user-store';
+
+import { Modal } from '@/core/shared/components/Modal';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import { FollowUnfollowButton } from '@/core/shared/components/FollowUnfollowButton';
-import { useUserStore } from '@/core/store/user/user-store';
 import { getFollowersWithFollowing } from '../actions/get-followers-by-username';
+
 import { XIcon } from '@/core/shared/icons';
 
 interface Follower {
@@ -53,7 +55,7 @@ export const Followers = ({ username, followersQuantity }: Props) => {
       </button>
 
       {isOpen && (
-        <FollowersModal isOpen={isOpen} closeModal={closeModal}>
+        <Modal isOpen={isOpen} closeModal={closeModal}>
           <div className='text-ig-primary-text w-[400px]'>
             <div className='border-ig-elevated-separator flex h-[43px] border-b'>
               <div className='w-12'></div>
@@ -102,7 +104,7 @@ export const Followers = ({ username, followersQuantity }: Props) => {
               ))}
             </div>
           </div>
-        </FollowersModal>
+        </Modal>
       )}
     </>
   );
