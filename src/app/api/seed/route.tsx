@@ -20,6 +20,7 @@ export async function POST() {
     await prisma.comment.deleteMany();
     await prisma.postImages.deleteMany();
     await prisma.post.deleteMany();
+    await prisma.follow.deleteMany();
     await prisma.user.deleteMany();
     await deleteAllProfilePhotos();
 
@@ -49,11 +50,7 @@ export async function POST() {
         const fileBuffer = await fs.readFile(filePath);
         const base64Image = fileBuffer.toString('base64');
 
-        const uploadData = await changeProfilePhoto(base64Image, user.username);
-
-        if (uploadData.error) {
-          throw new Error(uploadData.error);
-        }
+        await changeProfilePhoto(base64Image, user.username);
       } catch (uploadError) {
         console.error(
           `Error uploading photo for ${user.username}:`,

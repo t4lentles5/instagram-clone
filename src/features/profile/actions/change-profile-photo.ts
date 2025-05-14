@@ -1,9 +1,9 @@
 'use server';
 
-import { revalidateTag } from 'next/cache';
 import { cloudinary } from '@/core/config/cloudinary';
 import prisma from '@/core/config/prisma';
 import { deleteProfilePhoto } from '@/features/profile/actions/delete-profile-photo';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 export const changeProfilePhoto = async (
   base64Image: string,
@@ -43,10 +43,11 @@ export const changeProfilePhoto = async (
       },
     });
 
-    revalidateTag('profile-photo');
-    return { success: true, url: result.secure_url };
+    const user = await getAuthenticatedUser();
+
+    return user;
   } catch (error) {
     console.error(error);
-    return { error: 'Upload failed.' };
+    throw new Error('Upload failed.');
   }
 };

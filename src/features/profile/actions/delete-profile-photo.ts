@@ -2,13 +2,14 @@
 
 import { cloudinary } from '@/core/config/cloudinary';
 import prisma from '@/core/config/prisma';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 export const deleteProfilePhoto = async (
   profile_photo_id: string,
   userId?: string,
 ) => {
   if (!profile_photo_id) {
-    return { ok: false, error: 'Missing public_id' };
+    throw new Error('Missing public_id');
   }
 
   try {
@@ -25,12 +26,14 @@ export const deleteProfilePhoto = async (
     }
 
     if (result.result === 'ok') {
-      return { ok: true };
+      const user = await getAuthenticatedUser();
+
+      return user;
     } else {
-      return { ok: false, error: 'Cloudinary did not confirm deletion.' };
+      throw new Error('Cloudinary did not confirm deletion.');
     }
   } catch (error) {
     console.error('[DELETE_PHOTO_ERROR]', error);
-    return { ok: false, error: 'Failed to delete image.' };
+    throw new Error('Failed to delete image.');
   }
 };

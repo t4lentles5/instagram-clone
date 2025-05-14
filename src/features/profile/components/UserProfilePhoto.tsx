@@ -19,6 +19,7 @@ export const UserProfilePhoto = ({ user }: Props) => {
   const { authenticatedUser } = useUserStore();
   const {
     fileInputRef,
+    dialogRef,
     isOpen,
     setIsOpen,
     isLoading,
@@ -54,7 +55,7 @@ export const UserProfilePhoto = ({ user }: Props) => {
           }}
         />
 
-        {user.profile_photo && isOwner && (
+        {user.profile_photo && isOwner && !isLoading && (
           <>
             <button
               aria-label='Open photo options'
@@ -67,7 +68,7 @@ export const UserProfilePhoto = ({ user }: Props) => {
 
             {isOpen && (
               <PhotoOptionsModal
-                isOpen={isOpen}
+                dialogRef={dialogRef}
                 onClose={() => setIsOpen(false)}
                 handleRemovePhoto={handleRemovePhoto}
                 fileInputRef={fileInputRef}
