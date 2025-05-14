@@ -27,7 +27,7 @@ export const Modal = ({ isOpen, closeModal, children }: Props) => {
   return (
     <dialog
       ref={dialogRef}
-      className='bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl'
+      className='bg-ig-elevated-background backdrop:bg-overlay-alpha-80 text-ig-primary-text fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl'
       onCancel={() => closeModal()}
       onClick={(e) => {
         const dialog = dialogRef.current;

@@ -56,7 +56,7 @@ export const Followers = ({ username, followersQuantity }: Props) => {
 
       {isOpen && (
         <Modal isOpen={isOpen} closeModal={closeModal}>
-          <div className='text-ig-primary-text w-[400px]'>
+          <div className='w-[400px]'>
             <div className='border-ig-elevated-separator flex h-[43px] border-b'>
               <div className='w-12'></div>
               <h2 className='grid grow place-items-center font-semibold'>
