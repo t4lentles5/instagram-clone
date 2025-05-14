@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import prisma from '@/core/config/prisma';
 
 export const dislikePost = async (likeId: string) => {
@@ -14,5 +14,5 @@ export const dislikePost = async (likeId: string) => {
     await prisma.like.delete({ where: { id: likeId } });
   }
 
-  revalidatePath('/');
+  revalidateTag('like');
 };

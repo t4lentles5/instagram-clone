@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { cloudinary } from '@/core/config/cloudinary';
 import prisma from '@/core/config/prisma';
 import { deleteProfilePhoto } from '@/features/profile/actions/delete-profile-photo';
@@ -43,7 +43,7 @@ export const changeProfilePhoto = async (
       },
     });
 
-    revalidatePath(`/`);
+    revalidateTag('profile-photo');
     return { success: true, url: result.secure_url };
   } catch (error) {
     console.error(error);
