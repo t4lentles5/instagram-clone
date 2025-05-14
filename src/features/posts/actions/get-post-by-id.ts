@@ -80,6 +80,7 @@ export const getPostById = async (postId: string) => {
                   commentId: true,
                   user: {
                     select: {
+                      id: true,
                       username: true,
                       profile_photo: true,
                       fullname: true,
@@ -97,6 +98,7 @@ export const getPostById = async (postId: string) => {
               commentId: true,
               user: {
                 select: {
+                  id: true,
                   username: true,
                   profile_photo: true,
                   fullname: true,

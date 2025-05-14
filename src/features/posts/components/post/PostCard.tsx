@@ -8,7 +8,6 @@ import { getAspectClass } from '@/features/posts/utils/get-aspect-class';
 
 import { likePost } from '@/features/posts/actions/like-post';
 import { useUserStore } from '@/core/store/user/user-store';
-import { useLikesModal } from '@/features/posts/hooks/useLikesModal';
 
 import { Post } from '@/core/shared/interfaces/post.interface';
 
@@ -17,12 +16,16 @@ import { LikeButton } from '@/features/posts/components/likes/LikeButton';
 import { CommentSection } from '@/features/posts/components/comments/CommentSection';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 
+import { useModal } from '@/core/shared/hooks/useModal';
+import { Modal } from '@/core/shared/components/Modal';
+
 import {
   CommentIcon,
   MoreOptionsIcon,
   SaveIcon,
   ShareIcon,
 } from '@/core/shared/icons';
+import { LikesModalContent } from '../likes/LikesModalContent';
 
 interface Props {
   post: Post;
@@ -30,7 +33,7 @@ interface Props {
 
 export const PostCard = ({ post }: Props) => {
   const { authenticatedUser } = useUserStore();
-  const { openModal, Modal } = useLikesModal();
+  const { isOpen, openModal, closeModal } = useModal();
 
   const { aspect_ratio, first_image_dimensions } = post;
   const aspect_ratio_image = getAspectClass(
@@ -123,13 +126,21 @@ export const PostCard = ({ post }: Props) => {
           {post.likes.length > 0 && (
             <section>
               <button
-                onClick={() => openModal(post.likes)}
+                onClick={() => openModal()}
                 className='cursor-pointer text-sm leading-[18px] font-semibold'
               >
                 {post.likes.length} {post.likes.length <= 1 ? 'like' : 'likes'}
               </button>
 
-              {Modal}
+              {isOpen && (
+                <Modal isOpen={isOpen} closeModal={closeModal}>
+                  <LikesModalContent
+                    closeModal={closeModal}
+                    likes={post.likes}
+                    authenticatedUserId={authenticatedUser.id}
+                  />
+                </Modal>
+              )}
             </section>
           )}
 

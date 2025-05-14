@@ -43,6 +43,7 @@ export interface Comment {
   text: string;
   createdAt: Date;
   user: {
+    id: User['id'];
     username: User['username'];
     profile_photo: User['profile_photo'];
   };
@@ -52,6 +53,7 @@ export interface Comment {
     userId: string;
     commentId: string;
     user: {
+      id: User['id'];
       username: User['username'];
       profile_photo: User['profile_photo'];
       fullname: User['fullname'];
@@ -77,6 +79,7 @@ interface CommentLike {
   userId: string;
   commentId: string;
   user: {
+    id: User['id'];
     username: User['username'];
     profile_photo: User['profile_photo'];
     fullname: User['fullname'];

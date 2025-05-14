@@ -1,53 +1,28 @@
-import { useEffect, useRef } from 'react';
+import { FollowUnfollowButton } from '@/core/shared/components/FollowUnfollowButton';
+import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
+import { XIcon } from '@/core/shared/icons';
+import { Comment } from '@/core/shared/interfaces/post.interface';
 import Link from 'next/link';
 
-import { Comment, Like } from '@/core/shared/interfaces/post.interface';
-
-import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
-
-import { XIcon } from '@/core/shared/icons';
-
 interface Props {
-  isOpen: boolean;
-  onClose: () => void;
-  likes: Like[] | Comment['commentLike'];
+  closeModal: () => void;
+  likes: Comment['commentLike'];
+  authenticatedUserId: string;
 }
 
-export const LikesModal = ({ isOpen, onClose, likes }: Props) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    if (isOpen) {
-      if (!dialog.open) {
-        dialog.showModal();
-      }
-    } else {
-      if (dialog.open) {
-        dialog.close();
-      }
-    }
-  }, [isOpen]);
-
+export const CommentLikesModalContent = ({
+  closeModal,
+  likes,
+  authenticatedUserId,
+}: Props) => {
   return (
-    <dialog
-      ref={dialogRef}
-      className='bg-ig-elevated-background backdrop:bg-overlay-alpha-80 text-ig-primary-text top-1/2 left-1/2 w-[400px] -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl'
-      onCancel={onClose}
-      onClick={(e) => {
-        const dialog = dialogRef.current;
-        e.stopPropagation();
-        if (dialog && e.target === dialog) onClose();
-      }}
-    >
-      <div className='w-full'>
+    <>
+      <div className='w-[400px]'>
         <div className='border-ig-elevated-separator flex h-[43px] border-b'>
           <div className='w-12'></div>
           <h2 className='grid grow place-items-center font-semibold'>Likes</h2>
           <button
-            onClick={() => onClose()}
+            onClick={() => closeModal()}
             className='grid w-12 cursor-pointer place-items-center'
           >
             <XIcon />
@@ -83,13 +58,13 @@ export const LikesModal = ({ isOpen, onClose, likes }: Props) => {
                 </span>
               </div>
 
-              <button className='bg-ig-primary-button hover:bg-ig-primary-button-hover active:bg-ig-primary-button-pressed text-web-always-white ml-3 cursor-pointer rounded-lg px-5 py-[6px] text-sm font-semibold'>
-                Follow
-              </button>
+              {like.user.id !== authenticatedUserId && (
+                <FollowUnfollowButton userId={like.user.id} inModal={true} />
+              )}
             </div>
           ))}
         </div>
       </div>
-    </dialog>
+    </>
   );
 };

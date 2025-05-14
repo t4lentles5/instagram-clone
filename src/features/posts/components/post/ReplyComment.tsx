@@ -4,12 +4,14 @@ import { useRouter } from 'next/navigation';
 import { getExactDate } from '@/features/posts/utils/get-exact-date';
 import { formatDate } from '@/features/posts/utils/format-date';
 
-import { useLikesModal } from '@/features/posts/hooks/useLikesModal';
-
 import { LikeCommentButton } from '@/features/posts/components/post/LikeCommentButton';
 
 import { Reply } from '@/core/shared/interfaces/post.interface';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
+import { useModal } from '@/core/shared/hooks/useModal';
+import { Modal } from '@/core/shared/components/Modal';
+import { CommentLikesModalContent } from '../likes/CommentLikesModalContent';
+import { useUserStore } from '@/core/store/user/user-store';
 
 interface Props {
   reply: Reply;
@@ -23,7 +25,8 @@ export const ReplyComment = ({
   setReplyToCommentId,
 }: Props) => {
   const router = useRouter();
-  const { openModal, Modal } = useLikesModal();
+  const { isOpen, openModal, closeModal } = useModal();
+  const { authenticatedUser } = useUserStore();
 
   const replyComment = () => {
     const textarea = textareaRef.current;
@@ -80,13 +83,19 @@ export const ReplyComment = ({
               <>
                 <button
                   className='text-ig-secondary-text cursor-pointer pr-3 text-xs font-semibold'
-                  onClick={() => openModal(reply.commentLike)}
+                  onClick={() => openModal()}
                 >
                   {reply.commentLike.length}{' '}
                   {reply.commentLike.length > 1 ? 'likes' : 'like'}
                 </button>
 
-                {Modal}
+                <Modal isOpen={isOpen} closeModal={closeModal}>
+                  <CommentLikesModalContent
+                    closeModal={closeModal}
+                    likes={reply.commentLike}
+                    authenticatedUserId={authenticatedUser.id}
+                  />
+                </Modal>
               </>
             )}
 

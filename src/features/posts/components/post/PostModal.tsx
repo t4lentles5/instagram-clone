@@ -15,7 +15,6 @@ import { getAspectClass } from '@/features/posts/utils/get-aspect-class';
 import { getExactDate } from '@/features/posts/utils/get-exact-date';
 import { useUserStore } from '@/core/store/user/user-store';
 
-import { useLikesModal } from '@/features/posts/hooks/useLikesModal';
 import { likePost } from '@/features/posts/actions/like-post';
 
 import { Post } from '@/core/shared/interfaces/post.interface';
@@ -28,12 +27,17 @@ import {
   ShareIcon,
   XIcon,
 } from '@/core/shared/icons';
+import { useModal } from '@/core/shared/hooks/useModal';
+import { Modal } from '@/core/shared/components/Modal';
+import { LikesModalContent } from '../likes/LikesModalContent';
 
 interface Props {
   post: Post;
 }
 
 export const PostModal = ({ post }: Props) => {
+  const { isOpen, openModal, closeModal } = useModal();
+
   useEffect(() => {
     const originalStyles = {
       overflow: document.body.style.overflow,
@@ -66,7 +70,7 @@ export const PostModal = ({ post }: Props) => {
   }, []);
 
   const { authenticatedUser } = useUserStore();
-  const { openModal, Modal } = useLikesModal();
+
   const router = useRouter();
 
   const [showReplies, setShowReplies] = useState(false);
@@ -194,14 +198,20 @@ export const PostModal = ({ post }: Props) => {
                 ) : (
                   <div>
                     <button
-                      onClick={() => openModal(post.likes)}
+                      onClick={() => openModal()}
                       className='cursor-pointer text-sm leading-[18px] font-semibold'
                     >
                       {post.likes.length}{' '}
                       {post.likes.length <= 1 ? 'like' : 'likes'}
                     </button>
 
-                    {Modal}
+                    <Modal isOpen={isOpen} closeModal={closeModal}>
+                      <LikesModalContent
+                        closeModal={closeModal}
+                        likes={post.likes}
+                        authenticatedUserId={authenticatedUser.id}
+                      />
+                    </Modal>
                   </div>
                 )}
 

@@ -1,7 +1,6 @@
 import { Dispatch, RefObject, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { useLikesModal } from '@/features/posts/hooks/useLikesModal';
 import { Comment } from '@/core/shared/interfaces/post.interface';
 
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
@@ -10,6 +9,10 @@ import { ReplyComment } from '@/features/posts/components/post/ReplyComment';
 
 import { formatDate } from '@/features/posts/utils/format-date';
 import { getExactDate } from '@/features/posts/utils/get-exact-date';
+import { useModal } from '@/core/shared/hooks/useModal';
+import { Modal } from '@/core/shared/components/Modal';
+import { useUserStore } from '@/core/store/user/user-store';
+import { CommentLikesModalContent } from '../likes/CommentLikesModalContent';
 
 interface Props {
   comment: Comment;
@@ -27,7 +30,8 @@ export const CommentItem = ({
   setShowReplies,
 }: Props) => {
   const router = useRouter();
-  const { openModal, Modal } = useLikesModal();
+  const { authenticatedUser } = useUserStore();
+  const { isOpen, openModal, closeModal } = useModal();
 
   const replyComment = () => {
     const textarea = textareaRef.current;
@@ -84,13 +88,19 @@ export const CommentItem = ({
               <>
                 <button
                   className='text-ig-secondary-text cursor-pointer pr-3 text-xs font-semibold'
-                  onClick={() => openModal(comment.commentLike)}
+                  onClick={() => openModal()}
                 >
                   {comment.commentLike.length}{' '}
                   {comment.commentLike.length > 1 ? 'likes' : 'like'}
                 </button>
 
-                {Modal}
+                <Modal isOpen={isOpen} closeModal={closeModal}>
+                  <CommentLikesModalContent
+                    closeModal={closeModal}
+                    likes={comment.commentLike}
+                    authenticatedUserId={authenticatedUser.id}
+                  />
+                </Modal>
               </>
             )}
 
