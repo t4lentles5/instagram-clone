@@ -18,10 +18,36 @@ export const getUserByUsername = async (username: string) => {
       _count: {
         select: {
           posts: true,
+          followers: true,
+          following: true,
         },
       },
-      followers: true,
-      following: true,
+      // followers: {
+      //   select: {
+      //     id: true,
+      //     follower: {
+      //       select: {
+      //         id: true,
+      //         username: true,
+      //         profile_photo: true,
+      //         fullname: true,
+      //       },
+      //     },
+      //   },
+      // },
+      // following: {
+      //   select: {
+      //     id: true,
+      //     following: {
+      //       select: {
+      //         id: true,
+      //         username: true,
+      //         profile_photo: true,
+      //         fullname: true,
+      //       },
+      //     },
+      //   },
+      // },
     },
   });
 
@@ -29,5 +55,9 @@ export const getUserByUsername = async (username: string) => {
     notFound();
   }
 
-  return user;
+  return {
+    ...user,
+    // followers: user.followers.map(({ follower }) => follower),
+    // following: user.following.map(({ following }) => following),
+  };
 };
