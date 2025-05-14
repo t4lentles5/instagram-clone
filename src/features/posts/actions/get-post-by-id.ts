@@ -54,6 +54,7 @@ export const getPostById = async (postId: string) => {
           createdAt: true,
           user: {
             select: {
+              id: true,
               username: true,
               profile_photo: true,
             },
@@ -68,6 +69,7 @@ export const getPostById = async (postId: string) => {
               createdAt: true,
               user: {
                 select: {
+                  id: true,
                   username: true,
                   profile_photo: true,
                 },

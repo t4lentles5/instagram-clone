@@ -68,6 +68,7 @@ export interface Reply {
   text: string;
   createdAt: Date;
   user: {
+    id: User['id'];
     username: User['username'];
     profile_photo: User['profile_photo'];
   };

@@ -54,6 +54,7 @@ export const getPosts = async () => {
           createdAt: true,
           user: {
             select: {
+              id: true,
               username: true,
               profile_photo: true,
             },
@@ -68,6 +69,7 @@ export const getPosts = async () => {
               createdAt: true,
               user: {
                 select: {
+                  id: true,
                   username: true,
                   profile_photo: true,
                 },
@@ -83,6 +85,7 @@ export const getPosts = async () => {
                       username: true,
                       profile_photo: true,
                       fullname: true,
+                      id: true,
                     },
                   },
                 },
@@ -100,6 +103,7 @@ export const getPosts = async () => {
                   username: true,
                   profile_photo: true,
                   fullname: true,
+                  id: true,
                 },
               },
             },
