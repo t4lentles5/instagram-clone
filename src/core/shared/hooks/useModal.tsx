@@ -52,20 +52,5 @@ export const useModal = () => {
     }
   }, [isOpen]);
 
-  const Modal = ({ children }: { children: React.ReactNode }) => (
-    <dialog
-      ref={dialogRef}
-      className='bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl'
-      onCancel={closeModal}
-      onClick={(e) => {
-        const dialog = dialogRef.current;
-        e.stopPropagation();
-        if (dialog && e.target === dialog) closeModal();
-      }}
-    >
-      {children}
-    </dialog>
-  );
-
-  return { openModal, closeModal, isOpen, Modal };
+  return { openModal, closeModal, isOpen };
 };

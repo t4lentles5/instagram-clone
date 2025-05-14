@@ -5,13 +5,13 @@ import { useNewPost } from '@/features/posts/hooks/useNewPost';
 interface Props {
   modalOptionsRef: RefObject<HTMLDialogElement | null>;
   setIsModalOptionsOpen: Dispatch<SetStateAction<boolean>>;
-  onClose: () => void;
+  closeModal: () => void;
 }
 
 export const CloseModalOptions = ({
   modalOptionsRef,
   setIsModalOptionsOpen,
-  onClose,
+  closeModal,
 }: Props) => {
   const { resetStates } = useNewPost();
 
@@ -36,7 +36,7 @@ export const CloseModalOptions = ({
               onClick={() => {
                 setIsModalOptionsOpen(false);
                 resetStates();
-                onClose();
+                closeModal();
               }}
             >
               Discard

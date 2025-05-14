@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
+import { Dispatch, RefObject, SetStateAction } from 'react';
 
 import { useUserStore } from '@/core/store/user/user-store';
-import { useNewPostModal } from '@/features/posts/hooks/useNewPostModal';
 import { useCropZoom } from '@/features/posts/hooks/useCropZoom';
 import { useSelectedCropStore } from '@/features/posts/store/selected-crop-store';
 import { useMediaGalleryStore } from '@/features/posts/store/media-gallery-store';
@@ -22,24 +21,28 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
 interface Props {
-  isOpen: boolean;
-  onClose: () => void;
+  closeModal: () => void;
+  newPostModalRef: RefObject<HTMLDialogElement | null>;
+  modalOptionsRef: RefObject<HTMLDialogElement | null>;
+  fileInputRef: RefObject<HTMLInputElement | null>;
+  setIsModalOptionsOpen: Dispatch<SetStateAction<boolean>>;
+  handleCloseAttempt: (e: React.SyntheticEvent) => void;
 }
 
 export interface PostCaption {
   caption: string;
 }
 
-export const NewPostModal = ({ isOpen, onClose }: Props) => {
+export const NewPostModal = ({
+  closeModal,
+  newPostModalRef,
+  modalOptionsRef,
+  fileInputRef,
+  setIsModalOptionsOpen,
+  handleCloseAttempt,
+}: Props) => {
   const router = useRouter();
   const { authenticatedUser } = useUserStore();
-  const {
-    newPostModalRef,
-    modalOptionsRef,
-    fileInputRef,
-    isModalOptionsOpen,
-    setIsModalOptionsOpen,
-  } = useNewPostModal();
 
   const { isZoomCropOpen, setIsZoomCropOpen } = useCropZoom();
   const { selectedCrop } = useSelectedCropStore();
@@ -89,7 +92,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
         throw new Error('Failed to upload post');
       }
 
-      onClose();
+      closeModal();
       reset();
       resetStates();
       router.refresh();
@@ -97,55 +100,6 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
       console.error('Error al crear el post:', error);
     }
   };
-
-  const handleCloseAttempt = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-
-    if (previewUrls.length === 0) {
-      onClose();
-    } else {
-      setIsModalOptionsOpen(true);
-    }
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen && !isModalOptionsOpen) {
-        e.preventDefault();
-        if (previewUrls.length === 0) {
-          onClose();
-        } else {
-          setIsModalOptionsOpen(true);
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, isModalOptionsOpen, previewUrls]);
-
-  useEffect(() => {
-    const dialog = newPostModalRef.current;
-    const dialogOptions = modalOptionsRef.current;
-
-    if (!dialog) return;
-
-    if (isOpen && !dialog.open) {
-      dialog.showModal();
-    }
-
-    if (!isOpen && dialog.open && !isModalOptionsOpen) {
-      dialog.close();
-    }
-
-    if (isModalOptionsOpen && dialogOptions && !dialogOptions.open) {
-      dialogOptions.showModal();
-    }
-
-    if (!isModalOptionsOpen && dialogOptions?.open) {
-      dialogOptions.close();
-    }
-  }, [isOpen, isModalOptionsOpen]);
 
   return (
     <>
@@ -158,7 +112,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
           e.stopPropagation();
           if (dialog && e.target === dialog) {
             if (previewUrls.length === 0) {
-              onClose();
+              closeModal();
             } else {
               setIsModalOptionsOpen(true);
             }
@@ -178,7 +132,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
                       if (previewUrls.length > 0) {
                         setIsModalOptionsOpen(true);
                       } else {
-                        onClose();
+                        closeModal();
                       }
                     }
 
@@ -278,7 +232,7 @@ export const NewPostModal = ({ isOpen, onClose }: Props) => {
       <CloseModalOptions
         modalOptionsRef={modalOptionsRef}
         setIsModalOptionsOpen={setIsModalOptionsOpen}
-        onClose={onClose}
+        closeModal={closeModal}
       />
     </>
   );

@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { NewPostModal } from '@/features/posts/components/new-post/NewPostModal';
+import { useNewPostStore } from '../store/new-post-store';
 
 export const useNewPostModal = () => {
+  const { previewUrls } = useNewPostStore();
+
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOptionsOpen, setIsModalOptionsOpen] = useState(false);
 
@@ -12,6 +14,10 @@ export const useNewPostModal = () => {
 
   const openModal = () => {
     setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -47,17 +53,64 @@ export const useNewPostModal = () => {
     }
   }, [isOpen]);
 
-  const Modal = (
-    <NewPostModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-  );
+  useEffect(() => {
+    const dialog = newPostModalRef.current;
+    const dialogOptions = modalOptionsRef.current;
+
+    if (!dialog) return;
+
+    if (isOpen && !dialog.open) {
+      dialog.showModal();
+    }
+
+    if (!isOpen && dialog.open && !isModalOptionsOpen) {
+      dialog.close();
+    }
+
+    if (isModalOptionsOpen && dialogOptions && !dialogOptions.open) {
+      dialogOptions.showModal();
+    }
+
+    if (!isModalOptionsOpen && dialogOptions?.open) {
+      dialogOptions.close();
+    }
+  }, [isOpen, isModalOptionsOpen]);
+
+  const handleCloseAttempt = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    if (previewUrls.length === 0) {
+      closeModal();
+    } else {
+      setIsModalOptionsOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen && !isModalOptionsOpen) {
+        e.preventDefault();
+        if (previewUrls.length === 0) {
+          closeModal();
+        } else {
+          setIsModalOptionsOpen(true);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, isModalOptionsOpen, previewUrls]);
 
   return {
+    isOpen,
     openModal,
+    closeModal,
     isModalOptionsOpen,
     setIsModalOptionsOpen,
     newPostModalRef,
     fileInputRef,
     modalOptionsRef,
-    Modal,
+    handleCloseAttempt,
   };
 };

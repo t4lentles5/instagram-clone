@@ -1,11 +1,21 @@
 import { useSidebarStore } from '@/features/sidebar/sidebar-store';
 import { NewPostSidebarIcon } from '@/features/sidebar/icons';
 import { useNewPostModal } from '@/features/posts/hooks/useNewPostModal';
+import { NewPostModal } from '@/features/posts/components/new-post/NewPostModal';
 
 export const NewPostButton = () => {
   const { isSidebarCollapsed, isNewPostDialogOpen } = useSidebarStore();
 
-  const { openModal, Modal } = useNewPostModal();
+  const {
+    isOpen,
+    openModal,
+    closeModal,
+    newPostModalRef,
+    modalOptionsRef,
+    fileInputRef,
+    setIsModalOptionsOpen,
+    handleCloseAttempt,
+  } = useNewPostModal();
 
   return (
     <>
@@ -28,7 +38,16 @@ export const NewPostButton = () => {
         </button>
       </div>
 
-      {Modal}
+      {isOpen && (
+        <NewPostModal
+          closeModal={closeModal}
+          newPostModalRef={newPostModalRef}
+          modalOptionsRef={modalOptionsRef}
+          fileInputRef={fileInputRef}
+          setIsModalOptionsOpen={setIsModalOptionsOpen}
+          handleCloseAttempt={handleCloseAttempt}
+        />
+      )}
     </>
   );
 };
