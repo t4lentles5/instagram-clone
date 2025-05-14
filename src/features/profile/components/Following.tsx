@@ -1,34 +1,31 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 
 import { useModal } from '@/core/shared/hooks/useModal';
 import { useUserStore } from '@/core/store/user/user-store';
 
-import { Modal } from '@/core/shared/components/Modal';
-
-import { getFollowersByUsername } from '../actions/get-followers-by-username';
-
-import { FollowModalContent } from './FollowsModalContent';
 import { Follow } from '../interfaces/follow.interface';
+import { getFollowingByUsername } from '../actions/get-following-by-username';
+
+import { Modal } from '@/core/shared/components/Modal';
+import { FollowModalContent } from './FollowsModalContent';
 
 interface Props {
   username: string;
-  followersQuantity: number;
+  followingQuantity: number;
 }
 
-export const Followers = ({ username, followersQuantity }: Props) => {
+export const Following = ({ username, followingQuantity }: Props) => {
   const { authenticatedUser } = useUserStore();
   const { isOpen, openModal, closeModal } = useModal();
-  const [followers, setFollowers] = useState<Follow[]>([]);
+  const [following, setFollowing] = useState<Follow[]>([]);
 
   useEffect(() => {
     const fetchFollowers = async () => {
       if (!authenticatedUser.id) return;
 
-      const result = await getFollowersByUsername(username);
+      const result = await getFollowingByUsername(username);
 
-      setFollowers(result);
+      setFollowing(result);
     };
 
     if (isOpen) fetchFollowers();
@@ -40,9 +37,9 @@ export const Followers = ({ username, followersQuantity }: Props) => {
         className='active:text-ig-primary-text-pressed px-2 font-bold'
         onClick={openModal}
       >
-        {followersQuantity}{' '}
+        {followingQuantity}{' '}
         <span className='text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer font-normal'>
-          followers
+          following
         </span>
       </button>
 
@@ -50,7 +47,7 @@ export const Followers = ({ username, followersQuantity }: Props) => {
         <Modal isOpen={isOpen} closeModal={closeModal}>
           <FollowModalContent
             closeModal={closeModal}
-            follows={followers}
+            follows={following}
             authenticatedUserId={authenticatedUser.id}
           />
         </Modal>

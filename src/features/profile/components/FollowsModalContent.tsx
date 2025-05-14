@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Follower } from '../interfaces/follower.interface';
+import { Follow } from '../interfaces/follow.interface';
 
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import { FollowUnfollowButton } from '@/core/shared/components/FollowUnfollowButton';
@@ -8,13 +8,13 @@ import { XIcon } from '@/core/shared/icons';
 
 interface Props {
   closeModal: () => void;
-  followers: Follower[];
+  follows: Follow[];
   authenticatedUserId: string;
 }
 
-export const FollowersModalContent = ({
+export const FollowModalContent = ({
   closeModal,
-  followers,
+  follows,
   authenticatedUserId,
 }: Props) => {
   return (
@@ -33,12 +33,12 @@ export const FollowersModalContent = ({
           </button>
         </div>
         <div className='h-[356px] overflow-y-auto'>
-          {followers.map((follower) => (
-            <div className='flex justify-between px-4 py-2' key={follower.id}>
+          {follows.map((follow) => (
+            <div className='flex justify-between px-4 py-2' key={follow.id}>
               <div className='flex gap-3'>
-                <Link href={`/${follower.username}`}>
+                <Link href={`/${follow.username}`}>
                   <ProfilePhoto
-                    profile_photo={follower.profile_photo}
+                    profile_photo={follow.profile_photo}
                     imageSize={{ size: 'w-11' }}
                     backgroundDivSize={{ size: 'w-[48px]' }}
                     borderDivSize={{ size: 'w-[52px]' }}
@@ -46,19 +46,19 @@ export const FollowersModalContent = ({
                 </Link>
                 <div className='flex flex-col justify-center'>
                   <Link
-                    href={`/${follower.username}`}
+                    href={`/${follow.username}`}
                     className='max-w-36 truncate overflow-hidden text-sm leading-[18px] font-semibold'
                   >
-                    {follower.username}
+                    {follow.username}
                   </Link>
                   <span className='text-ig-secondary-text text-xs'>
-                    {follower.fullname}
+                    {follow.fullname}
                   </span>
                 </div>
               </div>
 
-              {follower.id !== authenticatedUserId && (
-                <FollowUnfollowButton userId={follower.id} inModal={true} />
+              {follow.id !== authenticatedUserId && (
+                <FollowUnfollowButton userId={follow.id} inModal={true} />
               )}
             </div>
           ))}

@@ -8,6 +8,7 @@ import { OptionsIcon } from '@/core/shared/icons';
 import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIcon';
 import { Followers } from './Followers';
 import { FollowUnfollowButton } from '@/core/shared/components/FollowUnfollowButton';
+import { Following } from './Following';
 interface Props {
   user: User;
   isAuthenticatedUser: boolean;
@@ -66,12 +67,10 @@ export const UserProfileInfo = ({ user, isAuthenticatedUser }: Props) => {
                 followersQuantity={user._count.followers}
               />
 
-              <button className='active:text-ig-primary-text-pressed px-2 font-bold'>
-                {user._count.following}{' '}
-                <span className='text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer font-normal'>
-                  following
-                </span>
-              </button>
+              <Following
+                username={user.username}
+                followingQuantity={user._count.following}
+              />
             </div>
             <div className='hidden md:block'>
               <h3 className='max-w-36 truncate overflow-hidden text-sm font-semibold'>

@@ -1,4 +1,4 @@
-export interface Follower {
+export interface Follow {
   id: string;
   username: string;
   fullname: string;

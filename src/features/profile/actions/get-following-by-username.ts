@@ -2,13 +2,13 @@
 
 import prisma from '@/core/config/prisma';
 
-export const getFollowersByUsername = async (username: string) => {
+export const getFollowingByUsername = async (username: string) => {
   const user = await prisma.user.findUnique({
     where: { username },
     select: {
-      followers: {
+      following: {
         select: {
-          follower: {
+          following: {
             select: {
               id: true,
               username: true,
@@ -23,10 +23,10 @@ export const getFollowersByUsername = async (username: string) => {
 
   if (!user) return [];
 
-  return user.followers.map(({ follower }) => ({
-    id: follower.id,
-    username: follower.username,
-    fullname: follower.fullname,
-    profile_photo: follower.profile_photo,
+  return user.following.map(({ following }) => ({
+    id: following.id,
+    username: following.username,
+    fullname: following.fullname,
+    profile_photo: following.profile_photo,
   }));
 };
