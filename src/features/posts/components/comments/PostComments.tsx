@@ -114,7 +114,7 @@ export const PostComments = ({
           })}
         </div>
       ) : (
-        <div className='border-popover flex grow flex-col items-center justify-center border-b'>
+        <div className='border-post-separator flex grow flex-col items-center justify-center border-b'>
           <h2 className='mb-2 text-2xl font-bold'>No comments yet.</h2>
           <span className='text-sm'>Start the conversation.</span>
         </div>
