@@ -85,15 +85,19 @@ export const PostCard = ({ post }: Props) => {
         </section>
 
         <div
-          className='border-ig-separator bg-web-always-black relative overflow-hidden min-[480px]:rounded-[4px] min-[480px]:border'
-          style={{ aspectRatio: aspect_ratio_image }}
+          className='border-ig-separator bg-web-always-black overflow-hidden min-[480px]:rounded-[4px] min-[480px]:border'
           onDoubleClick={() => {
             if (!hasLiked) {
               likePost(post.id, authenticatedUser.id);
             }
           }}
         >
-          <PostCarousel images={post.postImages.map((img) => img.imageUrl)} />
+          <div
+            className='relative h-full w-full'
+            style={{ aspectRatio: aspect_ratio_image }}
+          >
+            <PostCarousel images={post.postImages.map((img) => img.imageUrl)} />
+          </div>
         </div>
 
         <div className='flex w-full flex-col px-4 min-[480px]:px-0'>
