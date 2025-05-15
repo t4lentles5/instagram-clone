@@ -1,16 +1,9 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-
 import { useModal } from '@/core/shared/hooks/useModal';
 import { useUserStore } from '@/core/store/user/user-store';
 
 import { Modal } from '@/core/shared/components/Modal';
 
-import { getFollowersByUsername } from '../actions/get-followers-by-username';
-
-import { FollowModalContent } from './FollowsModalContent';
-import { Follow } from '../interfaces/follow.interface';
+import { FollowersModalContent } from './FollowersModalContent';
 
 interface Props {
   username: string;
@@ -20,19 +13,6 @@ interface Props {
 export const Followers = ({ username, followersQuantity }: Props) => {
   const { authenticatedUser } = useUserStore();
   const { isOpen, openModal, closeModal } = useModal();
-  const [followers, setFollowers] = useState<Follow[]>([]);
-
-  useEffect(() => {
-    const fetchFollowers = async () => {
-      if (!authenticatedUser.id) return;
-
-      const result = await getFollowersByUsername(username);
-
-      setFollowers(result);
-    };
-
-    if (isOpen) fetchFollowers();
-  }, [isOpen, username, authenticatedUser]);
 
   return (
     <>
@@ -48,9 +28,9 @@ export const Followers = ({ username, followersQuantity }: Props) => {
 
       {isOpen && (
         <Modal isOpen={isOpen} closeModal={closeModal}>
-          <FollowModalContent
+          <FollowersModalContent
             closeModal={closeModal}
-            follows={followers}
+            username={username}
             authenticatedUserId={authenticatedUser.id}
           />
         </Modal>
