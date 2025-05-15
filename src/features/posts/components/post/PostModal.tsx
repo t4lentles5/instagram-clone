@@ -109,7 +109,7 @@ export const PostModal = ({ post }: Props) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div
-            className={` ${post.aspect_ratio === 'video' && 'aspect-square'} border-post-separator bg-web-always-black relative h-full w-full max-w-[687px] overflow-hidden border-r`}
+            className={` ${post.aspect_ratio === 'video' && 'aspect-square'} border-post-separator bg-web-always-black relative h-full w-full overflow-hidden border-r`}
             style={{ aspectRatio: aspect_ratio_image }}
             onDoubleClick={() => {
               if (!hasLiked) {
@@ -120,7 +120,7 @@ export const PostModal = ({ post }: Props) => {
             <PostCarousel images={post.postImages.map((img) => img.imageUrl)} />
           </div>
 
-          <div className='bg-ig-primary-background flex h-full max-w-[500px] min-w-[400px] grow flex-col'>
+          <div className='bg-ig-primary-background flex h-full max-w-[500px] min-w-[400px] grow flex-col rounded-r-sm'>
             <section className='border-post-separator flex items-center justify-between rounded-sm border-b'>
               <div className='flex grow items-center py-[14px] pr-1 pl-4'>
                 <ProfilePhoto

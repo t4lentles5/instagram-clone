@@ -1,9 +1,28 @@
 'use server';
 
 import prisma from '@/core/config/prisma';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 export const getPosts = async () => {
+  const authenticatedUser = await getAuthenticatedUser();
+
   const posts = await prisma.post.findMany({
+    where: {
+      OR: [
+        {
+          author: {
+            followers: {
+              some: {
+                followerId: authenticatedUser.id,
+              },
+            },
+          },
+        },
+        {
+          authorId: authenticatedUser.id,
+        },
+      ],
+    },
     orderBy: {
       createdAt: 'desc',
     },
