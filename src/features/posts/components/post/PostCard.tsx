@@ -19,13 +19,9 @@ import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import { useModal } from '@/core/shared/hooks/useModal';
 import { Modal } from '@/core/shared/components/Modal';
 
-import {
-  CommentIcon,
-  MoreOptionsIcon,
-  SaveIcon,
-  ShareIcon,
-} from '@/core/shared/icons';
+import { CommentIcon, SaveIcon, ShareIcon } from '@/core/shared/icons';
 import { LikesModalContent } from '../likes/LikesModalContent';
+import { PostOptions } from './PostOptions';
 
 interface Props {
   post: Post;
@@ -85,9 +81,7 @@ export const PostCard = ({ post }: Props) => {
             </time>
           </div>
 
-          <button className='flex w-8 cursor-pointer justify-end'>
-            <MoreOptionsIcon />
-          </button>
+          <PostOptions authorId={post.author.id} postId={post.id} />
         </section>
 
         <div

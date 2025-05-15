@@ -26,6 +26,7 @@ export const getPostById = async (postId: string) => {
         select: {
           id: true,
           imageUrl: true,
+          imageUrlId: true,
         },
       },
       likes: {
