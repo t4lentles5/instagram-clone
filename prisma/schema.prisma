@@ -48,7 +48,7 @@ model Post {
 
   likes    Like[]
   comments Comment[]
-  savedBy    User[]       @relation("SavedPosts")
+  savedBy  User[]    @relation("SavedPosts")
 
   location    String?
   taggedUsers User[]       @relation("TaggedPosts")
