@@ -108,7 +108,7 @@ export const PostModal = ({ post }: Props) => {
             router.back();
             e.stopPropagation();
           }}
-          className='absolute top-[10px] right-[10px] cursor-pointer p-2'
+          className='text-web-always-white absolute top-[10px] right-[10px] cursor-pointer p-2'
         >
           <XIcon />
         </button>
