@@ -7,7 +7,6 @@ import { logout } from '@/features/auth/actions/logout';
 
 import { useSidebarStore } from '@/features/sidebar/sidebar-store';
 import { useThemeStore } from '@/core/store/theme/theme-store';
-import { useUserStore } from '@/core/store/user/user-store';
 
 import {
   BackMoreOptionsIcon,
@@ -20,7 +19,6 @@ import {
 export const SidebarMoreOptions = () => {
   const { isSidebarCollapsed } = useSidebarStore();
   const { isDarkMode, toggleTheme } = useThemeStore();
-  const { resetAuthenticatedUser } = useUserStore();
 
   const [open, setOpen] = useState(false);
   const [switchAppearanceOpen, setSwitchAppearanceOpen] = useState(false);
@@ -39,7 +37,6 @@ export const SidebarMoreOptions = () => {
   };
 
   const handleLogout = async () => {
-    resetAuthenticatedUser();
     await logout();
   };
 

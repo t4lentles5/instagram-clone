@@ -1,7 +1,5 @@
 'use client';
 
-import { useUserStore } from '@/core/store/user/user-store';
-
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import { PhotoOptionsModal } from '@/features/profile/components/PhotoOptionsModal';
 
@@ -10,13 +8,20 @@ import { useProfilePhoto } from '@/features/profile/hooks/useProfilePhoto';
 
 import { CameraIcon } from '@/features/profile/icons/CameraIcon';
 import styles from '@/features/profile/components/image-loader.module.css';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
+import { useQuery } from '@tanstack/react-query';
 
 interface Props {
   user: User;
 }
 
 export const UserProfilePhoto = ({ user }: Props) => {
-  const { authenticatedUser } = useUserStore();
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
+
   const {
     fileInputRef,
     dialogRef,
@@ -26,6 +31,10 @@ export const UserProfilePhoto = ({ user }: Props) => {
     handleUpload,
     handleRemovePhoto,
   } = useProfilePhoto(user);
+
+  if (!authenticatedUser) {
+    return null;
+  }
 
   const isOwner = user.id === authenticatedUser.id;
 

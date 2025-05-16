@@ -1,9 +1,11 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { useModal } from '@/core/shared/hooks/useModal';
-import { useUserStore } from '@/core/store/user/user-store';
 
 import { Modal } from '@/core/shared/components/Modal';
-
 import { FollowersModalContent } from './FollowersModalContent';
+
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 interface Props {
   username: string;
@@ -11,8 +13,17 @@ interface Props {
 }
 
 export const Followers = ({ username, followersQuantity }: Props) => {
-  const { authenticatedUser } = useUserStore();
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
+
   const { isOpen, openModal, closeModal } = useModal();
+
+  if (!authenticatedUser) {
+    return null;
+  }
 
   return (
     <>

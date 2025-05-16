@@ -9,6 +9,7 @@ import { SimilarAccountsIcon } from '@/features/profile/icons/SimilarAccountsIco
 import { Followers } from './Followers';
 import { FollowUnfollowButton } from '@/core/shared/components/FollowUnfollowButton';
 import { Following } from './Following';
+
 interface Props {
   user: User;
   isAuthenticatedUser: boolean;

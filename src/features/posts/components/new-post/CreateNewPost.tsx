@@ -1,9 +1,11 @@
-import { EmojiIcon } from '@/core/shared/icons';
-import { useUserStore } from '@/core/store/user/user-store';
-
-import { AddCollaboratorsIcon, DownChevronIcon } from '../../icons';
+import { useQuery } from '@tanstack/react-query';
 import { UseFormRegister, UseFormWatch } from 'react-hook-form';
+
 import { PostCaption } from './NewPostModal';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
+
+import { EmojiIcon } from '@/core/shared/icons';
+import { AddCollaboratorsIcon, DownChevronIcon } from '../../icons';
 
 interface Props {
   register: UseFormRegister<PostCaption>;
@@ -11,11 +13,19 @@ interface Props {
 }
 
 export const CreateNewPost = ({ register, watch }: Props) => {
-  const { authenticatedUser } = useUserStore();
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
 
   const max = 2200;
   const caption = watch('caption') ?? '';
   const count = caption.length;
+
+  if (!authenticatedUser) {
+    return null;
+  }
 
   return (
     <article className='bg-ig-elevated-background text-ig-primary-text border-ig-elevated-separator flex h-[516px] w-[340px] flex-col overflow-auto border-l px-4'>

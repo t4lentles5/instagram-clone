@@ -1,6 +1,8 @@
 import { Dispatch, RefObject, SetStateAction } from 'react';
+import { useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import { useForm } from 'react-hook-form';
 
-import { useUserStore } from '@/core/store/user/user-store';
 import { useCropZoom } from '@/features/posts/hooks/useCropZoom';
 import { useSelectedCropStore } from '@/features/posts/store/selected-crop-store';
 import { useMediaGalleryStore } from '@/features/posts/store/media-gallery-store';
@@ -17,8 +19,7 @@ import { CloseModalOptions } from '@/features/posts/components/new-post/CloseMod
 import { NewPostMediaIcon } from '@/core/shared/icons';
 import { BackPostIcon } from '@/features/posts/icons';
 import { CreateNewPost } from './CreateNewPost';
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 interface Props {
   closeModal: () => void;
@@ -42,7 +43,12 @@ export const NewPostModal = ({
   handleCloseAttempt,
 }: Props) => {
   const router = useRouter();
-  const { authenticatedUser } = useUserStore();
+
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
 
   const { isZoomCropOpen, setIsZoomCropOpen } = useCropZoom();
   const { selectedCrop } = useSelectedCropStore();
@@ -68,6 +74,10 @@ export const NewPostModal = ({
     setSelectedFiles([...selectedFiles, ...filesArray]);
     e.target.value = '';
   };
+
+  if (!authenticatedUser) {
+    return null;
+  }
 
   const uploadPost = async () => {
     if (selectedFiles.length === 0) return;

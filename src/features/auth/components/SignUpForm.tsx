@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { useUserStore } from '@/core/store/user/user-store';
 import {
   emailVerify,
   registerUser,
@@ -22,7 +21,6 @@ export interface SignUpFormInputs {
 
 export const SignUpForm = () => {
   const router = useRouter();
-  const { setAuthenticatedUser } = useUserStore();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -69,10 +67,7 @@ export const SignUpForm = () => {
       return;
     }
 
-    const resp = await login(email, password);
-
-    const user = resp.user!;
-    setAuthenticatedUser(user);
+    await login(email, password);
 
     router.push('/');
   };

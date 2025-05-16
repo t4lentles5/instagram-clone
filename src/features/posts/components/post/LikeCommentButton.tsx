@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import { dislikeComment } from '@/features/posts/actions/dislike-comment';
 import { likeComment } from '@/features/posts/actions/like-comment';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 import { Comment, Reply } from '@/core/shared/interfaces/post.interface';
-import { useUserStore } from '@/core/store/user/user-store';
 
 import { HeartIcon } from '@/core/shared/icons';
 import styles from '@/features/posts/components/likes/like-animation.module.css';
@@ -14,20 +15,24 @@ interface Props {
 }
 
 export const LikeCommentButton = ({ comment }: Props) => {
-  const { authenticatedUser } = useUserStore();
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
 
   const hasLiked = comment.commentLike.some(
-    (like) => like.userId === authenticatedUser.id,
+    (like) => like.userId === authenticatedUser!.id,
   );
   const like = comment.commentLike.find(
-    (like) => like.userId === authenticatedUser.id,
+    (like) => like.userId === authenticatedUser!.id,
   );
 
   const toggleLike = () => {
     if (hasLiked) {
       dislikeComment(like!.id, comment.postId);
     } else {
-      likeComment(authenticatedUser.id, comment.id, comment.postId);
+      likeComment(authenticatedUser!.id, comment.id, comment.postId);
     }
   };
 

@@ -11,8 +11,9 @@ import { formatDate } from '@/features/posts/utils/format-date';
 import { getExactDate } from '@/features/posts/utils/get-exact-date';
 import { useModal } from '@/core/shared/hooks/useModal';
 import { Modal } from '@/core/shared/components/Modal';
-import { useUserStore } from '@/core/store/user/user-store';
 import { CommentLikesModalContent } from '../likes/CommentLikesModalContent';
+import { useQuery } from '@tanstack/react-query';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 interface Props {
   comment: Comment;
@@ -30,7 +31,13 @@ export const CommentItem = ({
   setShowReplies,
 }: Props) => {
   const router = useRouter();
-  const { authenticatedUser } = useUserStore();
+
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
+
   const { isOpen, openModal, closeModal } = useModal();
 
   const replyComment = () => {
@@ -47,6 +54,10 @@ export const CommentItem = ({
     setReplyToCommentId(comment.id);
     textarea.setSelectionRange(textarea.value.length, textarea.value.length);
   };
+
+  if (!authenticatedUser) {
+    return null;
+  }
 
   return (
     <>

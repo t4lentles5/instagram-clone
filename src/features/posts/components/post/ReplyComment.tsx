@@ -1,5 +1,6 @@
 import { Dispatch, RefObject, SetStateAction } from 'react';
 import { useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
 
 import { getExactDate } from '@/features/posts/utils/get-exact-date';
 import { formatDate } from '@/features/posts/utils/format-date';
@@ -11,7 +12,7 @@ import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import { useModal } from '@/core/shared/hooks/useModal';
 import { Modal } from '@/core/shared/components/Modal';
 import { CommentLikesModalContent } from '../likes/CommentLikesModalContent';
-import { useUserStore } from '@/core/store/user/user-store';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 interface Props {
   reply: Reply;
@@ -26,7 +27,16 @@ export const ReplyComment = ({
 }: Props) => {
   const router = useRouter();
   const { isOpen, openModal, closeModal } = useModal();
-  const { authenticatedUser } = useUserStore();
+
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
+
+  if (!authenticatedUser) {
+    return null;
+  }
 
   const replyComment = () => {
     const textarea = textareaRef.current;

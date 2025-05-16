@@ -2,12 +2,23 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { useSidebarStore } from '@/features/sidebar/sidebar-store';
-import { useUserStore } from '@/core/store/user/user-store';
+import { useQuery } from '@tanstack/react-query';
+
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 export const SidebarNavItemProfile = () => {
   const pathname = usePathname();
   const { isSidebarCollapsed } = useSidebarStore();
-  const { authenticatedUser } = useUserStore();
+
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
+
+  if (!authenticatedUser) {
+    return null;
+  }
 
   return (
     <>

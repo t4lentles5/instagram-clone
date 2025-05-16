@@ -2,16 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { deleteProfilePhoto } from '@/features/profile/actions/delete-profile-photo';
 import { User } from '@/core/shared/interfaces/user.interface';
-import { useUserStore } from '@/core/store/user/user-store';
 import { changeProfilePhoto } from '../actions/change-profile-photo';
 
 export function useProfilePhoto(user: User) {
+  const queryClient = useQueryClient();
   const router = useRouter();
-
-  const { setAuthenticatedUser } = useUserStore();
 
   const dialogRef = useRef<HTMLDialogElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -80,18 +79,19 @@ export function useProfilePhoto(user: User) {
       const buffer = await file.arrayBuffer();
       const base64Image = Buffer.from(buffer).toString('base64');
 
-      const updatedUser = await changeProfilePhoto(
+      await changeProfilePhoto(
         base64Image,
         user.username,
         user?.profile_photo_id ?? undefined,
       );
 
-      setAuthenticatedUser({ ...updatedUser });
+      await queryClient.invalidateQueries({ queryKey: ['authenticatedUser'] });
 
-      router.refresh();
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
+
+      router.refresh();
     } catch (error) {
       console.error('Error uploading profile photo:', error);
     } finally {
@@ -105,17 +105,16 @@ export function useProfilePhoto(user: User) {
 
     try {
       if (user.profile_photo_id) {
-        const updatedUser = await deleteProfilePhoto(
-          user.profile_photo_id,
-          user.id,
-        );
+        await deleteProfilePhoto(user.profile_photo_id, user.id);
 
-        setAuthenticatedUser({ ...updatedUser });
+        await queryClient.invalidateQueries({
+          queryKey: ['authenticatedUser'],
+        });
       }
 
-      router.refresh();
-
       setIsOpen(false);
+
+      router.refresh();
     } catch (error) {
       console.error('Error removing profile photo:', error);
     } finally {

@@ -7,7 +7,8 @@ import { formatDate } from '@/features/posts/utils/format-date';
 import { getAspectClass } from '@/features/posts/utils/get-aspect-class';
 
 import { likePost } from '@/features/posts/actions/like-post';
-import { useUserStore } from '@/core/store/user/user-store';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
+import { useQuery } from '@tanstack/react-query';
 
 import { Post } from '@/core/shared/interfaces/post.interface';
 
@@ -28,7 +29,12 @@ interface Props {
 }
 
 export const PostCard = ({ post }: Props) => {
-  const { authenticatedUser } = useUserStore();
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
+
   const { isOpen, openModal, closeModal } = useModal();
 
   const { aspect_ratio, first_image_dimensions } = post;
@@ -36,6 +42,10 @@ export const PostCard = ({ post }: Props) => {
     aspect_ratio,
     first_image_dimensions!,
   );
+
+  if (!authenticatedUser) {
+    return null;
+  }
 
   const hasLiked = post.likes.some(
     (like) => like.user.id === authenticatedUser.id,

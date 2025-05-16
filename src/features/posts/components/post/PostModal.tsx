@@ -13,7 +13,6 @@ import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import { formatPostDate } from '@/features/posts/utils/format-post-date';
 import { getAspectClass } from '@/features/posts/utils/get-aspect-class';
 import { getExactDate } from '@/features/posts/utils/get-exact-date';
-import { useUserStore } from '@/core/store/user/user-store';
 
 import { likePost } from '@/features/posts/actions/like-post';
 
@@ -30,6 +29,8 @@ import {
 import { useModal } from '@/core/shared/hooks/useModal';
 import { Modal } from '@/core/shared/components/Modal';
 import { LikesModalContent } from '../likes/LikesModalContent';
+import { useQuery } from '@tanstack/react-query';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 interface Props {
   post: Post;
@@ -69,7 +70,11 @@ export const PostModal = ({ post }: Props) => {
     };
   }, []);
 
-  const { authenticatedUser } = useUserStore();
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
 
   const router = useRouter();
 
@@ -85,8 +90,12 @@ export const PostModal = ({ post }: Props) => {
   );
 
   const hasLiked = post.likes.some(
-    (like) => like.user.id === authenticatedUser.id,
+    (like) => like.user.id === authenticatedUser!.id,
   );
+
+  if (!authenticatedUser) {
+    return null;
+  }
 
   return (
     <>

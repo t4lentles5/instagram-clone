@@ -3,9 +3,9 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { unfollow } from '../actions/unfollow';
 import { follow } from '../actions/follow';
 import { isFollowingUser } from '@/features/profile/actions/is-following-user';
-import { useUserStore } from '@/core/store/user/user-store';
 
 import { DownChevronIcon } from '@/features/posts/icons';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 interface Props {
   userId: string;
@@ -13,21 +13,27 @@ interface Props {
 }
 
 export const FollowUnfollowButton = ({ userId, inModal }: Props) => {
-  const { authenticatedUser } = useUserStore();
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    enabled: !!userId,
+    staleTime: 1000 * 60 * 10,
+  });
 
   const queryClient = useQueryClient();
 
   const { data: isFollowing, isLoading } = useQuery({
-    queryKey: ['isFollowing', authenticatedUser.id, userId],
-    queryFn: () => isFollowingUser(authenticatedUser.id, userId),
-    enabled: !!authenticatedUser.id,
+    queryKey: ['isFollowing', authenticatedUser!.id, userId],
+    queryFn: () => isFollowingUser(authenticatedUser!.id, userId),
+    enabled: !!authenticatedUser,
+    staleTime: 1000 * 60 * 10,
   });
 
   const followMutation = useMutation({
     mutationFn: () => follow(userId),
     onSuccess: () => {
       queryClient.setQueryData(
-        ['isFollowing', authenticatedUser.id, userId],
+        ['isFollowing', authenticatedUser!.id, userId],
         true,
       );
     },
@@ -37,7 +43,7 @@ export const FollowUnfollowButton = ({ userId, inModal }: Props) => {
     mutationFn: () => unfollow(userId),
     onSuccess: () => {
       queryClient.setQueryData(
-        ['isFollowing', authenticatedUser.id, userId],
+        ['isFollowing', authenticatedUser!.id, userId],
         false,
       );
     },
