@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { logout } from '@/features/auth/actions/logout';
 
@@ -17,6 +19,9 @@ import {
 } from '@/features/sidebar/icons';
 
 export const SidebarMoreOptions = () => {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
   const { isSidebarCollapsed } = useSidebarStore();
   const { isDarkMode, toggleTheme } = useThemeStore();
 
@@ -37,7 +42,9 @@ export const SidebarMoreOptions = () => {
   };
 
   const handleLogout = async () => {
+    await queryClient.invalidateQueries({ queryKey: ['authenticatedUser'] });
     await logout();
+    router.refresh();
   };
 
   const handleClickOutside = (event: MouseEvent) => {

@@ -13,6 +13,8 @@ interface Props {
 }
 
 export const FollowUnfollowButton = ({ userId, inModal }: Props) => {
+  const queryClient = useQueryClient();
+
   const { data: authenticatedUser } = useQuery({
     queryKey: ['authenticatedUser'],
     queryFn: () => getAuthenticatedUser(),
@@ -20,10 +22,10 @@ export const FollowUnfollowButton = ({ userId, inModal }: Props) => {
     staleTime: 1000 * 60 * 10,
   });
 
-  const queryClient = useQueryClient();
-
   const { data: isFollowing, isLoading } = useQuery({
-    queryKey: ['isFollowing', authenticatedUser!.id, userId],
+    queryKey: authenticatedUser
+      ? ['isFollowing', authenticatedUser.id, userId]
+      : [],
     queryFn: () => isFollowingUser(authenticatedUser!.id, userId),
     enabled: !!authenticatedUser,
     staleTime: 1000 * 60 * 10,
@@ -32,25 +34,28 @@ export const FollowUnfollowButton = ({ userId, inModal }: Props) => {
   const followMutation = useMutation({
     mutationFn: () => follow(userId),
     onSuccess: () => {
-      queryClient.setQueryData(
-        ['isFollowing', authenticatedUser!.id, userId],
-        true,
-      );
+      if (authenticatedUser) {
+        queryClient.setQueryData(
+          ['isFollowing', authenticatedUser.id, userId],
+          true,
+        );
+      }
     },
   });
 
   const unfollowMutation = useMutation({
     mutationFn: () => unfollow(userId),
     onSuccess: () => {
-      queryClient.setQueryData(
-        ['isFollowing', authenticatedUser!.id, userId],
-        false,
-      );
+      if (authenticatedUser) {
+        queryClient.setQueryData(
+          ['isFollowing', authenticatedUser.id, userId],
+          false,
+        );
+      }
     },
   });
 
-  if (isLoading) return <></>;
-
+  if (!authenticatedUser || isLoading) return null;
   return isFollowing ? (
     <button
       className={`flex h-8 cursor-pointer items-center justify-center gap-1 rounded-lg text-sm font-semibold transition-colors duration-200 md:w-[118px] ${

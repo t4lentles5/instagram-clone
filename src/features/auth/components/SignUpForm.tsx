@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useQueryClient } from '@tanstack/react-query';
 
 import {
   emailVerify,
@@ -11,7 +12,6 @@ import {
 } from '@/features/auth/actions/register';
 import { login } from '@/features/auth/actions/login';
 import { SignUpFormInput } from '@/features/auth/components/SignUpFormInput';
-
 export interface SignUpFormInputs {
   email: string;
   password: string;
@@ -21,6 +21,8 @@ export interface SignUpFormInputs {
 
 export const SignUpForm = () => {
   const router = useRouter();
+
+  const queryClient = useQueryClient();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -67,6 +69,7 @@ export const SignUpForm = () => {
       return;
     }
 
+    await queryClient.invalidateQueries({ queryKey: ['authenticatedUser'] });
     await login(email, password);
 
     router.push('/');

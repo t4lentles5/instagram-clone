@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useQueryClient } from '@tanstack/react-query';
+
 import { login } from '@/features/auth/actions/login';
 import { LoginFormInput } from '@/features/auth/components/LoginFormInput';
 
@@ -13,6 +15,8 @@ export interface LoginFormInputs {
 
 export const LoginForm = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -43,6 +47,8 @@ export const LoginForm = () => {
 
       return;
     }
+
+    await queryClient.invalidateQueries({ queryKey: ['authenticatedUser'] });
 
     router.push('/');
   };
