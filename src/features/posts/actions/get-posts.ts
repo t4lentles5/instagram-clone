@@ -129,6 +129,17 @@ export const getPosts = async () => {
           },
         },
       },
+      savedBy: {
+        select: {
+          id: true,
+          user: {
+            select: {
+              username: true,
+              profile_photo: true,
+            },
+          },
+        },
+      },
     },
   });
 

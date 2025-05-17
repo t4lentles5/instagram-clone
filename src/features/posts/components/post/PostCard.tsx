@@ -16,13 +16,14 @@ import { PostCarousel } from '@/features/posts/components/post/PostCarousel';
 import { LikeButton } from '@/features/posts/components/likes/LikeButton';
 import { CommentSection } from '@/features/posts/components/comments/CommentSection';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
+import { PostOptions } from './PostOptions';
+import { SavePost } from './SavePost';
 
 import { useModal } from '@/core/shared/hooks/useModal';
 import { Modal } from '@/core/shared/components/Modal';
 
-import { CommentIcon, SaveIcon, ShareIcon } from '@/core/shared/icons';
+import { CommentIcon, ShareIcon } from '@/core/shared/icons';
 import { LikesModalContent } from '../likes/LikesModalContent';
-import { PostOptions } from './PostOptions';
 
 interface Props {
   post: Post;
@@ -126,9 +127,8 @@ export const PostCard = ({ post }: Props) => {
                 </button>
               )}
             </div>
-            <button className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer py-2 pl-2'>
-              <SaveIcon />
-            </button>
+
+            <SavePost postId={post.id} />
           </section>
 
           {post.likes.length > 0 && (

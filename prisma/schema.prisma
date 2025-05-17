@@ -19,7 +19,7 @@ model User {
 
   posts       Post[]        @relation("AuthorPosts")
   taggedIn    Post[]        @relation("TaggedPosts")
-  savedPosts  Post[]        @relation("SavedPosts")
+  savedPosts  SavedPost[]
   like        Like[]
   comment     Comment[]
   commentLike CommentLike[]
@@ -48,13 +48,24 @@ model Post {
 
   likes    Like[]
   comments Comment[]
-  savedBy  User[]    @relation("SavedPosts")
+  savedBy  SavedPost[]
 
   location    String?
   taggedUsers User[]       @relation("TaggedPosts")
   postImages  PostImages[]
 
   @@index([authorId])
+}
+
+model SavedPost {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
 }
 
 model PostImages {

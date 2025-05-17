@@ -12,6 +12,13 @@ export interface Post {
   postImages: PostImage[];
   likes: Like[];
   comments: Comment[];
+  savedBy: {
+    id: User['id'];
+    user: {
+      username: User['username'];
+      profile_photo: User['profile_photo'];
+    };
+  }[];
 }
 
 export interface Author {

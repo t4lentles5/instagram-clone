@@ -3,34 +3,34 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
 
 import { PostCarousel } from '@/features/posts/components/post/PostCarousel';
 import { LikeButton } from '@/features/posts/components/likes/LikeButton';
 import { CommentForm } from '@/features/posts/components/comments/CommentForm';
 import { PostComments } from '@/features/posts/components/comments/PostComments';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
+import { SavePost } from './SavePost';
+import { LikesModalContent } from '../likes/LikesModalContent';
 
 import { formatPostDate } from '@/features/posts/utils/format-post-date';
 import { getAspectClass } from '@/features/posts/utils/get-aspect-class';
 import { getExactDate } from '@/features/posts/utils/get-exact-date';
 
 import { likePost } from '@/features/posts/actions/like-post';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 import { Post } from '@/core/shared/interfaces/post.interface';
+import { useModal } from '@/core/shared/hooks/useModal';
 
 import {
   CommentIcon,
   EmojiIcon,
   MoreOptionsIcon,
-  SaveIcon,
   ShareIcon,
   XIcon,
 } from '@/core/shared/icons';
-import { useModal } from '@/core/shared/hooks/useModal';
 import { Modal } from '@/core/shared/components/Modal';
-import { LikesModalContent } from '../likes/LikesModalContent';
-import { useQuery } from '@tanstack/react-query';
-import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 interface Props {
   post: Post;
@@ -188,9 +188,7 @@ export const PostModal = ({ post }: Props) => {
                     </button>
                   )}
                 </div>
-                <button className='hover:text-ig-secondary-text active:text-ig-secondary-text-pressed cursor-pointer py-2 pl-2'>
-                  <SaveIcon />
-                </button>
+                <SavePost postId={post.id} />
               </section>
 
               <section className='mb-4 flex flex-col px-4 text-sm'>
