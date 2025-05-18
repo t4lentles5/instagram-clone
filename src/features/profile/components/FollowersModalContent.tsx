@@ -37,7 +37,7 @@ export const FollowersModalContent = ({
             onClick={() => closeModal()}
             className='grid w-12 cursor-pointer place-items-center'
           >
-            <XIcon />
+            <XIcon size={16} />
           </button>
         </div>
         <div className='h-[356px] overflow-y-auto'>

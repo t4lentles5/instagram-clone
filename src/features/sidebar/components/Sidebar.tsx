@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { useSidebarStore } from '@/features/sidebar/sidebar-store';
+import { useSidebarStore } from '@/features/sidebar/stores/sidebar-store';
 
 import { SidebarMoreOptions } from '@/features/sidebar/components/SidebarMoreOptions';
 import { SidebarNav } from '@/features/sidebar/components/SidebarNav';

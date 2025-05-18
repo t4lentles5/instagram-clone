@@ -11,3 +11,4 @@ export { default as SavedMoreOptionsIcon } from './SavedMoreOptionsIcon';
 export { default as SearchSidebarIcon } from './SearchSidebarIcon';
 export { default as SettingsMoreOptionsIcon } from './SettingsMoreOptionsIcon';
 export { default as SettingsSidebarIcon } from './SettingsSidebarIcon';
+export { default as SearchIcon } from './SearchIcon';

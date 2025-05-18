@@ -7,7 +7,7 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import { logout } from '@/features/auth/actions/logout';
 
-import { useSidebarStore } from '@/features/sidebar/sidebar-store';
+import { useSidebarStore } from '@/features/sidebar/stores/sidebar-store';
 import { useThemeStore } from '@/core/store/theme/theme-store';
 
 import {

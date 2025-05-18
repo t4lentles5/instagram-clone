@@ -23,7 +23,5 @@ export const getSavedPosts = async () => {
     take: 4,
   });
 
-  console.log(posts);
-
   return posts;
 };

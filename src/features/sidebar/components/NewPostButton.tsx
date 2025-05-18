@@ -1,4 +1,4 @@
-import { useSidebarStore } from '@/features/sidebar/sidebar-store';
+import { useSidebarStore } from '@/features/sidebar/stores/sidebar-store';
 import { NewPostSidebarIcon } from '@/features/sidebar/icons';
 import { useNewPostModal } from '@/features/posts/hooks/useNewPostModal';
 import { NewPostModal } from '@/features/posts/components/new-post/NewPostModal';

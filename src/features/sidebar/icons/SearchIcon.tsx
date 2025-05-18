@@ -1,33 +1,33 @@
-export default function XIcon({ size }: { size: number }) {
+export default function SearchIcon() {
   return (
     <>
       <svg
-        aria-label='Close'
+        aria-label='Search'
         fill='currentColor'
-        height={size}
+        height='16'
         role='img'
         viewBox='0 0 24 24'
-        width={size}
+        width='16'
       >
-        <title>Close</title>
-        <polyline
+        <title>Search</title>
+        <path
+          d='M19 10.5A8.5 8.5 0 1 1 10.5 2a8.5 8.5 0 0 1 8.5 8.5Z'
           fill='none'
-          points='20.643 3.357 12 12 3.353 20.647'
           stroke='currentColor'
           strokeLinecap='round'
           strokeLinejoin='round'
-          strokeWidth='3'
-        ></polyline>
+          strokeWidth='2'
+        ></path>
         <line
           fill='none'
           stroke='currentColor'
           strokeLinecap='round'
           strokeLinejoin='round'
-          strokeWidth='3'
-          x1='20.649'
-          x2='3.354'
-          y1='20.649'
-          y2='3.354'
+          strokeWidth='2'
+          x1='16.511'
+          x2='22'
+          y1='16.511'
+          y2='22'
         ></line>
       </svg>
     </>

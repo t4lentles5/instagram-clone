@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { useSidebarStore } from '@/features/sidebar/sidebar-store';
+import { useSidebarStore } from '@/features/sidebar/stores/sidebar-store';
 import { useQuery } from '@tanstack/react-query';
 
 import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';

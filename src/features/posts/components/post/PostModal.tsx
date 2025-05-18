@@ -110,7 +110,7 @@ export const PostModal = ({ post }: Props) => {
           }}
           className='text-web-always-white absolute top-[10px] right-[10px] cursor-pointer p-2'
         >
-          <XIcon />
+          <XIcon size={16} />
         </button>
 
         <div
