@@ -21,6 +21,7 @@ export async function POST() {
     await prisma.postImages.deleteMany();
     await prisma.post.deleteMany();
     await prisma.follow.deleteMany();
+    await prisma.recentSearch.deleteMany();
     await prisma.user.deleteMany();
     await deleteAllProfilePhotos();
 

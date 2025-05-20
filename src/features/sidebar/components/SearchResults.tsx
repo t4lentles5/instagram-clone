@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Dispatch, SetStateAction } from 'react';
 import { SearchResult } from '@/features/sidebar/interfaces/search-result';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
+import { UseMutationResult } from '@tanstack/react-query';
 
 interface Props {
   users: SearchResult[];
@@ -9,7 +10,7 @@ interface Props {
   isFetched: boolean;
   toggleSearch: () => void;
   setQuery: Dispatch<SetStateAction<string>>;
-  addSearch: (user: SearchResult) => void;
+  addRecentSearchMutation: UseMutationResult<void, Error, string, unknown>;
 }
 
 export const SearchResults = ({
@@ -18,7 +19,7 @@ export const SearchResults = ({
   isFetched,
   toggleSearch,
   setQuery,
-  addSearch,
+  addRecentSearchMutation,
 }: Props) => {
   return (
     <>
@@ -44,7 +45,7 @@ export const SearchResults = ({
                 onClick={() => {
                   toggleSearch();
                   setQuery('');
-                  addSearch(user);
+                  addRecentSearchMutation.mutate(user.id);
                 }}
               >
                 <ProfilePhoto

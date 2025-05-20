@@ -24,8 +24,10 @@ model User {
   comment     Comment[]
   commentLike CommentLike[]
 
-  following Follow[] @relation("follower")
-  followers Follow[] @relation("following")
+  following        Follow[]       @relation("follower")
+  followers        Follow[]       @relation("following")
+  recentSearches   RecentSearch[] @relation("UserRecentSearches")
+  searchedByOthers RecentSearch[] @relation("SearchedUser")
 }
 
 enum Aspect_ratio {
@@ -126,4 +128,17 @@ model Follow {
   @@unique([followerId, followingId])
   @@index([followerId])
   @@index([followingId])
+}
+
+model RecentSearch {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  user   User   @relation("UserRecentSearches", fields: [userId], references: [id])
+  userId String
+
+  searchedUser   User   @relation("SearchedUser", fields: [searchedUserId], references: [id])
+  searchedUserId String
+
+  @@unique([userId, searchedUserId])
 }

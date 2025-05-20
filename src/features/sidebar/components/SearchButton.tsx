@@ -1,20 +1,28 @@
 import { usePathname } from 'next/navigation';
 
-import { useRecentSearchStore } from '../stores/recent-search-store';
 import { SearchSidebarIcon } from '@/features/sidebar/icons';
 import { useSearch } from '../hooks/useSearch';
-import { useQuery } from '@tanstack/react-query';
-import { ChangeEvent, useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDebounce } from '../hooks/useDebounce';
-import { searchUsers } from '../actions/search-users';
+import {
+  getRecentSearches,
+  deleteAllRecentSearches,
+  deleteRecentSearch,
+} from '../actions/recent-searches';
 import { SearchInput } from './SearchInput';
 import { SearchResults } from './SearchResults';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import Link from 'next/link';
 import { XIcon } from '@/core/shared/icons';
+import { searchUsers } from '../actions/search-users';
+import { addRecentSearch } from '../actions/recent-searches';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 export const SearchButton = () => {
   const pathname = usePathname();
+  const queryClient = useQueryClient();
+
   const {
     isActive,
     isSearchActive,
@@ -24,8 +32,10 @@ export const SearchButton = () => {
     buttonRef,
   } = useSearch();
 
-  const { recentSearches, addSearch, removeSearch, clearSearches } =
-    useRecentSearchStore();
+  const { data: user } = useQuery({
+    queryKey: ['authenticated-user'],
+    queryFn: () => getAuthenticatedUser(),
+  });
 
   const [query, setQuery] = useState('');
   const debouncedQuery = useDebounce(query, 500);
@@ -40,6 +50,38 @@ export const SearchButton = () => {
     enabled: !!debouncedQuery,
     staleTime: 1000 * 60,
   });
+
+  const { data: recentSearches = [] } = useQuery({
+    queryKey: ['recent-searches'],
+    queryFn: () => getRecentSearches(),
+    enabled: !!user,
+    staleTime: 1000 * 60,
+  });
+
+  const deleteAllRecentSearchesMutation = useMutation({
+    mutationFn: () => deleteAllRecentSearches(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['recent-searches'] });
+    },
+  });
+
+  const deleteRecentSearchMutation = useMutation({
+    mutationFn: (searchedUserId: string) => deleteRecentSearch(searchedUserId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['recent-searches'] });
+    },
+  });
+
+  const addRecentSearchMutation = useMutation({
+    mutationFn: (userId: string) => addRecentSearch(userId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['recent-searches'] });
+    },
+  });
+
+  useEffect(() => {
+    queryClient.removeQueries({ queryKey: ['recent-searches'] });
+  }, [user?.id]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -95,7 +137,7 @@ export const SearchButton = () => {
 
                   {recentSearches.length > 0 && (
                     <button
-                      onClick={clearSearches}
+                      onClick={() => deleteAllRecentSearchesMutation.mutate()}
                       className='text-ig-primary-button active:text-ig-primary-button-pressed hover:text-ig-link cursor-pointer text-sm font-semibold'
                     >
                       Clear all
@@ -103,44 +145,39 @@ export const SearchButton = () => {
                   )}
                 </div>
 
-                {recentSearches.map((user) => (
+                {recentSearches.map((item) => (
                   <div
-                    key={user.id}
+                    key={item.id}
                     className='hover:bg-ig-hover-overlay my-2 flex items-center justify-between px-6 py-2'
                   >
                     <Link
                       className='flex w-full items-center gap-3'
-                      href={`/${user.username}`}
+                      href={`/${item.searchedUser.username}`}
                       onClick={() => {
                         toggleSearch();
                       }}
                     >
                       <ProfilePhoto
-                        profile_photo={user.profile_photo}
-                        imageSize={{
-                          size: 'w-10',
-                        }}
-                        backgroundDivSize={{
-                          size: 'w-[44px]',
-                        }}
-                        borderDivSize={{
-                          size: 'w-[48px]',
-                        }}
+                        profile_photo={item.searchedUser.profile_photo}
+                        imageSize={{ size: 'w-10' }}
+                        backgroundDivSize={{ size: 'w-[44px]' }}
+                        borderDivSize={{ size: 'w-[48px]' }}
                       />
-
-                      <div className='flex flex-col items-center'>
+                      <div className='flex flex-col items-start'>
+                        {' '}
                         <p className='text-ig-primary-text text-sm font-semibold'>
-                          {user.fullname}
+                          {item.searchedUser.username}
                         </p>
                         <p className='text-ig-secondary-text w-full truncate text-sm'>
-                          @{user.username}
+                          {item.searchedUser.fullname}
                         </p>
                       </div>
                     </Link>
-
                     <button
                       className='text-ig-secondary-text cursor-pointer'
-                      onClick={() => removeSearch(user.id)}
+                      onClick={() =>
+                        deleteRecentSearchMutation.mutate(item.searchedUserId)
+                      }
                     >
                       <XIcon size={16} />
                     </button>
@@ -164,7 +201,7 @@ export const SearchButton = () => {
                 isFetched={isFetched}
                 toggleSearch={toggleSearch}
                 setQuery={setQuery}
-                addSearch={addSearch}
+                addRecentSearchMutation={addRecentSearchMutation}
               />
             )}
           </div>
