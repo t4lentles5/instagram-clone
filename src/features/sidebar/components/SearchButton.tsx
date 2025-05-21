@@ -1,27 +1,32 @@
+import { ChangeEvent, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
-import { SearchSidebarIcon } from '@/features/sidebar/icons';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
+import { searchUsers } from '../actions/search-users';
+import { addRecentSearch } from '../actions/add-recent-search';
+import { deleteRecentSearch } from '../actions/delete-recent-search';
+import { deleteAllRecentSearches } from '../actions/delete-all-recent-searches';
+import { getRecentSearches } from '../actions/get-recent-searches';
+
 import { useSearch } from '../hooks/useSearch';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { ChangeEvent, useEffect, useState } from 'react';
 import { useDebounce } from '../hooks/useDebounce';
-import {
-  getRecentSearches,
-  deleteAllRecentSearches,
-  deleteRecentSearch,
-} from '../actions/recent-searches';
+
 import { SearchInput } from './SearchInput';
 import { SearchResults } from './SearchResults';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
-import Link from 'next/link';
+
 import { XIcon } from '@/core/shared/icons';
-import { searchUsers } from '../actions/search-users';
-import { addRecentSearch } from '../actions/recent-searches';
-import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
+import { SearchSidebarIcon } from '@/features/sidebar/icons';
+import { useModal } from '@/core/shared/hooks/useModal';
+import { Modal } from '@/core/shared/components/Modal';
 
 export const SearchButton = () => {
   const pathname = usePathname();
   const queryClient = useQueryClient();
+
+  const { openModal, closeModal, isOpen } = useModal();
 
   const {
     isActive,
@@ -137,24 +142,63 @@ export const SearchButton = () => {
 
                   {recentSearches.length > 0 && (
                     <button
-                      onClick={() => deleteAllRecentSearchesMutation.mutate()}
+                      onClick={() => {
+                        openModal();
+                      }}
                       className='text-ig-primary-button active:text-ig-primary-button-pressed hover:text-ig-link cursor-pointer text-sm font-semibold'
                     >
                       Clear all
                     </button>
+                  )}
+
+                  {isOpen && (
+                    <Modal isOpen={isOpen} closeModal={closeModal}>
+                      <div className='flex w-[400px] flex-col items-center text-center'>
+                        <div className='px-8 py-6'>
+                          <h3 className='text-ig-primary-text mb-1 text-xl'>
+                            Clear search history?
+                          </h3>
+                          <p className='text-ig-secondary-text text-sm'>
+                            You won&apos;t be able to undo this. If you clear
+                            your search history, you may still see accounts
+                            you&apos;ve searched for as suggested results.
+                          </p>
+                        </div>
+
+                        <div className='border-ig-elevated-separator flex w-full flex-col border-t'>
+                          <button
+                            className='text-ig-badge h-12 w-full cursor-pointer px-2 py-1 text-sm font-bold'
+                            onClick={() => {
+                              deleteAllRecentSearchesMutation.mutate();
+                              closeModal();
+                            }}
+                          >
+                            Clear all
+                          </button>
+
+                          <button
+                            className='text-ig-primary-text border-ig-elevated-separator h-12 w-full cursor-pointer border-t px-2 py-1 text-sm'
+                            onClick={closeModal}
+                          >
+                            Not now
+                          </button>
+                        </div>
+                      </div>
+                    </Modal>
                   )}
                 </div>
 
                 {recentSearches.map((item) => (
                   <div
                     key={item.id}
-                    className='hover:bg-ig-hover-overlay my-2 flex items-center justify-between px-6 py-2'
+                    className='hover:bg-ig-hover-overlay flex items-center justify-between px-6 py-2'
                   >
                     <Link
                       className='flex w-full items-center gap-3'
                       href={`/${item.searchedUser.username}`}
                       onClick={() => {
                         toggleSearch();
+                        addRecentSearchMutation.mutate(item.searchedUserId);
                       }}
                     >
                       <ProfilePhoto

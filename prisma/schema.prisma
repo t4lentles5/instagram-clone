@@ -133,6 +133,7 @@ model Follow {
 model RecentSearch {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   user   User   @relation("UserRecentSearches", fields: [userId], references: [id])
   userId String
