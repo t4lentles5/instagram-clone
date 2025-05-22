@@ -21,7 +21,7 @@ export const NewPostButton = () => {
     <>
       <div className='flex h-12 items-center justify-center md:h-14 md:w-full'>
         <button
-          className='hover:bg-ig-hover-overlay active:bg-ig-active-overlay active:text-ig-primary-text/50 flex cursor-pointer items-center justify-start gap-4 rounded-lg p-3 active:scale-95 md:w-full'
+          className='md:hover:bg-ig-hover-overlay active:bg-ig-active-overlay active:text-ig-primary-text/50 flex cursor-pointer items-center justify-start gap-4 rounded-lg p-3 active:scale-95 md:w-full'
           onClick={openModal}
         >
           <NewPostSidebarIcon />
