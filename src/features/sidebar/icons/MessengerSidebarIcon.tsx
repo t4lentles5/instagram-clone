@@ -1,5 +1,5 @@
 interface Props {
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 export default function MessengerSidebarIcon({ isActive }: Props) {
