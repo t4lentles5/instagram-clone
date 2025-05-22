@@ -7,6 +7,7 @@ import { FollowUnfollowButton } from '@/core/shared/components/FollowUnfollowBut
 import { XIcon } from '@/core/shared/icons';
 
 import { getFollowingByUsername } from '../actions/get-following-by-username';
+import { FollowersIcon } from '../icons/FollowersIcon';
 
 interface Props {
   closeModal: () => void;
@@ -30,7 +31,7 @@ export const FollowingModalContent = ({
         <div className='border-ig-elevated-separator flex h-[43px] border-b'>
           <div className='w-12'></div>
           <h2 className='grid grow place-items-center font-semibold'>
-            Followers
+            Following
           </h2>
           <button
             onClick={() => closeModal()}
@@ -53,7 +54,7 @@ export const FollowingModalContent = ({
                 </section>
               ))}
             </div>
-          ) : following ? (
+          ) : following && following.length > 0 ? (
             following.map((following) => (
               <section
                 className='flex justify-between px-4 py-2'
@@ -87,7 +88,13 @@ export const FollowingModalContent = ({
               </section>
             ))
           ) : (
-            <div>No followers found</div>
+            <div className='flex flex-col items-center justify-center py-10'>
+              <FollowersIcon />
+              <h2 className='py-5 text-2xl font-bold'>People you follow</h2>
+              <span className='text-sm'>
+                Once you follow people, you&apos;ll see them here.
+              </span>
+            </div>
           )}
         </div>
       </div>
