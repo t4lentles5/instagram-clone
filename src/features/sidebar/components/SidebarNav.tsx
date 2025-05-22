@@ -10,8 +10,7 @@ import {
   MessengerSidebarIcon,
   ReelsSidebarIcon,
 } from '@/features/sidebar/icons';
-import Link from 'next/link';
-import { SearchSidebarIcon } from '@/features/sidebar/icons';
+import { SidebarMobileExplorerButton } from '@/features/sidebar/components/SidebarMobileExplorerButton';
 
 export const SidebarNav = () => {
   return (
@@ -20,12 +19,7 @@ export const SidebarNav = () => {
 
       <SearchButton />
 
-      <Link
-        href='/explore'
-        className='flex items-center justify-center md:hidden'
-      >
-        <SearchSidebarIcon />
-      </Link>
+      <SidebarMobileExplorerButton />
 
       <div className='hidden md:flex'>
         <SidebarNavItem
@@ -35,17 +29,25 @@ export const SidebarNav = () => {
         />
       </div>
 
-      <SidebarNavItem icon={ReelsSidebarIcon} label='Reels' href='/reels' />
+      <div className='hidden md:flex'>
+        <SidebarNavItem icon={ReelsSidebarIcon} label='Reels' href='/reels' />
+      </div>
 
-      <SidebarNavItem
-        icon={MessengerSidebarIcon}
-        label='Messages'
-        href='/messages'
-      />
+      <div className='hidden md:flex'>
+        <SidebarNavItem
+          icon={MessengerSidebarIcon}
+          label='Messages'
+          href='/messages'
+        />
+      </div>
 
       <NotificationsButton />
 
       <NewPostButton />
+
+      <div className='flex md:hidden'>
+        <SidebarNavItem icon={ReelsSidebarIcon} label='Reels' href='/reels' />
+      </div>
 
       <SidebarNavItemProfile />
     </nav>
