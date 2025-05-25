@@ -3,13 +3,9 @@ import Link from 'next/link';
 import { HeartIcon, CommentIcon } from '@/core/shared/icons';
 import { CarouselProfilePostIcon } from '@/features/profile/icons/CarouselProfilePostIcon';
 
-import { Aspect_ratio } from '@prisma/client';
-
 interface Props {
   post: {
     id: string;
-    aspect_ratio: Aspect_ratio;
-    first_image_dimensions: string | null;
     postImages: {
       imageUrl: string;
     }[];
@@ -21,16 +17,6 @@ interface Props {
 }
 
 export const ExplorePostCard = ({ post }: Props) => {
-  if (!post.first_image_dimensions) {
-    return null;
-  }
-
-  const [width, height] = post.first_image_dimensions.split('/').map(Number);
-
-  const isVertical = height > width + 120;
-
-  const aspectRatio = isVertical ? 1 / 2 : 1 / 1;
-
   return (
     <>
       <Link
@@ -44,10 +30,7 @@ export const ExplorePostCard = ({ post }: Props) => {
         <img
           src={post.postImages[0].imageUrl}
           alt=''
-          className={`${isVertical ? 'object-contain' : 'object-cover'} `}
-          style={{
-            aspectRatio: aspectRatio,
-          }}
+          className='object-cover'
         />
 
         {post.postImages.length > 1 && (

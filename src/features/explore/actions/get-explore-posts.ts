@@ -10,8 +10,6 @@ export const getExplorePosts = async () => {
     },
     select: {
       id: true,
-      aspect_ratio: true,
-      first_image_dimensions: true,
       _count: {
         select: {
           likes: true,
