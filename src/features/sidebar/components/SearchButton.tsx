@@ -7,8 +7,13 @@ import { SearchSidebarIcon } from '@/features/sidebar/icons';
 import { SearchPopover } from '@/features/search/components/SearchPopover';
 import { useSearchStore } from '@/features/search/stores/search-store';
 
+import styles from '@/features/search/components/search-popover.module.css';
+
+import { useEffect, useState } from 'react';
+
 export const SearchButton = () => {
   const pathname = usePathname();
+  const [showPopover, setShowPopover] = useState(false);
 
   const {
     isActive,
@@ -27,6 +32,15 @@ export const SearchButton = () => {
   } = useSearch();
 
   const { setQuery } = useSearchStore();
+
+  useEffect(() => {
+    if (isSearchActive) {
+      setShowPopover(true);
+    } else {
+      const timeout = setTimeout(() => setShowPopover(false), 200);
+      return () => clearTimeout(timeout);
+    }
+  }, [isSearchActive]);
 
   return (
     <>
@@ -50,7 +64,7 @@ export const SearchButton = () => {
         </button>
       </div>
 
-      {isSearchActive && (
+      {showPopover && (
         <SearchPopover
           searchRef={searchRef}
           toggleSearch={toggleSearch}
@@ -61,6 +75,11 @@ export const SearchButton = () => {
           deleteAllRecentSearchesMutation={deleteAllRecentSearchesMutation}
           deleteRecentSearchMutation={deleteRecentSearchMutation}
           addRecentSearchMutation={addRecentSearchMutation}
+          className={
+            isSearchActive
+              ? styles['search-popover-enter']
+              : styles['search-popover-exit']
+          }
         />
       )}
     </>

@@ -21,6 +21,7 @@ export const SearchPopover = ({
   deleteAllRecentSearchesMutation,
   deleteRecentSearchMutation,
   addRecentSearchMutation,
+  className,
 }: {
   searchRef: React.RefObject<HTMLDivElement | null>;
   toggleSearch: () => void;
@@ -51,6 +52,7 @@ export const SearchPopover = ({
   >;
   deleteRecentSearchMutation: UseMutationResult<void, unknown, string, unknown>;
   addRecentSearchMutation: UseMutationResult<void, Error, string, unknown>;
+  className?: string;
 }) => {
   const { isOpen, openModal, closeModal } = useModal();
   const { query } = useSearchStore();
@@ -59,7 +61,7 @@ export const SearchPopover = ({
     <>
       <div
         ref={searchRef}
-        className={`border-ig-separator bg-ig-primary-background absolute bottom-0 left-[73px] flex h-screen w-[400px] flex-col justify-start overflow-hidden rounded-lg border-r py-2`}
+        className={`border-ig-separator bg-ig-primary-background absolute bottom-0 left-[73px] flex h-screen w-[400px] flex-col justify-start overflow-hidden rounded-lg border-r py-2 ${className}`}
       >
         <div className={`flex flex-col ${query.length === 0 && 'pb-6'}`}>
           <h3 className='my-2 pt-2 pr-[14px] pb-8 pl-6 text-2xl font-semibold'>
