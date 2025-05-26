@@ -5,6 +5,7 @@ import { useSearch } from '@/features/search/hooks/useSearch';
 import { SearchSidebarIcon } from '@/features/sidebar/icons';
 
 import { SearchPopover } from '@/features/search/components/SearchPopover';
+import { useSearchStore } from '@/features/search/stores/search-store';
 
 export const SearchButton = () => {
   const pathname = usePathname();
@@ -16,9 +17,6 @@ export const SearchButton = () => {
     toggleSearch,
     searchRef,
     buttonRef,
-    query,
-    setQuery,
-    handleChange,
     users,
     isLoading,
     isFetched,
@@ -27,6 +25,8 @@ export const SearchButton = () => {
     deleteRecentSearchMutation,
     addRecentSearchMutation,
   } = useSearch();
+
+  const { setQuery } = useSearchStore();
 
   return (
     <>
@@ -52,11 +52,8 @@ export const SearchButton = () => {
 
       {isSearchActive && (
         <SearchPopover
-          query={query}
-          setQuery={setQuery}
           searchRef={searchRef}
           toggleSearch={toggleSearch}
-          handleChange={handleChange}
           users={users}
           isLoading={isLoading}
           isFetched={isFetched}

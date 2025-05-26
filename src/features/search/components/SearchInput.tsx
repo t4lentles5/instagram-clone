@@ -1,26 +1,20 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
+
+import { useSearchStore } from '@/features/search/stores/search-store';
+
 import { SearchIcon } from '@/features/sidebar/icons';
 import XIcon from '@/core/shared/icons/XIcon';
 import styles from './search-loader.module.css';
 
 export const SearchInput = ({
   query,
-  handleChange,
-  setQuery,
   isLoading,
 }: {
   query: string;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  setQuery: Dispatch<SetStateAction<string>>;
   isLoading: boolean;
 }) => {
+  const { setQuery } = useSearchStore();
+
   const [isActive, setIsActive] = useState(false);
   const inputRef = useRef<HTMLDivElement>(null);
 
@@ -49,7 +43,9 @@ export const SearchInput = ({
             placeholder='Search'
             value={query}
             autoFocus
-            onChange={handleChange}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setQuery(e.target.value);
+            }}
             className={`bg-ig-elevated-highlight-background relative flex w-full justify-between rounded-lg border-none py-2 pl-4 text-sm/6 focus:outline-none`}
           />
 

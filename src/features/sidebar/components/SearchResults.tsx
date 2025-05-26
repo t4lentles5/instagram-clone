@@ -1,15 +1,16 @@
 import Link from 'next/link';
-import { Dispatch, SetStateAction } from 'react';
+
+import { UseMutationResult } from '@tanstack/react-query';
+import { useSearchStore } from '@/features/search/stores/search-store';
+
 import { SearchResult } from '@/features/sidebar/interfaces/search-result';
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
-import { UseMutationResult } from '@tanstack/react-query';
 
 interface Props {
   users: SearchResult[];
   isLoading: boolean;
   isFetched: boolean;
   toggleSearch: () => void;
-  setQuery: Dispatch<SetStateAction<string>>;
   addRecentSearchMutation: UseMutationResult<void, Error, string, unknown>;
 }
 
@@ -18,9 +19,10 @@ export const SearchResults = ({
   isLoading,
   isFetched,
   toggleSearch,
-  setQuery,
   addRecentSearchMutation,
 }: Props) => {
+  const { setQuery } = useSearchStore();
+
   return (
     <>
       {isLoading

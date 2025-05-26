@@ -1,8 +1,8 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 
 import { UseMutationResult } from '@tanstack/react-query';
 import { useModal } from '@/core/shared/hooks/useModal';
+import { useSearchStore } from '@/features/search/stores/search-store';
 
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import { Modal } from '@/core/shared/components/Modal';
@@ -12,11 +12,8 @@ import { SearchInput } from './SearchInput';
 import { XIcon } from '@/core/shared/icons';
 
 export const SearchPopover = ({
-  query,
-  setQuery,
   searchRef,
   toggleSearch,
-  handleChange,
   users,
   isLoading,
   isFetched,
@@ -25,11 +22,8 @@ export const SearchPopover = ({
   deleteRecentSearchMutation,
   addRecentSearchMutation,
 }: {
-  query: string;
-  setQuery: Dispatch<SetStateAction<string>>;
   searchRef: React.RefObject<HTMLDivElement | null>;
   toggleSearch: () => void;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   users: {
     id: string;
     profile_photo: string | null;
@@ -59,6 +53,7 @@ export const SearchPopover = ({
   addRecentSearchMutation: UseMutationResult<void, Error, string, unknown>;
 }) => {
   const { isOpen, openModal, closeModal } = useModal();
+  const { query } = useSearchStore();
 
   return (
     <>
@@ -71,12 +66,7 @@ export const SearchPopover = ({
             Search
           </h3>
 
-          <SearchInput
-            query={query}
-            handleChange={handleChange}
-            setQuery={setQuery}
-            isLoading={isLoading}
-          />
+          <SearchInput query={query} isLoading={isLoading} />
         </div>
 
         <div
@@ -191,7 +181,6 @@ export const SearchPopover = ({
               isLoading={isLoading}
               isFetched={isFetched}
               toggleSearch={toggleSearch}
-              setQuery={setQuery}
               addRecentSearchMutation={addRecentSearchMutation}
             />
           )}

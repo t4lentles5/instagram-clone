@@ -1,10 +1,12 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSidebarStore } from '@/features/sidebar/stores/sidebar-store';
-import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
+import { useSearchStore } from '../stores/search-store';
 import { useDebounce } from './useDebounce';
+
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 import { searchUsers } from '../actions/search-users';
 import { getRecentSearches } from '../actions/get-recent-searches';
 import { deleteAllRecentSearches } from '../actions/delete-all-recent-searches';
@@ -14,10 +16,9 @@ import { addRecentSearch } from '../actions/add-recent-search';
 export const useSearch = () => {
   const { isSearchActive, isSidebarCollapsed, toggleSearch } =
     useSidebarStore();
+  const { query } = useSearchStore();
   const pathname = usePathname();
   const queryClient = useQueryClient();
-
-  const [query, setQuery] = useState('');
 
   const searchRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -99,10 +100,6 @@ export const useSearch = () => {
     queryClient.removeQueries({ queryKey: ['recent-searches'] });
   }, [user?.id]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-  };
-
   return {
     isActive,
     isSearchActive,
@@ -110,9 +107,6 @@ export const useSearch = () => {
     toggleSearch,
     searchRef,
     buttonRef,
-    query,
-    setQuery,
-    handleChange,
     users,
     isLoading,
     isFetched,
