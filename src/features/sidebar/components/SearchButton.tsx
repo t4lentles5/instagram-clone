@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { useSearch } from '@/features/search/hooks/useSearch';
@@ -7,9 +8,7 @@ import { SearchSidebarIcon } from '@/features/sidebar/icons';
 import { SearchPopover } from '@/features/search/components/SearchPopover';
 import { useSearchStore } from '@/features/search/stores/search-store';
 
-import styles from '@/features/search/components/search-popover.module.css';
-
-import { useEffect, useState } from 'react';
+import styles from '@/features/sidebar/components/toggle-sidebar.module.css';
 
 export const SearchButton = () => {
   const pathname = usePathname();
@@ -76,9 +75,7 @@ export const SearchButton = () => {
           deleteRecentSearchMutation={deleteRecentSearchMutation}
           addRecentSearchMutation={addRecentSearchMutation}
           className={
-            isSearchActive
-              ? styles['search-popover-enter']
-              : styles['search-popover-exit']
+            isSearchActive ? styles['popover-enter'] : styles['popover-exit']
           }
         />
       )}

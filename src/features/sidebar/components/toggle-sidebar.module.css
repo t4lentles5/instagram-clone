@@ -20,10 +20,10 @@
   }
 }
 
-.search-popover-enter {
-  animation: slideIn 0.2s ease forwards;
+.popover-enter {
+  animation: slideIn 0.2s cubic-bezier(0.47, 0.04, 0, 1.12) forwards;
 }
 
-.search-popover-exit {
-  animation: slideOut 0.2s ease forwards;
+.popover-exit {
+  animation: slideOut 0.2s cubic-bezier(0.47, 0.04, 0, 1.12) forwards;
 }

@@ -13,11 +13,12 @@ import styles from '@/features/sidebar/components/sidebar.module.css';
 
 export const Sidebar = () => {
   const { isSidebarCollapsed } = useSidebarStore();
+  console.log(isSidebarCollapsed);
 
   return (
     <div className={`sticky top-0 z-50 h-0 md:h-screen`}>
       <div
-        className={` ${isSidebarCollapsed ? 'md:w-[73px]' : 'md:w-[245px]'} ${styles.sidebar} md:border-ig-separator fixed bottom-0 w-full flex-col md:static md:flex md:h-screen md:border-r md:px-3 md:pt-2 md:pb-[19px]`}
+        className={` ${isSidebarCollapsed ? 'xl:w-[73px]' : 'xl:w-[245px]'} ${styles.sidebar} md:border-ig-separator fixed bottom-0 w-full flex-col md:static md:flex md:h-screen md:border-r md:px-3 md:pt-2 md:pb-[19px]`}
       >
         <div
           className={`${

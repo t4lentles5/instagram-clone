@@ -5,6 +5,8 @@ import { useSidebarStore } from '@/features/sidebar/stores/sidebar-store';
 
 import { HeartIcon } from '@/core/shared/icons';
 
+import styles from '@/features/sidebar/components/toggle-sidebar.module.css';
+
 export const NotificationsButton = () => {
   const pathname = usePathname();
   const { isSidebarCollapsed, isNotificationsActive, toggleNotifications } =
@@ -61,7 +63,7 @@ export const NotificationsButton = () => {
       {isNotificationsActive && (
         <div
           ref={notificationRef}
-          className={`border-ig-separator bg-ig-primary-background absolute bottom-0 left-[73px] flex h-screen w-[400px] flex-col justify-start gap-4 overflow-hidden rounded-lg border-r`}
+          className={`border-ig-separator bg-ig-primary-background absolute bottom-0 left-[73px] flex h-screen w-[400px] flex-col justify-start gap-4 overflow-hidden rounded-lg border-r ${isNotificationsActive ? styles['popover-enter'] : styles['popover-exit']}`}
         >
           Notifications
         </div>
