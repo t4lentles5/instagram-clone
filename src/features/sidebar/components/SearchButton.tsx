@@ -36,7 +36,7 @@ export const SearchButton = () => {
     if (isSearchActive) {
       setShowPopover(true);
     } else {
-      const timeout = setTimeout(() => setShowPopover(false), 200);
+      const timeout = setTimeout(() => setShowPopover(false), 300);
       return () => clearTimeout(timeout);
     }
   }, [isSearchActive]);

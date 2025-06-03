@@ -1,6 +1,6 @@
 @keyframes slideIn {
   from {
-    transform: translateX(-73px);
+    transform: translateX(-100px);
     opacity: 0;
   }
   to {
@@ -15,15 +15,15 @@
     opacity: 1;
   }
   to {
-    transform: translateX(-73px);
+    transform: translateX(-100px);
     opacity: 0;
   }
 }
 
-.popover-enter {
+.switch-appearance-enter {
   animation: slideIn 0.3s cubic-bezier(0.47, 0.04, 0, 1.12) forwards;
 }
 
-.popover-exit {
+.switch-appearance-exit {
   animation: slideOut 0.3s cubic-bezier(0.47, 0.04, 0, 1.12) forwards;
 }
