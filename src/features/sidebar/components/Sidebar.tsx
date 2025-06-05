@@ -13,7 +13,6 @@ import styles from '@/features/sidebar/components/sidebar.module.css';
 
 export const Sidebar = () => {
   const { isSidebarCollapsed } = useSidebarStore();
-  console.log(isSidebarCollapsed);
 
   return (
     <div className={`sticky top-0 z-50 h-0 md:h-screen`}>

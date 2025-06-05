@@ -1,9 +1,8 @@
-'use client';
-
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { logout } from '@/features/auth/actions/logout';
 
@@ -20,8 +19,15 @@ import {
 
 import styles from '@/features/sidebar/components/more-options.module.css';
 import switchAppearanceStyles from '@/features/sidebar/components/switch-appearance.module.css';
+import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-user';
 
 export const SidebarMoreOptions = () => {
+  const { data: authenticatedUser } = useQuery({
+    queryKey: ['authenticatedUser'],
+    queryFn: () => getAuthenticatedUser(),
+    staleTime: 1000 * 60 * 10,
+  });
+
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -88,7 +94,7 @@ export const SidebarMoreOptions = () => {
       const timeout = setTimeout(() => setShowSwitchAppearanceOpen(false), 300);
       return () => clearTimeout(timeout);
     }
-  }, [moreOptionsOpen]);
+  }, [switchAppearanceOpen]);
 
   return (
     <>
@@ -126,7 +132,7 @@ export const SidebarMoreOptions = () => {
 
               <Link
                 className={`hover:bg-ig-hover-overlay active:bg-ig-active-overlay flex w-full items-center justify-start gap-3 rounded-lg p-4`}
-                href={'/saved'}
+                href={`/${authenticatedUser?.username}/saved`}
               >
                 <SavedMoreOptionsIcon />
                 <span className='text-sm leading-[18px]'>Saved</span>
