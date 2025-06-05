@@ -11,6 +11,13 @@
   --color-ig-icon-background: rgb(26, 26, 26, 0.8);
   --color-ig-option-pressed: rgb(0, 0, 0, 0.1);
   --color-ig-highlight-background: var(--ig-highlight-background);
+  --color-ig-chat-composer-background: var(--ig-chat-composer-background);
+  --color-ig-chat-composer-background-hover: var(
+    --ig-chat-composer-background-hover
+  );
+  --color-ig-chat-composer-background-pressed: var(
+    --ig-chat-composer-background-pressed
+  );
 
   --color-ig-primary-button: rgb(0, 149, 246);
   --color-ig-primary-button-hover: rgb(24, 119, 242);
@@ -81,6 +88,9 @@
     --ig-elevated-background: rgb(255, 255, 255);
     --ig-elevated-highlight-background: rgb(239, 239, 239);
     --ig-highlight-background: rgb(239, 239, 239);
+    --ig-chat-composer-background: rgb(255, 255, 255);
+    --ig-chat-composer-background-hover: rgb(242, 242, 242);
+    --ig-chat-composer-background-pressed: rgb(242, 242, 242, 0.5);
 
     --ig-secondary-button-background: rgb(239, 239, 239);
     --ig-secondary-button-background-hover: rgb(219, 219, 219);
@@ -121,6 +131,9 @@
     --ig-elevated-background: rgb(38, 38, 38);
     --ig-elevated-highlight-background: rgb(54, 54, 54);
     --ig-highlight-background: rgb(38, 38, 38);
+    --ig-chat-composer-background: rgb(33, 35, 40);
+    --ig-chat-composer-background-hover: rgb(56, 57, 62);
+    --ig-chat-composer-background-pressed: rgb(56, 57, 62, 0.5);
 
     --ig-secondary-button-background: rgb(54, 54, 54);
     --ig-secondary-button-background-hover: rgb(38, 38, 38);

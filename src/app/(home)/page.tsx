@@ -53,6 +53,13 @@ export default async function HomePage() {
           <Footer />
         </div>
       </div>
+
+      <div className='bg-ig-chat-composer-background hover:bg-ig-chat-composer-background-hover active:bg-ig-chat-composer-background-pressed fixed right-8 bottom-8 h-[54px] w-[250px] cursor-pointer rounded-4xl px-4 shadow-[0_4px_12px_0_rgba(0,0,0,0.2)]'>
+        <div className='flex h-full items-center justify-start gap-2'>
+          <MessengerSidebarIcon />
+          <span className='font-semibold'>Messages</span>
+        </div>
+      </div>
     </>
   );
 }
