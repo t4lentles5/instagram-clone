@@ -43,6 +43,12 @@ export const deletePost = async (postId: string) => {
       },
     });
 
+    await prisma.savedPost.deleteMany({
+      where: {
+        postId: postId,
+      },
+    });
+
     await prisma.post.delete({
       where: {
         id: postId,
