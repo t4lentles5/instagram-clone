@@ -15,7 +15,7 @@ export const SearchInput = ({
 }) => {
   const { setQuery } = useSearchStore();
 
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
   const inputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
