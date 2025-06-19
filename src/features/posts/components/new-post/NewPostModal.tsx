@@ -115,7 +115,7 @@ export const NewPostModal = ({
     <>
       <dialog
         ref={newPostModalRef}
-        className={`${postState !== 'crop' ? 'w-[856px]' : 'w-[516px]'} bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl`}
+        className={`${postState !== 'crop' ? 'w-[945px]' : 'w-[605px]'} bg-ig-elevated-background backdrop:bg-overlay-alpha-80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-auto rounded-xl`}
         onCancel={handleCloseAttempt}
         onClick={(e) => {
           const dialog = newPostModalRef.current;
@@ -184,7 +184,7 @@ export const NewPostModal = ({
               </header>
 
               <div className='bg-ig-secondary-background flex'>
-                <div className='relative aspect-square h-full w-[516px]'>
+                <div className='relative aspect-square w-[605px]'>
                   <NewPostCarousel />
 
                   {postState === 'crop' && (

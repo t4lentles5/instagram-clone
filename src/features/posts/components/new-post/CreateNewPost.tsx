@@ -28,7 +28,7 @@ export const CreateNewPost = ({ register, watch }: Props) => {
   }
 
   return (
-    <article className='bg-ig-elevated-background text-ig-primary-text border-ig-elevated-separator flex h-[516px] w-[340px] flex-col overflow-auto border-l px-4'>
+    <article className='bg-ig-elevated-background text-ig-primary-text border-ig-elevated-separator flex w-[340px] flex-col overflow-auto border-l px-4'>
       <section className='mt-[18px] mb-[14px] flex'>
         <img
           src={authenticatedUser.profile_photo || '/default_photo.jpg'}

@@ -7,7 +7,7 @@ export const EditNewPost = () => {
 
   return (
     <>
-      <div className='bg-ig-elevated-background border-ig-elevated-separator flex h-[516px] w-[340px] flex-col overflow-auto border-l'>
+      <div className='bg-ig-elevated-background border-ig-elevated-separator flex w-[340px] flex-col overflow-auto border-l'>
         <div className='flex'>
           <button
             onClick={() => setEditState('filters')}
