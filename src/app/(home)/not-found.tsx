@@ -17,7 +17,13 @@ export default function NotFound() {
         </h2>
         <p>
           The link you followed may be broken, or the page may have been
-          removed. <Link href={'/'}>Go back to Instagram.</Link>
+          removed.{' '}
+          <Link
+            href={'/'}
+            className='text-ig-colors-button-borderless-text font-semibold'
+          >
+            Go back to Instagram.
+          </Link>
         </p>
       </div>
       <Footer />
