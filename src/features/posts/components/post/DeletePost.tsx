@@ -5,15 +5,21 @@ import { deletePost } from '../../actions/delete-post';
 interface Props {
   postId: string;
   closeOptionsModal: () => void;
+  closePostModal?: () => void;
 }
 
-export const DeletePost = ({ postId, closeOptionsModal }: Props) => {
+export const DeletePost = ({
+  postId,
+  closeOptionsModal,
+  closePostModal,
+}: Props) => {
   const { isOpen, openModal, closeModal } = useModal();
 
   const handleDelete = async () => {
     await deletePost(postId);
     closeModal();
     closeOptionsModal();
+    closePostModal?.();
   };
 
   const handleCancel = () => {

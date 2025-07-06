@@ -1,4 +1,3 @@
-import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 
 import { MoreOptionsIcon } from '@/core/shared/icons';
@@ -11,9 +10,10 @@ import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-
 interface Props {
   authorId: string;
   postId: string;
+  closePostModal?: () => void;
 }
 
-export const PostOptions = ({ authorId, postId }: Props) => {
+export const PostOptions = ({ authorId, postId, closePostModal }: Props) => {
   const { data: authenticatedUser } = useQuery({
     queryKey: ['authenticatedUser'],
     queryFn: () => getAuthenticatedUser(),
@@ -21,8 +21,6 @@ export const PostOptions = ({ authorId, postId }: Props) => {
   });
 
   const { isOpen, openModal, closeModal } = useModal();
-
-  const router = useRouter();
 
   if (!authenticatedUser) {
     return null;
@@ -44,7 +42,11 @@ export const PostOptions = ({ authorId, postId }: Props) => {
           <div className='divide-ig-elevated-separator flex w-[400px] flex-col divide-y'>
             {isAuthor ? (
               <>
-                <DeletePost postId={postId} closeOptionsModal={closeModal} />
+                <DeletePost
+                  postId={postId}
+                  closeOptionsModal={closeModal}
+                  closePostModal={closePostModal}
+                />
 
                 <button className='active:bg-ig-option-pressed h-12 cursor-pointer text-sm'>
                   Edit
@@ -52,8 +54,7 @@ export const PostOptions = ({ authorId, postId }: Props) => {
 
                 <button
                   onClick={() => {
-                    router.push(`/p/${postId}`);
-                    closeModal();
+                    window.location.href = `/p/${postId}`;
                   }}
                   className='active:bg-ig-option-pressed h-12 cursor-pointer text-sm'
                 >
@@ -90,7 +91,7 @@ export const PostOptions = ({ authorId, postId }: Props) => {
 
                 <button
                   onClick={() => {
-                    router.push(`/p/${postId}`);
+                    window.location.href = `/p/${postId}`;
                     closeModal();
                   }}
                   className='active:bg-ig-option-pressed h-12 cursor-pointer text-sm'

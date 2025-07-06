@@ -52,7 +52,7 @@ export const PostComments = ({
   return (
     <>
       {comments.length > 0 || postCaption ? (
-        <div className='border-post-separator scrollbar-hide grow overflow-y-scroll border-b p-4'>
+        <div className='border-post-separator bg-ig-chat-composer-background scrollbar-hide grow overflow-y-scroll border-b border-l p-4'>
           {postCaption && (
             <div className='mt-[-5px] flex grow items-center pt-3 pb-4'>
               <ProfilePhoto
@@ -114,7 +114,7 @@ export const PostComments = ({
           })}
         </div>
       ) : (
-        <div className='border-post-separator flex grow flex-col items-center justify-center border-b'>
+        <div className='border-post-separator bg-ig-chat-composer-background flex grow flex-col items-center justify-center border-b border-l'>
           <h2 className='mb-2 text-2xl font-bold'>No comments yet.</h2>
           <span className='text-sm'>Start the conversation.</span>
         </div>

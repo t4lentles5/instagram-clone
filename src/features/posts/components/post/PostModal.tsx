@@ -12,6 +12,8 @@ import { PostComments } from '@/features/posts/components/comments/PostComments'
 import { ProfilePhoto } from '@/core/shared/components/ProfilePhoto';
 import { SavePost } from './SavePost';
 import { LikesModalContent } from '../likes/LikesModalContent';
+import { Modal } from '@/core/shared/components/Modal';
+import { PostOptions } from './PostOptions';
 
 import { formatPostDate } from '@/features/posts/utils/format-post-date';
 import { getAspectClass } from '@/features/posts/utils/get-aspect-class';
@@ -23,14 +25,7 @@ import { getAuthenticatedUser } from '@/features/auth/actions/get-authenticated-
 import { Post } from '@/core/shared/interfaces/post.interface';
 import { useModal } from '@/core/shared/hooks/useModal';
 
-import {
-  CommentIcon,
-  EmojiIcon,
-  MoreOptionsIcon,
-  ShareIcon,
-  XIcon,
-} from '@/core/shared/icons';
-import { Modal } from '@/core/shared/components/Modal';
+import { CommentIcon, EmojiIcon, ShareIcon, XIcon } from '@/core/shared/icons';
 
 interface Props {
   post: Post;
@@ -97,6 +92,10 @@ export const PostModal = ({ post }: Props) => {
     return null;
   }
 
+  const closePostModal = () => {
+    router.back();
+  };
+
   return (
     <>
       <div
@@ -118,7 +117,7 @@ export const PostModal = ({ post }: Props) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div
-            className={` ${post.aspect_ratio === 'video' && 'aspect-square'} border-post-separator bg-web-always-black relative h-full w-full overflow-hidden border-r`}
+            className={` ${post.aspect_ratio === 'video' && 'aspect-square'} bg-web-always-black relative h-full w-full overflow-hidden`}
             style={{ aspectRatio: aspect_ratio_image }}
             onDoubleClick={() => {
               if (!hasLiked) {
@@ -130,7 +129,7 @@ export const PostModal = ({ post }: Props) => {
           </div>
 
           <div className='bg-ig-primary-background flex h-full max-w-[500px] min-w-[400px] grow flex-col rounded-r-sm'>
-            <section className='border-post-separator flex items-center justify-between rounded-sm border-b'>
+            <section className='border-post-separator bg-ig-chat-composer-background flex items-center justify-between rounded-sm border-b border-l'>
               <div className='flex grow items-center py-[14px] pr-1 pl-4'>
                 <ProfilePhoto
                   profile_photo={post.author.profile_photo}
@@ -153,7 +152,11 @@ export const PostModal = ({ post }: Props) => {
               </div>
               <div className='pr-2'>
                 <div className='p-2'>
-                  <MoreOptionsIcon />
+                  <PostOptions
+                    authorId={post.author.id}
+                    postId={post.id}
+                    closePostModal={closePostModal}
+                  />
                 </div>
               </div>
             </section>
@@ -170,7 +173,7 @@ export const PostModal = ({ post }: Props) => {
               setShowReplies={setShowReplies}
             />
 
-            <div className='border-post-separator border-b'>
+            <div className='border-post-separator bg-ig-chat-composer-background border-b border-l'>
               <section className='flex justify-between px-4 py-[6px]'>
                 <div className='flex'>
                   <LikeButton post={post} userId={authenticatedUser.id} />
@@ -231,7 +234,7 @@ export const PostModal = ({ post }: Props) => {
               </section>
             </div>
 
-            <section className='flex py-[6px] pr-4'>
+            <section className='bg-ig-chat-composer-background border-post-separator flex rounded-r-sm border-l py-[6px] pr-4'>
               <button className='text-ig-secondary-button active:text-ig-secondary-button-pressed cursor-pointer px-4 py-2'>
                 <EmojiIcon size={24} />
               </button>
