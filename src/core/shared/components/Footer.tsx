@@ -6,12 +6,12 @@ export const Footer = () => {
       <footer className='text-ig-tertiary-text p-5 text-center text-xs'>
         Cloned with 💜 by{' '}
         <Link
-          href='https://github.com/Obrn544'
+          href='https://github.com/t4lentles5'
           target='_blank'
           rel='noopener noreferrer'
           className='hover:underline'
         >
-          @obrn544
+          @t4lentles5
         </Link>
       </footer>
     </>
