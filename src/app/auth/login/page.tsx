@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
+
 import { LoginForm } from '@/features/auth/components/LoginForm';
-import { LoginImages } from '@/features/auth/components/LoginImages';
 import { OrComponent } from '@/features/auth/components/OrComponent';
 
 export const metadata: Metadata = {
@@ -11,8 +11,12 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <main className='flex h-[650px] w-full justify-center p-8'>
-      <LoginImages />
+    <main className='flex h-[650px] w-full grow items-center justify-center p-8'>
+      <img
+        src='/login/login-image.png'
+        alt='login image'
+        className='hidden lg:block'
+      />
 
       <div className='flex w-[350px] flex-col gap-3 pt-3'>
         <div className='border-ig-elevated-separator flex w-full flex-col gap-3 border pt-[10px] pb-5'>
